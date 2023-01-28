@@ -46,9 +46,9 @@ You should be able to access the application in [http://localhost:3000](http://l
 
 ## More information
 You can get more information about the repository in the other README files:
-- Documentation: https://github.com/arquisoft/lomap_0/tree/master/docs
-- Webapp: https://github.com/arquisoft/lomap_0/tree/master/webapp
-- Restapi: https://github.com/arquisoft/lomap_0/tree/master/restapi
+- Documentation: https://github.com/arquisoft/lomap_es4b/webapp/tree/master/docs
+- Webapp: https://github.com/arquisoft/lomap_es4b/webapp/tree/master/webapp
+- Restapi: https://github.com/arquisoft/lomap_es4b/webapp/tree/master/restapi
 
 
 ## Deployment
