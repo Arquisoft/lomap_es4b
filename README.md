@@ -1,6 +1,6 @@
 # LoMap ES4B
 
-[![Actions Status](https://github.com/arquisoft/lomap_es4b/workflows/CI%20for%20LOMAP_ES4B/badge.svg)](https://github.com/arquisoft/lomap_es4b/actions)
+[![CI for LOMAP ES4B](https://github.com/Arquisoft/lomap_es4b/actions/workflows/lomap_es4b.yml/badge.svg)](https://github.com/Arquisoft/lomap_es4b/actions/workflows/lomap_es4b.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Arquisoft_lomap_es4b&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Arquisoft_lomap_es4b)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Arquisoft_lomap_es4b&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Arquisoft_lomap_es4b)
 
