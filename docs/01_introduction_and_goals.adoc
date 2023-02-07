@@ -45,6 +45,18 @@ If you as an architect do not know how the quality of your work will be judged �
 A table with quality goals and concrete scenarios, ordered by priorities
 ****
 
+Los principales atributos de calidad para este proyecto son los siguientes:
+
+[options="header",cols="1,1"]
+|===
+|Objetivo|Detalles
+| _Confidencialidad_ | _Uno de los objetivos principales del sistema será mantener la privacidad del usuario. De forma que, con la utilización de SOLID, de la información almacenada solo se mostrarán los datos primordiales para garantizar el correcto funcionamiento del sistema y/o la que haya sido autorizados por el propio usuario._
+| _Usabilidad_ | _El usuario deberá poder utilizar el sistema de una forma sencilla e intuitiva, de forma que se proporcione una buena experiencia._
+| _Durabilidad_ | _Se deberá garantizar que las datos introducidos en el sistema serán permanentes._
+| _Mantenibilidad_ | _El sistema deberá poder ser actualizado (con nuevos añadidos o modificaciones) de forma que estos cambios provoquen el menor número de cambios posibles._
+|===
+
+
 === Stakeholders
 
 [role="arc42help"]
@@ -70,10 +82,10 @@ Table with role names, person names, and their expectations with respect to the 
 [options="header",cols="1,2,2"]
 |===
 |Role/Name|Contact|Expectations
-| _<Profesores>_ | _<Contact-1>_ | _<Aplicación SOLID funcional con los requisitos indicados en el enunciado y que demuestre los conocimientos adquiridos
-de la asignatura.>_
-| _<Cliente>_ | _<Ayuntamiento de Bruselas>_ | _<Aplicación de mapas para los ciudadanos.>_
-| _<Usuarios>_ | _<Ciudadanos de Bruselas>_ | _<Aplicación intuitiva que satisfaga sus necesidades como usuarios (crear mapas personalizados con puntos de
-interés)>_
-| _<Administrador>_ | _<Contact-2>_ | _<Usuario con privilegios que tiene acceso a datos y funcionalidad especial de la aplicación>_
+| _Profesores_ | _Contact-1_ | _Aplicación SOLID funcional con los requisitos indicados en el enunciado y que demuestre los conocimientos adquiridos
+de la asignatura._
+| _Cliente_ | _Ayuntamiento de Bruselas_ | _Aplicación de mapas para los ciudadanos._
+| _Usuarios_ | _Ciudadanos de Bruselas_ | _Aplicación intuitiva que satisfaga sus necesidades como usuarios (crear mapas personalizados con puntos de
+interés)_
+| _Administrador_ | _Contact-2_ | _Usuario con privilegios que tiene acceso a datos y funcionalidad especial de la aplicación_
 |===
