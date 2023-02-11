@@ -17,3 +17,43 @@ If needed you can subdivide them into
 technical constraints, organizational and political constraints and
 conventions (e.g. programming or versioning guidelines, documentation or naming conventions)
 ****
+
+=== Restricciones técnicas
+[role="arc42help"]
+****
+
+. Restricciones técnicas
+[options="header",cols="1,2"]
+|===
+|Restricción|Descripción
+|SOLID Pods| Los Pods de SOLID nos permitirán almacenar de forma segura los datos de los usuarios
+|Git| Utilizaremos los repositorios de GitHub para subir el código de la aplicación.
+|React| Para la creación del Frontend de la aplicación utilizaremos la biblioteca de JavaScript React
+|TypeScript| Utilizaremos TypeScript como lenguaje de programación para la aplicación. 
+|===
+
+=== Restricciones de negocio
+[role="arc42help"]
+****
+
+.Restricciones de negocio
+[options="header",cols="1,2"]
+|===
+|Restricción|Descripción
+|Equipo| El equipo está formado por 4 personas, las cuales no nos conocemos y esto al principio puede provocar retrasos en el proyecto.
+|Tiempo| Los miembros del equipo tenemos más asignaturas con las que debemos cumplir, además de otras obligaciones que nos pueden obstaculizar a la hora de realizar el trabajo.
+|Nuevos conceptos| Debemos aprender por nuestra cuenta a utilizar nuevas tecnologías.
+|===
+
+=== Conventions
+[role="arc42help"]
+****
+
+.Conventions
+[options="header",cols="1,2"]
+|===
+|Restricción|Descripción
+|SOLID| La aplicación seguirá los principios SOLID para mantener la privacidad del usuario
+|Documentación| La documentación seguirá la arquitectuar arc42
+|Idioma | La documentación se realizará en español, al ser nuestro idioma nativo
+|===
