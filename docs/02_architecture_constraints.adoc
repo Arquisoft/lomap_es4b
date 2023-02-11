@@ -22,7 +22,7 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 [role="arc42help"]
 ****
 
-. Restricciones técnicas
+.Restricciones técnicas
 [options="header",cols="1,2"]
 |===
 |Restricción|Descripción
