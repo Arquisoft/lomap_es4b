@@ -1,6 +1,7 @@
 [[section-system-scope-and-context]]
-=== Contexto de negocio
+== System Scope and Contextt
 
+=== Contexto de negocio
 [options="header", cols="1,2,2"]
 |===
 |Elemento de comunicación|Entrada|Salida

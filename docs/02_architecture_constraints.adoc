@@ -48,6 +48,8 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 === Conventions
 [role="arc42help"]
 ****
+ayuda
+****
 
 .Conventions
 [options="header",cols="1,2"]
