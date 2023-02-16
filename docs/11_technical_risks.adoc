@@ -15,3 +15,15 @@ This should be your motto for systematic detection and evaluation of risks and t
 .Form
 List of risks and/or technical debts, probably including suggested measures to minimize, mitigate or avoid risks or reduce technical debts.
 ****
+
+[cols="1,4"]
+.Riesgos
+|==============
+| Riesgo | Descripción
+| Trabajar con React | No hemos trabajo con el framwork y va a ser muy necesario estar informándonos constantemente
+| Uso de MongoDB | Nuestra experiencia con bases de datos ha sido principalmente con SQL, por lo que comenzar a utilizar una diferente será un reto
+| TypeScript | La mayoría de nosotros tenemos cierta experiencia en JavaScript, pero nunca con TypeScript
+| Uso de SOLID y sus Pods | Es una tecnología que desconocemos por completo y deberemos aprender
+| Trabajo en equipo | Contamos con 4 miembros en el equipo, no nos concemos entre nosotros y deberemos mantener una buena comunicación
+| Tiempo | Obviamente tenemos el tiempo reducido, además de que todos tenemos más asignaturas a las que debemos también darle nuestro tiempo
+|==============
