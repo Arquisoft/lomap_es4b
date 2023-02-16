@@ -24,3 +24,14 @@ Various options:
 * more detailed in form of separate sections per decision
 * ADR (architecture decision record) for every important decision
 ****
+
+=== Decisiones de diseño
+[options="header", cols="1,2,2"]
+|===
+|Decisión|Ventaja|Desventaja
+|React JS|Fácil de aprender, flexible y de código abierto | Falta de documentación oficial y se deben tomar decisiones al no haber un patrón de diseño
+|MongoDB|Implementación sencilla, base de datos no relacional y fácil trabajo con json| Utiliza mucha memoria y nadie del equipo ha trabajdo previamente con ella
+|Español como Idioma|Al ser nuestra lengua nativa no es mucho mas cómodo y sencillo | Menos internacional
+|Google Maps API|Fácil de usar, gratuita y ofrece diferentes opciones que pueden resultar útiles | En ocasiones es un poco impreciso
+|SOLID| Nos va a permitir almacenar de forma segura la información del usuario | Ninguno de nosotros a trabajo anteriormente con ellos y nos puede dificultar el trabajo
+|===
