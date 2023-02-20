@@ -52,16 +52,14 @@ image:08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscuttin
 
 === Domain model
 
-image:UmlDiagram.png["Example UML Diagram"]
+image:docs/images/domainModelDiagram.jpg["UML Domain Model Diagram"]
+This is the domain model of the project.
 
 
+=== User Use Cases
+image:docs/images/useDiagram.jpg["UML User Use Cases Diagram"]
+These are the main User's Use Cases.
 
-=== _<Concept 2>_
-
-_<explanation>_
-
-...
-
-=== _<Concept n>_
-
-_<explanation>_
+=== Sequence Diagram
+image:docs/images/sequenceDiagram.jpg["UML Sequence Diagram"]
+This is a Sequence Diagram which describes a normal session and use of LoMap.
