@@ -98,7 +98,7 @@ Usuario <-- LoMap: Mensaje de confirmación
 ----
 
 === Usuario publica un comentario
-El usuario accede a uno de los mapas públicos de uno de sus amigos y deja un comentario en un punto de interés.
+El usuario accede a uno de los mapas públicos de uno de sus amigos y deja un comentario en un punto de interés
 
 [plantuml,"Publicar comentario",png]
 ----
