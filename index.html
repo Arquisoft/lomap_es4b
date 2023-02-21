@@ -477,10 +477,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#section-runtime-view">6. Runtime View</a>
 <ul class="sectlevel2">
-<li><a href="#_runtime_scenario_1">6.1. &lt;Runtime Scenario 1&gt;</a></li>
-<li><a href="#_runtime_scenario_2">6.2. &lt;Runtime Scenario 2&gt;</a></li>
-<li><a href="#">6.3. &#8230;&#8203;</a></li>
-<li><a href="#_runtime_scenario_n">6.4. &lt;Runtime Scenario n&gt;</a></li>
+<li><a href="#_usuario_crea_un_mapa_nuevo">6.1. Usuario crea un mapa nuevo</a></li>
+<li><a href="#_usuario_añade_un_restaurante_a_su_mapa">6.2. Usuario añade un restaurante a su mapa</a></li>
+<li><a href="#_usuario_publica_un_comentario">6.3. Usuario publica un comentario</a></li>
 </ul>
 </li>
 <li><a href="#section-deployment-view">7. Deployment View</a>
@@ -492,8 +491,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#section-concepts">8. Cross-cutting Concepts</a>
 <ul class="sectlevel2">
 <li><a href="#_domain_model">8.1. Domain model</a></li>
-<li><a href="#_concept_2">8.2. <em>&lt;Concept 2&gt;</em></a></li>
-<li><a href="#_concept_n">8.3. <em>&lt;Concept n&gt;</em></a></li>
+<li><a href="#_user_use_cases">8.2. User Use Cases</a></li>
+<li><a href="#_sequence_diagram">8.3. Sequence Diagram</a></li>
 </ul>
 </li>
 <li><a href="#section-design-decisions">9. Design Decisions</a>
@@ -573,6 +572,15 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </div>
 <div class="sect2">
 <h3 id="_requirements_overview">1.1. Requirements Overview</h3>
+<div class="paragraph">
+<p>En la aplicacion web los usuarios podran añadir lugares de distintas categorias (tiendas, bares, restaurantes, monumentos&#8230;&#8203;). Tambien podran mostrar lugares en un formato tipo mapa, ademas de asociar puntuaciones, comentarios, etc. sobre los mismos.</p>
+</div>
+<div class="paragraph">
+<p>Se hara uso de SOLID para almacenar los lugares de los usuarios (cada usuario tendra su propio POD), y estos mismos decidiran quien puede tener acceso a esos datos.</p>
+</div>
+<div class="paragraph">
+<p>El sistema permitira mostrar lugares e informacion tomada de sus amigos, y se podra aplicar filtros (por categoria, amigos, etc.) a los resultados para obtener datos mas especificos</p>
+</div>
 <div class="sidebarblock arc42help">
 <div class="content">
 <div class="paragraph">
@@ -1157,19 +1165,48 @@ In the best case you will get away with examples or simple signatures.</p>
 </div>
 </div>
 </div>
-<div class="paragraph">
-<p><em><strong>&lt;Overview Diagram&gt;</strong></em></p>
+<div class="imageblock">
+<div class="content">
+<img src="./images/05_building_block_view.png" alt="05 building block view">
+</div>
 </div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Motivation</dt>
 <dd>
-<p><em>&lt;text explanation&gt;</em></p>
+<p>En este diagrama podemos observar los principales agentes de la aplicación (los cuales se verán en detalle más adelante).</p>
 </dd>
-<dt class="hdlist1">Contained Building Blocks</dt>
-<dd>
-<p><em>&lt;Description of contained building block (black boxes)&gt;</em></p>
-</dd>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 4. Contained Building Blocks</caption>
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 83.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Nombre</th>
+<th class="tableblock halign-left valign-top">Responsabilidad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LoMap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">es la aplicación en si, en ella están contenidas todas las funcionalidades y servicios necesarios</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PODS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">es donde se almacenan los datos de los usuarios.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BBDD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">es donde se almacenan los datos de la aplicación.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="dlist">
+<dl>
 <dt class="hdlist1">Important Interfaces</dt>
 <dd>
 <p><em>&lt;Description of important interfaces&gt;</em></p>
@@ -1199,11 +1236,11 @@ responsibility according to the following schema:</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;black box 1&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"> <em>&lt;Text&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Text&gt;</em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;black box 2&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"> <em>&lt;Text&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Text&gt;</em></p></td>
 </tr>
 </tbody>
 </table>
@@ -1434,37 +1471,37 @@ You will mainly capture scenarios in your documentation to communicate your arch
 </div>
 </div>
 <div class="sect2">
-<h3 id="_runtime_scenario_1">6.1. &lt;Runtime Scenario 1&gt;</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><em>&lt;insert runtime diagram or textual description of the scenario&gt;</em></p>
-</li>
-<li>
-<p><em>&lt;insert description of the notable aspects of the interactions between the
-building block instances depicted in this diagram.&gt;</em></p>
-</li>
-</ul>
-</div>
+<h3 id="_usuario_crea_un_mapa_nuevo">6.1. Usuario crea un mapa nuevo</h3>
 <div class="paragraph">
-<p>It is possible to use a sequence diagram:</p>
+<p>El usuario selecciona la opción de crear un mapa nuevo, es decir, aún no tiene puntos de interés.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Sequence%20diagram.png" alt="Sequence diagram" width="332" height="335">
+<img src="./images/Crear%20mapa.png" alt="Crear mapa" width="691" height="506">
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_runtime_scenario_2">6.2. &lt;Runtime Scenario 2&gt;</h3>
-
+<h3 id="_usuario_añade_un_restaurante_a_su_mapa">6.2. Usuario añade un restaurante a su mapa</h3>
+<div class="paragraph">
+<p>El usuario añade a uno de sus mapas un restaurante como punto de interés.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/Añadir%20restaurante.png" alt="Añadir restaurante" width="660" height="567">
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="">6.3. &#8230;&#8203;</h3>
-
+<h3 id="_usuario_publica_un_comentario">6.3. Usuario publica un comentario</h3>
+<div class="paragraph">
+<p>El usuario accede a uno de los mapas públicos de uno de sus amigos y deja un comentario en un punto de interés.</p>
 </div>
-<div class="sect2">
-<h3 id="_runtime_scenario_n">6.4. &lt;Runtime Scenario n&gt;</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/Publicar%20comentario.png" alt="Publicar comentario" width="640" height="782">
+</div>
+</div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -1550,25 +1587,55 @@ when your infrastructure is more complex.</p>
 </div>
 </div>
 </div>
-<div class="paragraph">
-<p><em><strong>&lt;Overview Diagram&gt;</strong></em></p>
+<div class="imageblock">
+<div class="content">
+<img src="./images/07_DeploymentView.png" alt="07 DeploymentView">
+</div>
 </div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Motivation</dt>
 <dd>
-<p><em>&lt;explanation in text form&gt;</em></p>
+<p>Aqui se podra ver un resumen de como funcionara la aplicacion en tiempo de ejecucion</p>
 </dd>
 <dt class="hdlist1">Quality and/or Performance Features</dt>
-<dd>
-<p><em>&lt;explanation in text form&gt;</em></p>
-</dd>
 <dt class="hdlist1">Mapping of Building Blocks to Infrastructure</dt>
-<dd>
-<p><em>&lt;description of the mapping&gt;</em></p>
-</dd>
 </dl>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Bloque</th>
+<th class="tableblock halign-left valign-top">Descripcion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Browser</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mediante este, el usuario utilizara la aplicacion</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Webapp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La capa que contendra las vistas que se mostraran a los usuarios</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RestApi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La capa con la logica, a la cual se conectara la aplicacion</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">USER POD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Donde se guardaran los datos personales de los usuarios (un POD por usuario)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La base de datos de la aplicacion, con la que interaccionara la restapi</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
 <h3 id="_infrastructure_level_2">7.2. Infrastructure Level 2</h3>
@@ -1709,22 +1776,22 @@ on this list.</p>
 <div class="sect2">
 <h3 id="_domain_model">8.1. Domain model</h3>
 <div class="paragraph">
-<p><span class="image"><img src="./images/UmlDiagram.png" alt="Example UML Diagram"></span></p>
+<p><span class="image"><img src="./images/images/domainModelDiagram.jpg" alt="UML Domain Model Diagram"></span>
+This is the domain model of the project.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_concept_2">8.2. <em>&lt;Concept 2&gt;</em></h3>
+<h3 id="_user_use_cases">8.2. User Use Cases</h3>
 <div class="paragraph">
-<p><em>&lt;explanation&gt;</em></p>
-</div>
-<div class="paragraph">
-<p>&#8230;&#8203;</p>
+<p><span class="image"><img src="./images/images/useDiagram.jpg" alt="UML User Use Cases Diagram"></span>
+These are the main User&#8217;s Use Cases.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_concept_n">8.3. <em>&lt;Concept n&gt;</em></h3>
+<h3 id="_sequence_diagram">8.3. Sequence Diagram</h3>
 <div class="paragraph">
-<p><em>&lt;explanation&gt;</em></p>
+<p><span class="image"><img src="./images/images/sequenceDiagram.jpg" alt="UML Sequence Diagram"></span>
+This is a Sequence Diagram which describes a normal session and use of LoMap.</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -1958,7 +2025,7 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 4. Riesgos</caption>
+<caption class="title">Table 5. Riesgos</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -2045,12 +2112,28 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;Term-1&gt;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;definition-1&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">React</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">libreria JavaScript de codigo abierto para diseñar interfaces de usuario</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;Term-2&gt;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;definition-2&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Arc42</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Arc42 es una plantilla para la documentacion arquitectonica.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Application Programming Interface, permite la comunicación entre dos aplicaciones de software a través de un conjunto de reglas</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Solid POD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permite a los usuarios guardar sus datos de manera segura y descentralizada.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB es un programa de manejo de bases de datos NoSQL de codigo abierto.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TypeScript</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TypeScript es un lenguake de programacion desarrollado y mantenido por Microsoft.</p></td>
 </tr>
 </tbody>
 </table>
