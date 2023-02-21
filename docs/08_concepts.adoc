@@ -57,9 +57,9 @@ This is the domain model of the project.
 
 
 === User Use Cases
-image:images/useDiagram.jpg["UML User Use Cases Diagram"]
+image:useDiagram.jpg["UML User Use Cases Diagram"]
 These are the main User's Use Cases.
 
 === Sequence Diagram
-image:images/sequenceDiagram.jpg["UML Sequence Diagram"]
+image:sequenceDiagram.jpg["UML Sequence Diagram"]
 This is a Sequence Diagram which describes a normal session and use of LoMap.
