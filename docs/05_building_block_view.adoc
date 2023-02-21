@@ -57,15 +57,21 @@ In the best case you will get away with examples or simple signatures.
 
 ****
 
-_**<Overview Diagram>**_
+image::05_building_block_view.png[]
 
 Motivation::
 
-_<text explanation>_
+En este diagrama podemos observar los principales agentes de la aplicación (los cuales se verán en detalle más adelante).
 
+.Contained Building Blocks
+[options="header", cols="1,5"]
+|===
+|Nombre|Responsabilidad
+|LoMap|es la aplicación en si, en ella están contenidas todas las funcionalidades y servicios necesarios
+|PODS|es donde se almacenan los datos de los usuarios.
+|BBDD|es donde se almacenan los datos de la aplicación.
+|===
 
-Contained Building Blocks::
-_<Description of contained building block (black boxes)>_
 
 Important Interfaces::
 _<Description of important interfaces>_
@@ -80,8 +86,8 @@ responsibility according to the following schema:
 [cols="1,2" options="header"]
 |===
 | **Name** | **Responsibility**
-| _<black box 1>_ | _<Text>_
-| _<black box 2>_ | _<Text>_
+| _<black box 1>_ | _<Text>_
+| _<black box 2>_ | _<Text>_
 |===
 
 

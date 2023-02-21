@@ -11,6 +11,11 @@ Describes the relevant requirements and the driving forces that software archite
 ****
 
 === Requirements Overview
+En la aplicacion web los usuarios podran añadir lugares de distintas categorias (tiendas, bares, restaurantes, monumentos...). Tambien podran mostrar lugares en un formato tipo mapa, ademas de asociar puntuaciones, comentarios, etc. sobre los mismos.
+
+Se hara uso de SOLID para almacenar los lugares de los usuarios (cada usuario tendra su propio POD), y estos mismos decidiran quien puede tener acceso a esos datos.
+
+El sistema permitira mostrar lugares e informacion tomada de sus amigos, y se podra aplicar filtros (por categoria, amigos, etc.) a los resultados para obtener datos mas especificos 
 
 [role="arc42help"]
 ****

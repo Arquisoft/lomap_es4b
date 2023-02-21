@@ -48,18 +48,25 @@ Describe (usually in a combination of diagrams, tables, and text):
 For multiple environments or alternative deployments please copy that section of arc42 for all relevant environments.
 ****
 
-_**<Overview Diagram>**_
+image::07_DeploymentView.png[]
 
 Motivation::
 
-_<explanation in text form>_
+Aqui se podra ver un resumen de como funcionara la aplicacion en tiempo de ejecucion
 
 Quality and/or Performance Features::
 
-_<explanation in text form>_
 
 Mapping of Building Blocks to Infrastructure::
-_<description of the mapping>_
+[options="header"]
+|===
+|Bloque|Descripcion
+| Browser | Mediante este, el usuario utilizara la aplicacion
+| Webapp | La capa que contendra las vistas que se mostraran a los usuarios
+| RestApi | La capa con la logica, a la cual se conectara la aplicacion
+| USER POD | Donde se guardaran los datos personales de los usuarios (un POD por usuario)
+| MongoDB | La base de datos de la aplicacion, con la que interaccionara la restapi
+|===
 
 
 === Infrastructure Level 2
