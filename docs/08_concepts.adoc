@@ -52,7 +52,7 @@ image:08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscuttin
 
 === Domain model
 
-image:images/domainModelDiagram.jpg["UML Domain Model Diagram"]
+image:domainModelDiagram.jpg["UML Domain Model Diagram"]
 This is the domain model of the project.
 
 
