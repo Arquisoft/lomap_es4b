@@ -8,30 +8,32 @@ import UserList from './components/UserList';
 import  {getUsers} from './api/api';
 import {User} from './shared/shareddtypes';
 import './App.css';
+import { SessionProvider, useSession } from "@inrupt/solid-ui-react";
+import LoginForm from "./components/LoginForm"
+import ProfileViewer from "./components/ProfileViewer"
 
 function App(): JSX.Element {
+//We use this state variable
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const [users,setUsers] = useState<User[]>([]);
+  //With this we can control the login status for solid
+  const { session } = useSession();
 
-  const refreshUserList = async () => {
-    setUsers(await getUsers());
-  }
+  //We have logged in
+  session.onLogin(()=>{
+    setIsLoggedIn(true)
+  })
 
-  useEffect(()=>{
-    refreshUserList();
-  },[]);
+  //We have logged out
+  session.onLogout(()=>{
+    setIsLoggedIn(false)
+  })
 
-  return (
-    <>
-      <Container maxWidth="sm">
-        <Welcome message="ASW students"/>
-        <Box component="div" sx={{ py: 2}}>This is a basic example of a React application using Typescript. You can add your email to the list filling the form below.</Box>
-        <EmailForm OnUserListChange={refreshUserList}/>        
-        <UserList users={users}/>
-        <Link href="https://github.com/arquisoft/lomap_0">Source code</Link>
-      </Container>
-    </>
-  );
+  return(
+    <SessionProvider sessionId="log-in-example">
+      {(!isLoggedIn) ? <LoginForm/> : <ProfileViewer/>}
+    </SessionProvider>
+  )
 }
 
 export default App;
