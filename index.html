@@ -452,7 +452,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#section-architecture-constraints">2. Architecture Constraints</a>
 <ul class="sectlevel2">
 <li><a href="#_restricciones_técnicas">2.1. Restricciones técnicas</a></li>
-<li><a href="#_conventions">2.2. Conventions</a></li>
+<li><a href="#_restricciones_de_negocio">2.2. Restricciones de negocio</a></li>
+<li><a href="#_conventions">2.3. Conventions</a></li>
 </ul>
 </li>
 <li><a href="#section-system-scope-and-context">3. System Scope and Contextt</a>
@@ -491,8 +492,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#section-concepts">8. Cross-cutting Concepts</a>
 <ul class="sectlevel2">
 <li><a href="#_domain_model">8.1. Domain model</a></li>
-<li><a href="#_user_use_cases">8.2. User Use Cases</a></li>
-<li><a href="#_sequence_diagram">8.3. Sequence Diagram</a></li>
 </ul>
 </li>
 <li><a href="#section-design-decisions">9. Design Decisions</a>
@@ -764,8 +763,6 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 </div>
 <div class="sect2">
 <h3 id="_restricciones_técnicas">2.1. Restricciones técnicas</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. Restricciones técnicas</caption>
 <colgroup>
@@ -792,16 +789,14 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 <td class="tableblock halign-left valign-top"><p class="tableblock">Para la creación del Frontend de la aplicación utilizaremos la biblioteca de JavaScript React</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TypeScript</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Utilizaremos TypeScript como lenguaje de programación para la aplicación.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JavaScript</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Utilizaremos JavaScript como lenguaje de programación para la aplicación, la razón principal es que todos nos encontramos más cómodos utilizándolo.</p></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>=== Restricciones de negocio</p>
 </div>
-</div>
-</div>
+<div class="sect2">
+<h3 id="_restricciones_de_negocio">2.2. Restricciones de negocio</h3>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 2. Restricciones de negocio</caption>
 <colgroup>
@@ -831,14 +826,7 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 </table>
 </div>
 <div class="sect2">
-<h3 id="_conventions">2.2. Conventions</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<p>ayuda</p>
-</div>
-</div>
-</div>
+<h3 id="_conventions">2.3. Conventions</h3>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 3. Conventions</caption>
 <colgroup>
@@ -875,6 +863,11 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_contexto_de_negocio">3.1. Contexto de negocio</h3>
+<div class="imageblock">
+<div class="content">
+<img src="./images/03_system_scope.png" alt="03 system scope">
+</div>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -897,7 +890,7 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Solid POD</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">El Pod será creado por el usuario para poder almacenar la información necesaria</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">La información solo se mostrará si el usuario es autentificado o se dan permisos para ello</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La información solo se mostrará si el usuario es autentificado</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB</p></td>
@@ -905,7 +898,7 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 <td class="tableblock halign-left valign-top"><p class="tableblock">La base de datos responderá a la aplicación con los datos solicitados.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Google Maps API</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OpenStreetMap Maps API</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">La API obtendrá las diferentes ubicaciones del mapa</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Nos mostrará información acerca de los lugares (comentarios, fotos, reseñas &#8230;&#8203;)</p></td>
 </tr>
@@ -931,7 +924,7 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 <td class="tableblock halign-left valign-top"><p class="tableblock">Nos permitirá almacenar de forma segura la información del usuario</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TypeScript</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JavaScriptt</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Lenguaje de programación que utlizaremos durante el desarrollo</p></td>
 </tr>
 <tr>
@@ -1779,20 +1772,6 @@ on this list.</p>
 <p><span class="image"><img src="./images/domainModelDiagram.jpg" alt="UML Domain Model Diagram"></span>
 This is the domain model of the project.</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_user_use_cases">8.2. User Use Cases</h3>
-<div class="paragraph">
-<p><span class="image"><img src="./images/useDiagram.jpg" alt="UML User Use Cases Diagram"></span>
-These are the main User&#8217;s Use Cases.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_sequence_diagram">8.3. Sequence Diagram</h3>
-<div class="paragraph">
-<p><span class="image"><img src="./images/sequenceDiagram.jpg" alt="UML Sequence Diagram"></span>
-This is a Sequence Diagram which describes a normal session and use of LoMap.</p>
-</div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -1870,7 +1849,7 @@ here in this central section or whether you better document it locally
 <td class="tableblock halign-left valign-top"><p class="tableblock">Menos internacional</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Google Maps API</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OpenStreetMap API</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Fácil de usar, gratuita y ofrece diferentes opciones que pueden resultar útiles</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">En ocasiones es un poco impreciso</p></td>
 </tr>
@@ -2044,8 +2023,8 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 <td class="tableblock halign-left valign-top"><p class="tableblock">Nuestra experiencia con bases de datos ha sido principalmente con SQL, por lo que comenzar a utilizar una diferente será un reto</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TypeScript</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">La mayoría de nosotros tenemos cierta experiencia en JavaScript, pero nunca con TypeScript</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JavaScript</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Aunque hayamos trabajado con ella anteriormente, no lo hemos hecho con mucha profundidad y aún tenemos que mejorar y aprender más.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Uso de SOLID y sus Pods</p></td>
@@ -2162,7 +2141,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-02-16 18:05:39 +0100
+Last updated 2023-03-08 11:26:57 +0100
 </div>
 </div>
 </body>
