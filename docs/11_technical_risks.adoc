@@ -22,8 +22,8 @@ List of risks and/or technical debts, probably including suggested measures to m
 | Riesgo | Descripción
 | Trabajar con React | No hemos trabajo con el framwork y va a ser muy necesario estar informándonos constantemente
 | Uso de MongoDB | Nuestra experiencia con bases de datos ha sido principalmente con SQL, por lo que comenzar a utilizar una diferente será un reto
-| TypeScript | La mayoría de nosotros tenemos cierta experiencia en JavaScript, pero nunca con TypeScript
+| JavaScript | Aunque hayamos trabajado con ella anteriormente, no lo hemos hecho con mucha profundidad y aún tenemos que mejorar y aprender más.
 | Uso de SOLID y sus Pods | Es una tecnología que desconocemos por completo y deberemos aprender
-| Trabajo en equipo | Contamos con 4 miembros en el equipo, no nos concemos entre nosotros y deberemos mantener una buena comunicación
+| Miembros del equipo desconocidos | Contamos con 4 miembros en el equipo, no nos concemos entre nosotros y deberemos mantener una buena comunicación
 | Tiempo | Obviamente tenemos el tiempo reducido, además de que todos tenemos más asignaturas a las que debemos también darle nuestro tiempo
 |==============
