@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { LoginButton } from "@inrupt/solid-ui-react";
 import { Button, TextField, FormGroup, Container } from "@material-ui/core";
-
+import MapView from './map/MapView'
 
 const LoginForm = () => {
  /*  const [idp, setIdp] = useState("https://uo276467.inrupt.net");
@@ -17,6 +17,7 @@ const LoginForm = () => {
 
       <h1>Pantalla Inicial</h1>
 
+      <MapView />
       {/* <FormGroup>
         <TextField
           label="Identity Provider PRUEBA2"

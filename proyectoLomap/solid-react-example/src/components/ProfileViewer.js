@@ -5,6 +5,7 @@ import { useSession, CombinedDataProvider, Image, LogoutButton, Text } from "@in
 import { Button, Card, CardActionArea, CardContent, Container, Typography, TextField, FormGroup } from "@material-ui/core";
 import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
 import {createPoints,createData,updatePoints,updateData,createPointsFile} from "../helper/PodHelper";
+import MapView from "./map/MapView";
 
 /* async function getPoint(webId){
   console.log(webId);
@@ -76,7 +77,7 @@ const ProfileViewer = () => {
         }}>
           Modificar
       </Button>
-  
+      <MapView />
  
     </Container>
   );
