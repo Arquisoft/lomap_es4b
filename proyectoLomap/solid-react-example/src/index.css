@@ -12,27 +12,25 @@ html, body {
   text-align: center;
 }
 
-.nav {
+nav {
   font-family: "Segoe UI";
   background-color: #97e3f6;
   color: white;
   display: flex;
   justify-content: space-between;
-  align-items: stretch;
-  gap: 2rem;
-  padding: 1em;
+  align-items: center;
+}
+
+.profile-preview{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5em;
+  padding: 0.5em;
 }
 
 .site-title {
   font-size: 2rem;
-}
-
-.nav ul {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  display: flex;
-  gap: 1rem;
 }
 
 .nav a {

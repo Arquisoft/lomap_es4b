@@ -1,5 +1,10 @@
 import { saveFileInContainer,getFile,overwriteFile } from "@inrupt/solid-client";
 import {PointStruct} from "../entities/Entities";
+import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
+
+async function getProfileInfo(){
+  return [FOAF.name.iri.value, VCARD.organization_name.iri.value, VCARD.role.iri.value, VCARD.hasPhoto.iri.value];
+}
 
 
 async function readData(url,session) {
@@ -135,10 +140,18 @@ export async function updatePoints(x,y,z,comment,session,webId){
     return fichero;
   
   } catch (error) {
+
     await createPointsFile().then(file => createData(urlContainer, file, session));
     await updatePoints(x,y,z,comment,session,webId);
+
+    //const result = createPointsFile().then(file => createData(urlContainer, file, session));
+
   }
 
+}
+
+function firstFunction(_callback){
+  _callback();
 }
 
 export async function createPointsFile() {

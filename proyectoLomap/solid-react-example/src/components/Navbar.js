@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { LoginButton, LogoutButton, CombinedDataProvider, Image, useSession} from "@inrupt/solid-ui-react";
+import { LoginButton, LogoutButton, CombinedDataProvider, Image, useSession, Text} from "@inrupt/solid-ui-react";
 import { Button, TextField, FormGroup, CardActionArea, IconButton, MoreVertIcon, Avatar } from "@material-ui/core";
 import App from "../App"
 import logo from '../images/lomapLogo.png';
-import { VCARD } from "@inrupt/lit-generated-vocab-common";
+import { VCARD, FOAF } from "@inrupt/lit-generated-vocab-common";
 
 
 export default function Navbar({logggin}){
@@ -26,14 +26,17 @@ export default function Navbar({logggin}){
           
           {logggin ? (
             <>
-              <CombinedDataProvider datasetUrl={webId} thingUrl={webId} className="image-button">  
-                  <Image property={VCARD.hasPhoto.iri.value} alt="Foto de perfil del usuario" style={{width:80, height:80, borderRadius:40}}/>     
-              </CombinedDataProvider>
-              <LogoutButton >
-                <Button style={{ marginTop: 20 }} variant="contained" color="primary">
-                  Logout
-                </Button>
-              </LogoutButton>
+              <div className="profile-preview">
+                <CombinedDataProvider datasetUrl={webId} thingUrl={webId} className="image-button" style={{flexDirection: 'row'}}>
+                  <Image property={VCARD.hasPhoto.iri.value} alt="Foto de perfil del usuario" style={{width:80, height:80, borderRadius:40}}/>
+                  <Text property={FOAF.name.iri.value} style={{ fontSize: 20 }}/>
+                </CombinedDataProvider> 
+                <LogoutButton >
+                  <Button variant="contained" color="primary">
+                    Logout
+                  </Button>
+                </LogoutButton>
+              </div>
             </>
           ) : (
             <>

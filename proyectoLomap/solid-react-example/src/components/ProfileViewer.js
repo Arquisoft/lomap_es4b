@@ -35,6 +35,7 @@ const ProfileViewer = () => {
   console.log(webId);
 
   return (
+
     <Container fixed>
       <CombinedDataProvider datasetUrl={webId} thingUrl={webId}>
         <Card style={{ maxWidth: 480 }}>
@@ -46,14 +47,14 @@ const ProfileViewer = () => {
               <Text property={VCARD.role.iri.value} />
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p" style={{ display: "flex", alignItems: "center" }}>
-              <Text property={VCARD.role.iri.value} />
+              <Text property={VCARD.organization_name.iri.value} />
             </Typography>
           </CardContent>
 
           
 
           <CardActionArea style={{ justifyContent: "center", display: "flex" }}>
-            <Image property={VCARD.hasPhoto.iri.value} width={480} />
+            <Image property={VCARD.hasPhoto.iri.value} width={200} />
           </CardActionArea>
 
         </Card>
@@ -66,7 +67,8 @@ const ProfileViewer = () => {
 
        <Button
         onClick={() =>{
-          createPoints("puntos5.json", 23, 45, 78, "Coliseo").then(file => createData("https://uo281997.inrupt.net/public/Points/", file, session));
+          //281997
+          createPoints("puntos5.json", 23, 45, 78, "Coliseo").then(file => createData("https://uo276467.inrupt.net/public/Points/", file, session));
         }}>
           Crear
       </Button>
