@@ -53,7 +53,7 @@ async function existFile(webId,session){
 }
   
   
-export async function createPoints(name,x,y,z,comment) {
+export async function createPoints(name,x,y,z,comment, webId, session) {
 
     var dates =[{latitud:x,altitud:y,longitud:z,comment:comment}];
 
@@ -80,22 +80,24 @@ export async function createPoints(name,x,y,z,comment) {
       });
   
       var file = new File([blob], name, { type: blob.type });
-      return file;
-  
+      //return file;
+      await createData(webId, file, session);
   }
   
 export async function createData(url, file, session) {
-    try {
-      let savedFile = await saveFileInContainer(
-        url,
-        file,
-        { slug: file.name, contentType: file.type, fetch: session.fetch }
-      );
-  
-      printContents(savedFile);
-    } catch (error) {
-      console.log(error);
-    }
+  try {
+    let savedFile = await saveFileInContainer(
+      url,
+      file,
+      { slug: file.name, contentType: file.type, fetch: session.fetch }
+      
+    );
+    printContents(savedFile);
+
+  } catch (error) {
+    console.log(error);
+  }
+
   }
 
 const randomId = function(length) {
@@ -110,7 +112,7 @@ export async function deletePoints(){
 
 }
 
-
+ 
 export async function updatePoints(x,y,z,comment,session,webId){
 
   let url = webId.replace("profile/card#me","");
@@ -149,21 +151,15 @@ export async function updatePoints(x,y,z,comment,session,webId){
 
     var fichero = new File([blob], "puntosMapa.json", { type: blob.type });
 
-    return fichero;
+    await updateData(fichero, webId, session)
   
   } catch (error) {
 
-    await createPointsFile().then(file => createData(urlContainer, file, session));
-    await updatePoints(x,y,z,comment,session,webId);
-
-    //const result = createPointsFile().then(file => createData(urlContainer, file, session));
-
+    const file = await createPointsFile();
+    await createData(urlContainer, file, session);
+    updatePoints(x, y, z , comment, session , webId);
   }
 
-}
-
-function firstFunction(_callback){
-  _callback();
 }
 
 export async function createPointsFile() {

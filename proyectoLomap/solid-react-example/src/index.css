@@ -19,6 +19,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1em;
 }
 
 .profile-preview{
@@ -48,4 +49,10 @@ nav {
 
 .nav li:hover {
   background-color: #777;
+}
+
+.mapView{
+  display: flex;
+  width: 100%;
+  height: 100%;
 }

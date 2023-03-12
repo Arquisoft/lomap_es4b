@@ -4,7 +4,7 @@ import React from "react";
 import { useSession, CombinedDataProvider, Image, LogoutButton, Text } from "@inrupt/solid-ui-react";
 import { Button, Card, CardActionArea, CardContent, Container, Typography, TextField, FormGroup } from "@material-ui/core";
 import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
-import {createPoints,createData,updatePoints,updateData,deletePoints} from "../helper/PodHelper";
+import {createPoints,createData,updatePoints,updateData,createPointsFile, updatePointsPromise, deletePoints} from "../helper/PodHelper";
 import MapView from "./map/MapView";
 
 /* async function getPoint(webId){
@@ -68,18 +68,16 @@ const ProfileViewer = () => {
 
 
       <Button
-        onClick={() =>{
-          updatePoints(213123, 123132, 12123, "CasaCarlos", session, webId).then(file => updateData(file,webId,session)); 
-        }}>
+        onClick={() =>{ updatePoints(8678678, 213123, 2347823, "CasaEdu", session, webId);}}>
           Modificar
       </Button>
 
-        <Button
+ {/*        <Button
         onClick={() =>{
           deletePoints(213123, 123132, 12123, "CasaCarlos", session, webId).then(file => updateData(file,webId,session)); 
         }}>
           Eliminar
-      </Button>
+      </Button> */}
 
       <MapView />
  
