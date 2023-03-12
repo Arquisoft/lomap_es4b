@@ -7,7 +7,7 @@ const InfoAndComments = (userName) =>{
         <Card style={{ maxWidth: 200 }}>
             <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
-                    <Text property={"Nombre del autor:"} />
+                    <Text property={"Nombre del autor:"+userName} />
                 </Typography>
             </CardContent>
             <CardActionArea style={{ justifyContent: "left", display: "flex" }}>
@@ -27,7 +27,6 @@ const InfoAndComments = (userName) =>{
             </Card>
             <Card>
                 <CommentsBox {username = userName}>
-
                 </CommentsBox>
             </Card>
         </Container>

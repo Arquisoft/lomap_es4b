@@ -79,6 +79,9 @@ const ProfileViewer = () => {
         }}>
           Modificar
       </Button>
+        <InfoAndComments {userName = "a"}>
+
+        </InfoAndComments>
       <MapView />
  
     </Container>
