@@ -98,6 +98,18 @@ export async function createData(url, file, session) {
     }
   }
 
+const randomId = function(length) {
+  return (Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2)).substring(0, length);
+};
+
+
+export async function deletePoints(){
+
+  let id = randomId(20);
+  console.log(id);
+
+}
+
 
 export async function updatePoints(x,y,z,comment,session,webId){
 

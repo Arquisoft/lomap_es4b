@@ -4,7 +4,7 @@ import React from "react";
 import { useSession, CombinedDataProvider, Image, LogoutButton, Text } from "@inrupt/solid-ui-react";
 import { Button, Card, CardActionArea, CardContent, Container, Typography, TextField, FormGroup } from "@material-ui/core";
 import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
-import {createPoints,createData,updatePoints,updateData,createPointsFile} from "../helper/PodHelper";
+import {createPoints,createData,updatePoints,updateData,deletePoints} from "../helper/PodHelper";
 import MapView from "./map/MapView";
 
 /* async function getPoint(webId){
@@ -37,7 +37,7 @@ const ProfileViewer = () => {
   return (
 
     <Container fixed>
-      <CombinedDataProvider datasetUrl={webId} thingUrl={webId}>
+{/*       <CombinedDataProvider datasetUrl={webId} thingUrl={webId}>
         <Card style={{ maxWidth: 480 }}>
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
@@ -64,21 +64,23 @@ const ProfileViewer = () => {
           Logout
         </Button>
       </LogoutButton>
+ */}
 
-       <Button
-        onClick={() =>{
-          //281997
-          createPoints("puntos5.json", 23, 45, 78, "Coliseo").then(file => createData("https://uo276467.inrupt.net/public/Points/", file, session));
-        }}>
-          Crear
-      </Button>
 
       <Button
         onClick={() =>{
-          updatePoints(8678678, 213123, 2347823, "CasaEdu", session, webId).then(file => updateData(file,webId,session)); 
+          updatePoints(213123, 123132, 12123, "CasaCarlos", session, webId).then(file => updateData(file,webId,session)); 
         }}>
           Modificar
       </Button>
+
+        <Button
+        onClick={() =>{
+          deletePoints(213123, 123132, 12123, "CasaCarlos", session, webId).then(file => updateData(file,webId,session)); 
+        }}>
+          Eliminar
+      </Button>
+
       <MapView />
  
     </Container>
