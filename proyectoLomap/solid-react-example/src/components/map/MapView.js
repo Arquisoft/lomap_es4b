@@ -1,8 +1,11 @@
-import {React, useEffect, useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import {Component, React, useEffect, useState } from "react";
+import { render } from "react-dom";
+import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import AddMarker from'./AddMarker'
+import {IconLocation} from "./IconLocation";
+
 
 
 function LocationMarker() {
@@ -19,22 +22,48 @@ function LocationMarker() {
   }, [map]);
 }
 
-export default function MapView() {
-  return (
-    <MapContainer
-      center={[43.3548096, -5.8534699]}
-      zoom={15}
-      scrollWheelZoom
-    >
-      <TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      <LocationMarker />
-      <AddMarker markerPosition={[43.3548057,-5.8512759]}/> 
-      <AddMarker markerPosition={[43.3609476,-5.8503508]} />
-      <AddMarker markerPosition={[43.5416735,-5.65240765]}/>
-      <AddMarker markerPosition={[43.5539325,-5.618994]}/>
-    </MapContainer>
-  );
+
+export default class MapView extends  Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      markers: [[43.3548057,-5.8512759],[43.3609476,-5.8503508],[43.5416735,-5.65240765],[43.5539325,-5.618994]],
+    };
+  }
+
+  addMarker = (e) => {
+    const {markers} = this.state
+    markers.push(e.latlng)
+    this.setState({markers: markers})
+  }
+
+
+  render() {
+    return (
+      <MapContainer
+        center={[43.3548096, -5.8534699]}
+        zoom={15}
+        scrollWheelZoom
+        whenReady={(map) => {
+          console.log(map);
+          map.target.on("click", function (e) {
+            const { lat, lng } = e.latlng;
+            const marker = L.marker([lat, lng], {icon: IconLocation, riseOnHover:true});
+            marker.bindPopup('<p>Marcador con click </p>').openPopup();
+            marker.addTo(map.target);
+
+          });
+        }}
+        >      
+        <TileLayer
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <LocationMarker />
+        {this.state.markers.map((position, idx) => 
+          <AddMarker ident={idx} markerPosition={position} />
+        )}
+      </MapContainer>
+    );
+  }
 }
