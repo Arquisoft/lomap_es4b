@@ -6,6 +6,8 @@ import { Button, Card, CardActionArea, CardContent, Container, Typography, TextF
 import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
 import {createPoints,createData,updatePoints,updateData,createPointsFile} from "../helper/PodHelper";
 import MapView from "./map/MapView";
+import InfoAndComments from "./InfoAndComments"
+
 
 /* async function getPoint(webId){
   console.log(webId);
@@ -79,10 +81,11 @@ const ProfileViewer = () => {
         }}>
           Modificar
       </Button>
-        <InfoAndComments {userName = "a"}>
-
-        </InfoAndComments>
-      <MapView />
+      <div id = "centralDisplay">
+          <InfoAndComments userName = {"a"}>
+          </InfoAndComments> 
+          <MapView />
+      </div>
  
     </Container>
   );

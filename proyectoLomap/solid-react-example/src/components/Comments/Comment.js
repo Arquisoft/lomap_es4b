@@ -1,3 +1,7 @@
+import { Card,Button } from "@material-ui/core";
+import { Container , CardContent, Typography, CardActionArea} from "@material-ui/core";
+import { LoginButton, LogoutButton, CombinedDataProvider, Image, useSession} from "@inrupt/solid-ui-react";
+import {Text} from 'react-native';
 class Comment{
     Comment(username,text){
         return <Card>
@@ -11,4 +15,19 @@ class Comment{
             <p value = {text}> text</p>
         </Card>;
     }
+}
+export default Comment = (username,texto)=>{
+    return <Card>
+        <h2 text={ username}></h2>
+        <Typography gutterBottom variant="h5" component="h2">
+                    <Text>
+                        {"Nombre del autor: "+ (username.username)}
+                    </Text>
+        </Typography>
+        <Typography gutterBottom >
+                    <Text>
+                        {"Comentario: "+(username.comment)}
+                    </Text>
+        </Typography>
+    </Card>;
 }

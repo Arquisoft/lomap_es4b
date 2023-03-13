@@ -49,3 +49,12 @@ nav {
 .nav li:hover {
   background-color: #777;
 }
+#centralDisplay{
+  display: flex;
+  
+  align-self: flex-start;
+}#infoAndComments{
+  display: flex;
+ 
+  align-self: flex-start;
+}
