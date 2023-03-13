@@ -26,7 +26,7 @@ Refer to details in the following sections.
 Decisiones fundamentales que se han tomado para llevar a cabo el trabajo de la mejor forma posible.
 
 === Decisiones tecnológicas
-****
+
 Se han decidido las siguientes tecnologías para llevar a cabo el desarrollo de la aplicación:
 
 * React: biblioteca de código abierto de JavaScript diseñada para crear interfaces de usuario.
@@ -34,12 +34,12 @@ Se han decidido las siguientes tecnologías para llevar a cabo el desarrollo de 
 * Solid: una aplicación SOLID asegura la privacidad de los datos de sus usuarios.
 * MongoDB: base de datos no relacional.
 * MVC: patrón arquitectónico ideal para aplicacioens con interfaz de usuario.
-* Typescript: lenguaje de programación basado en JavaScript que añade tipos estáticos y objetos basados en clases.
+* JavaScript: lenguaje de programación basado en JavaScript que añade tipos estáticos y objetos basados en clases.
 * Tailwind UI: es el frameworks de CSS que vamos a utilizar en la aplicación.
-* API Google Maps: la API elegida para implementar la funcionalidad principal de la aplicación: un mapa.
-****
+* OpenStreetMap: la API elegida para implementar la funcionalidad principal de la aplicación: un mapa.
+
 === Objetivos de calidad
-****
+
 Algunos objetivos de calidad claves y cómo lograrlos:
 
 .Confidencialidad
@@ -57,12 +57,12 @@ Con los pods se asegura que los datos de cada usuario sean persistentes.
 
 El equipo de desarrollo de la aplicación responderá a las necesidades del usuario en todo momento, actualizando la aplicación con nueva funcionalidad o solucionando errores.
 
-****
+
 === Decisiones organizativas
-****
+
 Medios que se han usado para facilitar una buena organización del trabajo:
 
 * Uso de ramas: para dividir los distintos flujos de trabajo. La versión comercial de la aplicación figura en la rama master, mientras que en la develop se añadirán los futuros cambios para comprobar que la aplicación funciona antes de pasarlos a la rama master. Se usarán tantas ramas como sea necesario.
 * Issues: donde figuran las actas de las reuniones del equipo de desarrollo.
 * Tableros del proyecto: forma de organizar las distintas tareas a realizar, tanto de implementación, como investigación, documentación, etc. Las tareas se irán moviendo al bloque correspondiente según avance su progreso, y todos los miembros del equipo podrán ver el progreso general de la aplicación.
-****
+

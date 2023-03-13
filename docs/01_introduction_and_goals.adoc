@@ -52,7 +52,6 @@ Los principales atributos de calidad para este proyecto son los siguientes:
 |Objetivo|Detalles
 | _Confidencialidad_ | _Uno de los objetivos principales del sistema será mantener la privacidad del usuario. De forma que, con la utilización de SOLID, de la información almacenada solo se mostrarán los datos primordiales para garantizar el correcto funcionamiento del sistema y/o la que haya sido autorizados por el propio usuario._
 | _Usabilidad_ | _El usuario deberá poder utilizar el sistema de una forma sencilla e intuitiva, de forma que se proporcione una buena experiencia._
-| _Durabilidad_ | _Se deberá garantizar que las datos introducidos en el sistema serán permanentes._
 | _Mantenibilidad_ | _El sistema deberá poder ser actualizado (con nuevos añadidos o modificaciones) de forma que estos cambios provoquen el menor número de cambios posibles._
 |===
 
