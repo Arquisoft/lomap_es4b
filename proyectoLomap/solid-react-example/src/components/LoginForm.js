@@ -5,7 +5,7 @@ import MapView from './map/MapView'
 const LoginForm = () => {
   return (
     
-    <Container fixed>
+    <Container maxWidth={false} disableGutters={true}>
       <MapView/>
     </Container>
   );

@@ -3,13 +3,16 @@ import { LoginButton, LogoutButton, CombinedDataProvider, Image, useSession} fro
 import Comments from './Comments/Comments'
 import CommentsBox from './Comments/CommentBox'
 import {Text} from 'react-native';
+import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from "react-leaflet";
+
+
 const InfoAndComments = (userName) =>{
     return(
         <div id = "infoAndComments">
         <Container >
         <Card style={{ maxWidth: 200 }}>
             <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
+                <Typography gutterBottom variant="h5" component={'span'}>
                     <Text property={"Nombre del autor:"+userName}>
                         {"Nombre del autor: "+userName.userName}
                     </Text>
@@ -21,7 +24,7 @@ const InfoAndComments = (userName) =>{
         </Card>
             <Card style={{ maxWidth: 200 }}>
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
+                    <Typography gutterBottom variant="h5" component={'span'}>
                         <Text property={"Comentarios"} >
                             {"Comentarios"}
                         </Text>
