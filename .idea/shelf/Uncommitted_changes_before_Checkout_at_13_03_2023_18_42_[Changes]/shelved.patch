@@ -1,0 +1,254 @@
+Index: proyectoLomap/solid-react-example/src/components/ProfileViewer.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\r\nimport React from \"react\";\r\n\r\nimport { useSession, CombinedDataProvider, Image, LogoutButton, Text } from \"@inrupt/solid-ui-react\";\r\nimport { Button, Card, CardActionArea, CardContent, Container, Typography, TextField, FormGroup } from \"@material-ui/core\";\r\nimport { FOAF, VCARD } from \"@inrupt/lit-generated-vocab-common\";\r\nimport {createPoints,createData,updatePoints,updateData,createPointsFile} from \"../helper/PodHelper\";\r\nimport MapView from \"./map/MapView\";\r\n\r\n/* async function getPoint(webId){\r\n  console.log(webId);\r\n  let profileDocumentURI = webId.split(\"#\")[0]; // we remove the right hand side of the # for consistency\r\n  console.log(profileDocumentURI);\r\n  let solidDataset = await getSolidDataset(profileDocumentURI); // obtain the dataset from the URI\r\n  console.log(solidDataset);\r\n\r\n\r\n  //crea un objeto\r\n  const  newAddressThing = buildThing(createThing({ coordenada: \"55\" }))\r\n    .build();\r\n\r\n    solidDataset = setThing(solidDataset,newAddressThing);\r\n    saveSolidDatasetAt(webId, solidDataset, { fetch: fetch });\r\n\r\n   \r\n  \r\n}  */\r\n\r\n\r\n\r\nconst ProfileViewer = () => {\r\n  const { session } = useSession();\r\n  const { webId } = session.info;\r\n\r\n  console.log(webId);\r\n\r\n  return (\r\n\r\n    <Container fixed>\r\n      <CombinedDataProvider datasetUrl={webId} thingUrl={webId}>\r\n        <Card style={{ maxWidth: 480 }}>\r\n          <CardContent>\r\n            <Typography gutterBottom variant=\"h5\" component=\"h2\">\r\n              <Text property={FOAF.name.iri.value} />\r\n            </Typography>\r\n            <Typography variant=\"body2\" color=\"textSecondary\" component=\"p\" style={{ display: \"flex\", alignItems: \"center\" }}>\r\n              <Text property={VCARD.role.iri.value} />\r\n            </Typography>\r\n            <Typography variant=\"body2\" color=\"textSecondary\" component=\"p\" style={{ display: \"flex\", alignItems: \"center\" }}>\r\n              <Text property={VCARD.organization_name.iri.value} />\r\n            </Typography>\r\n          </CardContent>\r\n\r\n          \r\n\r\n          <CardActionArea style={{ justifyContent: \"center\", display: \"flex\" }}>\r\n            <Image property={VCARD.hasPhoto.iri.value} width={200} />\r\n          </CardActionArea>\r\n\r\n        </Card>\r\n      </CombinedDataProvider>\r\n      <LogoutButton >\r\n        <Button style={{ marginTop: 20 }} variant=\"contained\" color=\"primary\">\r\n          Logout\r\n        </Button>\r\n      </LogoutButton>\r\n\r\n       <Button\r\n        onClick={() =>{\r\n          //281997\r\n          createPoints(\"puntos5.json\", 23, 45, 78, \"Coliseo\").then(file => createData(\"https://uo276467.inrupt.net/public/Points/\", file, session));\r\n        }}>\r\n          Crear\r\n      </Button>\r\n\r\n      <Button\r\n        onClick={() =>{\r\n          updatePoints(8678678, 213123, 2347823, \"CasaEdu\", session, webId).then(file => updateData(file,webId,session)); \r\n        }}>\r\n          Modificar\r\n      </Button>\r\n        <InfoAndComments {userName = \"a\"}>\r\n\r\n        </InfoAndComments>\r\n      <MapView />\r\n \r\n    </Container>\r\n  );\r\n}\r\n\r\nexport default ProfileViewer
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/proyectoLomap/solid-react-example/src/components/ProfileViewer.js b/proyectoLomap/solid-react-example/src/components/ProfileViewer.js
+--- a/proyectoLomap/solid-react-example/src/components/ProfileViewer.js	
++++ b/proyectoLomap/solid-react-example/src/components/ProfileViewer.js	
+@@ -1,4 +1,4 @@
+-
++import './App.css';
+ import React from "react";
+ 
+ import { useSession, CombinedDataProvider, Image, LogoutButton, Text } from "@inrupt/solid-ui-react";
+@@ -6,6 +6,7 @@
+ import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
+ import {createPoints,createData,updatePoints,updateData,createPointsFile} from "../helper/PodHelper";
+ import MapView from "./map/MapView";
++import InfoAndComments from "./InfoAndComments"
+ 
+ /* async function getPoint(webId){
+   console.log(webId);
+@@ -79,11 +80,16 @@
+         }}>
+           Modificar
+       </Button>
+-        <InfoAndComments {userName = "a"}>
++        
++      
++ 
++ <div id = "centralDisplay">
++ 
++      <InfoAndComments userName = {"a"}>
+ 
+-        </InfoAndComments>
+-      <MapView />
+- 
++        </InfoAndComments> 
++        <MapView />
++        </div>
+     </Container>
+   );
+ }
+Index: proyectoLomap/solid-react-example/src/components/Comments/Comment.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>class Comment{\r\n    Comment(username,text){\r\n        return <Card>\r\n            <h2 value={ username}></h2>\r\n            <p value = {text}> text</p>\r\n        </Card>;\r\n    }\r\n    constructor(username,text){\r\n        return <Card>\r\n            <h2 value={ username}></h2>\r\n            <p value = {text}> text</p>\r\n        </Card>;\r\n    }\r\n}
+===================================================================
+diff --git a/proyectoLomap/solid-react-example/src/components/Comments/Comment.js b/proyectoLomap/solid-react-example/src/components/Comments/Comment.js
+--- a/proyectoLomap/solid-react-example/src/components/Comments/Comment.js	
++++ b/proyectoLomap/solid-react-example/src/components/Comments/Comment.js	
+@@ -1,3 +1,7 @@
++import { Card,Button } from "@material-ui/core";
++import { Container , CardContent, Typography, CardActionArea} from "@material-ui/core";
++import { LoginButton, LogoutButton, CombinedDataProvider, Image, useSession} from "@inrupt/solid-ui-react";
++import {Text} from 'react-native';
+ class Comment{
+     Comment(username,text){
+         return <Card>
+@@ -5,10 +9,21 @@
+             <p value = {text}> text</p>
+         </Card>;
+     }
+-    constructor(username,text){
+-        return <Card>
+-            <h2 value={ username}></h2>
+-            <p value = {text}> text</p>
+-        </Card>;
+-    }
++    
++}
++
++export default Comment = (username,texto)=>{
++    return <Card>
++        <h2 text={ username}></h2>
++        <Typography gutterBottom variant="h5" component="h2">
++                    <Text property={"Nombre del autor:"+username} >
++                        {"Nombre del autor:"+ new String(username)}
++                    </Text>
++        </Typography>
++        <Typography gutterBottom >
++                    <Text property={texto} >
++                        {"Comentario:"+texto}
++                    </Text>
++        </Typography>
++    </Card>;
+ }
+\ No newline at end of file
+Index: proyectoLomap/solid-react-example/src/components/InfoAndComments.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { Container } from \"@material-ui/core\";\r\nimport Comments from './Comments/Comments'\r\nimport CommentsBox from './Comments/CommentBox'\r\nconst InfoAndComments = (userName) =>{\r\n    return(\r\n        <Container>\r\n        <Card style={{ maxWidth: 200 }}>\r\n            <CardContent>\r\n                <Typography gutterBottom variant=\"h5\" component=\"h2\">\r\n                    <Text property={\"Nombre del autor:\"+userName} />\r\n                </Typography>\r\n            </CardContent>\r\n            <CardActionArea style={{ justifyContent: \"left\", display: \"flex\" }}>\r\n            </CardActionArea>\r\n\r\n        </Card>\r\n            <Card style={{ maxWidth: 200 }}>\r\n                <CardContent>\r\n                    <Typography gutterBottom variant=\"h5\" component=\"h2\">\r\n                        <Text property={\"Comentarios\"} />\r\n                    </Typography>\r\n                    <Comments {username = userName}>\r\n                    </Comments>\r\n                </CardContent>\r\n                <CardActionArea style={{ justifyContent: \"left\", display: \"flex\" }}>\r\n                </CardActionArea>\r\n            </Card>\r\n            <Card>\r\n                <CommentsBox {username = userName}>\r\n                </CommentsBox>\r\n            </Card>\r\n        </Container>\r\n    );\r\n}
+===================================================================
+diff --git a/proyectoLomap/solid-react-example/src/components/InfoAndComments.js b/proyectoLomap/solid-react-example/src/components/InfoAndComments.js
+--- a/proyectoLomap/solid-react-example/src/components/InfoAndComments.js	
++++ b/proyectoLomap/solid-react-example/src/components/InfoAndComments.js	
+@@ -1,13 +1,18 @@
+-import { Container } from "@material-ui/core";
++import { Container , Card, CardContent, Typography, CardActionArea} from "@material-ui/core";
++import { LoginButton, LogoutButton, CombinedDataProvider, Image, useSession} from "@inrupt/solid-ui-react";
+ import Comments from './Comments/Comments'
+ import CommentsBox from './Comments/CommentBox'
++import {Text} from 'react-native';
+ const InfoAndComments = (userName) =>{
+     return(
+-        <Container>
++        <div id = "infoAndComments">
++        <Container >
+         <Card style={{ maxWidth: 200 }}>
+             <CardContent>
+                 <Typography gutterBottom variant="h5" component="h2">
+-                    <Text property={"Nombre del autor:"+userName} />
++                    <Text property={"Nombre del autor:"+userName}>
++                        {"Nombre del autor:"+userName}
++                    </Text>
+                 </Typography>
+             </CardContent>
+             <CardActionArea style={{ justifyContent: "left", display: "flex" }}>
+@@ -17,18 +22,23 @@
+             <Card style={{ maxWidth: 200 }}>
+                 <CardContent>
+                     <Typography gutterBottom variant="h5" component="h2">
+-                        <Text property={"Comentarios"} />
++                        <Text property={"Comentarios"} >
++                            {"Comentarios"}
++                        </Text>
+                     </Typography>
+-                    <Comments {username = userName}>
++                    <Comments username = {userName}>
+                     </Comments>
+                 </CardContent>
+                 <CardActionArea style={{ justifyContent: "left", display: "flex" }}>
+                 </CardActionArea>
+             </Card>
+             <Card>
+-                <CommentsBox {username = userName}>
++                <CommentsBox username = {userName}>
+                 </CommentsBox>
+             </Card>
+         </Container>
++        </div>
+     );
+-}
+\ No newline at end of file
++}
++
++export default InfoAndComments
+\ No newline at end of file
+Index: proyectoLomap/solid-react-example/src/components/Comments/Comments.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>class Comments{\r\n    lista;\r\n    constructor() {\r\n        this.lista = new Array();\r\n    }\r\n    Comments(username){\r\n        return <Card>\r\n            <Comment username = {\"a\"}  comment = {\"hola\"}>\r\n            </Comment>\r\n            <Comment username = {\"uo281835\"}  comment = {\"hola\"}>\r\n            </Comment>\r\n            <Comment username = {\"aaa\"}  comment = {\"hola\"}>\r\n            </Comment>\r\n        </Card>;\r\n    }\r\n\r\n    registerComment(username,comment){\r\n        lista.push(new Comment(username, comment));\r\n    }\r\n}
+===================================================================
+diff --git a/proyectoLomap/solid-react-example/src/components/Comments/Comments.js b/proyectoLomap/solid-react-example/src/components/Comments/Comments.js
+--- a/proyectoLomap/solid-react-example/src/components/Comments/Comments.js	
++++ b/proyectoLomap/solid-react-example/src/components/Comments/Comments.js	
+@@ -1,9 +1,10 @@
++import { Card,Button } from "@material-ui/core";
++
++import Comment from './Comment'
+ class Comments{
+     lista;
+-    constructor() {
+-        this.lista = new Array();
+-    }
+     Comments(username){
++        this.lista = new Array();
+         return <Card>
+             <Comment username = {"a"}  comment = {"hola"}>
+             </Comment>
+@@ -15,6 +16,17 @@
+     }
+ 
+     registerComment(username,comment){
+-        lista.push(new Comment(username, comment));
++        this.lista.push(new Comment(username, comment));
+     }
++}
++ 
++export default Comments = ()=>{
++    return <div>
++            <Comment username = {'a'}  comment = {"hola"}>
++            </Comment>
++            <Comment username = {"uo281835"}  comment = {"hola"}>
++            </Comment>
++            <Comment username = {"aaa"}  comment = {"hola"}>
++            </Comment>
++        </div>;
+ }
+\ No newline at end of file
+Index: proyectoLomap/solid-react-example/src/components/Comments/CommentBox.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { Card } from \"@material-ui/core\";\r\nimport Comments from './Comments/Comments'\r\nclass CommentBox{\r\n    comments = new Comments();\r\n    username;\r\n    constructor(username) {\r\n        this.comments = new Comments();\r\n        this.username = username;\r\n    }\r\n\r\n    CommentBox(username){\r\n        this(username);\r\n        return <Card>\r\n            <h2 id={\"titulo\"}>Introduzca su comentario:</h2>\r\n            <label labelfor = \"Comments\">Caja de comentarios</label>\r\n            <input id = \"Comments\" type={<textarea name=\"\" id=\"\" cols=\"30\" rows=\"10\"></textarea>}/>\r\n            <Button variant=\"contained\" color=\"primary\">\r\n                Submit\r\n                OnClick={this.register()}\r\n            </Button>\r\n\r\n        </Card>;\r\n    }\r\n    register(){\r\n        this.comments.registerComment(this.username, \"hola\");\r\n\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/proyectoLomap/solid-react-example/src/components/Comments/CommentBox.js b/proyectoLomap/solid-react-example/src/components/Comments/CommentBox.js
+--- a/proyectoLomap/solid-react-example/src/components/Comments/CommentBox.js	
++++ b/proyectoLomap/solid-react-example/src/components/Comments/CommentBox.js	
+@@ -1,28 +1,32 @@
+-import { Card } from "@material-ui/core";
+-import Comments from './Comments/Comments'
++import { Card,Button } from "@material-ui/core";
++import Comments from './Comments'
+ class CommentBox{
+     comments = new Comments();
+     username;
+-    constructor(username) {
+-        this.comments = new Comments();
+-        this.username = username;
++
++    constructor(username){
++         this.username = username;
+     }
+-
+-    CommentBox(username){
++    CommentBox1(username){
++       
+         this(username);
+-        return <Card>
+-            <h2 id={"titulo"}>Introduzca su comentario:</h2>
+-            <label labelfor = "Comments">Caja de comentarios</label>
+-            <input id = "Comments" type={<textarea name="" id="" cols="30" rows="10"></textarea>}/>
+-            <Button variant="contained" color="primary">
+-                Submit
+-                OnClick={this.register()}
+-            </Button>
++       
++    }
++    register(){
++        this.comments.registerComment(this.username, "hola");
++
++    }
++}
++
++export default CommentBox = (username)=>{
++    return <Card>
++    <h2 id={"titulo"}>Introduzca su comentario:</h2>
++    <label labelfor = "Comments">Caja de comentarios</label>
++    <input id = "Comments" type={<textarea name="" id="" cols="30" rows="10"></textarea>}/>
++    <Button variant="contained" color="primary">
++        Submit
++        OnClick={}
++    </Button>
+ 
+-        </Card>;
+-    }
+-    register(){
+-        this.comments.registerComment(this.username, "hola");
+-
+-    }
++</Card>;
+ }
