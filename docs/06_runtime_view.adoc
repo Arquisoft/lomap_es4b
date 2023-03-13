@@ -52,14 +52,14 @@ Usuario -> LoMap: Inicia sesión con su usuario
 LoMap -> DataBase: Solicitar confirmación de cuenta
 LoMap <-- DataBase: Confirma validez de la cuenta
 
-Usuario <- LoMap: Muestra la página de inicio
+Usuario <-- LoMap: Muestra la página de inicio
 
 Usuario -> LoMap: Selecciona opción de crear mapa
 
 LoMap -> Pod: Añade un mapa nuevo a su lista de mapas
 LoMap <-- Pod: Confirma la creación del nuevo mapa
 
-Usuario <- LoMap: Muestra mensaje de confirmación
+Usuario <-- LoMap: Muestra mensaje de confirmación
 ----
 
 === Usuario añade un restaurante a su mapa
