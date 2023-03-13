@@ -34,9 +34,9 @@ Se han decidido las siguientes tecnologías para llevar a cabo el desarrollo de 
 * Solid: una aplicación SOLID asegura la privacidad de los datos de sus usuarios.
 * MongoDB: base de datos no relacional.
 * MVC: patrón arquitectónico ideal para aplicacioens con interfaz de usuario.
-* JavaScript: lenguaje de programación basado en JavaScript que añade tipos estáticos y objetos basados en clases.
+* Typescript: lenguaje de programación basado en JavaScript que añade tipos estáticos y objetos basados en clases.
 * Tailwind UI: es el frameworks de CSS que vamos a utilizar en la aplicación.
-* OpenStreetMap: la API elegida para implementar la funcionalidad principal de la aplicación: un mapa.
+* API Google Maps: la API elegida para implementar la funcionalidad principal de la aplicación: un mapa.
 
 === Objetivos de calidad
 

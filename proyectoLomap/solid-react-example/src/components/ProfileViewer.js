@@ -1,6 +1,5 @@
 
 import React from "react";
-
 import { useSession, CombinedDataProvider, Image, LogoutButton, Text } from "@inrupt/solid-ui-react";
 import { Button, Card, CardActionArea, CardContent, Container, Typography, TextField, FormGroup } from "@material-ui/core";
 import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
@@ -38,7 +37,7 @@ const ProfileViewer = () => {
 
   return (
 
-    <Container fixed>
+    <Container maxWidth={false} disableGutters={true}>
 {/*       <CombinedDataProvider datasetUrl={webId} thingUrl={webId}>
         <Card style={{ maxWidth: 480 }}>
           <CardContent>
@@ -74,18 +73,13 @@ const ProfileViewer = () => {
           Modificar
       </Button>
 
- {/*        <Button
-        onClick={() =>{
-          deletePoints(213123, 123132, 12123, "CasaCarlos", session, webId).then(file => updateData(file,webId,session));
-        }}>
-          Eliminar
-      </Button> */}
-
-        <div id = "centralDisplay">
+        {/* <div id = "centralDisplay">
             <InfoAndComments userName = {"a"}>
             </InfoAndComments>
             <MapView />
-        </div>
+        </div> */}
+
+        <MapView/>
  
     </Container>
   );
