@@ -19,8 +19,6 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 ****
 
 === Restricciones técnicas
-[role="arc42help"]
-****
 
 .Restricciones técnicas
 [options="header",cols="1,2"]
@@ -29,12 +27,10 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 |SOLID Pods| Los Pods de SOLID nos permitirán almacenar de forma segura los datos de los usuarios
 |Git| Utilizaremos los repositorios de GitHub para subir el código de la aplicación.
 |React| Para la creación del Frontend de la aplicación utilizaremos la biblioteca de JavaScript React
-|TypeScript| Utilizaremos TypeScript como lenguaje de programación para la aplicación. 
+|JavaScript| Utilizaremos JavaScript como lenguaje de programación para la aplicación, la razón principal es que todos nos encontramos más cómodos utilizándolo. 
 |===
 
 === Restricciones de negocio
-[role="arc42help"]
-****
 
 .Restricciones de negocio
 [options="header",cols="1,2"]
@@ -46,10 +42,6 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 |===
 
 === Conventions
-[role="arc42help"]
-****
-ayuda
-****
 
 .Conventions
 [options="header",cols="1,2"]
