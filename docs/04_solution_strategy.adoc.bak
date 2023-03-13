@@ -50,6 +50,9 @@ Gracias a los pods que nos proporciona SOLID, los usuarios podrán guardar sus d
 
 Se quiere lograr una aplicación que sea fácil de usar para sus clientes. Gracias a React la aplicación contará con una interfaz gráfica intuitiva que haga pensar lo menos posible al usuario.
 
+.Durabilidad
+Con los pods se asegura que los datos de cada usuario sean persistentes.
+
 .Mantenibilidad
 
 El equipo de desarrollo de la aplicación responderá a las necesidades del usuario en todo momento, actualizando la aplicación con nueva funcionalidad o solucionando errores.
