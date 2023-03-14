@@ -647,10 +647,6 @@ If you as an architect do not know how the quality of your work will be judged �
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>El usuario deberá poder utilizar el sistema de una forma sencilla e intuitiva, de forma que se proporcione una buena experiencia.</em></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Durabilidad</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Se deberá garantizar que las datos introducidos en el sistema serán permanentes.</em></p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Mantenibilidad</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>El sistema deberá poder ser actualizado (con nuevos añadidos o modificaciones) de forma que estos cambios provoquen el menor número de cambios posibles.</em></p></td>
 </tr>
@@ -924,7 +920,7 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 <td class="tableblock halign-left valign-top"><p class="tableblock">Nos permitirá almacenar de forma segura la información del usuario</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">JavaScriptt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JavaScript</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Lenguaje de programación que utlizaremos durante el desarrollo</p></td>
 </tr>
 <tr>
@@ -986,8 +982,6 @@ Refer to details in the following sections.</p>
 </div>
 <div class="sect2">
 <h3 id="_decisiones_tecnológicas">4.1. Decisiones tecnológicas</h3>
-<div class="sidebarblock">
-<div class="content">
 <div class="paragraph">
 <p>Se han decidido las siguientes tecnologías para llevar a cabo el desarrollo de la aplicación:</p>
 </div>
@@ -1009,23 +1003,19 @@ Refer to details in the following sections.</p>
 <p>MVC: patrón arquitectónico ideal para aplicacioens con interfaz de usuario.</p>
 </li>
 <li>
-<p>Typescript: lenguaje de programación basado en JavaScript que añade tipos estáticos y objetos basados en clases.</p>
+<p>JavaScript: lenguaje de programación basado en JavaScript que añade tipos estáticos y objetos basados en clases.</p>
 </li>
 <li>
 <p>Tailwind UI: es el frameworks de CSS que vamos a utilizar en la aplicación.</p>
 </li>
 <li>
-<p>API Google Maps: la API elegida para implementar la funcionalidad principal de la aplicación: un mapa.</p>
+<p>OpenStreetMap: la API elegida para implementar la funcionalidad principal de la aplicación: un mapa.</p>
 </li>
 </ul>
 </div>
 </div>
-</div>
-</div>
 <div class="sect2">
 <h3 id="_objetivos_de_calidad">4.2. Objetivos de calidad</h3>
-<div class="sidebarblock">
-<div class="content">
 <div class="paragraph">
 <p>Algunos objetivos de calidad claves y cómo lograrlos:</p>
 </div>
@@ -1038,20 +1028,12 @@ Refer to details in the following sections.</p>
 <p>Se quiere lograr una aplicación que sea fácil de usar para sus clientes. Gracias a React la aplicación contará con una interfaz gráfica intuitiva que haga pensar lo menos posible al usuario.</p>
 </div>
 <div class="paragraph">
-<div class="title">Durabilidad</div>
-<p>Con los pods se asegura que los datos de cada usuario sean persistentes.</p>
-</div>
-<div class="paragraph">
 <div class="title">Mantenibilidad</div>
 <p>El equipo de desarrollo de la aplicación responderá a las necesidades del usuario en todo momento, actualizando la aplicación con nueva funcionalidad o solucionando errores.</p>
 </div>
 </div>
-</div>
-</div>
 <div class="sect2">
 <h3 id="_decisiones_organizativas">4.3. Decisiones organizativas</h3>
-<div class="sidebarblock">
-<div class="content">
 <div class="paragraph">
 <p>Medios que se han usado para facilitar una buena organización del trabajo:</p>
 </div>
@@ -1067,8 +1049,6 @@ Refer to details in the following sections.</p>
 <p>Tableros del proyecto: forma de organizar las distintas tareas a realizar, tanto de implementación, como investigación, documentación, etc. Las tareas se irán moviendo al bloque correspondiente según avance su progreso, y todos los miembros del equipo podrán ver el progreso general de la aplicación.</p>
 </li>
 </ul>
-</div>
-</div>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -1198,124 +1178,6 @@ In the best case you will get away with examples or simple signatures.</p>
 </tr>
 </tbody>
 </table>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Important Interfaces</dt>
-<dd>
-<p><em>&lt;Description of important interfaces&gt;</em></p>
-</dd>
-</dl>
-</div>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<p>Insert your explanations of black boxes from level 1:</p>
-</div>
-<div class="paragraph">
-<p>If you use tabular form you will only describe your black boxes with name and
-responsibility according to the following schema:</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"><strong>Name</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Responsibility</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;black box 1&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Text&gt;</em></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;black box 2&gt;</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;Text&gt;</em></p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>If you use a list of black box descriptions then you fill in a separate black box template for every important building block .
-Its headline is the name of the black box.</p>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_name_black_box_1">5.1.1. &lt;Name black box 1&gt;</h4>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<p>Here you describe &lt;black box 1&gt;
-according the the following black box template:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Purpose/Responsibility</p>
-</li>
-<li>
-<p>Interface(s), when they are not extracted as separate paragraphs. This interfaces may include qualities and performance characteristics.</p>
-</li>
-<li>
-<p>(Optional) Quality-/Performance characteristics of the black box, e.g.availability, run time behavior, &#8230;&#8203;.</p>
-</li>
-<li>
-<p>(Optional) directory/file location</p>
-</li>
-<li>
-<p>(Optional) Fulfilled requirements (if you need traceability to requirements).</p>
-</li>
-<li>
-<p>(Optional) Open issues/problems/risks</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p><em>&lt;Purpose/Responsibility&gt;</em></p>
-</div>
-<div class="paragraph">
-<p><em>&lt;Interface(s)&gt;</em></p>
-</div>
-<div class="paragraph">
-<p><em>&lt;(Optional) Quality/Performance Characteristics&gt;</em></p>
-</div>
-<div class="paragraph">
-<p><em>&lt;(Optional) Directory/File Location&gt;</em></p>
-</div>
-<div class="paragraph">
-<p><em>&lt;(Optional) Fulfilled Requirements&gt;</em></p>
-</div>
-<div class="paragraph">
-<p><em>&lt;(optional) Open Issues/Problems/Risks&gt;</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_name_black_box_2">5.1.2. &lt;Name black box 2&gt;</h4>
-<div class="paragraph">
-<p><em>&lt;black box template&gt;</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_name_black_box_n">5.1.3. &lt;Name black box n&gt;</h4>
-<div class="paragraph">
-<p><em>&lt;black box template&gt;</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_name_interface_1">5.1.4. &lt;Name interface 1&gt;</h4>
-<div class="paragraph">
-<p>&#8230;&#8203;</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_name_interface_m">5.1.5. &lt;Name interface m&gt;</h4>
-
-</div>
 </div>
 <div class="sect2">
 <h3 id="_level_2">5.2. Level 2</h3>
@@ -1331,34 +1193,34 @@ Leave out normal, simple, boring or standardized parts of your system</p>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_white_box_building_block_1">5.2.1. White Box <em>&lt;building block 1&gt;</em></h4>
-<div class="sidebarblock arc42help">
-<div class="content">
 <div class="paragraph">
-<p>&#8230;&#8203;describes the internal structure of <em>building block 1</em>.</p>
-</div>
-</div>
+<p><span class="image"><img src="./images/05_building_block_view2.jpeg" alt="nivel2"></span></p>
 </div>
 <div class="paragraph">
-<p><em>&lt;white box template&gt;</em></p>
+<div class="title">Motivacion</div>
+<p>Aqui se mostrarán las dos partes principales que componen la aplicación.</p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_white_box_building_block_2">5.2.2. White Box <em>&lt;building block 2&gt;</em></h4>
-<div class="paragraph">
-<p><em>&lt;white box template&gt;</em></p>
-</div>
-<div class="paragraph">
-<p>&#8230;&#8203;</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_white_box_building_block_m">5.2.3. White Box <em>&lt;building block m&gt;</em></h4>
-<div class="paragraph">
-<p><em>&lt;white box template&gt;</em></p>
-</div>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 5. Contenedores</caption>
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 83.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nombre</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Responsabilidad</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Capa de servicio o frontend</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Consiste en las interfaces y vistas que se le mostrarán al usuario</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Capa de datos o backend</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">En esta capa se tratará con los datos de la aplicación.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
 <h3 id="_level_3">5.3. Level 3</h3>
@@ -1952,27 +1814,22 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Confidencialidad</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">La información personal de los usuarios no podrá ser accedida por terceros.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El usuario guarda puntos de interés en su mapa. Estos solo podrán ser accedidos a sus amigos agregados en la aplicación.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Alta</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Usabilidad</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Una interfaz gráfica sencilla para todos los usuarios.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El usuario quiere hacer uso de algunas de las funciones de la aplicación. Gracias a una interfaz intuitiva no le requiere un gran esfuerzo encontrar los componentes donde llevar a cabo las acciones y cómo realizarlas.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Alta</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Durabilidad</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Datos de usuario persistentes, que no se pierdan en ningún momento.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Media-alta</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Mantenibilidad</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Código mantenible, de forma que si ha de implementarse una nueva funcionalidad, esta requieta el menor número de cambios en el código</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Un miembro del equipo de desarrollo puede integrar nueva funcionalidad a la aplicación de forma sencilla y sin tener que realizar grandes cambios en la misma.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Media-alta</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Eficiencia</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Alta velocidad de respuesta de la aplicación ante peticiones del usuario.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">El usuario se logea para acceder a su mapa. La página no debería tardar más de 3 segundos en mostrarlo en pantalla.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Media-baja</p></td>
 </tr>
 </tbody>
@@ -2004,7 +1861,7 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 5. Riesgos</caption>
+<caption class="title">Table 6. Riesgos</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -2031,7 +1888,7 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 <td class="tableblock halign-left valign-top"><p class="tableblock">Es una tecnología que desconocemos por completo y deberemos aprender</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Trabajo en equipo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Miembros del equipo desconocidos</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Contamos con 4 miembros en el equipo, no nos concemos entre nosotros y deberemos mantener una buena comunicación</p></td>
 </tr>
 <tr>
@@ -2141,7 +1998,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-03-08 11:26:57 +0100
+Last updated 2023-03-14 13:20:06 +0100
 </div>
 </div>
 </body>
