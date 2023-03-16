@@ -6,7 +6,7 @@ const LoginForm = () => {
   return (
     
     <Container maxWidth={false} disableGutters={true}>
-      <MapView/>
+      <MapView isLogged={false}/>
     </Container>
   );
 }

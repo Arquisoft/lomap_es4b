@@ -6,12 +6,14 @@ import L from "leaflet";
 import AddMarker from'./AddMarker'
 import {IconLocation} from "./IconLocation";
 import InfoAndComments from "../InfoAndComments";
+import { savePoints} from "../../helper/PointsManager";
 
 
 
 function LocationMarker() {
   const [position, setPosition] = useState(null);
   const [bbox, setBbox] = useState([]);
+ 
 
   const map = useMap();
 
@@ -23,12 +25,31 @@ function LocationMarker() {
   }, [map]);
 }
 
+
 export default class MapView extends  Component{
+
   constructor(props) {
     super(props);
+    this.markersPoints = [];
+    if(props.isLogged){
+      savePoints(props.session, props.webId)
+      .then((points) => {
+        for(var p in points){
+          this.markersPoints.push(points[p]); 
+        }
+
+      });
+      
+      console.log("Los puntos cargados del pod son "+this.markersPoints);
+    }else{
+      this.markersPoints = [[43.3548096, -5.8534699]];  //marcas de la base de datos
+    }
+
     this.state = {
-      markers: [[43.3548057,-5.8512759],[43.3609476,-5.8503508],[43.5416735,-5.65240765],[43.5539325,-5.618994]],
+      markers: this.markersPoints,
     };
+
+    
   }
 
   addMarker = (e) => {

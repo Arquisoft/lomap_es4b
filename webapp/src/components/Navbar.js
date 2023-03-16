@@ -4,7 +4,7 @@ import { Button, TextField, FormGroup, CardActionArea, IconButton, MoreVertIcon,
 import App from "../App"
 import logo from '../images/lomapLogo.png';
 import { VCARD, FOAF } from "@inrupt/lit-generated-vocab-common";
-
+import {savePoints} from "../helper/PointsManager";
 
 export default function Navbar({logggin}){
   const [idp, setIdp] = useState("https://inrupt.net");
@@ -41,10 +41,10 @@ export default function Navbar({logggin}){
           ) : (
             <>
               <LoginButton oidcIssuer={idp} redirectUrl={currentUrl} className="login_button">
-                <Button variant="contained" color="primary">
+                <Button variant="contained" color="primary" /* onClick={savePoints(session,webId)} */>
                   Login
                   </Button>
-              </LoginButton>
+              </LoginButton> 
             </>
           )}
 

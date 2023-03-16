@@ -3,9 +3,11 @@ import React from "react";
 import { useSession, CombinedDataProvider, Image, LogoutButton, Text } from "@inrupt/solid-ui-react";
 import { Button, Card, CardActionArea, CardContent, Container, Typography, TextField, FormGroup } from "@material-ui/core";
 import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
-import {createPoints,createData,updatePoints,updateData,createPointsFile} from "../helper/PodHelper";
+import {createPoints,createData,updatePoints,updateData,createPointsFile,getAllPoints} from "../helper/PodHelper";
 import MapView from "./map/MapView";
 import InfoAndComments from "./InfoAndComments"
+import {savePoints} from "../helper/PointsManager";
+
 
 
 /* async function getPoint(webId){
@@ -32,8 +34,6 @@ import InfoAndComments from "./InfoAndComments"
 const ProfileViewer = () => {
   const { session } = useSession();
   const { webId } = session.info;
-
-  console.log(webId);
 
   return (
 
@@ -69,8 +69,18 @@ const ProfileViewer = () => {
 
 
       <Button
-        onClick={() =>{ updatePoints(8678678, 213123, 2347823, "CasaEdu", session, webId);}}>
+        onClick={() =>{ updatePoints(43.402301,-5.808376, "Casa de Abuela", "Mu rica la comida", "Private",session, webId);}}>
           Modificar
+      </Button>
+
+      <Button
+        onClick={() =>{ getAllPoints(session,webId);}}>
+          Get All Points
+      </Button>
+
+      <Button
+        onClick={() =>{ savePoints(session,webId);}}>
+          Coger del POD
       </Button>
 
         {/* <div id = "centralDisplay">
@@ -79,7 +89,7 @@ const ProfileViewer = () => {
             <MapView />
         </div> */}
 
-        <MapView/>
+        <MapView session={session}  webId={webId} isLogged={true}/>
  
     </Container>
   );
