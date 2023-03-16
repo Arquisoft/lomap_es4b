@@ -3,7 +3,7 @@ import React from "react";
 import { useSession, CombinedDataProvider, Image, LogoutButton, Text } from "@inrupt/solid-ui-react";
 import { Button, Card, CardActionArea, CardContent, Container, Typography, TextField, FormGroup } from "@material-ui/core";
 import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
-import {createPoints,createData,updatePoints,updateData,createPointsFile,getAllPoints} from "../helper/PodHelper";
+import {createPoints,updatePoints,deletePoints,createPointsFile} from "../helper/PodHelper";
 import MapView from "./map/MapView";
 import InfoAndComments from "./InfoAndComments"
 
@@ -73,8 +73,8 @@ const ProfileViewer = () => {
       </Button>
 
       <Button
-        onClick={() =>{ getAllPoints(session,webId);}}>
-          Get All Points
+        onClick={() =>{ deletePoints(session,webId, "kdnc79oiturm0lz2eexx");}}>
+          Delete
       </Button>
 
 

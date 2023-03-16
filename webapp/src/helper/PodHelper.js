@@ -1,9 +1,25 @@
-import { saveFileInContainer,getFile,overwriteFile } from "@inrupt/solid-client";
+import { saveFileInContainer,getFile,overwriteFile,getSolidDataset,
+  getThing,
+  getStringNoLocale, } from "@inrupt/solid-client";
 import {Point} from "../entities/Entities";
 import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
 
+
 async function getProfileInfo(){
   return [FOAF.name.iri.value, VCARD.organization_name.iri.value, VCARD.role.iri.value, VCARD.hasPhoto.iri.value];
+}
+
+
+async function getProfile(webId){
+  let profileDocumentURI = webId.split("#")[0]; // we remove the right hand side  of the # for consistency
+  let myDataset = await getSolidDataset(profileDocumentURI); // obtain the dataset from the URI
+  return getThing(myDataset, webId); // we obtain the thing we are looking for from the dataset
+}
+
+export async function getNameFromPod(webId) {
+  if (webId === "" || webId === undefined) return "Name not found"; // we return the empty string
+  let name = getStringNoLocale(await getProfile(webId), FOAF.name);
+  return name !== null ? name : "No name :(";
 }
 
 
@@ -52,37 +68,7 @@ async function existFile(webId,session){
   }
 }
   
-  
-export async function createPoints(name,x,y,z,comment, webId, session) {
 
-    var dates =[{latitud:x,altitud:y,longitud:z,comment:comment}];
-
-    var r = {
-    points: []
-    };
-
-    for(var i in dates) {    
-      var item = dates[i];   
-      var v1 = item.latitud;
-      var v2 = item.altitud;
-      var v3 = item.longitud;
-      var v4 = item.comment;
-      r.points.push({ 
-          "x" : v1,
-          "y"  : v2,
-          "z" : v3,
-          "comment" : v4
-      });
-    }
-  
-      const blob = new Blob([JSON.stringify(r, null, 2)], {
-        type: "application/json",
-      });
-  
-      var file = new File([blob], name, { type: blob.type });
-      //return file;
-      await createData(webId, file, session);
-  }
   
 
 
@@ -94,11 +80,10 @@ export async function createData(url, file, session) {
       { slug: file.name, contentType: file.type, fetch: session.fetch }
       
     );
-/*     printContents(savedFile);
- */
-  } catch (error) {
-    console.log(error);
-  }
+
+    } catch (error) {
+      console.log(error);
+    }
 
   }
 
@@ -109,15 +94,9 @@ const randomId = function(length) {
 };
 
 
-export async function deletePoints(){
 
-  let id = randomId(20);
-
-}
-
- 
-//Actualiza los datos del JSON introduciéndo un nuevo punto
-export async function updatePoints(latitud,longitud,name,comment,category,session,webId){
+//Borrará el punto con id pasada por parámetro
+export async function deletePoints(session, webId, id){
 
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
@@ -129,7 +108,43 @@ export async function updatePoints(latitud,longitud,name,comment,category,sessio
       { fetch: session.fetch }
     );
 
-    var dates =[{id:randomId(20),autor:"Paco",latitud:latitud,longitud:longitud,name:name,comment:comment,category:category}];
+    let oldPoints = await file.text();
+    var dataset = JSON.parse(oldPoints);
+    var allPointsJsonArray = dataset.points;
+
+    var result = allPointsJsonArray.filter(item => item.id !== id);
+
+    const blob = new Blob([JSON.stringify(result, null, 2)], {
+      type: "application/json",
+    });
+
+    var fichero = new File([blob], "puntosMapa.json", { type: blob.type });
+
+    await updateData(fichero, webId, session);
+
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+ 
+//Actualiza los datos del JSON introduciéndo un nuevo punto
+export async function updatePoints(latitud,longitud,name,comment,category,session,webId){
+
+  let url = webId.replace("profile/card#me",""); 
+  let urlContainer = url+"private/";
+  url = url+"private/puntosMapa.json"; 
+
+  try {
+    let file = await getFile(
+      url,
+      { fetch: session.fetch }
+    );
+
+    let authorName = await getNameFromPod(webId);
+
+    var dates =[{id:randomId(20),autor:authorName,latitud:latitud,longitud:longitud,name:name,comment:comment,category:category}];
 
     let oldPoints = await file.text();
 
@@ -164,6 +179,8 @@ export async function updatePoints(latitud,longitud,name,comment,category,sessio
   }
 
 }
+
+
 
 
 //Se encarga de cear el archivos JSON en el POD
