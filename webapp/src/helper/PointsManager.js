@@ -1,10 +1,10 @@
 
-import {getAllPoints} from "./PodHelper";
+import {getAllCoordinates} from "./PodHelper";
 
 var points = [];
 
 export async function savePoints(session,webId){
-    let promiseValue = await getAllPoints(session,webId);
+    let promiseValue = await getAllCoordinates(session,webId);
     points = promiseValue.slice();
     return points;
 }

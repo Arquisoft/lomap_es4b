@@ -233,6 +233,32 @@ export async function getAllPoints(session,webId){
       points.push(p);
     }
 
+    return points;
+
+  } catch (error) {
+    console.log(error);
+  }
+
+}
+
+
+//Devolverá todas las coordenadas de todos los puntos dentro del Pod
+export async function getAllCoordinates(session,webId){
+
+  let url = webId.replace("profile/card#me","");
+  let urlContainer = url+"private/";
+  url = url+"private/puntosMapa.json"; 
+
+  try {
+    let file = await getFile(
+      url,
+      { fetch: session.fetch }
+    );
+
+    let oldPoints = await file.text();
+    var dataset = JSON.parse(oldPoints);
+    var allPointsJsonArray = dataset.points;
+
     var marks = [];
 
     for(var i in allPointsJsonArray) {
