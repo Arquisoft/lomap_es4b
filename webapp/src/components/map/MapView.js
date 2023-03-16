@@ -6,7 +6,7 @@ import L from "leaflet";
 import AddMarker from'./AddMarker'
 import {IconLocation} from "./IconLocation";
 import InfoAndComments from "../InfoAndComments";
-import { savePoints} from "../../helper/PointsManager";
+import {coordinatesPoints} from "../../helper/PointsManager";
 
 
 
@@ -32,7 +32,7 @@ export default class MapView extends  Component{
     super(props);
     this.markersPoints = [];
     if(props.isLogged){
-      savePoints(props.session, props.webId)
+      coordinatesPoints(props.session, props.webId)
       .then((points) => {
         for(var p in points){
           this.markersPoints.push(points[p]); 

@@ -6,7 +6,6 @@ import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
 import {createPoints,createData,updatePoints,updateData,createPointsFile,getAllPoints} from "../helper/PodHelper";
 import MapView from "./map/MapView";
 import InfoAndComments from "./InfoAndComments"
-import {savePoints} from "../helper/PointsManager";
 
 
 
@@ -78,10 +77,6 @@ const ProfileViewer = () => {
           Get All Points
       </Button>
 
-      <Button
-        onClick={() =>{ savePoints(session,webId);}}>
-          Coger del POD
-      </Button>
 
         {/* <div id = "centralDisplay">
             <InfoAndComments userName = {"a"}>
