@@ -8,6 +8,7 @@ import MapView from "../map/MapView";
 import InfoAndComments from "../Comments/InfoAndComments";
 import SideBar from "../sidebar/SideBar";
 import "./ProfileViewer.css"
+import MarkersList from '../markersList/Markerslist';
 
 
 const ProfileViewer = (props) => {
@@ -21,12 +22,13 @@ const ProfileViewer = (props) => {
 
       <div className="profileViewer">
 
-      <SideBar setMarcadorSeleccionado={setMarcadorSeleccionado} ></SideBar>
+      <SideBar marcadorSeleccionado={marcadorSeleccionado} setMarcadorSeleccionado={setMarcadorSeleccionado}>
+      </SideBar>
+
       {marcadorSeleccionado ? 
-      <div>
-        HOLa
-      </div> :
-      null
+        <MarkersList session={session} webId={webId}></MarkersList>
+        :
+        null
       }
 
       <Button

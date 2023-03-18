@@ -7,7 +7,7 @@ import "./SideBar.css"
 export const SideBar = (props) => {
 
     const { collapseSidebar } = useProSidebar();
-    const {setMarcadorSeleccionado} = props;
+    const {marcadorSeleccionado,setMarcadorSeleccionado} = props;
 
     return(
         <Sidebar className="sideBar">
@@ -26,7 +26,15 @@ export const SideBar = (props) => {
                     <MenuItem className='menuItem'> Pie charts </MenuItem>
                     <MenuItem className='menuItem'> Line charts </MenuItem>
                 </SubMenu >
-                    <MenuItem className='menuItem' onClick={()=>setMarcadorSeleccionado(true)}> Marcadores</MenuItem>
+                    <MenuItem className='menuItem' 
+                    onClick={()=>{
+                        if(marcadorSeleccionado){
+                            setMarcadorSeleccionado(false);
+                        }else{
+                            setMarcadorSeleccionado(true);
+                        }
+                    }}
+                    > Marcadores</MenuItem>
                     <MenuItem className='menuItem'> About </MenuItem>
             </Menu>
         </Sidebar>

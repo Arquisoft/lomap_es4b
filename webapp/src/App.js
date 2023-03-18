@@ -17,9 +17,6 @@ const App = () => {
 
   const [marcadorSeleccionado,setMarcadorSeleccionado] = useState(false);
 
-  const nsq = () =>{
-    
-  } 
 
   //We have logged in
   session.onLogin(()=>{
