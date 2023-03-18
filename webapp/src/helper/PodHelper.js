@@ -1,6 +1,18 @@
-import { saveFileInContainer,getFile,overwriteFile } from "@inrupt/solid-client";
+import { saveFileInContainer,getFile,overwriteFile, getThing, getStringNoLocale, getSolidDataset } from "@inrupt/solid-client";
 import {Point} from "../entities/Entities";
 import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
+
+async function getProfile(webId){
+  let profileDocumentURI = webId.split("#")[0]; // we remove the right hand side of the # for consistency
+  let myDataset = await getSolidDataset(profileDocumentURI); // obtain the dataset from the URI
+  return getThing(myDataset, webId); // we obtain the thing we are looking for from the dataset
+}
+
+export async function getNameFromPod(webId) {
+  if (webId === "" || webId === undefined) return "Name not found"; // we return the empty string
+  let name = getStringNoLocale(await getProfile(webId), FOAF.name);
+  return name !== null ? name : "No name :(";
+}
 
 async function getProfileInfo(){
   return [FOAF.name.iri.value, VCARD.organization_name.iri.value, VCARD.role.iri.value, VCARD.hasPhoto.iri.value];
@@ -53,37 +65,7 @@ async function existFile(webId,session){
 }
   
   
-export async function createPoints(name,x,y,z,comment, webId, session) {
 
-    var dates =[{latitud:x,altitud:y,longitud:z,comment:comment}];
-
-    var r = {
-    points: []
-    };
-
-    for(var i in dates) {    
-      var item = dates[i];   
-      var v1 = item.latitud;
-      var v2 = item.altitud;
-      var v3 = item.longitud;
-      var v4 = item.comment;
-      r.points.push({ 
-          "x" : v1,
-          "y"  : v2,
-          "z" : v3,
-          "comment" : v4
-      });
-    }
-  
-      const blob = new Blob([JSON.stringify(r, null, 2)], {
-        type: "application/json",
-      });
-  
-      var file = new File([blob], name, { type: blob.type });
-      //return file;
-      await createData(webId, file, session);
-  }
-  
 
 
 export async function createData(url, file, session) {
@@ -100,7 +82,7 @@ export async function createData(url, file, session) {
     console.log(error);
   }
 
-  }
+}
 
 
 //Función que devuelve una id random para poder distinguir los puntos
@@ -109,10 +91,36 @@ const randomId = function(length) {
 };
 
 
-export async function deletePoints(){
+export async function deletePoints(session, webId, id){
 
-  let id = randomId(20);
+  let url = webId.replace("profile/card#me","");
+  let urlContainer = url+"private/";
+  url = url+"private/puntosMapa.json"; 
 
+  try {
+    let file = await getFile(
+      url,
+      { fetch: session.fetch }
+    );
+
+    let oldPoints = await file.text();
+    var dataset = JSON.parse(oldPoints);
+    var allPointsJsonArray = dataset.points;
+
+    var result = allPointsJsonArray.filter(item => item.id !== id);
+
+    const blob = new Blob([JSON.stringify(result, null, 2)], {
+      type: "application/json",
+    });
+
+    var fichero = new File([blob], "puntosMapa.json", { type: blob.type });
+
+    await updateData(fichero, webId, session);
+
+
+  } catch (error) {
+    console.log(error);
+  }
 }
 
  
@@ -128,6 +136,8 @@ export async function updatePoints(latitud,longitud,name,comment,category,sessio
       url,
       { fetch: session.fetch }
     );
+
+    
 
     var dates =[{id:randomId(20),autor:"Paco",latitud:latitud,longitud:longitud,name:name,comment:comment,category:category}];
 
@@ -163,6 +173,23 @@ export async function updatePoints(latitud,longitud,name,comment,category,sessio
     updatePoints(latitud,longitud,name,comment,category,session,webId);
   }
 
+}
+
+export async function createFirstFile(session, webId){
+  let url = webId.replace("profile/card#me","");
+  let urlContainer = url+"private/";
+  url = url+"private/puntosMapa.json"; 
+
+  try {
+    let file = await getFile(
+      url,
+      { fetch: session.fetch }
+    );
+
+  } catch (error) {
+    const file = await createPointsFile();
+    await createData(urlContainer, file, session);
+  }
 }
 
 
