@@ -137,7 +137,6 @@ export async function updatePoints(latitud,longitud,name,comment,category,sessio
       { fetch: session.fetch }
     );
 
-    
 
     var dates =[{id:randomId(20),autor:"Paco",latitud:latitud,longitud:longitud,name:name,comment:comment,category:category}];
 

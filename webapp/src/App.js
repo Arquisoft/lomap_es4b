@@ -15,6 +15,12 @@ const App = () => {
   //With this we can control the login status for solid
   const { session } = useSession();
 
+  const [marcadorSeleccionado,setMarcadorSeleccionado] = useState(false);
+
+  const nsq = () =>{
+    
+  } 
+
   //We have logged in
   session.onLogin(()=>{
     setIsLoggedIn(true)
@@ -35,7 +41,7 @@ const App = () => {
        
       {(!isLoggedIn) ? 
         <ProSidebarProvider><LoginForm /> </ProSidebarProvider>: 
-        <ProSidebarProvider><ProfileViewer className="profileViewer"/></ProSidebarProvider>}
+        <ProSidebarProvider><ProfileViewer className="profileViewer" marcadorSeleccionado={marcadorSeleccionado} setMarcadorSeleccionado={setMarcadorSeleccionado}/></ProSidebarProvider>}
     </SessionProvider>
   )
 }

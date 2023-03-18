@@ -7,11 +7,12 @@ import { VCARD, FOAF } from "@inrupt/lit-generated-vocab-common";
 import {savePoints} from "../../helper/PointsManager";
 import "./NavBar.css"
 
-export default function Navbar({logggin}){
+export default function Navbar(props){
   const [idp, setIdp] = useState("https://inrupt.net");
   const [currentUrl, setCurrentUrl] = useState("https://localhost:3000");
   const { session } = useSession();
   const { webId } = session.info;
+  const {logggin} = props;
 
   useEffect(() => {
     setCurrentUrl(window.location.href);

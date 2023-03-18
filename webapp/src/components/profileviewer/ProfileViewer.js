@@ -10,19 +10,25 @@ import SideBar from "../sidebar/SideBar";
 import "./ProfileViewer.css"
 
 
-const ProfileViewer = () => {
+const ProfileViewer = (props) => {
   const { session } = useSession();
   const { webId } = session.info;
-  
+  const {marcadorSeleccionado,setMarcadorSeleccionado} = props;
+
   return (
-
-
 
     <Container maxWidth={false} disableGutters={true} >
 
       <div className="profileViewer">
 
-      <SideBar></SideBar>
+      <SideBar setMarcadorSeleccionado={setMarcadorSeleccionado} ></SideBar>
+      {marcadorSeleccionado ? 
+      <div>
+        HOLa
+      </div> :
+      null
+      }
+
       <Button
         onClick={() =>{ updatePoints(43.402301,-5.808376, "Casa de Abuela", "Mu rica la comida", "Private",session, webId);}}>
           Modificar

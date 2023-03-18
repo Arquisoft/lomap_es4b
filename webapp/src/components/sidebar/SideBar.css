@@ -1,11 +1,17 @@
 .sideBar{
-    background-color: #009735;
+    background-color: #454950;
+}
+
+.menu{
+    background-color: #454950;
 }
 
 .menuItem{
-    background-color: #5ac17e;
+    background-color: #5e6166;
+    width: 100%;
 }
 
 .subMenu{
-    background-color: #009735;
+    background-color: #454950;
+    width: 100%;
 }

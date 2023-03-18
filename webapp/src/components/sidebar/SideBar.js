@@ -1,19 +1,33 @@
 
-import { ProSidebarProvider,Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+import { Sidebar, Menu, MenuItem, SubMenu, useProSidebar} from 'react-pro-sidebar';
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 
 import "./SideBar.css"
 
-export const SideBar = () => {
+export const SideBar = (props) => {
+
+    const { collapseSidebar } = useProSidebar();
+    const {setMarcadorSeleccionado} = props;
 
     return(
         <Sidebar className="sideBar">
+            
             <Menu className="menu">
-                <SubMenu className="subMenu" label="Charts">
+            <MenuItem
+                    icon={<MenuOutlinedIcon />}
+                    onClick={() => {
+                    collapseSidebar();
+                    }}
+                    style={{ textAlign: "center" }}
+                >
+                    {" "}
+            </MenuItem>
+                <SubMenu className="subMenu" label="Otro">
                     <MenuItem className='menuItem'> Pie charts </MenuItem>
                     <MenuItem className='menuItem'> Line charts </MenuItem>
-                </SubMenu>
-                    <MenuItem className='menuItem'> Documentation </MenuItem>
-                    <MenuItem className='menuItem'> Calendar </MenuItem>
+                </SubMenu >
+                    <MenuItem className='menuItem' onClick={()=>setMarcadorSeleccionado(true)}> Marcadores</MenuItem>
+                    <MenuItem className='menuItem'> About </MenuItem>
             </Menu>
         </Sidebar>
     );
