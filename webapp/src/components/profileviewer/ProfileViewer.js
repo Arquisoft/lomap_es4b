@@ -18,12 +18,11 @@ const ProfileViewer = (props) => {
 
   return (
 
-    <Container maxWidth={false} disableGutters={true} >
+    <Container maxWidth={false} disableGutters={true} id="profileContainer">
 
       <div className="profileViewer">
 
-      <SideBar marcadorSeleccionado={marcadorSeleccionado} setMarcadorSeleccionado={setMarcadorSeleccionado}>
-      </SideBar>
+      <SideBar marcadorSeleccionado={marcadorSeleccionado} setMarcadorSeleccionado={setMarcadorSeleccionado}/>
 
       {marcadorSeleccionado ? 
         <MarkersList session={session} webId={webId}></MarkersList>
@@ -41,7 +40,7 @@ const ProfileViewer = (props) => {
           Delete
       </Button>
 
-        <MapView session={session}  webId={webId} isLogged={true}/>
+      <MapView className="mapView"session={session}  webId={webId} isLogged={true}/>
       
       </div>
  

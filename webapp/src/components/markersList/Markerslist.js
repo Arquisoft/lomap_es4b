@@ -1,31 +1,48 @@
 
 import {MarkerComponent} from './MarkerComponent';
 import {getAllPoints} from '../../helper/PodHelper';
+import { render } from '@testing-library/react';
+import { Component } from 'react';
 
-export function MarkersList(props) {
+export default class MarkersList extends Component{
 
-    const {session,webId} = props;
-
-    const puntos = () =>
-    {
-        
-    };
-
-    return (
-      <div>
-        {
-        
-        getAllPoints(session,webId)
-        .then((points) => 
-        {
-            points.map((item) => (
-                <MarkerComponent key={item.id} name={item.name} description={item.comment} />
-              ))
-        })
-
-        }
-      </div>
-    );
+  constructor(props){
+    super(props);
   }
 
-  export default MarkersList;
+  // renderPoints = async (session, webId) => {
+  //   const points = await getAllPoints(session, webId);
+  
+  //   // this will re render the view with new data
+  //   this.setState({
+  //     Points: points
+  //   });
+  // };
+
+  // // componentDidMount(){
+  // //   this.renderPoints(this.props.session, this.props.webId);
+  // // }
+
+  // render() {
+  //   this.renderPoints(this.props.session, this.props.webId);
+  //   return (
+    
+  //     <div>
+  //       {
+  //         this.points.map((item) => (
+  //           <MarkerComponent key={item.id} name={item.name} description={item.comment} />
+  //         ))
+        
+        
+  //       // .then((points) => 
+  //       // {
+  //       //     points.map((item) => (
+  //       //         <MarkerComponent key={item.id} name={item.name} description={item.comment} />
+  //       //       ))
+  //       // })
+
+  //       }
+  //     </div>
+  //   );
+  // }
+}

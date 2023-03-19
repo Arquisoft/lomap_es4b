@@ -26,7 +26,7 @@ function LocationMarker() {
 }
 
 
-export default class MapView extends  Component{
+export default class MapView extends Component{
 
   constructor(props) {
     super(props);
@@ -62,10 +62,10 @@ export default class MapView extends  Component{
 
   render() {
     return (
-      <MapContainer
+      <MapContainer id="map"
         center={[43.3548096, -5.8534699]}
         zoom={15}
-        style={{ width: "100%", height: "81.9vh" }}
+        //style={{ width: "100%", height: "81.9vh" }}
         scrollWheelZoom
 
         whenReady={(map) => {

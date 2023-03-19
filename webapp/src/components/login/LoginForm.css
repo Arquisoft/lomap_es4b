@@ -1,4 +1,9 @@
+#loginContainer{
+    height: 88%;
+}
+
 .loginForm{
     display: flex;
     align-content: flex-start;
+    height: 100%;
 }

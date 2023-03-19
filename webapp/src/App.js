@@ -30,16 +30,20 @@ const App = () => {
   })
 
   return(
-    
-    <SessionProvider sessionId="log-in-example">
-      <header>
-        <Navbar logggin={isLoggedIn}/>
-      </header>
-       
+      <SessionProvider sessionId="log-in-example">
+        <header className="header">
+          <Navbar logggin={isLoggedIn}/>
+        </header>
       {(!isLoggedIn) ? 
-        <ProSidebarProvider><LoginForm /> </ProSidebarProvider>: 
-        <ProSidebarProvider><ProfileViewer className="profileViewer" marcadorSeleccionado={marcadorSeleccionado} setMarcadorSeleccionado={setMarcadorSeleccionado}/></ProSidebarProvider>}
-    </SessionProvider>
+        <ProSidebarProvider><LoginForm /> </ProSidebarProvider>
+        : 
+        <ProSidebarProvider><ProfileViewer
+                                  className="profileViewer" 
+                                  marcadorSeleccionado={marcadorSeleccionado}
+                                  setMarcadorSeleccionado={setMarcadorSeleccionado}
+                                  /></ProSidebarProvider>
+      }
+      </SessionProvider>
   )
 }
 

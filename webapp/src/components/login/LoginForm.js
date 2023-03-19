@@ -8,7 +8,7 @@ import "./LoginForm.css"
 const LoginForm = () => {
   return (
   
-    <Container maxWidth={false} disableGutters={true} >
+    <Container maxWidth={false} disableGutters={true} id="loginContainer" >
       <div className="loginForm">
       <SideBar/>
       <MapView isLogged={false}/>

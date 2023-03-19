@@ -1,4 +1,9 @@
+#profileContainer{
+    height: 88%;
+}
+
 .profileViewer{
     display: flex;
     align-content: flex-start;
+    height: 100%;
 }

@@ -2,16 +2,25 @@
   box-sizing: border-box;
 }
 
-html, body {
-  margin: 0; 
+#root{
+  height: 100vh;
+}
+
+
+html,
+body {
+  margin: 0;
   padding: 0;
-  height: 100%; 
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
 }
 
 .container {
   margin: 1rem;
   text-align: center;
-  height: 100%; 
 }
 
 nav {
@@ -23,24 +32,13 @@ nav {
 
 }
 
-.profile-preview{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1.5em;
-  padding: 0.5em;
-}
-
 .site-title {
   font-size: 2rem;
 }
 
-
-
 .nav a {
   color: inherit;
   text-decoration: none;
-  height: 100%;
   display: flex;
   align-items: center;
   padding: .25rem;

@@ -28,10 +28,10 @@ export default function Navbar(props){
           
           {logggin ? (
             <>
-              <div className="profile-preview">
-                <CombinedDataProvider datasetUrl={webId} thingUrl={webId} className="image-button" style={{flexDirection: 'row'}}>
-                  <Image property={VCARD.hasPhoto.iri.value} alt="Foto de perfil del usuario" style={{width:80, height:80, borderRadius:40}}/>
-                  <Text property={FOAF.name.iri.value} style={{ fontSize: 20 }}/>
+              <div className="navProfile">
+              <CombinedDataProvider datasetUrl={webId} thingUrl={webId} className="image-button" style={{flexDirection: 'row'}}>
+                  <Image property={VCARD.hasPhoto.iri.value} alt="Foto de perfil del usuario" style={{width:70, height:70, borderRadius:40}}/>
+                  <Text property={FOAF.name.iri.value} style={{ fontSize: 18 }}/>
                 </CombinedDataProvider> 
                 <LogoutButton >
                   <Button variant="contained" color="primary">
