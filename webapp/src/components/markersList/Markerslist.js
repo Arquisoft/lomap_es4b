@@ -23,23 +23,33 @@ export default class MarkersList extends Component{
   // //   this.renderPoints(this.props.session, this.props.webId);
   // // }
 
-  // render() {
-  //   this.renderPoints(this.props.session, this.props.webId);
-  //   return (
-    
-  //     <div>
-  //       {
-  //         this.points.map((item) => (
-  //           <MarkerComponent key={item.id} name={item.name} description={item.comment} />
-  //         ))
+    const {session,webId} = props;
+
+
+    const items = [
+    ];
+/* 
+    getAllPoints(session,webId)
+        .then((points) => 
+        {
+            puntos = points;
+        }) */
+
+    return (
+      <div>
+        {
+
+        items.map((item) => (
+            <MarkerComponent key={item.id} name={item.name} description={item.description} />
+        ))
         
-        
-  //       // .then((points) => 
-  //       // {
-  //       //     points.map((item) => (
-  //       //         <MarkerComponent key={item.id} name={item.name} description={item.comment} />
-  //       //       ))
-  //       // })
+       /*  getAllPoints(session,webId)
+        .then((points) => 
+        {
+            points.map((item) => (
+                <MarkerComponent key={item.id} name={item.name} description={item.comment} />
+              ))
+        }) */
 
   //       }
   //     </div>

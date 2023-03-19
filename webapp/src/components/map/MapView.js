@@ -40,7 +40,6 @@ export default class MapView extends Component{
         }
 
       });
-      
       console.log("Los puntos cargados del pod son "+this.markersPoints);
     }else{
       this.markersPoints = [[43.3548096, -5.8534699]];  //marcas de la base de datos
@@ -50,7 +49,7 @@ export default class MapView extends Component{
       markers: this.markersPoints,
     };
 
-    
+
   }
 
   addMarker = (e) => {

@@ -1,4 +1,4 @@
-import { saveFileInContainer,getFile,overwriteFile, getThing, getStringNoLocale, getSolidDataset } from "@inrupt/solid-client";
+import { saveFileInContainer,getFile,overwriteFile, getThing, getStringNoLocale, getSolidDataset, getThingAll, getUrlAll, getStringEnglish } from "@inrupt/solid-client";
 import {Point} from "../entities/Entities";
 import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
 
@@ -308,4 +308,18 @@ async function stringJson(x,y){
      return {latitud:x,altitud:y};
   }
 
+
+/**
+ * ----------------------------------------------------------------------------------------------------
+ * AMIGOS POD
+ */
+
+
+//Obtiene las webId de los amigos del POD
+export async function getFriendWebId(webId) {
+
+  let friendsURL = getUrlAll(await getProfile(webId), FOAF.knows);
+  
+
+}
 
