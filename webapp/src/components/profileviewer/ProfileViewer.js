@@ -3,7 +3,7 @@ import React from "react";
 import { useSession, CombinedDataProvider, Image, LogoutButton, Text } from "@inrupt/solid-ui-react";
 import { Button, Card, CardActionArea, CardContent, Container, Typography, TextField, FormGroup } from "@material-ui/core";
 import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
-import {updatePoints,getAllPoints, createFirstFile, deletePoints} from "../../helper/PodHelper";
+import {updatePoints,getAllPoints, createFirstFile, deletePoints, getFriendWebId} from "../../helper/PodHelper";
 import MapView from "../map/MapView";
 import InfoAndComments from "../Comments/InfoAndComments";
 import SideBar from "../sidebar/SideBar";
@@ -32,13 +32,18 @@ const ProfileViewer = (props) => {
       }
 
       <Button
-        onClick={() =>{ updatePoints(43.402301,-5.808376, "Casa de Abuela", "Mu rica la comida", "Private",session, webId);}}>
+        onClick={() =>{ updatePoints(43.430423, -5.839197, "Aaron", "sdfdsfdsf", "Private",session, webId);}}>
           Modificar
       </Button>
 
       <Button
         onClick={() =>{ deletePoints(session,webId, "x3jq4fsqyzlaxj2z00dj");}}>
           Delete
+      </Button>
+
+      <Button
+        onClick={() =>{ getFriendWebId(webId);}}>
+          Amigos
       </Button>
 
         <MapView session={session}  webId={webId} isLogged={true}/>

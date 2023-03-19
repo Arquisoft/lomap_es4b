@@ -6,22 +6,31 @@ export function MarkersList(props) {
 
     const {session,webId} = props;
 
-    const puntos = () =>
-    {
-        
-    };
+
+    const items = [
+    ];
+/* 
+    getAllPoints(session,webId)
+        .then((points) => 
+        {
+            puntos = points;
+        }) */
 
     return (
       <div>
         {
+
+        items.map((item) => (
+            <MarkerComponent key={item.id} name={item.name} description={item.description} />
+        ))
         
-        getAllPoints(session,webId)
+       /*  getAllPoints(session,webId)
         .then((points) => 
         {
             points.map((item) => (
                 <MarkerComponent key={item.id} name={item.name} description={item.comment} />
               ))
-        })
+        }) */
 
         }
       </div>
