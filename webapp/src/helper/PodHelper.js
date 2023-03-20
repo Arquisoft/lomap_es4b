@@ -64,9 +64,6 @@ async function existFile(webId,session){
   }
 }
   
-  
-
-
 
 export async function createData(url, file, session) {
   try {
@@ -123,6 +120,32 @@ export async function deletePoints(session, webId, id){
   }
 }
 
+//Devuelve un array con la lista de puntos filtrados
+export async function filterPoints(session, webId, categories){
+
+  let url = webId.replace("profile/card#me","");
+  let urlContainer = url+"private/";
+  url = url+"private/puntosMapa.json"; 
+
+  try {
+    let file = await getFile(
+      url,
+      { fetch: session.fetch }
+    );
+
+    let oldPoints = await file.text();
+    var dataset = JSON.parse(oldPoints);
+    var allPointsJsonArray = dataset.points;
+
+    var result = allPointsJsonArray.filter(item => categories.includes(item.category));
+
+    return result;
+
+
+  } catch (error) {
+    console.log(error);
+  }
+}
  
 //Actualiza los datos del JSON introduciéndo un nuevo punto
 export async function updatePoints(latitud,longitud,name,comment,category,session,webId){

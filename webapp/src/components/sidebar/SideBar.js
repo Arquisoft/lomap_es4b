@@ -1,41 +1,74 @@
 
 import { Sidebar, Menu, MenuItem, SubMenu, useProSidebar} from 'react-pro-sidebar';
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import MenuIcon from "@mui/icons-material/Menu"
+import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt"
+import WrongLocationIcon from "@mui/icons-material/WrongLocation"
+import FilterAltIcon from "@mui/icons-material/FilterAlt"
+import FmdGoodIcon from "@mui/icons-material/FmdGood"
+import GroupIcon from "@mui/icons-material/Group"
+import InfoIcon from "@mui/icons-material/Info"
+import SortIcon from "@mui/icons-material/Sort"
+import { updatePoints,filterPoints,deletePoints,getFriendWebId } from '../../helper/PodHelper';
 
 import "./SideBar.css"
 
 export const SideBar = (props) => {
 
     const { collapseSidebar } = useProSidebar();
-    const {marcadorSeleccionado,setMarcadorSeleccionado} = props;
+    const {session, webId, marcadorSeleccionado,setMarcadorSeleccionado} = props;
+
 
     return(
         <Sidebar className="sideBar">
             
-            <Menu className="menu">
-            <MenuItem
-                    icon={<MenuOutlinedIcon />}
+            <Menu className='menu'>
+
+                <MenuItem className='menuItem'
+                    icon={<MenuIcon />}
                     onClick={() => {
                     collapseSidebar();
                     }}
                     style={{ textAlign: "center" }}
-                >
+                    >
                     {" "}
-            </MenuItem>
-                <SubMenu className="subMenu" label="Otro">
-                    <MenuItem className='menuItem'> Pie charts </MenuItem>
-                    <MenuItem className='menuItem'> Line charts </MenuItem>
+                </MenuItem>
+
+                <SubMenu className="subMenu" label="Gestionar puntos" icon={<SortIcon />}>
+                    <MenuItem className='subMenuItem'
+                        icon={<FmdGoodIcon />}
+                        onClick={()=>{
+                            if(marcadorSeleccionado){
+                                setMarcadorSeleccionado(false);
+                            }else{
+                                setMarcadorSeleccionado(true);
+                            }
+                        }}
+                    > Ver puntos</MenuItem>
+                    <MenuItem className='subMenuItem'
+                        icon={<AddLocationAltIcon />} 
+                        onClick={() =>
+                            { updatePoints(43.430423, -5.839197, "Aaron", "sdfdsfdsf", "Museo",session, webId);}}>
+                        Añadir punto </MenuItem>
+                    <MenuItem className='subMenuItem'
+                        icon={<WrongLocationIcon />} 
+                        onClick={() =>
+                            { deletePoints(session,webId, "x3jq4fsqyzlaxj2z00dj");}}> 
+                        Eliminar punto </MenuItem>
+                    <MenuItem className='subMenuItem' 
+                        icon={<FilterAltIcon />}
+                        onClick={ () => 
+                            { filterPoints(session, webId,["Casa", "Resturante"]) } }> 
+                        Filtrar puntos </MenuItem>
                 </SubMenu >
-                    <MenuItem className='menuItem' 
-                    onClick={()=>{
-                        if(marcadorSeleccionado){
-                            setMarcadorSeleccionado(false);
-                        }else{
-                            setMarcadorSeleccionado(true);
-                        }
-                    }}
-                    > Marcadores</MenuItem>
-                    <MenuItem className='menuItem'> About </MenuItem>
+                
+                <MenuItem className='menuItem'
+                    icon={<GroupIcon />} 
+                    onClick={() => 
+                        { getFriendWebId(webId);}}> 
+                    Amigos </MenuItem>
+                <MenuItem className='menuItem'
+                    icon={<InfoIcon />} 
+                    > About </MenuItem>
             </Menu>
         </Sidebar>
     );
