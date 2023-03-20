@@ -29,7 +29,7 @@ const InfoAndComments = (userName) =>{
                             {"Comentarios"}
                         </Text>
                     </Typography>
-                    <Comments username = {userName}>
+                    <Comments list={[{userName:"nombre", comment:"Hola"},{userName:"nombre", comment:"Hola"}]} >
                     </Comments>
                 </CardContent>
                 <CardActionArea style={{ justifyContent: "left", display: "flex" }}>
@@ -38,7 +38,11 @@ const InfoAndComments = (userName) =>{
             <Card>
                 <CommentsBox username = {userName}>
                 </CommentsBox>
+                <Button>
+                    Borrar punto
+                </Button>
             </Card>
+
         </Container>
         </div>
     );

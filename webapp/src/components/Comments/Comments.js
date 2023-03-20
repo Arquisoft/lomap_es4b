@@ -1,6 +1,7 @@
 import { Card,Button } from "@material-ui/core";
 
 import Comment from './Comment'
+import comment from "./Comment";
 class Comments{
     lista;
     Comments(username){
@@ -20,13 +21,15 @@ class Comments{
     }
 }
  
-export default Comments = ()=>{
+export default function Comments (list){
+    const [comments,setComments] = useState(list);
+    const commentList = comments.lista.map((name,commentText)=>{
+        return(
+            <Comment username= {name} comment={commentText}/>
+        );
+    })
     return <div>
-            <Comment username = {new String("a")}  comment = {"hola"}>
-            </Comment>
-            <Comment username = {"uo281835"}  comment = {"hola"}>
-            </Comment>
-            <Comment username = {"aaa"}  comment = {"hola"}>
-            </Comment>
+            {commentList}
+
         </div>;
 }
