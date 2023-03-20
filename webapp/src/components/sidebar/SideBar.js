@@ -2,7 +2,9 @@
 import { Sidebar, Menu, MenuItem, SubMenu, useProSidebar} from 'react-pro-sidebar';
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 
+
 import "./SideBar.css"
+import {Filtro} from "./Filtro/Filtro";
 
 export const SideBar = (props) => {
 
@@ -36,6 +38,13 @@ export const SideBar = (props) => {
                     }}
                     > Marcadores</MenuItem>
                     <MenuItem className='menuItem'> About </MenuItem>
+                <SubMenu className="menuFiltro" label="Filtrar puntos">
+                    <MenuItem className="subMenuFiltro" label="filtros">
+                        <Filtro listaFiltro={["Restaurante","Museo"]}>
+
+                        </Filtro>
+                    </MenuItem>
+                </SubMenu>
             </Menu>
         </Sidebar>
     );
