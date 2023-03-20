@@ -12,10 +12,10 @@ export function Filtro(listaFiltros){
                         name={categoria}
                         value={categoria}
                            onClick={()=>{
-                               if(this.listaCosasFiltradas[{categoria}]===undefined)
-                                   this.listaCosasFiltradas[{categoria}]={cat:categoria,selected:true};
+                               if(listaCosasFiltradas[{categoria}]===undefined)
+                                   listaCosasFiltradas[{categoria}]={cat:categoria,selected:true};
                                else
-                                   this.listaCosasFiltradas[{categoria}].selected=!this.listaCosasFiltradas[{categoria}].selected;
+                                   listaCosasFiltradas[{categoria}].selected=!listaCosasFiltradas[{categoria}].selected;
                            }
                            }
                        />
