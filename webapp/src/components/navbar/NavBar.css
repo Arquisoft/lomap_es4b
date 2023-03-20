@@ -1,0 +1,16 @@
+.header{
+    height: 12%;
+}
+
+.navBar{
+    background-color: #454950;
+    height: 100%;
+    padding: 0.5em;
+}
+
+.navProfile{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+  }
