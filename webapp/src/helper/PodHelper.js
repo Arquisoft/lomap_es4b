@@ -316,10 +316,28 @@ async function stringJson(x,y){
 
 
 //Obtiene las webId de los amigos del POD
-export async function getFriendWebId(webId) {
+export async function getFriendWebId(webId,session) {
 
   let friendsURL = getUrlAll(await getProfile(webId), FOAF.knows);
-  
+  let d = friendsURL[0];
+  console.log(d);
+
+  let url = d.replace("profile/card#me","");
+  let urlContainer = url+"private/";
+  url = url+"private/puntosMapa.json"; 
+
+  try {
+    let file = await getFile(
+      url,
+      { fetch: session.fetch }
+    );
+
+    console.log('Archivo '+file);
+
+    }catch(error){
+      console.log('Error amigos');
+  }
+
 
 }
 

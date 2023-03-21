@@ -41,7 +41,7 @@ const ProfileViewer = (props) => {
       </Button>
 
       <Button
-        onClick={() =>{ getFriendWebId(webId);}}>
+        onClick={() =>{ getFriendWebId(webId,session);}}>
           Amigos
       </Button>
 
