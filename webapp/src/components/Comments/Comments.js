@@ -5,11 +5,13 @@ import comment from "./Comment";
 import {useState} from "react";
 
 
-export default function Comments (list){
-    const [comments,setComments] = useState(list);
-    const commentList = this.comments.map((name,commentText)=>{
+export default function Comments (props){
+    const [comments,setComments] = (props.list);
+    const commentList = props.list.map((name)=>{
+        if(comments===undefined)
+            return<p></p>
         return(
-            <Comment username= {name} comment={commentText}/>
+            <Comment username= {name.name} comment={name.commentText}/>
         );
     })
     return <div>
