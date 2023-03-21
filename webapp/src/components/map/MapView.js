@@ -76,7 +76,7 @@ export default class MapView extends Component{
             //marker.bindPopup(ReactDOMServer.renderToString(<InfoAndComments />)).openPopup();
             var myDiv = document.createElement('div');
             ReactDOM.render(
-               <InfoAndComments/>,
+               <InfoAndComments />,
                myDiv
             );
             marker.bindPopup(myDiv).openPopup();
