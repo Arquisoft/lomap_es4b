@@ -11,7 +11,6 @@ export async function MarkersList(props) {
     ];
  
 
-
     return (
       <div>
         {
@@ -29,3 +28,18 @@ export async function MarkersList(props) {
   }
 
   export default MarkersList;
+
+  // const getData = async () => {
+  //   const response = await fetch('https://api.example.com/data');
+  //   const data = await response.json();
+  //   return data;
+  // }
+  
+  // const filterData = async () => {
+  //   const dataArray = await getData();
+  //   const filteredArray = dataArray.filter(item => item.category === 'fruit');
+  //   return filteredArray;
+  // }
+  
+  // const fruitsArray = await filterData();
+  // console.log(fruitsArray);

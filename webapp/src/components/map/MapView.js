@@ -1,7 +1,7 @@
-import {Component, React, useEffect, useState } from "react";
+import {Component, useEffect, useState } from "react";
 import ReactDOM  from "react-dom";
-import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
+import { MapContainer, TileLayer, useMap } from "react-leaflet";
+// import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import AddMarker from'./AddMarker'
 import {IconLocation} from "./IconLocation";
