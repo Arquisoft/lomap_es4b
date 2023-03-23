@@ -1,17 +1,21 @@
 .sideBar{
-    background-color: #454950;
+    background-color: #000000;
+    font-size: large;
+    width: 50vw;
 }
 
 .menu{
     background-color: #454950;
 }
 
-.menuItem{
-    background-color: #5e6166;
-    width: 100%;
+.subMenuItem{
+    background-color: #5b606a;
 }
 
-.subMenu{
-    background-color: #454950;
-    width: 100%;
+.menuItem:hover{
+    background-color: #335B8C !important;
+        color: white !important;
+        border-radius: 8px !important;
+        font-weight: bold !important;
 }
+

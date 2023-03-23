@@ -1,35 +1,27 @@
 import {MarkerComponent} from './MarkerComponent';
+import { useState } from "react";
 import {getAllPoints} from '../../helper/PodHelper';
 
-export function MarkersList(props) {
+export async function MarkersList(props) {
 
     const {session,webId} = props;
 
 
-    const items = [
+    const points = [
     ];
-/* 
-    getAllPoints(session,webId)
-        .then((points) => 
-        {
-            puntos = points;
-        }) */
+ 
+
 
     return (
       <div>
         {
-
-        items.map((item) => (
-            <MarkerComponent key={item.id} name={item.name} description={item.description} />
-        ))
-        
-       /*  getAllPoints(session,webId)
+        await getAllPoints(session,webId)
         .then((points) => 
         {
             points.map((item) => (
                 <MarkerComponent key={item.id} name={item.name} description={item.comment} />
               ))
-        }) */
+        })
 
         }
       </div>
