@@ -1,17 +1,27 @@
-import {React, Component} from "react";
-import { render } from "react-dom";
+import React, {Component, useEffect, useState} from "react";
+import AddMarker from "./AddMarker";
+import ReactDOM, { render } from "react-dom";
+import L from "leaflet";
+import { useMap} from "react-leaflet";
+import {IconLocation} from "./IconLocation";
+import InfoAndComments from "../Comments/InfoAndComments";
+import {wait} from "@testing-library/user-event/dist/utils";
 
 export default class AddPointForm extends Component {
     constructor(props) {
         super(props);
         this.state = {name: '',
         comment: '',
-        category: ''};
+        category: '',
+        position: this.props.position,
+        map: this.props.map,};
 
         this.handleChangeName = this.handleChangeName.bind(this);
         this.handleChangeCategory = this.handleChangeCategory.bind(this);
         this.handleChangeComment = this.handleChangeComment.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        console.log(this.state.position);
+        console.log(this.state.map);
     }
 
     handleChangeName(event) {
@@ -25,8 +35,9 @@ export default class AddPointForm extends Component {
     }
 
     handleSubmit(event) {
-        alert('A name was submitted: ' + this.state.value);
+        //alert('A name was submitted: ' + this.state.name);
         event.preventDefault();
+        AddMarker(this.state.position, this.state.map);
     }
 
     render() {

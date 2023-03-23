@@ -34,8 +34,6 @@ export default class MapView extends Component{
       webId: props.webId,
       isLogged: props.isLogged,
     };
-
-
   }
   render() {
     return (
@@ -51,39 +49,21 @@ export default class MapView extends Component{
             coordinatesPoints(this.state.session, this.state.webId)
                 .then((points) => {
                   for(let p in points){
-                    const marker = L.marker(points[p], {icon: IconLocation, riseOnHover:true});
-                    let myDiv = document.createElement('div');
-                    ReactDOM.render(
-                        <InfoAndComments/>,
-                        myDiv
-                    );
-                    marker.bindPopup(myDiv).openPopup();
-                    marker.addTo(map.target);
+                      AddMarker(points[p], map.target);
                   }
                 });
           }
           // aqui se mostrarian los puntos publicos
           else {
-              const marker = L.marker([43.3548096, -5.8534699], {icon: IconLocation, riseOnHover:true});
-              let myDiv = document.createElement('div');
-              ReactDOM.render(
-                  <InfoAndComments/>,
-                  myDiv
-              );
-              marker.bindPopup(myDiv).openPopup();
-              marker.addTo(map.target);
+              AddMarker([43.3548096, -5.8534699], map.target);
           }
 
           console.log(map);
           map.target.on("click", function (e) {
             const { lat, lng } = e.latlng;
-            const marker = L.marker([lat, lng], {icon: IconLocation, riseOnHover:true});
-            // guardar el id de los puntos con este atributo?? (lo he creado yo, no es uno predefinido)
-            marker.pointId = 1;
-            console.log('id del marcador: ' + marker.pointId);
               var formDiv = document.createElement('div');
               ReactDOM.render(
-                  <AddPointForm/>,
+                  <AddPointForm position={e.latlng} map={map.target}/>,
                   formDiv
               );
               var popup = L.popup()
@@ -92,14 +72,6 @@ export default class MapView extends Component{
                   .openOn(map.target);
             //marker.bindPopup('<p>Marcador con click </p>').openPopup();
             //marker.bindPopup(ReactDOMServer.renderToString(<InfoAndComments />)).openPopup();
-            var myDiv = document.createElement('div');
-            ReactDOM.render(
-               <InfoAndComments/>,
-               myDiv
-            );
-            marker.bindPopup(myDiv).openPopup();
-            marker.addTo(map.target);
-
           });
         }}
         >      
