@@ -51,9 +51,8 @@ Los objetivos de calidad anteriormente mencionados en el apartado 1.2, añadiend
 [options="header", cols="1,2,2"]
 |===
 | Atributo de calidad | Escenario de calidad | Prioridad
-| Confidencialidad | La información personal de los usuarios no podrá ser accedida por terceros. | Alta
-| Usabilidad | Una interfaz gráfica sencilla para todos los usuarios. | Alta
-| Durabilidad | Datos de usuario persistentes, que no se pierdan en ningún momento. | Media-alta
-| Mantenibilidad | Código mantenible, de forma que si ha de implementarse una nueva funcionalidad, esta requieta el menor número de cambios en el código | Media-alta
-| Eficiencia | Alta velocidad de respuesta de la aplicación ante peticiones del usuario. | Media-baja
+| Confidencialidad | El usuario guarda puntos de interés en su mapa. Estos solo podrán ser accedidos a sus amigos agregados en la aplicación. | Alta
+| Usabilidad | El usuario quiere hacer uso de algunas de las funciones de la aplicación. Gracias a una interfaz intuitiva no le requiere un gran esfuerzo encontrar los componentes donde llevar a cabo las acciones y cómo realizarlas. | Alta
+| Mantenibilidad | Un miembro del equipo de desarrollo puede integrar nueva funcionalidad a la aplicación de forma sencilla y sin tener que realizar grandes cambios en la misma. | Media-alta
+| Eficiencia | El usuario se logea para acceder a su mapa. La página no debería tardar más de 3 segundos en mostrarlo en pantalla. | Media-baja
 |===
