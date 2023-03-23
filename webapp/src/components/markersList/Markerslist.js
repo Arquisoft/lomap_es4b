@@ -1,33 +1,27 @@
 import {MarkerComponent} from './MarkerComponent';
 import React, { useState, useEffect } from 'react';
 import {getAllPoints} from '../../helper/PodHelper';
+import "./MarkerList.css"
 
-export async function MarkersList(props) {
+export function MarkersList(props) {
 
     const {session,webId} = props;
     const [points, setPoints] = useState([]);
 
     useEffect(() => {
-      function fetchPoints() {
-        const result = getAllPoints(session, webId);
+      const fetchPoints = async() => {
+        const result = await getAllPoints(session, webId);
         setPoints(result);
       }
       fetchPoints();
     }, []);
 
     return (
-      <div>
+      <div className='sideList'>
         {
-        // await getAllPoints(session,webId)
-        // .then((points) => 
-        // {
-        //     points.map((item) => (
-        //         <MarkerComponent key={item.id} name={item.name} description={item.comment} />
-        //       ))
-        // })
-
         points.map((item) => (
-          <MarkerComponent key={item.id} name={item.name} description={item.comment} />
+          <MarkerComponent key={item.id} name={item.name} description={item.comment}
+                           lat={item.latitude} lon={item.longitude} />
         ))
 
       }

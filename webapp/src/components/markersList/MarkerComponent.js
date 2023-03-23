@@ -2,9 +2,11 @@
 
 export function MarkerComponent(props) {
     return (
-      <div>
-        <h2>{props.name}</h2>
+      <div className="sideComponent">
+        <h3>{props.name}</h3>
         <p>{props.description}</p>
+        <p>{props.lat}</p>
+        <p>{props.lon}</p>
       </div>
     );
   }
