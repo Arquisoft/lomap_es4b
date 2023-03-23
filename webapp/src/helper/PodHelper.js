@@ -86,7 +86,7 @@ export async function createData(url, file, session) {
 
 
 //Función que devuelve una id random para poder distinguir los puntos
-const randomId = function(length) {
+export const randomId = function(length) {
   return (Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2)).substring(0, length);
 };
 
@@ -137,9 +137,9 @@ export async function updatePoints(latitud,longitud,name,comment,category,sessio
       { fetch: session.fetch }
     );
 
-
-    var dates =[{id:randomId(20),autor:"Paco",latitud:latitud,longitud:longitud,name:name,comment:comment,category:category}];
-
+    let pointId = randomId(20);
+    var dates =[{id:pointId,autor:"Paco",latitud:latitud,longitud:longitud,name:name,comment:comment,category:category}];
+    console.log(dates[0]);
     let oldPoints = await file.text();
 
     var dataset = JSON.parse(oldPoints);
@@ -155,6 +155,7 @@ export async function updatePoints(latitud,longitud,name,comment,category,sessio
           "comment" : item.comment,
           "category": item.category
       });
+      return pointId;
     }
 
     const blob = new Blob([JSON.stringify(dataset, null, 2)], {

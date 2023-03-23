@@ -1,27 +1,25 @@
-import React, {Component, useEffect, useState} from "react";
+import React, {Component} from "react";
 import AddMarker from "./AddMarker";
-import ReactDOM, { render } from "react-dom";
-import L from "leaflet";
-import { useMap} from "react-leaflet";
-import {IconLocation} from "./IconLocation";
-import InfoAndComments from "../Comments/InfoAndComments";
-import {wait} from "@testing-library/user-event/dist/utils";
+import {randomId} from "../../helper/PodHelper";
+import CreatePoint from "./CreatePoint"
+import {useSession} from "@inrupt/solid-ui-react";
 
 export default class AddPointForm extends Component {
     constructor(props) {
         super(props);
         this.state = {name: '',
-        comment: '',
-        category: '',
-        position: this.props.position,
-        map: this.props.map,};
+            comment: '',
+            category: 'monument',
+            position: this.props.position,
+            map: this.props.map,
+            webId: this.props.webId,
+            session: this.props.session,
+        };
 
         this.handleChangeName = this.handleChangeName.bind(this);
         this.handleChangeCategory = this.handleChangeCategory.bind(this);
         this.handleChangeComment = this.handleChangeComment.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        console.log(this.state.position);
-        console.log(this.state.map);
     }
 
     handleChangeName(event) {
@@ -35,9 +33,11 @@ export default class AddPointForm extends Component {
     }
 
     handleSubmit(event) {
-        //alert('A name was submitted: ' + this.state.name);
+        alert('Nuevo punto creado con titulo: ' + this.state.name + ', categoria:' + this.state.category +', comentario:' + this.state.comment);
         event.preventDefault();
-        AddMarker(this.state.position, this.state.map);
+        //AddMarker(this.state.position,this.state.map, randomId());
+        console.log(this.state.position.lat);
+        CreatePoint(this.state.position, this.state.map, randomId(), this.state.name, this.state.category, this.state.comment, this.state.webId, this.state.session);
     }
 
     render() {
