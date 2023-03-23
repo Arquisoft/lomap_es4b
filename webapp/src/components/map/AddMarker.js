@@ -1,24 +1,23 @@
-import {React, Component} from "react";
-import { render } from "react-dom";
+import React from "react";
+import ReactDOM from "react-dom";
 
-import {Marker, Popup} from 'react-leaflet'
 import {IconLocation} from "./IconLocation";
 import L from "leaflet";
+import InfoAndComments from "../Comments/InfoAndComments";
 
-const markerPosition = ['43.3665913', '-5.8439451']
-
-class AddMarker extends Component {
-
-    render() {
-        return (
-            <Marker key={`marker-${this.props.ident}`} position={this.props.markerPosition} icon={IconLocation} riseOnHover>
-                <Popup>
-                    Blue marker
-                </Popup>
-            </Marker>
-        );
-    }
-
+// Crea un marcador, le asocia un popup con el contenido del componente InfoAndComments y lo asocia al mapa
+function AddMarker (position, map, markerId) {
+    const marker = L.marker(position, {icon: IconLocation, riseOnHover:true});
+    // guardar el id de los puntos con este atributo?? (lo he creado yo, no es uno predefinido)
+    marker.pointId = markerId;
+    console.log('id del marcador: ' + marker.pointId);
+    let myDiv = document.createElement('div');
+    ReactDOM.render(
+        <InfoAndComments/>,
+        myDiv
+    );
+    marker.bindPopup(myDiv).openPopup();
+    marker.addTo(map);
 }
 
 
