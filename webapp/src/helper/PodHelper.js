@@ -22,15 +22,11 @@ async function getProfileInfo(){
 
 async function readData(url,session) {
   try {
-<<<<<<< HEAD
+
     let file = await solid.getFile(
-      url,
-      { fetch: session.fetch }
-=======
-    let file = await getFile(
         url,
         { fetch: session.fetch }
->>>>>>> eefa49d3eb295d99006ad58f9f984948d125baa7
+ 
     );
 
     /*     printContents(file);
@@ -53,19 +49,14 @@ export async function printContents(file) {
 async function existFile(webId,session){
 
   let url = webId.replace("profile/card#me","");
-  url = url+"private/puntosMapa.js";
+  url = url+"private/puntoMapa.js";
 
   let exist = false;
   try {
-<<<<<<< HEAD
+
     let file = await solid.getFile(
-      url,
-      { fetch: session.fetch }
-=======
-    let file = await getFile(
         url,
         { fetch: session.fetch }
->>>>>>> eefa49d3eb295d99006ad58f9f984948d125baa7
     );
 
     exist = true;
@@ -82,16 +73,8 @@ export async function createData(url, file, session) {
 
 
   try {
-<<<<<<< HEAD
-    let savedFile = await solid.saveFileInContainer(
-      url, 
-      file,
-      { slug: file.name, contentType: file.type, fetch: session.fetch }
-      
-    );
 
-=======
-    let savedFile = await saveFileInContainer(
+    let savedFile = await solid.saveFileInContainer(
         url,
         file,
         { slug: file.name, contentType: file.type, fetch: session.fetch }
@@ -99,7 +82,6 @@ export async function createData(url, file, session) {
     );
     /*     printContents(savedFile);
      */
->>>>>>> eefa49d3eb295d99006ad58f9f984948d125baa7
   } catch (error) {
     console.log(error);
   }
@@ -117,18 +99,13 @@ export async function deletePoints(session, webId, id){
 
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
-  url = url+"private/puntosMapa.json";
+  url = url+"private/puntoMapa.json";
 
   try {
-<<<<<<< HEAD
     let file = await solid.getFile(
       url,
       { fetch: session.fetch }
-=======
-    let file = await getFile(
-        url,
-        { fetch: session.fetch }
->>>>>>> eefa49d3eb295d99006ad58f9f984948d125baa7
+
     );
 
     let oldPoints = await file.text();
@@ -141,7 +118,7 @@ export async function deletePoints(session, webId, id){
       type: "application/json",
     });
 
-    var fichero = new File([blob], "puntosMapa.json", { type: blob.type });
+    var fichero = new File([blob], "puntoMapa.json", { type: blob.type });
 
     await updateData(fichero, webId, session);
 
@@ -156,18 +133,13 @@ export async function filterPoints(session, webId, categories){
 
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
-  url = url+"private/puntosMapa.json";
+  url = url+"private/puntoMapa.json";
 
   try {
-<<<<<<< HEAD
     let file = await solid.getFile(
       url,
       { fetch: session.fetch }
-=======
-    let file = await getFile(
-        url,
-        { fetch: session.fetch }
->>>>>>> eefa49d3eb295d99006ad58f9f984948d125baa7
+
     );
 
     let oldPoints = await file.text();
@@ -189,21 +161,13 @@ export async function updatePoints(latitud,longitud,name,comment,category,sessio
 
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
-<<<<<<< HEAD
-  url = url+"private/puntoMapa.json"; 
+
+  url = url+"private/puntoMapa.json";
 
   try {
     let file = await solid.getFile(
-      url,
-      { fetch: session.fetch }
-=======
-  url = url+"private/puntosMapa.json";
-
-  try {
-    let file = await getFile(
         url,
         { fetch: session.fetch }
->>>>>>> eefa49d3eb295d99006ad58f9f984948d125baa7
     );
 
     let autor = await getNameFromPod(webId);
@@ -232,7 +196,7 @@ export async function updatePoints(latitud,longitud,name,comment,category,sessio
       type: "application/json",
     });
 
-    var fichero = new File([blob], "puntosMapa.json", { type: blob.type });
+    var fichero = new File([blob], "puntoMapa.json", { type: blob.type });
 
     await updateData(fichero, webId, session)
 
@@ -248,18 +212,13 @@ export async function updatePoints(latitud,longitud,name,comment,category,sessio
 export async function createFirstFile(session, webId){
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
-  url = url+"private/puntosMapa.json";
+  url = url+"private/puntoMapa.json";
 
   try {
-<<<<<<< HEAD
+
     let file = await solid.getFile(
-      url,
-      { fetch: session.fetch }
-=======
-    let file = await getFile(
         url,
         { fetch: session.fetch }
->>>>>>> eefa49d3eb295d99006ad58f9f984948d125baa7
     );
 
   } catch (error) {
@@ -281,7 +240,7 @@ export async function createPointsFile() {
     type: "application/json",
   });
 
-  var file = new File([blob], "puntosMapa.json", { type: blob.type });
+  var file = new File([blob], "puntoMapa.json", { type: blob.type });
   return file;
 
 }
@@ -292,21 +251,14 @@ export async function createPointsFile() {
 export async function updateData(file,webId,session) {
 
   let url = webId.replace("profile/card#me","");
-  url = url+"private/puntosMapa.json";
+  url = url+"private/puntoMapa.json";
 
-<<<<<<< HEAD
    try {
     var savedFile = await solid.overwriteFile(
       url,
       file,
       { contentType: file.type, fetch: session.fetch }
-=======
-  try {
-    var savedFile = await overwriteFile(
-        url,
-        file,
-        { contentType: file.type, fetch: session.fetch }
->>>>>>> eefa49d3eb295d99006ad58f9f984948d125baa7
+
     );
 
     /*     printContents(savedFile);
@@ -325,18 +277,13 @@ export async function getAllPoints(session,webId){
 
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
-  url = url+"private/puntosMapa.json";
+  url = url+"private/puntoMapa.json";
 
   try {
-<<<<<<< HEAD
+
     let file = await solid.getFile(
-      url,
-      { fetch: session.fetch }
-=======
-    let file = await getFile(
         url,
         { fetch: session.fetch }
->>>>>>> eefa49d3eb295d99006ad58f9f984948d125baa7
     );
 
     let oldPoints = await file.text();
@@ -365,18 +312,13 @@ export async function getAllCoordinates(session,webId){
 
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
-  url = url+"private/puntosMapa.json";
+  url = url+"private/puntoMapa.json";
 
   try {
-<<<<<<< HEAD
+
     let file = await solid.getFile(
-      url,
-      { fetch: session.fetch }
-=======
-    let file = await getFile(
         url,
         { fetch: session.fetch }
->>>>>>> eefa49d3eb295d99006ad58f9f984948d125baa7
     );
 
     let oldPoints = await file.text();
@@ -401,9 +343,36 @@ export async function getAllCoordinates(session,webId){
 }
 
 
-async function stringJson(x,y){
+//Método que devuelve el punto específico del pod
+export async function getSpecificPoint(session, webId,pointId){
+  let url = webId.replace("profile/card#me","");
+  let urlContainer = url+"private/";
+  url = url+"private/puntoMapa.json";
 
-  return {latitud:x,altitud:y};
+  try {
+    let file = await solid.getFile(
+      url,
+      { fetch: session.fetch }
+
+    );
+
+    let oldPoints = await file.text();
+    var dataset = JSON.parse(oldPoints);
+    var allPointsJsonArray = dataset.points;
+
+    var arrayPoints = allPointsJsonArray.filter(item => item.id == pointId);
+
+    if(arrayPoints.length != 1){
+      console.log("Error: No existe el punto del pod");
+    }else{
+      let p = arrayPoints[0];
+      let specificPoint = new Point(p.id,p.autor,p.latitude,p.longitude, p.name, p.category,p.comment);
+      return specificPoint;
+    }
+
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 
@@ -417,14 +386,13 @@ async function stringJson(x,y){
 //Obtiene las webId de los amigos del POD
 export async function getFriendWebId(webId,session) {
 
-<<<<<<< HEAD
   let friendsURL = solid.getUrlAll(await getProfile(webId), FOAF.knows);
   let d = friendsURL[0];
   console.log(d);
 
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
-  url = url+"private/puntosMapa.json"; 
+  url = url+"private/puntoMapa.json"; 
 
   try {
     let file = await solid.getFile(
@@ -456,9 +424,4 @@ export async function getFriendWebId(webId,session) {
     console.log(error);
   }
 }
-=======
-  let friendsURL = getUrlAll(await getProfile(webId), FOAF.knows);
 
->>>>>>> eefa49d3eb295d99006ad58f9f984948d125baa7
-
-}

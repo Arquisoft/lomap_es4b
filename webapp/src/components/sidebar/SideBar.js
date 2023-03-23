@@ -8,7 +8,7 @@ import FmdGoodIcon from "@mui/icons-material/FmdGood"
 import GroupIcon from "@mui/icons-material/Group"
 import InfoIcon from "@mui/icons-material/Info"
 import SortIcon from "@mui/icons-material/Sort"
-import { updatePoints,filterPoints,deletePoints,getFriendWebId } from '../../helper/PodHelper';
+import { updatePoints,filterPoints,deletePoints,getFriendWebId,getSpecificPoint } from '../../helper/PodHelper';
 
 import "./SideBar.css"
 
