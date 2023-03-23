@@ -76,7 +76,10 @@ export default class MapView extends Component{
             //marker.bindPopup(ReactDOMServer.renderToString(<InfoAndComments />)).openPopup();
             var myDiv = document.createElement('div');
             ReactDOM.render(
-               <InfoAndComments />,
+               <InfoAndComments userName={
+                   {userName:"user",
+                 list:[{userName:"user",commentText:"a"},{userName:"user",commentText:"a"}]}
+               }/>,
                myDiv
             );
             marker.bindPopup(myDiv).openPopup();
@@ -94,6 +97,7 @@ export default class MapView extends Component{
         {this.state.markers.map((position, idx) => 
           <AddMarker ident={idx} markerPosition={position} />
         )}
+
       </MapContainer>
     );
   }

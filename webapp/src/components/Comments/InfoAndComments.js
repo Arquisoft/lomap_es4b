@@ -10,11 +10,23 @@ const InfoAndComments = (userName) =>{
     return(
         <div id = "infoAndComments">
             <Container >
+                <Card>
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component={'span'}>
+                            <Text property={"Nombre del sitio:"+userName}>
+                                {"Lugar: "+userName.userName.name}
+                            </Text>
+                            <Text property={"Nombre del sitio:"+userName}>
+                                {"Categoría: "+userName.userName.category}
+                            </Text>
+                        </Typography>
+                    </CardContent>
+                </Card>
                 <Card style={{ maxWidth: 200 }}>
                     <CardContent>
                         <Typography gutterBottom variant="h5" component={'span'}>
                             <Text property={"Nombre del autor:"+userName}>
-                                {"Nombre del autor: "+userName.userName}
+                                {"Nombre del autor: "+userName.userName.userName}
                             </Text>
                         </Typography>
                     </CardContent>
@@ -29,16 +41,20 @@ const InfoAndComments = (userName) =>{
                                 {"Comentarios"}
                             </Text>
                         </Typography>
-                        <Comments list = {userName.list} >
+                        <Comments list = {userName.userName.list} >
                         </Comments>
                     </CardContent>
                     <CardActionArea style={{ justifyContent: "left", display: "flex" }}>
                     </CardActionArea>
                 </Card>
                 <Card>
-                    <CommentsBox username = {userName}>
+                    <CommentsBox username = {userName.userName}>
                     </CommentsBox>
-                    <Button>
+                    <Button OnClick={
+                        ()=>{
+
+                        }
+                    }>
                         Borrar punto
                     </Button>
                 </Card>

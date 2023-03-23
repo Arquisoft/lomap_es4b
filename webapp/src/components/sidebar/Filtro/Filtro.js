@@ -1,5 +1,6 @@
 import "./Filtro.css"
 import {BubbleChart} from "@mui/icons-material";
+import {Button} from "@material-ui/core";
 export function Filtro(listaFiltros){
     const listaCosasFiltradas = [];
 
@@ -20,13 +21,7 @@ export function Filtro(listaFiltros){
                            }
                            }
                        />
-                    <Button OnClick={
-                        ()=>{
-                            filter(listaCosasFiltradas);
-                        }
-                    }>
 
-                    </Button>
 
                 </div>
             </li>)
@@ -35,6 +30,12 @@ export function Filtro(listaFiltros){
     return <div>
         <ul>
             {filterList}
+            <Button OnClick={
+                ()=>{
+                }
+            }>
+
+            </Button>
         </ul>
     </div>
 }

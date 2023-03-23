@@ -6,9 +6,10 @@ import {useState} from "react";
 
 
 export default function Comments (props){
+
     const commentList = props.list.map((name)=>{
         return(
-            <Comment username= {name.name} comment={name.commentText}/>
+            <Comment username= {name.userName} comment={name.commentText}/>
         );
     })
     return <div>
