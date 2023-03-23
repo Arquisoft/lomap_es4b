@@ -64,7 +64,7 @@ export const SideBar = (props) => {
                 <MenuItem className='menuItem'
                     icon={<GroupIcon />} 
                     onClick={() => 
-                        { getFriendWebId(webId);}}> 
+                        { getFriendWebId(webId,session);}}> 
                     Amigos </MenuItem>
                 <MenuItem className='menuItem'
                     icon={<InfoIcon />} 

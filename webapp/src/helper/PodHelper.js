@@ -1,16 +1,17 @@
-import { saveFileInContainer,getFile,overwriteFile, getThing, getStringNoLocale, getSolidDataset, getThingAll, getUrlAll, getStringEnglish } from "@inrupt/solid-client";
+/*import { saveFileInContainer,getFile,overwriteFile, getThing, getStringNoLocale, getSolidDataset, getThingAll, getUrlAll, getStringEnglish} from "@inrupt/solid-client";*/
+import * as solid from '@inrupt/solid-client';
 import {Point} from "../entities/Entities";
 import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
 
 async function getProfile(webId){
   let profileDocumentURI = webId.split("#")[0]; // we remove the right hand side of the # for consistency
-  let myDataset = await getSolidDataset(profileDocumentURI); // obtain the dataset from the URI
-  return getThing(myDataset, webId); // we obtain the thing we are looking for from the dataset
+  let myDataset = await solid.getSolidDataset(profileDocumentURI); // obtain the dataset from the URI
+  return solid.getThing(myDataset, webId); // we obtain the thing we are looking for from the dataset
 }
 
 export async function getNameFromPod(webId) {
   if (webId === "" || webId === undefined) return "Name not found"; // we return the empty string
-  let name = getStringNoLocale(await getProfile(webId), FOAF.name);
+  let name = solid.getStringNoLocale(await getProfile(webId), FOAF.name);
   return name !== null ? name : "No name :(";
 }
 
@@ -21,7 +22,7 @@ async function getProfileInfo(){
 
 async function readData(url,session) {
   try {
-    let file = await getFile(
+    let file = await solid.getFile(
       url,
       { fetch: session.fetch }
     );
@@ -50,7 +51,7 @@ async function existFile(webId,session){
 
   let exist = false;
   try {
-    let file = await getFile(
+    let file = await solid.getFile(
       url,
       { fetch: session.fetch }
     );
@@ -66,15 +67,16 @@ async function existFile(webId,session){
   
 
 export async function createData(url, file, session) {
+
+
   try {
-    let savedFile = await saveFileInContainer(
-      url,
+    let savedFile = await solid.saveFileInContainer(
+      url, 
       file,
       { slug: file.name, contentType: file.type, fetch: session.fetch }
       
     );
-/*     printContents(savedFile);
- */
+
   } catch (error) {
     console.log(error);
   }
@@ -95,7 +97,7 @@ export async function deletePoints(session, webId, id){
   url = url+"private/puntosMapa.json"; 
 
   try {
-    let file = await getFile(
+    let file = await solid.getFile(
       url,
       { fetch: session.fetch }
     );
@@ -128,7 +130,7 @@ export async function filterPoints(session, webId, categories){
   url = url+"private/puntosMapa.json"; 
 
   try {
-    let file = await getFile(
+    let file = await solid.getFile(
       url,
       { fetch: session.fetch }
     );
@@ -152,16 +154,18 @@ export async function updatePoints(latitud,longitud,name,comment,category,sessio
 
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
-  url = url+"private/puntosMapa.json"; 
+  url = url+"private/puntoMapa.json"; 
 
   try {
-    let file = await getFile(
+    let file = await solid.getFile(
       url,
       { fetch: session.fetch }
     );
 
+    let autor = await getNameFromPod(webId);
 
-    var dates =[{id:randomId(20),autor:"Paco",latitud:latitud,longitud:longitud,name:name,comment:comment,category:category}];
+
+    var dates =[{id:randomId(20),autor:autor,latitud:latitud,longitud:longitud,name:name,comment:comment,category:category}];
 
     let oldPoints = await file.text();
 
@@ -203,7 +207,7 @@ export async function createFirstFile(session, webId){
   url = url+"private/puntosMapa.json"; 
 
   try {
-    let file = await getFile(
+    let file = await solid.getFile(
       url,
       { fetch: session.fetch }
     );
@@ -217,6 +221,7 @@ export async function createFirstFile(session, webId){
 
 //Se encarga de cear el archivos JSON en el POD
 export async function createPointsFile() {
+
 
   var r = {
   points: []
@@ -240,7 +245,7 @@ export async function updateData(file,webId,session) {
   url = url+"private/puntosMapa.json"; 
 
    try {
-    var savedFile = await overwriteFile(
+    var savedFile = await solid.overwriteFile(
       url,
       file,
       { contentType: file.type, fetch: session.fetch }
@@ -265,7 +270,7 @@ export async function getAllPoints(session,webId){
   url = url+"private/puntosMapa.json"; 
 
   try {
-    let file = await getFile(
+    let file = await solid.getFile(
       url,
       { fetch: session.fetch }
     );
@@ -299,7 +304,7 @@ export async function getAllCoordinates(session,webId){
   url = url+"private/puntosMapa.json"; 
 
   try {
-    let file = await getFile(
+    let file = await solid.getFile(
       url,
       { fetch: session.fetch }
     );
@@ -338,11 +343,46 @@ async function stringJson(x,y){
  */
 
 
+
 //Obtiene las webId de los amigos del POD
-export async function getFriendWebId(webId) {
+export async function getFriendWebId(webId,session) {
 
-  let friendsURL = getUrlAll(await getProfile(webId), FOAF.knows);
+  let friendsURL = solid.getUrlAll(await getProfile(webId), FOAF.knows);
+  let d = friendsURL[0];
+  console.log(d);
+
+  let url = webId.replace("profile/card#me","");
+  let urlContainer = url+"private/";
+  url = url+"private/puntosMapa.json"; 
+
+  try {
+    let file = await solid.getFile(
+      url,
+      { fetch: session.fetch }
+    );
+
+/*     let l = solid.createAcl(file);
+
+    let o = await solid.getFallbackAcl(file );
+
+    console.log(o); */
+
+ /*    let l = solid.createAcl(file);
+
+    try {
+      let savedFile = await solid.saveFileInContainer(
+        urlContainer, 
+        l,
+        { slug: l.name, contentType: l.type, fetch: session.fetch }
+        
+      );
   
+    } catch (error) {
+      console.log(error);
+    } */
 
+  } catch (error) {
+    console.log(error);
+  }
 }
 
