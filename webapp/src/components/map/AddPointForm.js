@@ -37,7 +37,7 @@ export default class AddPointForm extends Component {
         event.preventDefault();
         //AddMarker(this.state.position,this.state.map, randomId());
         console.log(this.state.position.lat);
-        CreatePoint(this.state.position, this.state.map, randomId(), this.state.name, this.state.category, this.state.comment, this.state.webId, this.state.session);
+        CreatePoint(this.state.position, this.state.map, this.state.name, this.state.comment, this.state.category, this.state.webId, this.state.session);
     }
 
     render() {

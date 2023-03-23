@@ -22,59 +22,59 @@ async function getProfileInfo(){
 async function readData(url,session) {
   try {
     let file = await getFile(
-      url,
-      { fetch: session.fetch }
+        url,
+        { fetch: session.fetch }
     );
 
-/*     printContents(file);
- */  } catch (error) {
+    /*     printContents(file);
+     */  } catch (error) {
     console.log(error);
   }
 }
 
 
 export async function printContents(file) {
-    var reader = new FileReader();
-    reader.onload = function(event) {
-      console.log(event.target.result);
-    }
-    reader.readAsText(file);
+  var reader = new FileReader();
+  reader.onload = function(event) {
+    console.log(event.target.result);
   }
+  reader.readAsText(file);
+}
 
 
 
 async function existFile(webId,session){
 
   let url = webId.replace("profile/card#me","");
-  url = url+"private/puntosMapa.js"; 
+  url = url+"private/puntosMapa.js";
 
   let exist = false;
   try {
     let file = await getFile(
-      url,
-      { fetch: session.fetch }
+        url,
+        { fetch: session.fetch }
     );
-      
+
     exist = true;
 
     return exist;
-    
+
   } catch (error) {
     return exist;
   }
 }
-  
+
 
 export async function createData(url, file, session) {
   try {
     let savedFile = await saveFileInContainer(
-      url,
-      file,
-      { slug: file.name, contentType: file.type, fetch: session.fetch }
-      
+        url,
+        file,
+        { slug: file.name, contentType: file.type, fetch: session.fetch }
+
     );
-/*     printContents(savedFile);
- */
+    /*     printContents(savedFile);
+     */
   } catch (error) {
     console.log(error);
   }
@@ -83,7 +83,7 @@ export async function createData(url, file, session) {
 
 
 //Función que devuelve una id random para poder distinguir los puntos
-export const randomId = function(length) {
+const randomId = function(length) {
   return (Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2)).substring(0, length);
 };
 
@@ -92,12 +92,12 @@ export async function deletePoints(session, webId, id){
 
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
-  url = url+"private/puntosMapa.json"; 
+  url = url+"private/puntosMapa.json";
 
   try {
     let file = await getFile(
-      url,
-      { fetch: session.fetch }
+        url,
+        { fetch: session.fetch }
     );
 
     let oldPoints = await file.text();
@@ -125,12 +125,12 @@ export async function filterPoints(session, webId, categories){
 
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
-  url = url+"private/puntosMapa.json"; 
+  url = url+"private/puntosMapa.json";
 
   try {
     let file = await getFile(
-      url,
-      { fetch: session.fetch }
+        url,
+        { fetch: session.fetch }
     );
 
     let oldPoints = await file.text();
@@ -146,39 +146,38 @@ export async function filterPoints(session, webId, categories){
     console.log(error);
   }
 }
- 
+
 //Actualiza los datos del JSON introduciéndo un nuevo punto
 export async function updatePoints(latitud,longitud,name,comment,category,session,webId){
 
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
-  url = url+"private/puntosMapa.json"; 
+  url = url+"private/puntosMapa.json";
 
   try {
     let file = await getFile(
-      url,
-      { fetch: session.fetch }
+        url,
+        { fetch: session.fetch }
     );
 
-    let pointId = randomId(20);
-    var dates =[{id:pointId,autor:"Paco",latitud:latitud,longitud:longitud,name:name,comment:comment,category:category}];
-    console.log(dates[0]);
+
+    var dates =[{id:randomId(20),autor:"Paco",latitud:latitud,longitud:longitud,name:name,comment:comment,category:category}];
+
     let oldPoints = await file.text();
 
     var dataset = JSON.parse(oldPoints);
 
-    for(var i in dates) {    
-      var item = dates[i];   
+    for(var i in dates) {
+      var item = dates[i];
       dataset.points.push({
-          "id" : item.id,
-          "autor" : item.autor, 
-          "latitude" : item.latitud,
-          "longitude"  : item.longitud,
-          "name" : item.name,
-          "comment" : item.comment,
-          "category": item.category
+        "id" : item.id,
+        "autor" : item.autor,
+        "latitude" : item.latitud,
+        "longitude"  : item.longitud,
+        "name" : item.name,
+        "comment" : item.comment,
+        "category": item.category
       });
-      return pointId;
     }
 
     const blob = new Blob([JSON.stringify(dataset, null, 2)], {
@@ -188,7 +187,7 @@ export async function updatePoints(latitud,longitud,name,comment,category,sessio
     var fichero = new File([blob], "puntosMapa.json", { type: blob.type });
 
     await updateData(fichero, webId, session)
-  
+
   } catch (error) {
 
     const file = await createPointsFile();
@@ -201,12 +200,12 @@ export async function updatePoints(latitud,longitud,name,comment,category,sessio
 export async function createFirstFile(session, webId){
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
-  url = url+"private/puntosMapa.json"; 
+  url = url+"private/puntosMapa.json";
 
   try {
     let file = await getFile(
-      url,
-      { fetch: session.fetch }
+        url,
+        { fetch: session.fetch }
     );
 
   } catch (error) {
@@ -220,15 +219,15 @@ export async function createFirstFile(session, webId){
 export async function createPointsFile() {
 
   var r = {
-  points: []
+    points: []
   };
 
-    const blob = new Blob([JSON.stringify(r, null, 2)], {
-      type: "application/json",
-    });
+  const blob = new Blob([JSON.stringify(r, null, 2)], {
+    type: "application/json",
+  });
 
-    var file = new File([blob], "puntosMapa.json", { type: blob.type });
-    return file;
+  var file = new File([blob], "puntosMapa.json", { type: blob.type });
+  return file;
 
 }
 
@@ -238,19 +237,19 @@ export async function createPointsFile() {
 export async function updateData(file,webId,session) {
 
   let url = webId.replace("profile/card#me","");
-  url = url+"private/puntosMapa.json"; 
+  url = url+"private/puntosMapa.json";
 
-   try {
+  try {
     var savedFile = await overwriteFile(
-      url,
-      file,
-      { contentType: file.type, fetch: session.fetch }
+        url,
+        file,
+        { contentType: file.type, fetch: session.fetch }
     );
 
-/*     printContents(savedFile);
- */  } catch (error) {
+    /*     printContents(savedFile);
+     */  } catch (error) {
     console.log(error);
-  } 
+  }
 }
 
 export function prueba(){
@@ -263,12 +262,12 @@ export async function getAllPoints(session,webId){
 
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
-  url = url+"private/puntosMapa.json"; 
+  url = url+"private/puntosMapa.json";
 
   try {
     let file = await getFile(
-      url,
-      { fetch: session.fetch }
+        url,
+        { fetch: session.fetch }
     );
 
     let oldPoints = await file.text();
@@ -278,8 +277,8 @@ export async function getAllPoints(session,webId){
 
     for(var i in allPointsJsonArray) {
       let p = new Point(allPointsJsonArray[i].id,allPointsJsonArray[i].autor,allPointsJsonArray[i].latitude,
-                        allPointsJsonArray[i].longitude, allPointsJsonArray[i].name, allPointsJsonArray[i].category,
-                        allPointsJsonArray[i].comment);
+          allPointsJsonArray[i].longitude, allPointsJsonArray[i].name, allPointsJsonArray[i].category,
+          allPointsJsonArray[i].comment);
       points.push(p);
     }
 
@@ -297,12 +296,12 @@ export async function getAllCoordinates(session,webId){
 
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
-  url = url+"private/puntosMapa.json"; 
+  url = url+"private/puntosMapa.json";
 
   try {
     let file = await getFile(
-      url,
-      { fetch: session.fetch }
+        url,
+        { fetch: session.fetch }
     );
 
     let oldPoints = await file.text();
@@ -326,11 +325,11 @@ export async function getAllCoordinates(session,webId){
 
 }
 
-  
+
 async function stringJson(x,y){
-  
-     return {latitud:x,altitud:y};
-  }
+
+  return {latitud:x,altitud:y};
+}
 
 
 /**
@@ -343,7 +342,6 @@ async function stringJson(x,y){
 export async function getFriendWebId(webId) {
 
   let friendsURL = getUrlAll(await getProfile(webId), FOAF.knows);
-  
+
 
 }
-
