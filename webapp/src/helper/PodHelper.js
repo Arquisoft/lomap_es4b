@@ -3,74 +3,17 @@ import * as solid from '@inrupt/solid-client';
 import {Point} from "../entities/Entities";
 import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
 
-async function getProfile(webId){
-  let profileDocumentURI = webId.split("#")[0]; // we remove the right hand side of the # for consistency
-  let myDataset = await solid.getSolidDataset(profileDocumentURI); // obtain the dataset from the URI
-  return solid.getThing(myDataset, webId); // we obtain the thing we are looking for from the dataset
-}
-
-export async function getNameFromPod(webId) {
-  if (webId === "" || webId === undefined) return "Name not found"; // we return the empty string
-  let name = solid.getStringNoLocale(await getProfile(webId), FOAF.name);
-  return name !== null ? name : "No name :(";
-}
-
-async function getProfileInfo(){
-  return [FOAF.name.iri.value, VCARD.organization_name.iri.value, VCARD.role.iri.value, VCARD.hasPhoto.iri.value];
-}
 
 
-async function readData(url,session) {
-  try {
-
-    let file = await solid.getFile(
-        url,
-        { fetch: session.fetch }
- 
-    );
-
-    /*     printContents(file);
-     */  } catch (error) {
-    console.log(error);
-  }
-}
+/**
+ * ----------------------------------------------------------------------------------------------------
+ * Funciones sobre ficheros
+ * ----------------------------------------------------------------------------------------------------
+ */
 
 
-export async function printContents(file) {
-  var reader = new FileReader();
-  reader.onload = function(event) {
-    console.log(event.target.result);
-  }
-  reader.readAsText(file);
-}
-
-
-
-async function existFile(webId,session){
-
-  let url = webId.replace("profile/card#me","");
-  url = url+"private/puntoMapa.js";
-
-  let exist = false;
-  try {
-
-    let file = await solid.getFile(
-        url,
-        { fetch: session.fetch }
-    );
-
-    exist = true;
-
-    return exist;
-
-  } catch (error) {
-    return exist;
-  }
-}
-
-
+//Guarda el archivo pasado por parámetro en el pod
 export async function createData(url, file, session) {
-
 
   try {
 
@@ -80,8 +23,7 @@ export async function createData(url, file, session) {
         { slug: file.name, contentType: file.type, fetch: session.fetch }
 
     );
-    /*     printContents(savedFile);
-     */
+    
   } catch (error) {
     console.log(error);
   }
@@ -89,12 +31,77 @@ export async function createData(url, file, session) {
 }
 
 
-//Función que devuelve una id random para poder distinguir los puntos
-const randomId = function(length) {
-  return (Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2)).substring(0, length);
-};
+
+/* export async function createFirstFile(session, webId){
+  let url = webId.replace("profile/card#me","");
+  let urlContainer = url+"private/";
+  url = url+"private/puntoMapa.json";
+
+  try {
+
+    let file = await solid.getFile(
+        url,
+        { fetch: session.fetch }
+    );
+
+  } catch (error) {
+    const file = await createPointsFile();
+    await createData(urlContainer, file, session);
+  }
+} */
 
 
+//Se encarga de cear el archivos JSON en el POD
+export async function createPointsFile() {
+  var r = {
+    points: []
+  };
+
+  const blob = new Blob([JSON.stringify(r, null, 2)], {
+    type: "application/json",
+  });
+
+  var file = new File([blob], "puntoMapa.json", { type: blob.type });
+  return file;
+
+}
+
+
+
+//Se encarga de actualizar el JSON ya existente en el POD
+export async function updateData(file,webId,session) {
+
+  let url = webId.replace("profile/card#me","");
+  url = url+"private/puntoMapa.json";
+
+   try {
+    var savedFile = await solid.overwriteFile(
+      url,
+      file,
+      { contentType: file.type, fetch: session.fetch }
+
+    );
+
+      } catch (error) {
+    console.log(error);
+  }
+}
+
+
+
+
+
+
+/**
+ * ----------------------------------------------------------------------------------------------------
+ * Funciones directas a los puntos
+ * ----------------------------------------------------------------------------------------------------
+ */
+
+
+
+
+//Borrará del pod el punto cuya id se pasa por parámetro
 export async function deletePoints(session, webId, id){
 
   let url = webId.replace("profile/card#me","");
@@ -209,67 +216,6 @@ export async function updatePoints(latitud,longitud,name,comment,category,sessio
 
 }
 
-export async function createFirstFile(session, webId){
-  let url = webId.replace("profile/card#me","");
-  let urlContainer = url+"private/";
-  url = url+"private/puntoMapa.json";
-
-  try {
-
-    let file = await solid.getFile(
-        url,
-        { fetch: session.fetch }
-    );
-
-  } catch (error) {
-    const file = await createPointsFile();
-    await createData(urlContainer, file, session);
-  }
-}
-
-
-//Se encarga de cear el archivos JSON en el POD
-export async function createPointsFile() {
-
-
-  var r = {
-    points: []
-  };
-
-  const blob = new Blob([JSON.stringify(r, null, 2)], {
-    type: "application/json",
-  });
-
-  var file = new File([blob], "puntoMapa.json", { type: blob.type });
-  return file;
-
-}
-
-
-
-//Se encarga de actualizar el JSON ya existente en el POD
-export async function updateData(file,webId,session) {
-
-  let url = webId.replace("profile/card#me","");
-  url = url+"private/puntoMapa.json";
-
-   try {
-    var savedFile = await solid.overwriteFile(
-      url,
-      file,
-      { contentType: file.type, fetch: session.fetch }
-
-    );
-
-    /*     printContents(savedFile);
-     */  } catch (error) {
-    console.log(error);
-  }
-}
-
-export function prueba(){
-  return [[43.402301,-5.808376]];
-}
 
 
 //Devolverá todos los puntos dentro del Pod
@@ -376,9 +322,56 @@ export async function getSpecificPoint(session, webId,pointId){
 }
 
 
+//Editará el punto del que se pasa la id como parámetro
+export async function editPoint(pointId,latitud,longitud,name,comment,category,session,webId){
+
+  let url = webId.replace("profile/card#me","");
+  let urlContainer = url+"private/";
+  url = url+"private/puntoMapa.json";
+
+  try {
+
+    let file = await solid.getFile(
+        url,
+        { fetch: session.fetch }
+    );
+
+    let oldPoints = await file.text();
+    var dataset = JSON.parse(oldPoints);
+    var pointsArray = dataset.points;
+
+    for(let i=0; i<pointsArray.length; i++){
+      if(pointsArray[i].id == pointId){
+        pointsArray[i].latitude=latitud;
+        pointsArray[i].longitude=longitud;
+        pointsArray[i].name=name;
+        pointsArray[i].category=category;
+        pointsArray[i].comment=comment;
+        break;
+      }
+    }
+
+  const blob = new Blob([JSON.stringify(pointsArray, null, 2)], {
+    type: "application/json",
+  });
+
+  var fichero = new File([blob], "puntoMapa.json", { type: blob.type });
+
+  await updateData(fichero, webId, session);
+
+
+  } catch (error) {
+    console.log(error);
+  }
+    
+}
+
+
+
 /**
  * ----------------------------------------------------------------------------------------------------
  * AMIGOS POD
+ * ----------------------------------------------------------------------------------------------------
  */
 
 
@@ -424,4 +417,48 @@ export async function getFriendWebId(webId,session) {
     console.log(error);
   }
 }
+
+
+
+
+
+
+/**
+ * ----------------------------------------------------------------------------------------------------
+ * Funciones varias de ayuda
+ * ----------------------------------------------------------------------------------------------------
+ */
+
+
+//Devuelve la información del perfil
+async function getProfile(webId){
+  let profileDocumentURI = webId.split("#")[0]; // we remove the right hand side of the # for consistency
+  let myDataset = await solid.getSolidDataset(profileDocumentURI); // obtain the dataset from the URI
+  return solid.getThing(myDataset, webId); // we obtain the thing we are looking for from the dataset
+}
+
+
+//Devuelve el nombre del usuario logeado
+export async function getNameFromPod(webId) {
+  if (webId === "" || webId === undefined) return "Name not found"; // we return the empty string
+  let name = solid.getStringNoLocale(await getProfile(webId), FOAF.name);
+  return name !== null ? name : "No name :(";
+}
+
+
+//Función que devuelve una id random para poder distinguir los puntos
+const randomId = function(length) {
+  return (Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2)).substring(0, length);
+};
+
+
+//Imprime el contenido del archivo
+export async function printContents(file) {
+  var reader = new FileReader();
+  reader.onload = function(event) {
+    console.log(event.target.result);
+  }
+  reader.readAsText(file);
+}
+
 

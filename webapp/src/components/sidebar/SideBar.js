@@ -8,7 +8,7 @@ import FmdGoodIcon from "@mui/icons-material/FmdGood"
 import GroupIcon from "@mui/icons-material/Group"
 import InfoIcon from "@mui/icons-material/Info"
 import SortIcon from "@mui/icons-material/Sort"
-import { updatePoints,filterPoints,deletePoints,getFriendWebId,getSpecificPoint } from '../../helper/PodHelper';
+import { updatePoints,filterPoints,deletePoints,getFriendWebId,editPoint } from '../../helper/PodHelper';
 
 import "./SideBar.css"
 
@@ -43,22 +43,27 @@ export const SideBar = (props) => {
                                 setMarcadorSeleccionado(true);
                             }
                         }}
-                    > Ver puntos</MenuItem>
+                    > Ver puntos
+                    </MenuItem>
                     <MenuItem className='subMenuItem'
                         icon={<AddLocationAltIcon />} 
                         onClick={() =>
                             { updatePoints(43.430423, -5.839197, "Aaron", "sdfdsfdsf", "Museo",session, webId);}}>
-                        Añadir punto </MenuItem>
+                        Añadir punto 
+                    </MenuItem>
                     <MenuItem className='subMenuItem'
                         icon={<WrongLocationIcon />} 
                         onClick={() =>
                             { deletePoints(session,webId, "x3jq4fsqyzlaxj2z00dj");}}> 
-                        Eliminar punto </MenuItem>
+                        Eliminar punto 
+                    </MenuItem>
                     <MenuItem className='subMenuItem' 
                         icon={<FilterAltIcon />}
                         onClick={ () => 
                             { filterPoints(session, webId,["Casa", "Resturante"]) } }> 
-                        Filtrar puntos </MenuItem>
+                        Filtrar puntos 
+                    </MenuItem>
+
                 </SubMenu >
                 
                 <MenuItem className='menuItem'
