@@ -3,6 +3,12 @@ name: CI for LOMAP ES4B
 on:
   release:
     types: [published]
+  pull_request:
+    branchhes:
+      -develop
+  push:
+    branches:
+      -develop
 
 jobs:
   unit-test-webapp:
