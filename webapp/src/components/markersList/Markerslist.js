@@ -1,7 +1,8 @@
 import {MarkerComponent} from './MarkerComponent';
 import React, { useState, useEffect } from 'react';
+import * as ScrollArea from '@radix-ui/react-scroll-area';
 import {getAllPoints} from '../../helper/PodHelper';
-import "./MarkerList.css"
+import "./Markerslist.css"
 
 export function MarkersList(props) {
 
@@ -17,15 +18,22 @@ export function MarkersList(props) {
     }, []);
 
     return (
-      <div className='sideList'>
-        {
-        points.map((item) => (
-          <MarkerComponent key={item.id} name={item.name} description={item.comment}
-                           lat={item.latitude} lon={item.longitude} />
-        ))
+      <ScrollArea.Root className="ScrollAreaRoot">
+        <ScrollArea.Viewport className="ScrollAreaViewport">
+          <div className='sideList' id='pointsList'>
+            {
+              points.map((item) => (
+                <MarkerComponent key={item.id} name={item.name} category={item.category}
+                description={item.comment}  lat={item.latitude} lon={item.longitude} />
+              ))
 
-      }
-      </div>
+            }
+          </div>
+        </ScrollArea.Viewport>
+        <ScrollArea.Scrollbar className="ScrollAreaScrollbar" orientation="vertical">
+          <ScrollArea.Thumb className="ScrollAreaThumb" />
+        </ScrollArea.Scrollbar>
+      </ScrollArea.Root>
     );
   }
 

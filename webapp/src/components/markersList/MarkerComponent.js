@@ -1,12 +1,21 @@
-
+import imagen from '../../images/default-icon.png';
 
 export function MarkerComponent(props) {
     return (
       <div className="sideComponent">
-        <h3>{props.name}</h3>
-        <p>{props.description}</p>
-        <p>{props.lat}</p>
-        <p>{props.lon}</p>
+        {/* <div className="componentInfo"> */}
+        <header className='pointHeader'>
+          <p className='name'>{props.name} </p>
+          <p className='category'>({props.category})</p>
+        </header>
+          <div className="descriptionAndImage">
+            <img src={imagen} alt="Imagen del punto"/>
+            <p>{props.description}</p>
+          </div>
+          <div className="coordinates">
+            <p>{props.lat}, {props.lon}</p>
+          </div>
+        {/* </div> */}
       </div>
     );
   }

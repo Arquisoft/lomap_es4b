@@ -7,6 +7,7 @@
     "@material-ui/core": "^4.12.4",
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.13",
+    "@radix-ui/react-scroll-area": "^1.0.3",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -20,6 +21,7 @@
     "react-leaflet": "^4.2.1",
     "react-native-web": "^0.18.12",
     "react-pro-sidebar": "^1.0.0",
+    "react-scrollarea": "^0.6.15",
     "typescript": "^4.9.4",
     "web-vitals": "^2.1.2"
   },
