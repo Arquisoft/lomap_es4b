@@ -61,12 +61,13 @@ export default class MapView extends Component{
           map.target.on("click", function (e) {
               const { lat, lng } = e.latlng;
               let formDiv = document.createElement('div');
+              let popup = L.popup();
               ReactDOM.render(
-                  <AddPointForm position={e.latlng} map={map.target} webId={map.webId} session={map.session}/>,
+                  <AddPointForm position={e.latlng} map={map.target} webId={map.webId} session={map.session} popup={popup}/>,
                   formDiv
               );
-              let popup = L.popup()
-                  .setLatLng([lat, lng])
+
+                  popup.setLatLng([lat, lng])
                   .setContent(formDiv)
                   .openOn(map.target);
           });
