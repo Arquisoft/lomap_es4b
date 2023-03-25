@@ -439,7 +439,7 @@ export async function friendsPruebas(webId,session,id) {
     let file = await solid.getFile(
       url,
       { fetch: session.fetch }
-
+ 
     );
 
     let oldPoints = await file.text();
