@@ -6,9 +6,11 @@ on:
   pull_request:
     branchhes:
       -develop
+      -funcionalidadAmigos
   push:
     branches:
       -develop
+      -funcionalidadAmigos
 
 jobs:
   unit-test-webapp:
