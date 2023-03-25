@@ -359,7 +359,15 @@ export async function editPoint(pointId,latitud,longitud,name,comment,category,s
       }
     }
 
-  const blob = new Blob([JSON.stringify(pointsArray, null, 2)], {
+    var jasonPoints = {
+      points: []
+    };
+
+    for(var i in pointsArray){
+      jasonPoints.points.push(pointsArray[i]);
+    }
+
+  const blob = new Blob([JSON.stringify(jasonPoints, null, 2)], {
     type: "application/json",
   });
 

@@ -8,7 +8,7 @@ import FmdGoodIcon from "@mui/icons-material/FmdGood"
 import GroupIcon from "@mui/icons-material/Group"
 import InfoIcon from "@mui/icons-material/Info"
 import SortIcon from "@mui/icons-material/Sort"
-import { updatePoints,filterPoints,deletePoints,getFriendWebId,friendsPruebas } from '../../helper/PodHelper';
+import { updatePoints,filterPoints,deletePoints,getFriendWebId,friendsPruebas} from '../../helper/PodHelper';
 
 import "./SideBar.css"
 
@@ -78,6 +78,7 @@ export const SideBar = (props) => {
                         { friendsPruebas(webId,session,"pnfg4sbeh1clz4vr2d96");}}> 
                     Amigos Pruebas
                 </MenuItem>
+            
                 <MenuItem className='menuItem'
                     icon={<InfoIcon />} 
                     > About </MenuItem>
