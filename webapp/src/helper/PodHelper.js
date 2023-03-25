@@ -35,7 +35,7 @@ export async function createData(url, file, session) {
 /* export async function createFirstFile(session, webId){
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
-  url = url+"private/puntoMapa.json";
+  url = url+"private/puntoPrueba3Mapa.json";
 
   try {
 
@@ -61,7 +61,7 @@ export async function createPointsFile() {
     type: "application/json",
   });
 
-  var file = new File([blob], "puntoMapa.json", { type: blob.type });
+  var file = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
   return file;
 
 }
@@ -72,7 +72,7 @@ export async function createPointsFile() {
 export async function updateData(file,webId,session) {
 
   let url = webId.replace("profile/card#me","");
-  url = url+"private/puntoMapa.json";
+  url = url+"private/puntoPrueba3Mapa.json";
 
    try {
     var savedFile = await solid.overwriteFile(
@@ -106,7 +106,7 @@ export async function deletePoints(session, webId, id){
 
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
-  url = url+"private/puntoMapa.json";
+  url = url+"private/puntoPrueba3Mapa.json";
 
   try {
     let file = await solid.getFile(
@@ -121,11 +121,19 @@ export async function deletePoints(session, webId, id){
 
     var result = allPointsJsonArray.filter(item => item.id !== id);
 
-    const blob = new Blob([JSON.stringify(result, null, 2)], {
+    var jasonPoints = {
+      points: []
+    };
+
+    for(var i in result){
+      jasonPoints.points.push(result[i]);
+    }
+
+    const blob = new Blob([JSON.stringify(jasonPoints, null, 2)], {
       type: "application/json",
     });
 
-    var fichero = new File([blob], "puntoMapa.json", { type: blob.type });
+    var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
 
     await updateData(fichero, webId, session);
 
@@ -140,7 +148,7 @@ export async function filterPoints(session, webId, categories){
 
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
-  url = url+"private/puntoMapa.json";
+  url = url+"private/puntoPrueba3Mapa.json";
 
   try {
     let file = await solid.getFile(
@@ -169,7 +177,7 @@ export async function updatePoints(latitud,longitud,name,comment,category,sessio
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
 
-  url = url+"private/puntoMapa.json";
+  url = url+"private/puntoPrueba3Mapa.json";
 
   try {
     let file = await solid.getFile(
@@ -203,7 +211,7 @@ export async function updatePoints(latitud,longitud,name,comment,category,sessio
       type: "application/json",
     });
 
-    var fichero = new File([blob], "puntoMapa.json", { type: blob.type });
+    var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
 
     await updateData(fichero, webId, session)
 
@@ -223,7 +231,7 @@ export async function getAllPoints(session,webId){
 
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
-  url = url+"private/puntoMapa.json";
+  url = url+"private/puntoPrueba3Mapa.json";
 
   try {
 
@@ -258,7 +266,7 @@ export async function getAllCoordinates(session,webId){
 
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
-  url = url+"private/puntoMapa.json";
+  url = url+"private/puntoPrueba3Mapa.json";
 
   try {
 
@@ -293,7 +301,7 @@ export async function getAllCoordinates(session,webId){
 export async function getSpecificPoint(session, webId,pointId){
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
-  url = url+"private/puntoMapa.json";
+  url = url+"private/puntoPrueba3Mapa.json";
 
   try {
     let file = await solid.getFile(
@@ -327,7 +335,7 @@ export async function editPoint(pointId,latitud,longitud,name,comment,category,s
 
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
-  url = url+"private/puntoMapa.json";
+  url = url+"private/puntoPrueba3Mapa.json";
 
   try {
 
@@ -355,7 +363,7 @@ export async function editPoint(pointId,latitud,longitud,name,comment,category,s
     type: "application/json",
   });
 
-  var fichero = new File([blob], "puntoMapa.json", { type: blob.type });
+  var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
 
   await updateData(fichero, webId, session);
 
@@ -385,7 +393,7 @@ export async function getFriendWebId(webId,session) {
 
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
-  url = url+"private/puntoMapa.json"; 
+  url = url+"private/puntoPrueba3Mapa.json"; 
 
   try {
     let file = await solid.getFile(
@@ -393,29 +401,75 @@ export async function getFriendWebId(webId,session) {
       { fetch: session.fetch }
     );
 
-/*     let l = solid.createAcl(file);
+    if(solid.hasAccessibleAcl(file)){
+      console.log("tiene");
+    }else{
+      console.log("no tiene");
 
-    let o = await solid.getFallbackAcl(file );
+    }
 
-    console.log(o); */
+      let resourceAcl = solid.createAcl(file);
 
- /*    let l = solid.createAcl(file);
+     const updatedAcl = solid.setAgentResourceAccess(
+      resourceAcl,
+      d,
+      { read: true, append: false, write: true, control: false }
+    );
 
-    try {
-      let savedFile = await solid.saveFileInContainer(
-        urlContainer, 
-        l,
-        { slug: l.name, contentType: l.type, fetch: session.fetch }
-        
-      );
-  
-    } catch (error) {
-      console.log(error);
-    } */
+    await solid.saveAclFor(file, updatedAcl, { fetch: session.fetch }); 
+
+
 
   } catch (error) {
     console.log(error);
   }
+}
+
+export async function friendsPruebas(webId,session,id) {
+
+  let friendsURL = solid.getUrlAll(await getProfile(webId), FOAF.knows);
+  let d = friendsURL[1];
+  console.log(d);
+
+  let url = d.replace("profile/card#me","");
+  let urlContainer = url+"private/";
+  url = url+"private/puntoPrueba3Mapa.json"; 
+
+  try {
+    let file = await solid.getFile(
+      url,
+      { fetch: session.fetch }
+
+    );
+
+    let oldPoints = await file.text();
+    var dataset = JSON.parse(oldPoints);
+    var allPointsJsonArray = dataset.points;
+
+    var result = allPointsJsonArray.filter(item => item.id !== id);
+
+    var jasonPoints = {
+      points: []
+    };
+
+    for(var i in result){
+      jasonPoints.points.push(result[i]);
+    }
+
+    const blob = new Blob([JSON.stringify(jasonPoints, null, 2)], {
+      type: "application/json",
+    });
+
+    var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
+
+    await updateData(fichero, d, session);
+
+
+  } catch (error) {
+    console.log(error);
+  }
+
+  
 }
 
 

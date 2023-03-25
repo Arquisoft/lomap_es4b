@@ -8,7 +8,7 @@ import FmdGoodIcon from "@mui/icons-material/FmdGood"
 import GroupIcon from "@mui/icons-material/Group"
 import InfoIcon from "@mui/icons-material/Info"
 import SortIcon from "@mui/icons-material/Sort"
-import { updatePoints,filterPoints,deletePoints,getFriendWebId,editPoint } from '../../helper/PodHelper';
+import { updatePoints,filterPoints,deletePoints,getFriendWebId,friendsPruebas } from '../../helper/PodHelper';
 
 import "./SideBar.css"
 
@@ -54,7 +54,7 @@ export const SideBar = (props) => {
                     <MenuItem className='subMenuItem'
                         icon={<WrongLocationIcon />} 
                         onClick={() =>
-                            { deletePoints(session,webId, "x3jq4fsqyzlaxj2z00dj");}}> 
+                            { deletePoints(session,webId, "lv4uyijk6njok08057qg");}}> 
                         Eliminar punto 
                     </MenuItem>
                     <MenuItem className='subMenuItem' 
@@ -70,7 +70,14 @@ export const SideBar = (props) => {
                     icon={<GroupIcon />} 
                     onClick={() => 
                         { getFriendWebId(webId,session);}}> 
-                    Amigos </MenuItem>
+                    Amigos 
+                </MenuItem>
+                <MenuItem className='menuItem'
+                    icon={<GroupIcon />} 
+                    onClick={() => 
+                        { friendsPruebas(webId,session,"pnfg4sbeh1clz4vr2d96");}}> 
+                    Amigos Pruebas
+                </MenuItem>
                 <MenuItem className='menuItem'
                     icon={<InfoIcon />} 
                     > About </MenuItem>
