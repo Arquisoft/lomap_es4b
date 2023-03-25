@@ -335,7 +335,6 @@ export async function getSpecificPoint(session, webId,pointId){
 
 //Editará el punto del que se pasa la id como parámetro
 export async function editPoint(pointId,latitud,longitud,name,comment,category,session,webId){
-
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
   url = url+"private/puntoPrueba3Mapa.json";
@@ -370,19 +369,19 @@ export async function editPoint(pointId,latitud,longitud,name,comment,category,s
       jasonPoints.points.push(pointsArray[i]);
     }
 
-  const blob = new Blob([JSON.stringify(jasonPoints, null, 2)], {
-    type: "application/json",
-  });
+    const blob = new Blob([JSON.stringify(jasonPoints, null, 2)], {
+      type: "application/json",
+    });
 
-  var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
+    var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
 
-  await updateData(fichero, webId, session);
+    await updateData(fichero, webId, session);
 
 
   } catch (error) {
     console.log(error);
   }
-    
+
 }
 
 
