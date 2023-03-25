@@ -5,6 +5,7 @@ import CommentsBox from './CommentBox'
 import {Text} from 'react-native';
 import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from "react-leaflet";
 import EditPoint from "../map/EditPoint";
+import DeletePoint from "../map/DeletePoint";
 
 
 const InfoAndComments = (userName) =>{
@@ -45,6 +46,11 @@ const InfoAndComments = (userName) =>{
                 EditPoint(userName.pointId,userName.marker, userName.map, userName.webId,userName.session);
             }}>
                 Edit
+            </Button>
+            <Button variant="contained" color="primary" onClick={() => {
+                DeletePoint(userName.pointId, userName.marker, userName.map, userName.session, userName.webId);
+            }}>
+                Delete
             </Button>
         </Container>
         </div>
