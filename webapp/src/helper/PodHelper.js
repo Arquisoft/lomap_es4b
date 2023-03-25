@@ -493,7 +493,7 @@ export async function friendsPruebas(webId,session,id) {
 
 
 //Devuelve la información del perfil
-async function getProfile(webId){
+async function getProfile(webId){ 
   let profileDocumentURI = webId.split("#")[0]; // we remove the right hand side of the # for consistency
   let myDataset = await solid.getSolidDataset(profileDocumentURI); // obtain the dataset from the URI
   return solid.getThing(myDataset, webId); // we obtain the thing we are looking for from the dataset
