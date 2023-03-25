@@ -179,8 +179,9 @@ export async function updatePoints(latitud,longitud,name,comment,category,sessio
 
     let autor = await getNameFromPod(webId);
 
+    let idPunto = randomId(20);
 
-    var dates =[{id:randomId(20),autor:autor,latitud:latitud,longitud:longitud,name:name,comment:comment,category:category}];
+    var dates =[{id:idPunto,autor:autor,latitud:latitud,longitud:longitud,name:name,comment:comment,category:category}];
 
     let oldPoints = await file.text();
 
@@ -206,6 +207,8 @@ export async function updatePoints(latitud,longitud,name,comment,category,sessio
     var fichero = new File([blob], "puntoMapa.json", { type: blob.type });
 
     await updateData(fichero, webId, session)
+
+    return idPunto;
 
   } catch (error) {
 
