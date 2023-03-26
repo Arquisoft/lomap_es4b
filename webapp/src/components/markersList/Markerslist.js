@@ -4,11 +4,12 @@ import * as ScrollArea from '@radix-ui/react-scroll-area';
 import {getAllPoints} from '../../helper/PodHelper';
 import "./markerslist.css"
 
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+
 export function MarkersList(props) {
 
     const {session,webId} = props;
     const [points, setPoints] = useState([]);
-    //
 
     useEffect(() => {
       const fetchPoints = async() => {
@@ -21,7 +22,6 @@ export function MarkersList(props) {
     return (
       <ScrollArea.Root className="ScrollAreaRoot">
         <ScrollArea.Viewport className="ScrollAreaViewport">
-          <div className='sideList' id='pointsList'>
             {
               points.map((item) => (
                 <MarkerComponent key={item.id} name={item.name} category={item.category}
@@ -29,7 +29,6 @@ export function MarkersList(props) {
               ))
 
             }
-          </div>
         </ScrollArea.Viewport>
         <ScrollArea.Scrollbar className="ScrollAreaScrollbar" orientation="vertical">
           <ScrollArea.Thumb className="ScrollAreaThumb" />

@@ -2,7 +2,7 @@ import imagen from '../../images/default-icon.png';
 
 export function MarkerComponent(props) {
     return (
-      <div className="sideComponent">
+      <div className="markerComponent">
         {/* <div className="componentInfo"> */}
         <header className='pointHeader'>
           <p className='name'>{props.name} </p>

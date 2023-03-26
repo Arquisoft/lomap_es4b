@@ -1,5 +1,6 @@
 
 import { Sidebar, Menu, MenuItem, SubMenu, useProSidebar} from 'react-pro-sidebar';
+import { useState } from 'react';
 import MenuIcon from "@mui/icons-material/Menu"
 import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt"
 import WrongLocationIcon from "@mui/icons-material/WrongLocation"
@@ -17,34 +18,42 @@ export const SideBar = (props) => {
 
     const { collapseSidebar } = useProSidebar();
     const {session, webId, marcadorSeleccionado,setMarcadorSeleccionado} = props;
-
+    const [isOpen, setOpen] = useState(true);
 
     return(
-        <Sidebar className="sideBar">
-            
-            <Menu className='menu'>
+        <div className='sideBar'>
+        <Sidebar>
+            <Menu className='menu' menuItemStyles={{
+                button: {
+                    '&:hover': {
+                     backgroundColor: 'Highlight',
+                    },
+                },
+            }}>
 
                 <MenuItem className='menuItem'
                     icon={<MenuIcon />}
                     onClick={() => {
                     collapseSidebar();
+                    setOpen(!isOpen);
+                    setMarcadorSeleccionado(false);
                     }}
                     style={{ textAlign: "center" }}
                     >
                     {" "}
                 </MenuItem>
 
-                <SubMenu className="subMenu" label="Gestionar puntos" icon={<SortIcon />}>
+                <SubMenu className="subMenu" label={isOpen? "Gestionar puntos" : ""} icon={<SortIcon />}
+                        onClick={()=> {if(!isOpen){
+                            collapseSidebar();
+                            setOpen(!isOpen);
+                        }
+                    }}>
                     <MenuItem className="subMenuItem" label="Ver puntos"
                         icon={<FmdGoodIcon />}
-                        onClick={()=>{
-                            if(marcadorSeleccionado){
-                                setMarcadorSeleccionado(false);
-                            }else{
-                                setMarcadorSeleccionado(true);
-                            }
-                        }}
-                    > Ver puntos
+                        onClick={()=>{ setMarcadorSeleccionado(!marcadorSeleccionado)
+                        }}>
+                       Ver puntos
                     </MenuItem>
                     <MenuItem className='subMenuItem'
                         icon={<AddLocationAltIcon />} 
@@ -66,24 +75,32 @@ export const SideBar = (props) => {
 
                 </SubMenu >
                 
-                <MenuItem className='menuItem'
+                <MenuItem className='menuItem' label="Amigos"
                     icon={<GroupIcon />} 
-                    onClick={() => 
-                        { }}> 
-                    Amigos 
+                    onClick={() => { 
+                        if(isOpen){
+                            getFriendWebId(webId);
+                        }else{
+                            collapseSidebar();
+                            setOpen(!isOpen);
+                        }
+                    }}>
+                    <div style={{display : isOpen? "block" : "none"}}>Amigos</div>
                 </MenuItem>
-                <MenuItem className='menuItem'
-                    icon={<GroupIcon />} 
-                    onClick={() => 
-                        { friendsAclPermission(webId,session);}}> 
-                    Dar Permisos Amigos
+                <MenuItem className='menuItem' 
+                    icon={<InfoIcon />} onClick={() => { 
+                        if(isOpen){
+                            
+                        }else{
+                            collapseSidebar();
+                            setOpen(!isOpen);
+                        }
+                    }}>
+                    <div style={{display : isOpen? "block" : "none"}}>About</div> 
                 </MenuItem>
-            
-                <MenuItem className='menuItem'
-                    icon={<InfoIcon />} 
-                    > About </MenuItem>
             </Menu>
         </Sidebar>
+        </div>
     );
 }
 
