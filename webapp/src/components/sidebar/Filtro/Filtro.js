@@ -2,9 +2,10 @@ import "./Filtro.css"
 import {BubbleChart} from "@mui/icons-material";
 import {Button} from "@material-ui/core";
 import React, { useState } from "react";
-export function Filtro(listaFiltros){
+import {filterPoints} from "../../../helper/PodHelper"
+export function Filtro(props){
     const [listaCosasFiltradas, setListaCosasFiltradas] = useState([]) ;
-
+    const {listaFiltro,session, webId} = props;
     const handleSelect = (event) => {
         const value = event.target.value;
         const isChecked = event.target.checked;
@@ -17,10 +18,12 @@ export function Filtro(listaFiltros){
             const filteredList = listaCosasFiltradas.filter((item) => item !== value);
             setListaCosasFiltradas(filteredList);
         }
-        
+        filterPoints(session,webId,listaCosasFiltradas);
+
+
     };
 
-    const filterList = listaFiltros.listaFiltro.map((categoria)=>{
+    const filterList = listaFiltro.map((categoria)=>{
         return (
             <li>
                 <div>

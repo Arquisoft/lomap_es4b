@@ -21,73 +21,6 @@ export const SideBar = (props) => {
     const [isOpen, setOpen] = useState(true);
 
 
-    // return(
-    //     <Sidebar className="sideBar">
-            
-    //         <Menu className='menu'>
-
-    //             <MenuItem className='menuItem'
-    //                 icon={<MenuIcon />}
-    //                 onClick={() => {
-    //                 collapseSidebar();
-    //                 }}
-    //                 style={{ textAlign: "center" }}
-    //                 >
-    //                 {" "}
-    //             </MenuItem>
-
-    //             <SubMenu className="subMenu" label="Gestionar puntos" icon={<SortIcon />}>
-    //                 <MenuItem className="subMenuItem" label="Ver puntos"
-    //                     icon={<FmdGoodIcon />}
-    //                     onClick={()=>{
-    //                         if(marcadorSeleccionado){
-    //                             setMarcadorSeleccionado(false);
-    //                         }else{
-    //                             setMarcadorSeleccionado(true);
-    //                         }
-    //                     }}
-    //                 > Ver puntos
-    //                 </MenuItem>
-    //                 <MenuItem className='subMenuItem'
-    //                     icon={<AddLocationAltIcon />} 
-    //                     onClick={() =>
-    //                         { updatePoints(43.430423, -5.839197, "McDondals", "Restaurante de comida rápida", "Restaurante",session, webId);}}>
-    //                     Añadir punto </MenuItem>
-    //                 <MenuItem className='subMenuItem'
-    //                     icon={<WrongLocationIcon />} 
-    //                     onClick={() =>
-    //                         { deletePoints(session,webId, "lv4uyijk6njok08057qg");}}> 
-    //                     Eliminar punto 
-    //                 </MenuItem>
-    //                 <MenuItem className='subMenuItem' 
-    //                     icon={<FilterAltIcon />}
-    //                     onClick={ () => 
-    //                         { filterPoints(session, webId,["Casa", "Resturante"]) } }> 
-    //                     Filtrar puntos 
-    //                 </MenuItem>
-
-    //             </SubMenu >
-                
-    //             <MenuItem className='menuItem'
-    //                 icon={<GroupIcon />} 
-    //                 onClick={() => 
-    //                     { }}> 
-    //                 Amigos 
-    //             </MenuItem>
-    //             <MenuItem className='menuItem'
-    //                 icon={<GroupIcon />} 
-    //                 onClick={() => 
-    //                     { friendsAclPermission(webId,session);}}> 
-    //                 Dar Permisos Amigos
-    //             </MenuItem>
-            
-    //             <MenuItem className='menuItem'
-    //                 icon={<InfoIcon />} 
-    //                 > About </MenuItem>
-    //         </Menu>
-    //     </Sidebar>
-    // );
-
     return(
         <div className='sideBar'>
         <Sidebar>
@@ -177,7 +110,7 @@ export const SideBar = (props) => {
                 </MenuItem>
                 <SubMenu className="menuFiltro" label="Filtrar puntos">
                     <MenuItem className="subMenuFiltro" label="filtros">
-                        <Filtro listaFiltro={["Restaurante","Museo"]}>
+                        <Filtro listaFiltro={["Restaurante","Museo"]} session={session} webId={webId}>
 
                         </Filtro>
                     </MenuItem>

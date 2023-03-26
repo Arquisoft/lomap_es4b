@@ -5,7 +5,12 @@ export const PointStruct = {
     comment:""
 };
   
-
+export class Comment{
+    constructor(username, text) {
+        this.username = username;
+        this.text = text;
+    }
+}
 export class Point{
     constructor(id, autor, latitude, longitude, name, category, comment){
         this.id = id;

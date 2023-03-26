@@ -4,21 +4,23 @@ import Comments from './Comments'
 import CommentsBox from './CommentBox'
 import {Text} from 'react-native';
 import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from "react-leaflet";
+import {getSpecificPoint} from ".//../../helper/PodHelper"
+import { Button} from "@material-ui/core";
 
-
-const InfoAndComments = (userName) =>{
-    console.log(userName);
+const InfoAndComments = (props) =>{
+    const {username, pointId,marker,map,webId, session} = props;
+    const point = getSpecificPoint(session,webId,pointId);
     return(
         <div id = "infoAndComments">
             <Container >
                 <Card>
                     <CardContent>
                         <Typography gutterBottom variant="h5" component={'span'}>
-                            <Text property={"Nombre del sitio:"+userName}>
-                                {"Lugar: "+userName.userName.name}
+                            <Text property={"Nombre del sitio:"+point.name}>
+                                {"Lugar: "+point.name}
                             </Text>
-                            <Text property={"Nombre del sitio:"+userName}>
-                                {"Categoría: "+userName.userName.category}
+                            <Text property={"Nombre del sitio:"+point.category}>
+                                {"Categoría: "+point.category}
                             </Text>
                         </Typography>
                     </CardContent>
@@ -26,8 +28,8 @@ const InfoAndComments = (userName) =>{
                 <Card style={{ maxWidth: 200 }}>
                     <CardContent>
                         <Typography gutterBottom variant="h5" component={'span'}>
-                            <Text property={"Nombre del autor:"+userName}>
-                                {"Nombre del autor: "+userName.userName.userName}
+                            <Text property={"Nombre del autor:"+point.author}>
+                                {"Nombre del autor: "+point.author}
                             </Text>
                         </Typography>
                     </CardContent>
@@ -42,23 +44,20 @@ const InfoAndComments = (userName) =>{
                                 {"Comentarios"}
                             </Text>
                         </Typography>
-                        <Comments list = {userName.userName.list} >
-                        </Comments>
+                        /*<Comments list = {point.comments} >
+                        </Comments>*/
                     </CardContent>
                     <CardActionArea style={{ justifyContent: "left", display: "flex" }}>
                     </CardActionArea>
                 </Card>
                 <Card>
-                    <CommentsBox username = {userName.userName}>
-                    </CommentsBox>
+
                 </Card>
                 <Button variant="contained" color="primary" onClick={() => {
-                    EditPoint(userName.pointId,userName.marker, userName.map, userName.webId,userName.session);
                 }}>
                     Edit
                 </Button>
                 <Button variant="contained" color="primary" onClick={() => {
-                    DeletePoint(userName.pointId, userName.marker, userName.map, userName.session, userName.webId);
                 }}>
                     Delete
                 </Button>
