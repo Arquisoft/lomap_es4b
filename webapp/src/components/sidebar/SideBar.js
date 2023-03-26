@@ -11,6 +11,7 @@ import SortIcon from "@mui/icons-material/Sort"
 import { updatePoints,filterPoints,deletePoints,friendsAclPermission} from '../../helper/PodHelper';
 
 import "./SideBar.css"
+import MarkersList from '../markersList/Markerslist';
 
 export const SideBar = (props) => {
 
@@ -34,7 +35,7 @@ export const SideBar = (props) => {
                 </MenuItem>
 
                 <SubMenu className="subMenu" label="Gestionar puntos" icon={<SortIcon />}>
-                    <MenuItem className='subMenuItem'
+                    <MenuItem className="subMenuItem" label="Ver puntos"
                         icon={<FmdGoodIcon />}
                         onClick={()=>{
                             if(marcadorSeleccionado){
@@ -48,9 +49,8 @@ export const SideBar = (props) => {
                     <MenuItem className='subMenuItem'
                         icon={<AddLocationAltIcon />} 
                         onClick={() =>
-                            { updatePoints(43.430423, -5.839197, "Aaron", "sdfdsfdsf", "Museo",session, webId);}}>
-                        Añadir punto 
-                    </MenuItem>
+                            { updatePoints(43.430423, -5.839197, "McDondals", "Restaurante de comida rápida", "Restaurante",session, webId);}}>
+                        Añadir punto </MenuItem>
                     <MenuItem className='subMenuItem'
                         icon={<WrongLocationIcon />} 
                         onClick={() =>
