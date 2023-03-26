@@ -2,7 +2,7 @@ import {MarkerComponent} from './MarkerComponent';
 import React, { useState, useEffect } from 'react';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
 import {getAllPoints} from '../../helper/PodHelper';
-import "./Markerslist.css"
+import "./markerslist.css"
 
 export function MarkersList(props) {
 
