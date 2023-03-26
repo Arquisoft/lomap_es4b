@@ -10,9 +10,7 @@ import GroupIcon from "@mui/icons-material/Group"
 import InfoIcon from "@mui/icons-material/Info"
 import SortIcon from "@mui/icons-material/Sort"
 import { updatePoints,filterPoints,deletePoints,getFriendWebId } from '../../helper/PodHelper';
-
 import "./SideBar.css"
-import MarkersList from '../markersList/Markerslist';
 
 export const SideBar = (props) => {
 
