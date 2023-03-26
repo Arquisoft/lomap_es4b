@@ -219,6 +219,7 @@ export async function updatePoints(latitud,longitud,name,comment,category,sessio
 
     const file = await createPointsFile();
     await createData(urlContainer, file, session);
+    await ownAclPermission(webId,session);
     updatePoints(latitud,longitud,name,comment,category,session,webId);
   }
 
@@ -392,12 +393,8 @@ export async function editPoint(pointId,latitud,longitud,name,comment,category,s
 
 
 
-//Obtiene las webId de los amigos del POD
-export async function getFriendWebId(webId,session) {
-
-  let friendsURL = solid.getUrlAll(await getProfile(webId), FOAF.knows);
-  let d = friendsURL[0];
-  console.log(d);
+//Se encarga de crear el primer acl del json, dándole permisos de owner al propietario
+async function ownAclPermission(webId,session) {
 
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
@@ -409,37 +406,28 @@ export async function getFriendWebId(webId,session) {
       { fetch: session.fetch }
     );
 
-    if(solid.hasAccessibleAcl(file)){
-      console.log("tiene");
-    }else{
-      console.log("no tiene");
-
-    }
-
       let resourceAcl = solid.createAcl(file);
 
      const updatedAcl = solid.setAgentResourceAccess(
       resourceAcl,
-      d,
-      { read: true, append: false, write: true, control: false }
+      webId,
+      { read: true, append: true, write: true, control: true }
     );
 
     await solid.saveAclFor(file, updatedAcl, { fetch: session.fetch }); 
-
-
 
   } catch (error) {
     console.log(error);
   }
 }
 
-export async function friendsPruebas(webId,session,id) {
+
+//Se encarga de darle permisos de lectura y escritura a los amigos del pod
+export async function friendsAclPermission(webId,session) {
 
   let friendsURL = solid.getUrlAll(await getProfile(webId), FOAF.knows);
-  let d = friendsURL[1];
-  console.log(d);
 
-  let url = d.replace("profile/card#me","");
+  let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
   url = url+"private/puntoPrueba3Mapa.json"; 
 
@@ -447,40 +435,24 @@ export async function friendsPruebas(webId,session,id) {
     let file = await solid.getFile(
       url,
       { fetch: session.fetch }
- 
     );
 
-    let oldPoints = await file.text();
-    var dataset = JSON.parse(oldPoints);
-    var allPointsJsonArray = dataset.points;
+    for(var i in friendsURL){
+      let resourceAcl = solid.createAcl(file);
 
-    var result = allPointsJsonArray.filter(item => item.id !== id);
-
-    var jasonPoints = {
-      points: []
-    };
-
-    for(var i in result){
-      jasonPoints.points.push(result[i]);
+      const updatedAcl = solid.setAgentResourceAccess(
+        resourceAcl,
+        friendsURL[i],
+        { read: true, append: false, write: true, control: false }
+      );
+ 
+     await solid.saveAclFor(file, updatedAcl, { fetch: session.fetch }); 
     }
-
-    const blob = new Blob([JSON.stringify(jasonPoints, null, 2)], {
-      type: "application/json",
-    });
-
-    var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
-
-    await updateData(fichero, d, session);
-
 
   } catch (error) {
     console.log(error);
   }
-
-  
 }
-
-
 
 
 
