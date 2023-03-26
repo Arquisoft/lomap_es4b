@@ -1,4 +1,8 @@
-.markerComponent{
+.sideList{
+    height: 100%;
+}
+
+.sideComponent{
     margin: 0.5em;
     border-style: groove;
     border-radius: 5%;

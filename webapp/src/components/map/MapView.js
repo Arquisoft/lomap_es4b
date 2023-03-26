@@ -31,7 +31,6 @@ export default class MapView extends Component{
   }
   render() {
     return (
-      
       <MapContainer id="map"
         center={[43.3548096, -5.8534699]}
         zoom={15}
