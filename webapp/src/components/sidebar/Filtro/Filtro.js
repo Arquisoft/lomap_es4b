@@ -1,8 +1,24 @@
 import "./Filtro.css"
 import {BubbleChart} from "@mui/icons-material";
 import {Button} from "@material-ui/core";
+import React, { useState } from "react";
 export function Filtro(listaFiltros){
-    const listaCosasFiltradas = [];
+    const [listaCosasFiltradas, setListaCosasFiltradas] = useState([]) ;
+
+    const handleSelect = (event) => {
+        const value = event.target.value;
+        const isChecked = event.target.checked;
+
+        if (isChecked) {
+            //Add checked item into checkList
+            setListaCosasFiltradas([...listaCosasFiltradas, value]);
+        } else {
+            //Remove unchecked item from checkList
+            const filteredList = listaCosasFiltradas.filter((item) => item !== value);
+            setListaCosasFiltradas(filteredList);
+        }
+        
+    };
 
     const filterList = listaFiltros.listaFiltro.map((categoria)=>{
         return (
@@ -13,13 +29,7 @@ export function Filtro(listaFiltros){
                         id={"checkbox"+categoria}
                         name={categoria}
                         value={categoria}
-                           onClick={()=>{
-                               if(listaCosasFiltradas[{categoria}]===undefined)
-                                   listaCosasFiltradas[{categoria}]={cat:categoria,selected:true};
-                               else
-                                   listaCosasFiltradas[{categoria}].selected=!listaCosasFiltradas[{categoria}].selected;
-                           }
-                           }
+                           onChange={handleSelect}
                        />
 
 
@@ -27,6 +37,7 @@ export function Filtro(listaFiltros){
             </li>)
 
     });
+
     return <div>
         <ul>
             {filterList}
