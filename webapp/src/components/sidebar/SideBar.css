@@ -1,7 +1,6 @@
 .sideBar{
-    background-color: #000000;
+    background-color: #454950;
     font-size: large;
-    width: 50vw;
 }
 
 .menu{
@@ -12,11 +11,3 @@
 .subMenuItem{
     background-color: #5b606a;
 }
-
-.menuItem:hover{
-    background-color: #335B8C !important;
-        color: white !important;
-        border-radius: 8px !important;
-        font-weight: bold !important;
-}
-
