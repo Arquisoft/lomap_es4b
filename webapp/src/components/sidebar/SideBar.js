@@ -9,83 +9,17 @@ import FmdGoodIcon from "@mui/icons-material/FmdGood"
 import GroupIcon from "@mui/icons-material/Group"
 import InfoIcon from "@mui/icons-material/Info"
 import SortIcon from "@mui/icons-material/Sort"
-import { updatePoints,filterPoints,deletePoints,friendsAclPermission} from '../../helper/PodHelper';
+import MapIcon from '@mui/icons-material/Map';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import { updatePoints,filterPoints,deletePoints,friendsAclPermission, addMap} from '../../helper/PodHelper';
 
 import "./SideBar.css"
 
 export const SideBar = (props) => {
 
     const { collapseSidebar } = useProSidebar();
-    const {session, webId, marcadorSeleccionado,setMarcadorSeleccionado} = props;
+    const {session, webId, marcadorPuntosSeleccionado,setMarcadorPuntosSeleccionado, marcadorMapasSeleccionado, setMarcadorMapasSeleccionado} = props;
     const [isOpen, setOpen] = useState(true);
-
-
-    // return(
-    //     <Sidebar className="sideBar">
-            
-    //         <Menu className='menu'>
-
-    //             <MenuItem className='menuItem'
-    //                 icon={<MenuIcon />}
-    //                 onClick={() => {
-    //                 collapseSidebar();
-    //                 }}
-    //                 style={{ textAlign: "center" }}
-    //                 >
-    //                 {" "}
-    //             </MenuItem>
-
-    //             <SubMenu className="subMenu" label="Gestionar puntos" icon={<SortIcon />}>
-    //                 <MenuItem className="subMenuItem" label="Ver puntos"
-    //                     icon={<FmdGoodIcon />}
-    //                     onClick={()=>{
-    //                         if(marcadorSeleccionado){
-    //                             setMarcadorSeleccionado(false);
-    //                         }else{
-    //                             setMarcadorSeleccionado(true);
-    //                         }
-    //                     }}
-    //                 > Ver puntos
-    //                 </MenuItem>
-    //                 <MenuItem className='subMenuItem'
-    //                     icon={<AddLocationAltIcon />} 
-    //                     onClick={() =>
-    //                         { updatePoints(43.430423, -5.839197, "McDondals", "Restaurante de comida rápida", "Restaurante",session, webId);}}>
-    //                     Añadir punto </MenuItem>
-    //                 <MenuItem className='subMenuItem'
-    //                     icon={<WrongLocationIcon />} 
-    //                     onClick={() =>
-    //                         { deletePoints(session,webId, "lv4uyijk6njok08057qg");}}> 
-    //                     Eliminar punto 
-    //                 </MenuItem>
-    //                 <MenuItem className='subMenuItem' 
-    //                     icon={<FilterAltIcon />}
-    //                     onClick={ () => 
-    //                         { filterPoints(session, webId,["Casa", "Resturante"]) } }> 
-    //                     Filtrar puntos 
-    //                 </MenuItem>
-
-    //             </SubMenu >
-                
-    //             <MenuItem className='menuItem'
-    //                 icon={<GroupIcon />} 
-    //                 onClick={() => 
-    //                     { }}> 
-    //                 Amigos 
-    //             </MenuItem>
-    //             <MenuItem className='menuItem'
-    //                 icon={<GroupIcon />} 
-    //                 onClick={() => 
-    //                     { friendsAclPermission(webId,session);}}> 
-    //                 Dar Permisos Amigos
-    //             </MenuItem>
-            
-    //             <MenuItem className='menuItem'
-    //                 icon={<InfoIcon />} 
-    //                 > About </MenuItem>
-    //         </Menu>
-    //     </Sidebar>
-    // );
 
     return(
         <div className='sideBar'>
@@ -103,7 +37,8 @@ export const SideBar = (props) => {
                     onClick={() => {
                     collapseSidebar();
                     setOpen(!isOpen);
-                    setMarcadorSeleccionado(false);
+                    setMarcadorPuntosSeleccionado(false);
+                    setMarcadorMapasSeleccionado(false);
                     }}
                     style={{ textAlign: "center" }}
                     >
@@ -118,25 +53,46 @@ export const SideBar = (props) => {
                     }}>
                     <MenuItem className="subMenuItem" label="Ver puntos"
                         icon={<FmdGoodIcon />}
-                        onClick={()=>{ setMarcadorSeleccionado(!marcadorSeleccionado)
+                        onClick={()=>{ setMarcadorMapasSeleccionado(false);
+                            setMarcadorPuntosSeleccionado(!marcadorPuntosSeleccionado);
                         }}>
                        Ver puntos
                     </MenuItem>
                     <MenuItem className='subMenuItem'
                         icon={<AddLocationAltIcon />} 
                         onClick={() =>
-                            { updatePoints(43.430423, -5.839197, "McDondals", "Restaurante de comida rápida", "Restaurante",session, webId);}}>
+                            { updatePoints(1, 43.430423, -5.839197, "McDondals", "Restaurante de comida rápida", "Museo",session, webId);}}>
                         Añadir punto </MenuItem>
                     <MenuItem className='subMenuItem'
                         icon={<WrongLocationIcon />} 
                         onClick={() =>
-                            { deletePoints(session,webId, "x3jq4fsqyzlaxj2z00dj");}}> 
+                            { deletePoints(session,webId, "txo5ke76cjs5r5r3pg1x");}}> 
                         Eliminar punto </MenuItem>
                     <MenuItem className='subMenuItem' 
                         icon={<FilterAltIcon />}
                         onClick={ () => 
-                            { filterPoints(session, webId,["Casa", "Resturante"]) } }> 
+                            { filterPoints(session, webId,["Museo", "Restaurante"]) } }> 
                         Filtrar puntos </MenuItem>
+                </SubMenu >
+
+                <SubMenu className="subMenu" label={isOpen? "Gestionar mapas" : ""} icon={<SortIcon />}
+                        onClick={()=> {if(!isOpen){
+                            collapseSidebar();
+                            setOpen(!isOpen);
+                        }
+                    }}>
+                    <MenuItem className="subMenuItem"
+                        icon={<MapIcon />}
+                        onClick={()=>{setMarcadorPuntosSeleccionado(false); 
+                            setMarcadorMapasSeleccionado(!marcadorMapasSeleccionado);
+                        }}>
+                       Ver mapas
+                    </MenuItem>
+                    <MenuItem className='subMenuItem'
+                        icon={<AddCircleIcon />} 
+                        onClick={() =>
+                            { addMap("Nuevo mapa", "Descripción del nuevo mapa", session, webId) }}>
+                        Añadir mapa </MenuItem>
                 </SubMenu >
                 
                 <MenuItem className='menuItem' label="Amigos"

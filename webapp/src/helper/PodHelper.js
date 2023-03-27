@@ -52,9 +52,18 @@ export async function createData(url, file, session) {
 
 
 //Se encarga de cear el archivos JSON en el POD
-export async function createPointsFile() {
+export async function createPointsFile(webId) {
+  let author = await getNameFromPod(webId);
+
   var r = {
-    points: []
+    maps: [{
+      id: "1",
+      name: "Primer mapa",
+      author: author,
+      description: "Mapa por defecto",
+      points: []
+    }
+    ]
   };
 
   const blob = new Blob([JSON.stringify(r, null, 2)], {
@@ -89,9 +98,6 @@ export async function updateData(file,webId,session) {
 
 
 
-
-
-
 /**
  * ----------------------------------------------------------------------------------------------------
  * Funciones directas a los puntos
@@ -100,9 +106,10 @@ export async function updateData(file,webId,session) {
 
 
 
-
 //Borrará del pod el punto cuya id se pasa por parámetro
-export async function deletePoints(session, webId, id){
+export async function deletePoints(session, webId, pointId){
+
+  let mapId = "1";
 
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
@@ -115,21 +122,15 @@ export async function deletePoints(session, webId, id){
 
     );
 
-    let oldPoints = await file.text();
-    var dataset = JSON.parse(oldPoints);
-    var allPointsJsonArray = dataset.points;
+    let mapsString = await file.text();
+    var jsonMaps = JSON.parse(mapsString);
+    var map = jsonMaps.maps.find(map => map.id == mapId);
 
-    var result = allPointsJsonArray.filter(item => item.id !== id);
+    const pointIndex = map.points.findIndex(p => p.id === pointId);
 
-    var jasonPoints = {
-      points: []
-    };
+    map.points.splice(pointIndex, 1);
 
-    for(var i in result){
-      jasonPoints.points.push(result[i]);
-    }
-
-    const blob = new Blob([JSON.stringify(jasonPoints, null, 2)], {
+    const blob = new Blob([JSON.stringify(jsonMaps, null, 2)], {
       type: "application/json",
     });
 
@@ -146,6 +147,8 @@ export async function deletePoints(session, webId, id){
 //Devuelve un array con la lista de puntos filtrados
 export async function filterPoints(session, webId, categories){
 
+  let mapId = "1";
+
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
   url = url+"private/puntoPrueba3Mapa.json";
@@ -157,14 +160,13 @@ export async function filterPoints(session, webId, categories){
 
     );
 
-    let oldPoints = await file.text();
-    var dataset = JSON.parse(oldPoints);
-    var allPointsJsonArray = dataset.points;
+    let mapsString = await file.text();
+    var jsonMaps = JSON.parse(mapsString);
+    const mapPoints = jsonMaps.maps.find(map => map.id == mapId).points;
 
-    var result = allPointsJsonArray.filter(item => categories.includes(item.category));
+    var result = mapPoints.filter(item => categories.includes(item.category));
 
     return result;
-
 
   } catch (error) {
     console.log(error);
@@ -172,7 +174,7 @@ export async function filterPoints(session, webId, categories){
 }
 
 //Actualiza los datos del JSON introduciéndo un nuevo punto
-export async function updatePoints(latitud,longitud,name,comment,category,session,webId){
+export async function updatePoints(mapId,latitude,longitude,name,description,category,session,webId){
 
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
@@ -180,35 +182,33 @@ export async function updatePoints(latitud,longitud,name,comment,category,sessio
   url = url+"private/puntoPrueba3Mapa.json";
 
   try {
-    let file = await solid.getFile(
+    let solidFile = await solid.getFile(
         url,
         { fetch: session.fetch }
     );
 
-    let autor = await getNameFromPod(webId);
+    let author = await getNameFromPod(webId);
 
     let idPunto = randomId(20);
 
-    var dates =[{id:idPunto,autor:autor,latitud:latitud,longitud:longitud,name:name,comment:comment,category:category}];
-
-    let oldPoints = await file.text();
-
-    var dataset = JSON.parse(oldPoints);
-
-    for(var i in dates) {
-      var item = dates[i];
-      dataset.points.push({
-        "id" : item.id,
-        "autor" : item.autor,
-        "latitude" : item.latitud,
-        "longitude"  : item.longitud,
-        "name" : item.name,
-        "comment" : item.comment,
-        "category": item.category
-      });
+    var newPoint = {
+      id:idPunto,
+      name:name,
+      author:author,
+      latitude:latitude,
+      longitude:longitude,
+      description:description,
+      category:category,
+      comments:[]
     }
 
-    const blob = new Blob([JSON.stringify(dataset, null, 2)], {
+    let mapsString = await solidFile.text();
+    var jsonMaps = JSON.parse(mapsString);
+    const map = jsonMaps.maps.find(map => map.id == mapId);
+
+    map.points.push(newPoint);
+
+    const blob = new Blob([JSON.stringify(jsonMaps, null, 2)], {
       type: "application/json",
     });
 
@@ -220,10 +220,10 @@ export async function updatePoints(latitud,longitud,name,comment,category,sessio
 
   } catch (error) {
 
-    const file = await createPointsFile();
+    const file = await createPointsFile(webId);
     await createData(urlContainer, file, session);
     await ownAclPermission(webId,session);
-    updatePoints(latitud,longitud,name,comment,category,session,webId);
+    updatePoints(mapId,latitude,longitude,name,description,category,session,webId);
   }
 
 }
@@ -231,7 +231,9 @@ export async function updatePoints(latitud,longitud,name,comment,category,sessio
 
 
 //Devolverá todos los puntos dentro del Pod
-export async function getAllPoints(session,webId){
+export async function getAllPointsInCurrentMap(session,webId){
+
+  let mapId = "1";
 
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
@@ -244,15 +246,16 @@ export async function getAllPoints(session,webId){
         { fetch: session.fetch }
     );
 
-    let oldPoints = await file.text();
-    var dataset = JSON.parse(oldPoints);
-    var allPointsJsonArray = dataset.points;
+    let mapsString = await file.text();
+    var jsonMaps = JSON.parse(mapsString);
+    const mapPoints = jsonMaps.maps.find(map => map.id == mapId).points;
+
     var points = [];
 
-    for(var i in allPointsJsonArray) {
-      let p = new Point(allPointsJsonArray[i].id,allPointsJsonArray[i].autor,allPointsJsonArray[i].latitude,
-          allPointsJsonArray[i].longitude, allPointsJsonArray[i].name, allPointsJsonArray[i].category,
-          allPointsJsonArray[i].comment);
+    for(var i in mapPoints) {
+      let p = new Point(mapPoints[i].id,mapPoints[i].author,mapPoints[i].latitude,
+        mapPoints[i].longitude, mapPoints[i].name, mapPoints[i].description, mapPoints[i].category,
+        mapPoints[i].comments);
       points.push(p);
     }
 
@@ -267,6 +270,8 @@ export async function getAllPoints(session,webId){
 
 //Devolverá todas las coordenadas de todos los puntos dentro del Pod
 export async function getAllCoordinates(session,webId){
+  
+  let mapId = "1";
 
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
@@ -279,14 +284,14 @@ export async function getAllCoordinates(session,webId){
         { fetch: session.fetch }
     );
 
-    let oldPoints = await file.text();
-    var dataset = JSON.parse(oldPoints);
-    var allPointsJsonArray = dataset.points;
+    let mapsString = await file.text();
+    var jsonMaps = JSON.parse(mapsString);
+    const mapPoints = jsonMaps.maps.find(map => map.id == mapId).points;
 
     var marks = [];
 
-    for(var i in allPointsJsonArray) {
-      let p =[allPointsJsonArray[i].latitude,allPointsJsonArray[i].longitude];
+    for(var i in mapPoints) {
+      let p =[mapPoints[i].latitude,mapPoints[i].longitude];
       marks.push(p);
     }
 
@@ -303,6 +308,9 @@ export async function getAllCoordinates(session,webId){
 
 //Método que devuelve el punto específico del pod
 export async function getSpecificPoint(session, webId,pointId){
+
+  let mapId = "1";
+
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
   url = url+"private/puntoPrueba3Mapa.json";
@@ -314,17 +322,16 @@ export async function getSpecificPoint(session, webId,pointId){
 
     );
 
-    let oldPoints = await file.text();
-    var dataset = JSON.parse(oldPoints);
-    var allPointsJsonArray = dataset.points;
+    let mapsString = await file.text();
+    var jsonMaps = JSON.parse(mapsString);
+    const mapPoints = jsonMaps.maps.find(map => map.id == mapId).points;  
 
-    var arrayPoints = allPointsJsonArray.filter(item => item.id == pointId);
+    var point = mapPoints.find(item => item.id == pointId);
 
-    if(arrayPoints.length != 1){
+    if(point === undefined){
       console.log("Error: No existe el punto del pod");
     }else{
-      let p = arrayPoints[0];
-      let specificPoint = new Point(p.id,p.autor,p.latitude,p.longitude, p.name, p.category,p.comment);
+      let specificPoint = new Point(point.id, point.author, point.latitude, point.longitude, point.name, point.description, point.category, point.comments);
       return specificPoint;
     }
 
@@ -335,7 +342,10 @@ export async function getSpecificPoint(session, webId,pointId){
 
 
 //Editará el punto del que se pasa la id como parámetro
-export async function editPoint(pointId,latitud,longitud,name,comment,category,session,webId){
+export async function editPoint(pointId,latitud,longitud,name,description,category,session,webId){
+
+  let mapId = "1";
+
   let url = webId.replace("profile/card#me","");
   let urlContainer = url+"private/";
   url = url+"private/puntoPrueba3Mapa.json";
@@ -347,17 +357,17 @@ export async function editPoint(pointId,latitud,longitud,name,comment,category,s
         { fetch: session.fetch }
     );
 
-    let oldPoints = await file.text();
-    var dataset = JSON.parse(oldPoints);
-    var pointsArray = dataset.points;
+    let mapsString = await file.text();
+    var jsonMaps = JSON.parse(mapsString);
+    const mapPoints = jsonMaps.maps.find(map => map.id == mapId).points;
 
-    for(let i=0; i<pointsArray.length; i++){
-      if(pointsArray[i].id == pointId){
-        pointsArray[i].latitude=latitud;
-        pointsArray[i].longitude=longitud;
-        pointsArray[i].name=name;
-        pointsArray[i].category=category;
-        pointsArray[i].comment=comment;
+    for(let i=0; i<mapPoints.length; i++){
+      if(mapPoints[i].id == pointId){
+        mapPoints[i].latitude=latitud;
+        mapPoints[i].longitude=longitud;
+        mapPoints[i].name=name;
+        mapPoints[i].description=description;
+        mapPoints[i].category=category;
         break;
       }
     }
@@ -366,9 +376,9 @@ export async function editPoint(pointId,latitud,longitud,name,comment,category,s
       points: []
     };
 
-    for(var i in pointsArray){
-      jasonPoints.points.push(pointsArray[i]);
-    }
+    // for(var i in pointsArray){
+    //   jasonPoints.points.push(pointsArray[i]);
+    // }
 
     const blob = new Blob([JSON.stringify(jasonPoints, null, 2)], {
       type: "application/json",
@@ -378,6 +388,94 @@ export async function editPoint(pointId,latitud,longitud,name,comment,category,s
 
     await updateData(fichero, webId, session);
 
+
+  } catch (error) {
+    console.log(error);
+  }
+
+}
+
+//Método que devuelve una lista con los mapas del pod
+export async function getAllMaps(session, webId){
+
+  let url = webId.replace("profile/card#me","");
+  let urlContainer = url+"private/";
+  url = url+"private/puntoPrueba3Mapa.json";
+
+  try {
+    let file = await solid.getFile(
+      url,
+      { fetch: session.fetch }
+
+    );
+
+    let mapsString = await file.text();
+    var jsonMaps = JSON.parse(mapsString);
+
+    var maps = jsonMaps.maps;
+
+    const extractedMaps = [];
+
+    for (let i = 0; i < maps.length; i++) {
+      const map = maps[i];
+      const extractedMap = {
+        "id": map.id,
+        "name": map.name,
+        "description": map.description
+      };
+
+    extractedMaps.push(extractedMap);
+
+  }
+
+  return extractedMaps;
+
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+//Actualiza los datos del JSON introduciéndo un nuevo mapa
+export async function addMap(name,description,session,webId){
+
+  let url = webId.replace("profile/card#me","");
+  let urlContainer = url+"private/";
+
+  url = url+"private/puntoPrueba3Mapa.json";
+
+  try {
+    let solidFile = await solid.getFile(
+        url,
+        { fetch: session.fetch }
+    );
+
+    let author = await getNameFromPod(webId);
+
+    let mapId = randomId(20);
+
+    var newMap = {
+      id:mapId,
+      name:name,
+      author:author,
+      description:description,
+      points:[]
+    }
+
+    let mapsString = await solidFile.text();
+    var jsonMaps = JSON.parse(mapsString);
+
+    jsonMaps.maps.push(newMap);
+
+    const blob = new Blob([JSON.stringify(jsonMaps, null, 2)], {
+      type: "application/json",
+    });
+
+    var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
+
+    await updateData(fichero, webId, session)
+
+    return mapId;
 
   } catch (error) {
     console.log(error);

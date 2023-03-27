@@ -1,6 +1,5 @@
-
-import React from "react";
-import { useSession, CombinedDataProvider, Image, LogoutButton, Text } from "@inrupt/solid-ui-react";
+import { useState} from "react";
+import { useSession } from "@inrupt/solid-ui-react";
 import { Button, Card, CardActionArea, CardContent, Container, Typography, TextField, FormGroup } from "@material-ui/core";
 import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
 import {updatePoints, filterPoints, deletePoints, getFriendWebId} from "../../helper/PodHelper";
@@ -9,13 +8,15 @@ import InfoAndComments from "../Comments/InfoAndComments";
 import SideBar from "../sidebar/SideBar";
 import "./ProfileViewer.css"
 import MarkersList from '../markersList/Markerslist';
+import MapList from '../mapList/MapList';
 
 
 
-const ProfileViewer = (props) => {
+const ProfileViewer = () => {
   const { session } = useSession();
   const { webId } = session.info;
-  const {marcadorSeleccionado,setMarcadorSeleccionado} = props;
+  const [marcadorPuntosSeleccionado,setMarcadorPuntosSeleccionado] =  useState(false);
+  const [marcadorMapasSeleccionado,setMarcadorMapasSeleccionado] = useState(false);
 
   return (
 
@@ -24,10 +25,16 @@ const ProfileViewer = (props) => {
       <div className="profileViewer">
 
       <SideBar className="sideBar" session={session} webId={webId}
-        marcadorSeleccionado={marcadorSeleccionado} setMarcadorSeleccionado={setMarcadorSeleccionado}/>
+        marcadorPuntosSeleccionado={marcadorPuntosSeleccionado} setMarcadorPuntosSeleccionado={setMarcadorPuntosSeleccionado}
+        marcadorMapasSeleccionado={marcadorMapasSeleccionado } setMarcadorMapasSeleccionado={setMarcadorMapasSeleccionado}/>
 
-      {marcadorSeleccionado ? 
+      {marcadorPuntosSeleccionado ? 
         <MarkersList session={session} webId={webId}></MarkersList>
+        :
+        null
+      }
+      {marcadorMapasSeleccionado ?
+        <MapList session={session} webId={webId}></MapList>
         :
         null
       }
