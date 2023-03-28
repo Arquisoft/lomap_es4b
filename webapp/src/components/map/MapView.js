@@ -47,7 +47,7 @@ export default class MapView extends Component{
                       // Por cada punto se crea un marcador, asociandole el id del punto
                       let lat = points[i].latitude;
                       let lng = points[i].longitude;
-                      AddMarker([lat, lng], map.target, points[i].id, this.state.webId, this.state.session);
+                      AddMarker([lat, lng], map.target, points[i].id, points[i].category, this.state.webId, this.state.session);
                   }
                 });
           }
