@@ -1,25 +1,9 @@
 import { Card,Button, Typography } from "@material-ui/core";
 import Comments from './Comments'
 import {Text} from 'react-native';
-class CommentBox{
-    comments = new Comments();
-    username;
 
-    constructor(username){
-         this.username = username;
-    }
-    CommentBox1(username){
-       
-        this(username);
-       
-    }
-    register(){
-        this.comments.registerComment(this.username, "hola");
 
-    }
-}
-
-export default CommentBox = (username)=>{
+export default function CommentBox  (username){
     return <Card>
         <Typography>
             <Text>
