@@ -342,7 +342,7 @@ export async function getSpecificPoint(session, webId,pointId){
 
 
 //Editará el punto del que se pasa la id como parámetro
-export async function editPoint(pointId,latitud,longitud,name,description,category,session,webId){
+export async function editPoint(pointId,latitude,longitude,name,description,category,session,webId){
 
   let mapId = "1";
 
@@ -360,27 +360,45 @@ export async function editPoint(pointId,latitud,longitud,name,description,catego
     let mapsString = await file.text();
     var jsonMaps = JSON.parse(mapsString);
     const mapPoints = jsonMaps.maps.find(map => map.id == mapId).points;
-
-    for(let i=0; i<mapPoints.length; i++){
-      if(mapPoints[i].id == pointId){
-        mapPoints[i].latitude=latitud;
-        mapPoints[i].longitude=longitud;
-        mapPoints[i].name=name;
-        mapPoints[i].description=description;
-        mapPoints[i].category=category;
-        break;
+    const point = mapPoints.find(point => point.id == pointId);
+    mapPoints.map(point => {
+      if(point.id == pointId){
+        point.latitude = latitude;
+        point.longitude = longitude;
+        point.name = name;
+        point.description = description;
+        point.category = category;
       }
-    }
+    })
+    //Asignar nuevos valores
+    
 
-    var jasonPoints = {
-      points: []
-    };
+    //jsonMaps.maps.push(mapPoints);
+
+    // for(let i=0; i<mapPoints.length; i++){
+    //   if(mapPoints[i].id == pointId){
+    //     mapPoints[i].latitude=latitude;
+    //     mapPoints[i].longitude=longitude;
+    //     mapPoints[i].name=name;
+    //     mapPoints[i].description=description;
+    //     mapPoints[i].category=category;
+    //     break;
+    //   }
+    // }
+
+    // var jasonPoints = {
+    //   points: []
+    // };
 
     // for(var i in pointsArray){
     //   jasonPoints.points.push(pointsArray[i]);
     // }
 
-    const blob = new Blob([JSON.stringify(jasonPoints, null, 2)], {
+    // const blob = new Blob([JSON.stringify(jasonPoints, null, 2)], {
+    //   type: "application/json",
+    // });
+
+    const blob = new Blob([JSON.stringify(jsonMaps, null, 2)], {
       type: "application/json",
     });
 

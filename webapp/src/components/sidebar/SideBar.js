@@ -11,7 +11,7 @@ import InfoIcon from "@mui/icons-material/Info"
 import SortIcon from "@mui/icons-material/Sort"
 import MapIcon from '@mui/icons-material/Map';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { updatePoints,filterPoints,deletePoints,friendsAclPermission, addMap} from '../../helper/PodHelper';
+import { updatePoints,filterPoints,deletePoints,friendsAclPermission, addMap, editPoint} from '../../helper/PodHelper';
 
 import "./SideBar.css"
 
@@ -61,7 +61,7 @@ export const SideBar = (props) => {
                     <MenuItem className='subMenuItem'
                         icon={<AddLocationAltIcon />} 
                         onClick={() =>
-                            { updatePoints(1, 43.430423, -5.839197, "McDondals", "Restaurante de comida rápida", "Museo",session, webId);}}>
+                            { updatePoints(1, 43.430423, -5.839197, "McDondals", "Restaurante de comida rápida", "Museo",session, webId)}}>
                         Añadir punto </MenuItem>
                     <MenuItem className='subMenuItem'
                         icon={<WrongLocationIcon />} 
