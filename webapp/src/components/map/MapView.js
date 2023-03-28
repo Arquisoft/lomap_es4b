@@ -5,7 +5,7 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import AddMarker from'./AddMarker'
 import AddPointForm from "./AddPointForm";
-import {getAllPoints} from "../../helper/PodHelper";
+import {getAllPointsInCurrentMap} from "../../helper/PodHelper";
 
 
 // Centra el mapa a la ubicacion actual del navegador
@@ -41,7 +41,7 @@ export default class MapView extends Component{
           // Si esta logeado se muestran los puntos del POD
           if(this.state.isLogged){
               // Se obtienen los puntos encapsulados en objetos Point
-              getAllPoints(this.state.session, this.state.webId)
+              getAllPointsInCurrentMap(this.state.session, this.state.webId)
                 .then((points) => {
                     for (let i=0; i < points.length; i++) {
                       // Por cada punto se crea un marcador, asociandole el id del punto

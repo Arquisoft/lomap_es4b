@@ -1,21 +1,20 @@
-import {MarkerComponent} from './MarkerComponent';
+import {MapListComponent} from './MapListComponent';
 import React, { useState, useEffect } from 'react';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
-import {getAllPointsInCurrentMap} from '../../helper/PodHelper';
-import "./markerslist.css"
+import {getAllMaps} from '../../helper/PodHelper';
+import "./MapList.css"
 
-export function MarkersList(props) {
+export function MapList(props) {
 
     const {session,webId} = props;
-    const [points, setPoints] = useState([]);
-    //
+    const [maps, setMaps] = useState([]);
 
     useEffect(() => {
-      const fetchPoints = async() => {
-        const result = await getAllPointsInCurrentMap(session, webId);
-        setPoints(result);
+      const fetchMaps = async() => {
+        const result = await getAllMaps(session, webId);
+        setMaps(result);
       }
-      fetchPoints();
+      fetchMaps();
     }, []);
 
     return (
@@ -23,9 +22,8 @@ export function MarkersList(props) {
         <ScrollArea.Viewport className="ScrollAreaViewport">
           <div className='sideList' id='pointsList'>
             {
-              points.map((item) => (
-                <MarkerComponent key={item.id} name={item.name} category={item.category}
-                description={item.description}  lat={item.latitude} lon={item.longitude} />
+              maps.map((item) => (
+                <MapListComponent key={item.id} name={item.name} description={item.description}/>
               ))
 
             }
@@ -38,4 +36,4 @@ export function MarkersList(props) {
     );
   }
 
-  export default MarkersList;
+  export default MapList;
