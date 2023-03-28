@@ -5,7 +5,6 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import AddMarker from'./AddMarker'
 import AddPointForm from "./AddPointForm";
-import {coordinatesPoints} from "../../helper/PointsManager";
 import {getAllPoints} from "../../helper/PodHelper";
 
 
@@ -48,13 +47,13 @@ export default class MapView extends Component{
                       // Por cada punto se crea un marcador, asociandole el id del punto
                       let lat = points[i].latitude;
                       let lng = points[i].longitude;
-                      AddMarker([lat, lng], map.target, points[i].id);
+                      AddMarker([lat, lng], map.target, points[i].id, points[i].category, this.state.webId, this.state.session);
                   }
                 });
           }
           // aqui se mostrarian los puntos publicos
           else {
-              AddMarker([43.3548096, -5.8534699], map.target, 1);
+              //AddMarker([43.3548096, -5.8534699], map.target, 1);
           }
           map.webId = this.state.webId;
           map.session = this.state.session;
@@ -62,16 +61,13 @@ export default class MapView extends Component{
           map.target.on("click", function (e) {
               const { lat, lng } = e.latlng;
               let formDiv = document.createElement('div');
-              /*ReactDOM.render(
-                  <AddPointForm position={e.latlng} map={map.target}/>,
-                  formDiv
-              );*/
+              let popup = L.popup();
               ReactDOM.render(
-                  <AddPointForm position={e.latlng} map={map.target} webId={map.webId} session={map.session}/>,
+                  <AddPointForm position={e.latlng} map={map.target} webId={map.webId} session={map.session} popup={popup}/>,
                   formDiv
               );
-              let popup = L.popup()
-                  .setLatLng([lat, lng])
+
+                  popup.setLatLng([lat, lng])
                   .setContent(formDiv)
                   .openOn(map.target);
           });

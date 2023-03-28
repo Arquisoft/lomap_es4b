@@ -1,12 +1,15 @@
-import { Container , Card, CardContent, Typography, CardActionArea} from "@material-ui/core";
+import {Container, Card, CardContent, Typography, CardActionArea, Button} from "@material-ui/core";
 import { LoginButton, LogoutButton, CombinedDataProvider, Image, useSession} from "@inrupt/solid-ui-react";
 import Comments from './Comments'
 import CommentsBox from './CommentBox'
 import {Text} from 'react-native';
 import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from "react-leaflet";
+import EditPoint from "../map/EditPoint";
+import DeletePoint from "../map/DeletePoint";
 
 
 const InfoAndComments = (userName) =>{
+    console.log(userName);
     return(
         <div id = "infoAndComments">
         <Container >
@@ -39,6 +42,16 @@ const InfoAndComments = (userName) =>{
                 <CommentsBox username = {userName}>
                 </CommentsBox>
             </Card>
+            <Button variant="contained" color="primary" onClick={() => {
+                EditPoint(userName.pointId,userName.marker, userName.map, userName.webId,userName.session);
+            }}>
+                Edit
+            </Button>
+            <Button variant="contained" color="primary" onClick={() => {
+                DeletePoint(userName.pointId, userName.marker, userName.map, userName.session, userName.webId);
+            }}>
+                Delete
+            </Button>
         </Container>
         </div>
     );

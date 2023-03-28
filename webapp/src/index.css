@@ -16,6 +16,7 @@ body {
 body {
   height: 100vh;
   width: 100vw;
+  font-family: "Segoe UI";
 }
 
 .container {
@@ -24,7 +25,6 @@ body {
 }
 
 nav {
-  font-family: "Segoe UI";
   color: white;
   display: flex;
   justify-content: space-between;

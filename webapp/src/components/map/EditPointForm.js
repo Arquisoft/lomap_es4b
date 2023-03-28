@@ -1,15 +1,16 @@
 import React, {Component} from "react";
-import CreatePoint from "./CreatePoint"
+import {editPoint} from "../../helper/PodHelper";
 
-export default class AddPointForm extends Component {
+export default class EditPointForm extends Component {
     constructor(props) {
         super(props);
-        this.state = {name: '',
-            comment: '',
-            category: 'monument',
-            position: this.props.position,
-            map: this.props.map,
+        this.state = {name: this.props.name,
+            comment: this.props.comment,
+            category: this.props.category,
+            pointId: this.props.pointId,
+            latLng: this.props.latLng,
             popup: this.props.popup,
+            map: this.props.map,
             webId: this.props.webId,
             session: this.props.session,
         };
@@ -31,10 +32,12 @@ export default class AddPointForm extends Component {
     }
 
     handleSubmit(event) {
-        alert('Nuevo punto creado con titulo: ' + this.state.name + ', categoria:' + this.state.category +', comentario:' + this.state.comment);
+        alert('Punto editado con titulo: ' + this.state.name + ', categoria:' + this.state.category +', comentario:' + this.state.comment);
         event.preventDefault();
-        CreatePoint(this.state.position, this.state.map, this.state.name, this.state.comment, this.state.category, this.state.webId, this.state.session);
-        this.state.map.removeLayer(this.state.popup);
+        console.log(this.state.latLng.lat);
+        editPoint(this.state.pointId, this.state.latLng.lat, this.state.latLng.lng, this.state.name, this.state.comment, this.state.category, this.state.session, this.state.webId).then(
+            this.state.map.removeLayer(this.state.popup)
+        );
     }
 
     render() {
@@ -64,7 +67,7 @@ export default class AddPointForm extends Component {
                             <input type="text" value={this.state.comment} onChange={this.handleChangeComment} />
                         </label>
                     </li>
-                    <input type="submit" value="Agregar punto" />
+                    <input type="submit" value="Editar punto" />
                 </ul>
             </form>
         );
