@@ -1,10 +1,29 @@
 import "./Filtro.css"
 import {BubbleChart} from "@mui/icons-material";
 import {Button} from "@material-ui/core";
-export function Filtro(listaFiltros){
-    const listaCosasFiltradas = [];
+import React, { useState } from "react";
+import {filterPoints} from "../../../helper/PodHelper"
+export function Filtro(props){
+    const [listaCosasFiltradas, setListaCosasFiltradas] = useState([]) ;
+    const {listaFiltro,session, webId} = props;
+    const handleSelect = (event) => {
+        const value = event.target.value;
+        const isChecked = event.target.checked;
 
-    const filterList = listaFiltros.listaFiltro.map((categoria)=>{
+        if (isChecked) {
+            //Add checked item into checkList
+            setListaCosasFiltradas([...listaCosasFiltradas, value]);
+        } else {
+            //Remove unchecked item from checkList
+            const filteredList = listaCosasFiltradas.filter((item) => item !== value);
+            setListaCosasFiltradas(filteredList);
+        }
+        filterPoints(session,webId,listaCosasFiltradas);
+
+
+    };
+
+    const filterList = listaFiltro.map((categoria)=>{
         return (
             <li>
                 <div>
@@ -13,13 +32,7 @@ export function Filtro(listaFiltros){
                         id={"checkbox"+categoria}
                         name={categoria}
                         value={categoria}
-                           onClick={()=>{
-                               if(listaCosasFiltradas[{categoria}]===undefined)
-                                   listaCosasFiltradas[{categoria}]={cat:categoria,selected:true};
-                               else
-                                   listaCosasFiltradas[{categoria}].selected=!listaCosasFiltradas[{categoria}].selected;
-                           }
-                           }
+                           onChange={handleSelect}
                        />
 
 
@@ -27,6 +40,7 @@ export function Filtro(listaFiltros){
             </li>)
 
     });
+
     return <div>
         <ul>
             {filterList}

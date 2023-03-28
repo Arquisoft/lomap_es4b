@@ -9,6 +9,7 @@ export async function coordinatesPoints(session,webId){
     return points;
 }
 
-export function getPointsSaved(){
-    return points;
+
+export function setPointsFromPod(points){
+    points = points;
 }
