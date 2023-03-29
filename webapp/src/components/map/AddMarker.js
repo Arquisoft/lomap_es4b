@@ -23,7 +23,7 @@ function AddMarker (position, map, pointId, markerIcon, webId, session) {
     getSpecificPoint(session, webId, pointId).then((point) => {
         let myDiv = document.createElement('div');
         ReactDOM.render(
-            <InfoAndComments username={point.autor} pointId={pointId} marker={marker} map={map} webId={webId} session={session} />,
+            <InfoAndComments username={point.author} pointId={pointId} marker={marker} map={map} webId={webId} session={session} />,
             myDiv
         );
         marker.bindPopup(myDiv).openPopup();

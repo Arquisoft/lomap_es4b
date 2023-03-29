@@ -61,7 +61,7 @@ export const SideBar = (props) => {
                     <MenuItem className='subMenuItem'
                         icon={<AddLocationAltIcon />} 
                         onClick={() =>
-                            { updatePoints(1, 43.430423, -5.839197, "McDondals", "Restaurante de comida rápida", "Museo",session, webId)}}>
+                            { updatePoints(1, 43.50425057839588, -6.92987060546875, "McDondals", "Restaurante de comida rápida", "Museo",session, webId)}}>
                         Añadir punto </MenuItem>
                     <MenuItem className='subMenuItem'
                         icon={<WrongLocationIcon />} 
