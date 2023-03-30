@@ -10,6 +10,7 @@ import "./ProfileViewer.css"
 import MarkersList from '../markersList/Markerslist';
 import MapList from '../mapList/MapList';
 import FriendsList  from "../friendsList/FriendsList";
+import AddMapForm from "../map/AddMapForm";
 
 
 const ProfileViewer = () => {
@@ -18,6 +19,7 @@ const ProfileViewer = () => {
   const [marcadorPuntosSeleccionado,setMarcadorPuntosSeleccionado] =  useState(false);
   const [marcadorMapasSeleccionado,setMarcadorMapasSeleccionado] = useState(false);
   const [marcadorFriendsSeleccionado,setMarcadorFriendsSeleccionado] = useState(false);
+  const [marcadorAñadirMapaSeleccionado, setMarcadorAñadirMapaSeleccionado] = useState(false);
 
   return (
 
@@ -28,7 +30,8 @@ const ProfileViewer = () => {
       <SideBar className="sideBar" session={session} webId={webId}
         marcadorPuntosSeleccionado={marcadorPuntosSeleccionado} setMarcadorPuntosSeleccionado={setMarcadorPuntosSeleccionado}
         marcadorMapasSeleccionado={marcadorMapasSeleccionado } setMarcadorMapasSeleccionado={setMarcadorMapasSeleccionado}
-        marcadorFriendsSeleccionado={marcadorFriendsSeleccionado } setMarcadorFriendsSeleccionado={setMarcadorFriendsSeleccionado}/>
+        marcadorFriendsSeleccionado={marcadorFriendsSeleccionado } setMarcadorFriendsSeleccionado={setMarcadorFriendsSeleccionado}
+        marcadorAñadirMapaSeleccionado={marcadorAñadirMapaSeleccionado} setMarcadorAñadirMapaSeleccionado={setMarcadorAñadirMapaSeleccionado}/>
 
       {marcadorPuntosSeleccionado ? 
         <MarkersList session={session} webId={webId}></MarkersList>
@@ -45,26 +48,11 @@ const ProfileViewer = () => {
         :
         null
       }
-
-      {/* <Button
-        onClick={() =>{ updatePoints(43.430423, -5.839197, "Aaron", "sdfdsfdsf", "Museo",session, webId);}}>
-          Modificar
-      </Button>
-
-      <Button
-        onClick={() =>{ deletePoints(session,webId, "x3jq4fsqyzlaxj2z00dj");}}>
-          Delete
-      </Button>
-
-      <Button
-        onClick={() => { getFriendWebId(webId);}}>
-          Amigos
-      </Button>
-
-      <Button
-        onClick={ () => { filterPoints(session, webId,["Casa", "Resturante"]) } }>
-          Filtrar Pod
-      </Button> */}
+      {marcadorAñadirMapaSeleccionado ?
+        <AddMapForm session={session} webId={webId}></AddMapForm>
+        :
+        null
+      }
 
         <MapView session={session}  webId={webId} isLogged={true}/>
       
