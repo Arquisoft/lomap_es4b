@@ -1,6 +1,13 @@
 import imagen from '../../images/default-icon.png';
 
 export function MarkerComponent(props) {
+
+    // Llama a la funcion centerMapOnPoint de MapView
+    const handleClick = () => {
+        let latLng = [props.lat, props.lon];
+        props.centerMap(latLng);
+    };
+
     return (
       <div className="sideComponent">
         {/* <div className="componentInfo"> */}
@@ -15,7 +22,10 @@ export function MarkerComponent(props) {
           <div className="coordinates">
             <p>{props.lat}, {props.lon}</p>
           </div>
-        {/* </div> */}
+          <div className="centerMapButton">
+            <button onClick={handleClick}>Ver Punto en el Mapa</button>
+          </div>
+          {/* </div> */}
       </div>
     );
   }

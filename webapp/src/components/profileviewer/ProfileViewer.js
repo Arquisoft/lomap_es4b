@@ -18,56 +18,56 @@ const ProfileViewer = () => {
   const [marcadorPuntosSeleccionado,setMarcadorPuntosSeleccionado] =  useState(false);
   const [marcadorMapasSeleccionado,setMarcadorMapasSeleccionado] = useState(false);
   const [marcadorFriendsSeleccionado,setMarcadorFriendsSeleccionado] = useState(false);
-
-  return (
+  const [mapView, setMapView] = useState(null);
+    return (
 
     <Container maxWidth={false} disableGutters={true} id="profileContainer">
 
       <div className="profileViewer">
+          <SideBar className="sideBar" session={session} webId={webId}
+            marcadorPuntosSeleccionado={marcadorPuntosSeleccionado} setMarcadorPuntosSeleccionado={setMarcadorPuntosSeleccionado}
+            marcadorMapasSeleccionado={marcadorMapasSeleccionado } setMarcadorMapasSeleccionado={setMarcadorMapasSeleccionado}
+            marcadorFriendsSeleccionado={marcadorFriendsSeleccionado } setMarcadorFriendsSeleccionado={setMarcadorFriendsSeleccionado}/>
 
-      <SideBar className="sideBar" session={session} webId={webId}
-        marcadorPuntosSeleccionado={marcadorPuntosSeleccionado} setMarcadorPuntosSeleccionado={setMarcadorPuntosSeleccionado}
-        marcadorMapasSeleccionado={marcadorMapasSeleccionado } setMarcadorMapasSeleccionado={setMarcadorMapasSeleccionado}
-        marcadorFriendsSeleccionado={marcadorFriendsSeleccionado } setMarcadorFriendsSeleccionado={setMarcadorFriendsSeleccionado}/>
+          {/* Le pasa la referencia a la funcion centerMapOnPoint de MapView */}
+          {marcadorPuntosSeleccionado ?
+            <MarkersList centerMap={(position) => {mapView.centerMapOnPoint(position)}} session={session} webId={webId}></MarkersList>
+            :
+            null
+          }
+          {marcadorMapasSeleccionado ?
+            <MapList session={session} webId={webId}></MapList>
+            :
+            null
+          }
+          {marcadorFriendsSeleccionado ?
+            <FriendsList session={session} webId={webId}></FriendsList>
+            :
+            null
+          }
 
-      {marcadorPuntosSeleccionado ? 
-        <MarkersList session={session} webId={webId}></MarkersList>
-        :
-        null
-      }
-      {marcadorMapasSeleccionado ?
-        <MapList session={session} webId={webId}></MapList>
-        :
-        null
-      }
-      {marcadorFriendsSeleccionado ?
-        <FriendsList session={session} webId={webId}></FriendsList>
-        :
-        null
-      }
+          {/* <Button
+            onClick={() =>{ updatePoints(43.430423, -5.839197, "Aaron", "sdfdsfdsf", "Museo",session, webId);}}>
+              Modificar
+          </Button>
 
-      {/* <Button
-        onClick={() =>{ updatePoints(43.430423, -5.839197, "Aaron", "sdfdsfdsf", "Museo",session, webId);}}>
-          Modificar
-      </Button>
+          <Button
+            onClick={() =>{ deletePoints(session,webId, "x3jq4fsqyzlaxj2z00dj");}}>
+              Delete
+          </Button>
 
-      <Button
-        onClick={() =>{ deletePoints(session,webId, "x3jq4fsqyzlaxj2z00dj");}}>
-          Delete
-      </Button>
+          <Button
+            onClick={() => { getFriendWebId(webId);}}>
+              Amigos
+          </Button>
 
-      <Button
-        onClick={() => { getFriendWebId(webId);}}>
-          Amigos
-      </Button>
+          <Button
+            onClick={ () => { filterPoints(session, webId,["Casa", "Resturante"]) } }>
+              Filtrar Pod
+          </Button> */}
 
-      <Button
-        onClick={ () => { filterPoints(session, webId,["Casa", "Resturante"]) } }>
-          Filtrar Pod
-      </Button> */}
-
-        <MapView session={session}  webId={webId} isLogged={true}/>
-      
+          {/* Guarda la instancia del mapView en el mapView de profileViewer */}
+          <MapView ref={instance => { setMapView(instance)}} session={session}  webId={webId} isLogged={true}/>
       </div>
  
     </Container>
