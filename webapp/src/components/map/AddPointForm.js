@@ -5,7 +5,7 @@ export default class AddPointForm extends Component {
     constructor(props) {
         super(props);
         this.state = {name: '',
-            comment: '',
+            description: '',
             category: 'monument',
             position: this.props.position,
             map: this.props.map,
@@ -16,7 +16,7 @@ export default class AddPointForm extends Component {
 
         this.handleChangeName = this.handleChangeName.bind(this);
         this.handleChangeCategory = this.handleChangeCategory.bind(this);
-        this.handleChangeComment = this.handleChangeComment.bind(this);
+        this.handleChangeDescription = this.handleChangeDescription.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -26,14 +26,14 @@ export default class AddPointForm extends Component {
     handleChangeCategory(event) {
         this.setState({category: event.target.value});
     }
-    handleChangeComment(event) {
-        this.setState({comment: event.target.value});
+    handleChangeDescription(event) {
+        this.setState({description: event.target.value});
     }
 
     handleSubmit(event) {
-        alert('Nuevo punto creado con titulo: ' + this.state.name + ', categoria:' + this.state.category +', comentario:' + this.state.comment);
+        alert('Nuevo punto creado con titulo: ' + this.state.name + ', categoria:' + this.state.category +', comentario:' + this.state.description);
         event.preventDefault();
-        CreatePoint(this.state.position, this.state.map, this.state.name, this.state.comment, this.state.category, this.state.webId, this.state.session);
+        CreatePoint(this.state.position, this.state.map, this.state.name, this.state.description, this.state.category, this.state.webId, this.state.session);
         this.state.map.removeLayer(this.state.popup);
     }
 
@@ -61,7 +61,7 @@ export default class AddPointForm extends Component {
                     <li>
                         <label>
                             Comentario:
-                            <input type="text" value={this.state.comment} onChange={this.handleChangeComment} />
+                            <input type="text" value={this.state.description} onChange={this.handleChangeDescription} />
                         </label>
                     </li>
                     <input type="submit" value="Agregar punto" />
