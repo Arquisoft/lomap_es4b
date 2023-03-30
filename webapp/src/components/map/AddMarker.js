@@ -18,17 +18,17 @@ function AddMarker (position, map, pointId, markerIcon, webId, session) {
         className:"leaflet-venue-icon",
     });
     const marker = L.marker(position, {icon: IconLocation, riseOnHover:true});
-    // guardar el id de los puntos con este atributo?? (lo he creado yo, no es uno predefinido)
-    marker.pointId = pointId;
-    getSpecificPoint(session, webId, pointId).then((point) => {
-        let myDiv = document.createElement('div');
-        ReactDOM.render(
-            <InfoAndComments username={point.author} pointId={pointId} marker={marker} map={map} webId={webId} session={session} />,
-            myDiv
-        );
-        marker.bindPopup(myDiv).openPopup();
-        marker.addTo(map);
-    });
+    marker.addTo(map);
+    marker.on('click', function() {
+        getSpecificPoint(session, webId, pointId).then((point) => {
+            let myDiv = document.createElement('div');
+            ReactDOM.render(
+                <InfoAndComments point={point} marker={marker} map={map} webId={webId} session={session} />,
+                myDiv
+            );
+            marker.bindPopup(myDiv).openPopup();
+        });
+    })
 
 }
 
