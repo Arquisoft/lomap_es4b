@@ -63,7 +63,7 @@ export default class EditPointForm extends Component {
                     </li>
                     <li>
                         <label>
-                            Comentario:
+                            Descripcion:
                             <input type="text" value={this.state.description} onChange={this.handleChangeDescription} />
                         </label>
                     </li>
