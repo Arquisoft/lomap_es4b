@@ -14,6 +14,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { updatePoints,filterPoints,deletePoints,friendsAclPermission, addMap, editPoint} from '../../helper/PodHelper';
 
 import "./SideBar.css"
+import {Filtro} from "./Filtro/Filtro";
 
 export const SideBar = (props) => {
 

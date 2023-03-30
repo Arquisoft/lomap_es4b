@@ -5,7 +5,7 @@ export const PointStruct = {
     comment:""
 };
   
-export class Comment{
+export class CommentEntity{
     constructor(username, text) {
         this.username = username;
         this.text = text;
