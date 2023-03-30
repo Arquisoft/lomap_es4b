@@ -20,9 +20,8 @@ const ProfileViewer = () => {
   const [marcadorMapasSeleccionado,setMarcadorMapasSeleccionado] = useState(false);
   const [marcadorFriendsSeleccionado,setMarcadorFriendsSeleccionado] = useState(false);
   const [marcadorAñadirMapaSeleccionado, setMarcadorAñadirMapaSeleccionado] = useState(false);
-
+  const [mapView, setMapView] = useState(null);
   return (
-
     <Container maxWidth={false} disableGutters={true} id="profileContainer">
 
       <div className="profileViewer">
@@ -33,11 +32,12 @@ const ProfileViewer = () => {
         marcadorFriendsSeleccionado={marcadorFriendsSeleccionado } setMarcadorFriendsSeleccionado={setMarcadorFriendsSeleccionado}
         marcadorAñadirMapaSeleccionado={marcadorAñadirMapaSeleccionado} setMarcadorAñadirMapaSeleccionado={setMarcadorAñadirMapaSeleccionado}/>
 
-      {marcadorPuntosSeleccionado ? 
-        <MarkersList session={session} webId={webId}></MarkersList>
-        :
-        null
-      }
+          {/* Le pasa la referencia a la funcion centerMapOnPoint de MapView */}
+          {marcadorPuntosSeleccionado ?
+              <MarkersList centerMap={(position) => {mapView.centerMapOnPoint(position)}} session={session} webId={webId}></MarkersList>
+              :
+              null
+          }
       {marcadorMapasSeleccionado ?
         <MapList session={session} webId={webId}></MapList>
         :
@@ -54,8 +54,8 @@ const ProfileViewer = () => {
         null
       }
 
-        <MapView session={session}  webId={webId} isLogged={true}/>
-      
+          {/* Guarda la instancia del mapView en el mapView de profileViewer */}
+          <MapView ref={instance => { setMapView(instance)}} session={session}  webId={webId} isLogged={true}/>
       </div>
  
     </Container>
