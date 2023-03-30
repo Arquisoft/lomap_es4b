@@ -370,33 +370,6 @@ export async function editPoint(pointId,latitude,longitude,name,description,cate
         point.category = category;
       }
     })
-    //Asignar nuevos valores
-    
-
-    //jsonMaps.maps.push(mapPoints);
-
-    // for(let i=0; i<mapPoints.length; i++){
-    //   if(mapPoints[i].id == pointId){
-    //     mapPoints[i].latitude=latitude;
-    //     mapPoints[i].longitude=longitude;
-    //     mapPoints[i].name=name;
-    //     mapPoints[i].description=description;
-    //     mapPoints[i].category=category;
-    //     break;
-    //   }
-    // }
-
-    // var jasonPoints = {
-    //   points: []
-    // };
-
-    // for(var i in pointsArray){
-    //   jasonPoints.points.push(pointsArray[i]);
-    // }
-
-    // const blob = new Blob([JSON.stringify(jasonPoints, null, 2)], {
-    //   type: "application/json",
-    // });
 
     const blob = new Blob([JSON.stringify(jsonMaps, null, 2)], {
       type: "application/json",
@@ -501,6 +474,47 @@ export async function addMap(name,description,session,webId){
 
 }
 
+//Añade un comentario a un punto
+export async function addComment(mapId,pointId,text,session,webId){
+
+  let url = webId.replace("profile/card#me","");
+  let urlContainer = url+"private/";
+
+  url = url+"private/puntoPrueba3Mapa.json";
+
+  try {
+    let solidFile = await solid.getFile(
+        url,
+        { fetch: session.fetch }
+    );
+
+    let author = await getNameFromPod(webId);
+
+    var newComment = {
+      author:author,
+      text:text
+    }
+
+    let mapsString = await solidFile.text();
+    var jsonMaps = JSON.parse(mapsString);
+    const map = jsonMaps.maps.find(map => map.id == mapId);
+    const point = map.points.find(point => point.id == pointId);
+
+    point.comments.push(newComment);
+
+    const blob = new Blob([JSON.stringify(jsonMaps, null, 2)], {
+      type: "application/json",
+    });
+
+    var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
+
+    await updateData(fichero, webId, session);
+
+  } catch (error) {
+    console.log(error);
+  }
+
+}
 
 
 /**
