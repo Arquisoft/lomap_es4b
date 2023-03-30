@@ -223,7 +223,7 @@ export async function updatePoints(mapId,latitude,longitude,name,description,cat
     const file = await createPointsFile(webId);
     await createData(urlContainer, file, session);
     await ownAclPermission(webId,session);
-    updatePoints(mapId,latitude,longitude,name,description,category,session,webId);
+    return updatePoints(mapId,latitude,longitude,name,description,category,session,webId);
   }
 
 }
