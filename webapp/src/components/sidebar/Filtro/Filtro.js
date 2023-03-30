@@ -18,7 +18,7 @@ export function Filtro(props){
             const filteredList = listaCosasFiltradas.filter((item) => item !== value);
             setListaCosasFiltradas(filteredList);
         }
-        filterPoints(session,webId,listaCosasFiltradas);
+        filterPoints(session,webId,listaCosasFiltradas).then((p)=>console.log(p));
 
 
     };

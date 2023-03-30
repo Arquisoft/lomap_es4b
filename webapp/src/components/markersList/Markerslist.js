@@ -8,7 +8,7 @@ export function MarkersList(props) {
 
     const {session,webId} = props;
     const [points, setPoints] = useState([]);
-    //
+    // 
 
     useEffect(() => {
       const fetchPoints = async() => {
