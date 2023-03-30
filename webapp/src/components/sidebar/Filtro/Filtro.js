@@ -5,7 +5,8 @@ import React, { useState } from "react";
 import {filterPoints} from "../../../helper/PodHelper"
 export function Filtro(props){
     const [listaCosasFiltradas, setListaCosasFiltradas] = useState([]) ;
-    const {listaFiltro,session, webId} = props;
+    const {session, webId} = props;
+    var listaFiltro=["Restaurante","Museo"];
     const handleSelect = (event) => {
         const value = event.target.value;
         const isChecked = event.target.checked;
@@ -18,7 +19,7 @@ export function Filtro(props){
             const filteredList = listaCosasFiltradas.filter((item) => item !== value);
             setListaCosasFiltradas(filteredList);
         }
-        filterPoints(session,webId,listaCosasFiltradas);
+
 
 
     };
@@ -44,11 +45,12 @@ export function Filtro(props){
     return <div>
         <ul>
             {filterList}
-            <Button OnClick={
+            <Button onClick={
                 ()=>{
+                    filterPoints(session,webId,listaCosasFiltradas);
                 }
             }>
-
+                Filtrar
             </Button>
         </ul>
     </div>

@@ -14,6 +14,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { updatePoints,filterPoints,deletePoints,friendsAclPermission, addMap, editPoint, addComment} from '../../helper/PodHelper';
 
 import "./SideBar.css"
+import {Filtro} from "./Filtro/Filtro";
 
 export const SideBar = (props) => {
 
@@ -72,11 +73,13 @@ export const SideBar = (props) => {
                         onClick={() =>
                             { deletePoints(session,webId, "txo5ke76cjs5r5r3pg1x");}}> 
                         Eliminar punto </MenuItem>
-                    <MenuItem className='subMenuItem' 
-                        icon={<FilterAltIcon />}
-                        onClick={ () => 
-                            { filterPoints(session, webId,["Museo", "Restaurante"]) } }> 
-                        Filtrar puntos </MenuItem>
+                    <SubMenu className="menuFiltro" label="Filtrar puntos">
+                        <MenuItem className="subMenuFiltro" label="filtros">
+                            <Filtro session={session} webId={webId}>
+
+                            </Filtro>
+                        </MenuItem>
+                    </SubMenu>
                 </SubMenu >
 
                 <SubMenu className="subMenu" label={isOpen? "Gestionar mapas" : ""} icon={<SortIcon />}
