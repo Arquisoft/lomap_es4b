@@ -18,7 +18,8 @@ import "./SideBar.css"
 export const SideBar = (props) => {
 
     const { collapseSidebar } = useProSidebar();
-    const {session, webId, marcadorPuntosSeleccionado,setMarcadorPuntosSeleccionado, marcadorMapasSeleccionado, setMarcadorMapasSeleccionado} = props;
+    const {session, webId, marcadorPuntosSeleccionado,setMarcadorPuntosSeleccionado, marcadorMapasSeleccionado, setMarcadorMapasSeleccionado,
+        marcadorFriendsSeleccionado, setMarcadorFriendsSeleccionado} = props;
     const [isOpen, setOpen] = useState(true);
 
     return(
@@ -39,6 +40,7 @@ export const SideBar = (props) => {
                     setOpen(!isOpen);
                     setMarcadorPuntosSeleccionado(false);
                     setMarcadorMapasSeleccionado(false);
+                    setMarcadorFriendsSeleccionado(false);
                     }}
                     style={{ textAlign: "center" }}
                     >
@@ -53,7 +55,9 @@ export const SideBar = (props) => {
                     }}>
                     <MenuItem className="subMenuItem" label="Ver puntos"
                         icon={<FmdGoodIcon />}
-                        onClick={()=>{ setMarcadorMapasSeleccionado(false);
+                        onClick={()=>{ 
+                            setMarcadorMapasSeleccionado(false);
+                            setMarcadorFriendsSeleccionado(false);
                             setMarcadorPuntosSeleccionado(!marcadorPuntosSeleccionado);
                         }}>
                        Ver puntos
@@ -83,7 +87,9 @@ export const SideBar = (props) => {
                     }}>
                     <MenuItem className="subMenuItem"
                         icon={<MapIcon />}
-                        onClick={()=>{setMarcadorPuntosSeleccionado(false); 
+                        onClick={()=>{
+                            setMarcadorFriendsSeleccionado(false);
+                            setMarcadorPuntosSeleccionado(false); 
                             setMarcadorMapasSeleccionado(!marcadorMapasSeleccionado);
                         }}>
                        Ver mapas
@@ -91,7 +97,7 @@ export const SideBar = (props) => {
                     <MenuItem className='subMenuItem'
                         icon={<AddCircleIcon />} 
                         onClick={() =>
-                            { addMap("Nuevo mapa", "Descripción del nuevo mapa", session, webId) }}>
+                            { addMap("Mapita nuevo", "Descripción del nuevo mapa", session, webId) }}>
                         Añadir mapa </MenuItem>
                 </SubMenu >
                 
@@ -99,7 +105,9 @@ export const SideBar = (props) => {
                     icon={<GroupIcon />} 
                     onClick={() => { 
                         if(isOpen){
-
+                            setMarcadorFriendsSeleccionado(false);
+                            setMarcadorMapasSeleccionado(false); 
+                            setMarcadorFriendsSeleccionado(!marcadorFriendsSeleccionado);
                         }else{
                             collapseSidebar();
                             setOpen(!isOpen);

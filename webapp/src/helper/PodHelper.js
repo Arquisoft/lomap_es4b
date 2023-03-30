@@ -223,7 +223,7 @@ export async function updatePoints(mapId,latitude,longitude,name,description,cat
     const file = await createPointsFile(webId);
     await createData(urlContainer, file, session);
     await ownAclPermission(webId,session);
-    updatePoints(mapId,latitude,longitude,name,description,category,session,webId);
+    return updatePoints(mapId,latitude,longitude,name,description,category,session,webId);
   }
 
 }
@@ -572,6 +572,47 @@ export async function friendsAclPermission(webId,session) {
   }
 }
 
+//Devuevle los amigos de usuario registrado
+export async function getAllFriendsFromPod(webId) {
+
+  let friendsURL = solid.getUrlAll(await getProfile(webId), FOAF.knows);
+
+  let friends = [];
+
+  for(var i in friendsURL){
+
+    let name = await getNameFromPod(friendsURL[i]);
+    var friend = {
+      friendURL:friendsURL[i],
+      friendName:name,
+    }
+    friends.push(friend);
+  }
+
+  return friends;
+
+}
+
+//Devuelve los mapas del amigo que se pasa por parámetro
+export async function getAllFriendMaps(webId) {
+
+  let friendsURL = solid.getUrlAll(await getProfile(webId), FOAF.knows);
+
+  let friends = [];
+
+  for(var i in friendsURL){
+
+    let name = await getNameFromPod(friendsURL[i]);
+    var friend = {
+      friendURL:friendsURL[i],
+      friendName:name,
+    }
+    friends.push(friend);
+  }
+
+  return friends;
+
+}
 
 
 
@@ -591,12 +632,18 @@ async function getProfile(webId){
 
 
 //Devuelve el nombre del usuario logeado
-export async function getNameFromPod(webId) {
+async function getNameFromPod(webId) {
   if (webId === "" || webId === undefined) return "Name not found"; // we return the empty string
   let name = solid.getStringNoLocale(await getProfile(webId), FOAF.name);
   return name !== null ? name : "No name :(";
 }
 
+
+export async function getImageFromPod(webId) {
+  if (webId === "" || webId === undefined) return "Name not found"; // we return the empty string
+  let image = solid.getUrl(await getProfile(webId), VCARD.hasPhoto.iri.value);
+  return image !== null ? image : "No image :(";
+}
 
 //Función que devuelve una id random para poder distinguir los puntos
 const randomId = function(length) {
