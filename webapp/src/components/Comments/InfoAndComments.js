@@ -4,6 +4,7 @@ import {Text} from 'react-native';
 import { Button} from "@material-ui/core";
 import EditPoint from "../map/EditPoint";
 import DeletePoint from "../map/DeletePoint";
+import CommentBox from "./CommentBox";
 
 const InfoAndComments = (props) =>{
     const {point,marker,map,webId, session} = props;
@@ -41,12 +42,14 @@ const InfoAndComments = (props) =>{
                                 {"Comentarios"}
                             </Text>
                         </Typography>
-                        /*<Comments list = {point.comments} >
-                        </Comments>*/
+                        <Comments list = {point.comments} >
+                        </Comments>
                     </CardContent>
                     <CardActionArea style={{ justifyContent: "left", display: "flex" }}>
                     </CardActionArea>
                 </Card>
+                <CommentBox mapId = {map} pointId = {point} session={session} webId={webId}>
+                </CommentBox>
                 <Card>
 
                 </Card>
