@@ -20,24 +20,32 @@ function LocationMarker() {
 }
 
 export default class MapView extends Component{
-
   constructor(props) {
     super(props);
     this.state = {
       session: props.session,
       webId: props.webId,
       isLogged: props.isLogged,
+        map: null,
     };
   }
+
+    centerMapOnPoint(location) {
+        if (this.state.map != null) {
+            this.state.map.target.flyTo(location, this.state.map.target.getZoom());
+        }
+    }
+
   render() {
     return (
       <MapContainer id="map"
         center={[43.3548096, -5.8534699]}
-        zoom={15}
+        zoom={13}
         //style={{ width: "100%", height: "81.9vh" }}
         scrollWheelZoom
 
         whenReady={(map) => {
+            this.setState({map: map});
           // Si esta logeado se muestran los puntos del POD
           if(this.state.isLogged){
               // Se obtienen los puntos encapsulados en objetos Point

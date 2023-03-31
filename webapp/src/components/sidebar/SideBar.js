@@ -11,7 +11,8 @@ import InfoIcon from "@mui/icons-material/Info"
 import SortIcon from "@mui/icons-material/Sort"
 import MapIcon from '@mui/icons-material/Map';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { updatePoints,filterPoints,deletePoints,friendsAclPermission, addMap, editPoint, addComment} from '../../helper/PodHelper';
+import { updatePoints,filterPoints,deletePoints,friendsAclPermission, addMap, editPoint, addComment, addScore} from '../../helper/PodHelper';
+
 
 import "./SideBar.css"
 import {Filtro} from "./Filtro/Filtro";
@@ -20,7 +21,7 @@ export const SideBar = (props) => {
 
     const { collapseSidebar } = useProSidebar();
     const {session, webId, marcadorPuntosSeleccionado,setMarcadorPuntosSeleccionado, marcadorMapasSeleccionado, setMarcadorMapasSeleccionado,
-        marcadorFriendsSeleccionado, setMarcadorFriendsSeleccionado} = props;
+        marcadorFriendsSeleccionado, setMarcadorFriendsSeleccionado, marcadorAñadirMapaSeleccionado, setMarcadorAñadirMapaSeleccionado} = props;
     const [isOpen, setOpen] = useState(true);
 
     return(
@@ -42,6 +43,7 @@ export const SideBar = (props) => {
                     setMarcadorPuntosSeleccionado(false);
                     setMarcadorMapasSeleccionado(false);
                     setMarcadorFriendsSeleccionado(false);
+                    setMarcadorAñadirMapaSeleccionado(false);
                     }}
                     style={{ textAlign: "center" }}
                     >
@@ -59,6 +61,7 @@ export const SideBar = (props) => {
                         onClick={()=>{ 
                             setMarcadorMapasSeleccionado(false);
                             setMarcadorFriendsSeleccionado(false);
+                            setMarcadorAñadirMapaSeleccionado(false);
                             setMarcadorPuntosSeleccionado(!marcadorPuntosSeleccionado);
                         }}>
                        Ver puntos
@@ -66,7 +69,7 @@ export const SideBar = (props) => {
                     <MenuItem className='subMenuItem'
                         icon={<AddLocationAltIcon />} 
                         onClick={() =>
-                            { addComment("1","l170widsl8p51hwjc4b4","Comentairo de prueba",session,webId)}}>
+                            { addComment("1","xdjmz1zlqhgmrp158fj0","Depu",session,webId)}}>
                         Añadir punto </MenuItem>
                     <MenuItem className='subMenuItem'
                         icon={<WrongLocationIcon />} 
@@ -93,14 +96,18 @@ export const SideBar = (props) => {
                         onClick={()=>{
                             setMarcadorFriendsSeleccionado(false);
                             setMarcadorPuntosSeleccionado(false); 
+                            setMarcadorAñadirMapaSeleccionado(false);
                             setMarcadorMapasSeleccionado(!marcadorMapasSeleccionado);
                         }}>
                        Ver mapas
                     </MenuItem>
                     <MenuItem className='subMenuItem'
                         icon={<AddCircleIcon />} 
-                        onClick={() =>
-                            { addMap("Mapita nuevo", "Descripción del nuevo mapa", session, webId) }}>
+                        onClick={() =>{
+                                setMarcadorFriendsSeleccionado(false);
+                                setMarcadorPuntosSeleccionado(false);
+                                setMarcadorMapasSeleccionado(false);
+                                setMarcadorAñadirMapaSeleccionado(!marcadorAñadirMapaSeleccionado); }}>
                         Añadir mapa </MenuItem>
                 </SubMenu >
                 
@@ -110,6 +117,7 @@ export const SideBar = (props) => {
                         if(isOpen){
                             setMarcadorFriendsSeleccionado(false);
                             setMarcadorMapasSeleccionado(false); 
+                            setMarcadorAñadirMapaSeleccionado(false);
                             setMarcadorFriendsSeleccionado(!marcadorFriendsSeleccionado);
                         }else{
                             collapseSidebar();

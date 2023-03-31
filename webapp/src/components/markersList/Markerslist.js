@@ -8,7 +8,7 @@ export function MarkersList(props) {
 
     const {session,webId} = props;
     const [points, setPoints] = useState([]);
-    //
+    // 
 
     useEffect(() => {
       const fetchPoints = async() => {
@@ -24,7 +24,7 @@ export function MarkersList(props) {
           <div className='sideList' id='pointsList'>
             {
               points.map((item) => (
-                <MarkerComponent key={item.id} name={item.name} category={item.category}
+                <MarkerComponent centerMap={(position) => props.centerMap(position)} key={item.id} name={item.name} category={item.category}
                 description={item.description}  lat={item.latitude} lon={item.longitude} />
               ))
 
