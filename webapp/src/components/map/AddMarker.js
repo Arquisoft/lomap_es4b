@@ -6,7 +6,7 @@ import InfoAndComments from "../Comments/InfoAndComments";
 import {getSpecificPoint} from "../../helper/PodHelper";
 
 // Crea un marcador, le asocia un popup con el contenido del componente InfoAndComments y lo asocia al mapa
-function AddMarker (position, map, pointId, markerIcon, webId, session) {
+function AddMarker (position, map, pointId, markerIcon, markers, webId, session) {
     const IconLocation = L.icon({
         iconUrl: require('../../images/' + markerIcon + '.png'),
         iconRetinaUrl: require('../../images/blue-marker.png'),
@@ -19,6 +19,7 @@ function AddMarker (position, map, pointId, markerIcon, webId, session) {
     });
     const marker = L.marker(position, {icon: IconLocation, riseOnHover:true});
     marker.addTo(map);
+    markers.push(marker);
     marker.on('click', function() {
         getSpecificPoint(session, webId, pointId).then((point) => {
             let myDiv = document.createElement('div');
@@ -29,7 +30,6 @@ function AddMarker (position, map, pointId, markerIcon, webId, session) {
             marker.bindPopup(myDiv).openPopup();
         });
     })
-
 }
 
 

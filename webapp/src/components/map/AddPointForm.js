@@ -12,6 +12,7 @@ export default class AddPointForm extends Component {
             popup: this.props.popup,
             webId: this.props.webId,
             session: this.props.session,
+            markers: this.props.markers,
         };
 
         this.handleChangeName = this.handleChangeName.bind(this);
@@ -33,7 +34,7 @@ export default class AddPointForm extends Component {
     handleSubmit(event) {
         alert('Nuevo punto creado con titulo: ' + this.state.name + ', categoria:' + this.state.category +', comentario:' + this.state.description);
         event.preventDefault();
-        CreatePoint(this.state.position, this.state.map, this.state.name, this.state.description, this.state.category, this.state.webId, this.state.session);
+        CreatePoint(this.state.position, this.state.map, this.state.markers, this.state.name, this.state.description, this.state.category, this.state.webId, this.state.session);
         this.state.map.removeLayer(this.state.popup);
     }
 

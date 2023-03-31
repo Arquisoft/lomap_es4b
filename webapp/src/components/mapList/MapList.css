@@ -42,6 +42,13 @@
     margin: 0;
 }
 
+.showPointsButton button{
+    font-weight: bold;
+    border-radius: 25%;
+    background-color: rgb(12, 32, 78);
+    color: aliceblue;
+}
+
 /* Scroll */
 .ScrollAreaRoot {
     width: 30%;

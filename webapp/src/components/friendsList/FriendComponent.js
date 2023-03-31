@@ -31,7 +31,11 @@ export function FriendComponent(props) {
     const handleClick = () => {
       if(selectedValue != ''){
         console.log(selectedValue);
-        getAllPointsInCurrentMap(session,friendURL).then((p)=>console.log(p));
+        getAllPointsInCurrentMap(session,friendURL).then((points)=>{
+            console.log(points);
+            props.showFriendPoints(points);
+            }
+        );
       }
     
     };
