@@ -1,10 +1,7 @@
 import { useState} from "react";
 import { useSession } from "@inrupt/solid-ui-react";
-import { Button, Card, CardActionArea, CardContent, Container, Typography, TextField, FormGroup } from "@material-ui/core";
-import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
-import {updatePoints, filterPoints, deletePoints, getFriendWebId} from "../../helper/PodHelper";
+import { Container} from "@material-ui/core";
 import MapView from "../map/MapView";
-import InfoAndComments from "../Comments/InfoAndComments";
 import SideBar from "../sidebar/SideBar";
 import "./ProfileViewer.css"
 import MarkersList from '../markersList/Markerslist';
@@ -38,6 +35,7 @@ const ProfileViewer = () => {
               :
               null
           }
+
       {marcadorMapasSeleccionado ?
         <MapList session={session} webId={webId}></MapList>
         :
