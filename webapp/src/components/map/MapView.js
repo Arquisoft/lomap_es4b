@@ -5,6 +5,7 @@ import "leaflet/dist/leaflet.css";
 import * as L from "leaflet";
 import AddMarker from'./AddMarker';
 import AddPointForm from "./AddPointForm";
+import ProfileViewer from "../ProfileViewer";
 
 
 // Centra el mapa a la ubicacion actual del navegador
@@ -79,7 +80,7 @@ export default class MapView extends Component{
                   .openOn(map.target);
           });
         }}
-        >      
+        >    
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
