@@ -6,7 +6,7 @@ import {filterPoints} from "../../../helper/PodHelper"
 export function Filtro(props){
     const [listaCosasFiltradas, setListaCosasFiltradas] = useState([]) ;
     const {session, webId} = props;
-    var listaFiltro=["Restaurante","Museo"];
+    var listaFiltro=["restaurant","monument", "hospital"];
     const handleSelect = (event) => {
         const value = event.target.value;
         const isChecked = event.target.checked;
