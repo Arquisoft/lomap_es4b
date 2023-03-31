@@ -1,6 +1,7 @@
 .sideBar{
     background-color: #454950;
     font-size: large;
+    z-index: 1;
 }
 
 .menu{

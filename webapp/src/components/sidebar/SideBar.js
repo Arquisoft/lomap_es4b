@@ -111,7 +111,7 @@ export const SideBar = (props) => {
                     icon={<GroupIcon />} 
                     onClick={() => { 
                         if(isOpen){
-                            setMarcadorFriendsSeleccionado(false);
+                            setMarcadorPuntosSeleccionado(false);
                             setMarcadorMapasSeleccionado(false); 
                             setMarcadorAñadirMapaSeleccionado(false);
                             setMarcadorFriendsSeleccionado(!marcadorFriendsSeleccionado);
