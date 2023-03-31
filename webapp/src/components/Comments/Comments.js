@@ -9,7 +9,7 @@ export default function Comments (props){
 
     const commentList = props.list.map((name)=>{
         return(
-            <Comment username= {name.userName} comment={name.commentText}/>
+            <Comment comment={name}/>
         );
     })
     return <div>

@@ -23,14 +23,14 @@ class CommentBox{
 
 export default CommentBox = (props)=>{
     var [texto, setTexto] = useState("");
-    const[mapId,pointId,session,webId] = useState(props);
+    const {mapId,pointId,session,webId} = props;
     const setComentario = event => {
         // 👇️ access textarea value
         setTexto(event.target.value);
         console.log(event.target.value);
     };
     const addComments = event=>{
-        addComment(1,pointId,texto,session,webId);
+        addComment(1,pointId.id,texto,session,webId);
     };
     return <Card>
         <Typography>
