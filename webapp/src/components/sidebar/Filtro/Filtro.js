@@ -5,7 +5,8 @@ import React, { useState } from "react";
 import {filterPoints} from "../../../helper/PodHelper"
 export function Filtro(props){
     const [listaCosasFiltradas, setListaCosasFiltradas] = useState([]) ;
-    const {listaFiltro,session, webId} = props;
+    const {session, webId} = props;
+    var listaFiltro=[{texto:"Restaurante",token:"restaurant"},{texto:"Monumento",token:"monument"}, {texto:"Hospital",token:"hospital"}];
     const handleSelect = (event) => {
         const value = event.target.value;
         const isChecked = event.target.checked;
@@ -18,7 +19,7 @@ export function Filtro(props){
             const filteredList = listaCosasFiltradas.filter((item) => item !== value);
             setListaCosasFiltradas(filteredList);
         }
-        filterPoints(session,webId,listaCosasFiltradas).then((p)=>console.log(p));
+
 
 
     };
@@ -27,11 +28,11 @@ export function Filtro(props){
         return (
             <li>
                 <div>
-                    <label class="label" htmlFor={"checkbox"+categoria}>{categoria}</label>
+                    <label class="label" htmlFor={"checkbox"+categoria.token}>{categoria.texto}</label>
                     <input type="checkbox"
-                        id={"checkbox"+categoria}
-                        name={categoria}
-                        value={categoria}
+                        id={"checkbox"+categoria.token}
+                        name={categoria.token}
+                        value={categoria.token}
                            onChange={handleSelect}
                        />
 
@@ -44,11 +45,12 @@ export function Filtro(props){
     return <div>
         <ul>
             {filterList}
-            <Button OnClick={
-                ()=>{
+            <Button onClick={
+                async ()=>{
+                    var puntos = await filterPoints(session,webId,listaCosasFiltradas);
                 }
             }>
-
+                Filtrar
             </Button>
         </ul>
     </div>

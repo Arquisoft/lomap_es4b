@@ -4,13 +4,30 @@ import {Text} from 'react-native';
 import { Button} from "@material-ui/core";
 import EditPoint from "../map/EditPoint";
 import DeletePoint from "../map/DeletePoint";
+import CommentBox from "./CommentBox";
+import ReviewBox from "../reviews/ReviewBox";
+import {getSpecificPoint} from "../../helper/PodHelper";
+import Reviews from "../reviews/Reviews";
+import {useState} from "react";
+import ReactDOM from "react-dom";
+import "./InfoAndComments.css"
 
 const InfoAndComments = (props) =>{
-    console.log(props.webId);
-    const {point,marker,map, webId, session} = props;
+    const {point,marker,map, webId, session, isOwner} = props;
+
+    const refrescar = ()=>{
+        getSpecificPoint(session, webId, point.id).then((p) => {
+            let myDiv = document.createElement('div');
+            ReactDOM.render(
+                <InfoAndComments point={p} marker={marker} map={map} webId={webId} session={session} />,
+                myDiv
+            );
+            marker.bindPopup(myDiv).openPopup();
+        });
+    };
     return(
-        <div id = "infoAndComments">
-            <Container >
+        <div id = "infoAndComments" >
+            <Container class={"main"}>
                 <Card>
                     <CardContent>
                         <Typography gutterBottom variant="h5" component={'span'}>
@@ -42,14 +59,19 @@ const InfoAndComments = (props) =>{
                                 {"Comentarios"}
                             </Text>
                         </Typography>
-                        /*<Comments list = {point.comments} >
-                        </Comments>*/
+                        <Comments list = {point.comments} >
+                        </Comments>
                     </CardContent>
                     <CardActionArea style={{ justifyContent: "left", display: "flex" }}>
                     </CardActionArea>
                 </Card>
+                <CommentBox mapId = {map} pointId = {point} session={session} webId={webId}  refresh={refrescar}>
+                </CommentBox>
                 <Card>
+                    <Reviews list={point.reviewScores}/>
+                    <ReviewBox mapId = {map} pointId = {point} session={session} webId={webId} refresh={refrescar}>
 
+                    </ReviewBox>
                 </Card>
 
                 <Button variant="contained" color="primary" onClick={() => {
@@ -57,12 +79,27 @@ const InfoAndComments = (props) =>{
                 }}>
                     Edit
                 </Button>
-
-
                 <Button variant="contained" color="primary" onClick={() => {
                     DeletePoint(point.id, marker, map, session, webId);
-                }}>Delete
+                }}>
+                    Delete
                 </Button>
+
+                {isOwner?
+                    <Button variant="contained" color="primary" onClick={() => {
+                        EditPoint(point.id, marker, map, webId, session);
+                    }}>
+                        Edit
+                    </Button>
+                    : null}
+
+
+                {isOwner?
+                    <Button variant="contained" color="primary" onClick={() => {
+                        DeletePoint(point.id, marker, map, session, webId);
+                    }}>Delete
+                    </Button>
+                : null}
             </Container>
         </div>
     );

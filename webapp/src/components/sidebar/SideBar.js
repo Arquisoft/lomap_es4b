@@ -14,7 +14,9 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import {deletePoints,friendsAclPermission,addComment} from '../../helper/PodHelper';
 import {Filtro} from "./Filtro/Filtro";
 
+
 import "./SideBar.css"
+import {Filtro} from "./Filtro/Filtro";
 
 export const SideBar = (props) => {
 
@@ -75,10 +77,13 @@ export const SideBar = (props) => {
                         onClick={() =>
                             { deletePoints(session,webId, "txo5ke76cjs5r5r3pg1x");}}> 
                         Eliminar punto </MenuItem>
-                    <MenuItem className="subMenuFiltro" label="filtros">
-                        <Filtro listaFiltro={["restaurant","museum"]} session={session} webId={webId}>
-                        </Filtro>
-                    </MenuItem>
+                    <SubMenu className="menuFiltro" label="Filtrar puntos">
+                        <MenuItem className="subMenuFiltro" label="filtros">
+                            <Filtro session={session} webId={webId}>
+
+                            </Filtro>
+                        </MenuItem>
+                    </SubMenu>
                 </SubMenu >
 
                 <SubMenu className="subMenu" label={isOpen? "Gestionar mapas" : ""} icon={<SortIcon />}
@@ -101,7 +106,7 @@ export const SideBar = (props) => {
                         icon={<AddCircleIcon />} 
                         onClick={() =>{
                                 setMarcadorFriendsSeleccionado(false);
-                                setMarcadorPuntosSeleccionado(false); 
+                                setMarcadorPuntosSeleccionado(false);
                                 setMarcadorMapasSeleccionado(false);
                                 setMarcadorAñadirMapaSeleccionado(!marcadorAñadirMapaSeleccionado); }}>
                         Añadir mapa </MenuItem>
