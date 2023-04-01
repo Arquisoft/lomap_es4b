@@ -46,8 +46,8 @@ export function Filtro(props){
         <ul>
             {filterList}
             <Button onClick={
-                ()=>{
-                    filterPoints(session,webId,listaCosasFiltradas);
+                async ()=>{
+                    var puntos = await filterPoints(session,webId,listaCosasFiltradas);
                 }
             }>
                 Filtrar

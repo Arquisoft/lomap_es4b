@@ -30,8 +30,9 @@ export default CommentBox = (props)=>{
         setTexto(event.target.value);
         console.log(event.target.value);
     };
-    const addComments = event=>{
-        addComment(1,pointId.id,texto,session,webId).then(refresh());
+    async function addComments (){
+        await addComment(1,pointId.id,texto,session,webId);
+        (refresh());
     };
     return <Card>
         <Typography>
@@ -45,7 +46,7 @@ export default CommentBox = (props)=>{
     />
     <Button variant="contained" color="primary"
         onClick={addComments}>
-        Submit Comment
+        Añadir Comentario
     </Button>
 
 </Card>;

@@ -14,10 +14,10 @@ import ReactDOM from "react-dom";
 const InfoAndComments = (props) =>{
     const {point,marker,map,webId, session} = props;
     const refrescar = ()=>{
-        getSpecificPoint(session, webId, point.id).then((point) => {
+        getSpecificPoint(session, webId, point.id).then((p) => {
             let myDiv = document.createElement('div');
             ReactDOM.render(
-                <InfoAndComments point={point} marker={marker} map={map} webId={webId} session={session} />,
+                <InfoAndComments point={p} marker={marker} map={map} webId={webId} session={session} />,
                 myDiv
             );
             marker.bindPopup(myDiv).openPopup();

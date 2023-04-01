@@ -29,8 +29,9 @@ export default ReviewBox = (props)=>{
         setRev(event.target.value);
         console.log(event.target.value);
     };
-    const addReview = event=>{
-        addScore(1,pointId.id,review,session,webId).then(refresh);
+     async function addReview(){
+        await addScore(1,pointId.id,review,session,webId);
+        refresh();
     };
     return <Card>
         <Typography>
@@ -44,7 +45,7 @@ export default ReviewBox = (props)=>{
     />
     <Button variant="contained" color="primary"
         onClick={addReview}>
-        Submit Comment
+        Añadir Reseña
     </Button>
 
 </Card>;
