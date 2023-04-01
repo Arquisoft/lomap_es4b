@@ -8,7 +8,7 @@ export function MapListComponent(props) {
     const handleClick = () => {
         getAllPointsInCurrentMap(session,webId).then((points)=>{
             console.log(points);
-            props.showMapPoints(points);
+            props.showMapPoints(points, webId);
         });
     };
 

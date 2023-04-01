@@ -6,8 +6,7 @@ import EditPoint from "../map/EditPoint";
 import DeletePoint from "../map/DeletePoint";
 
 const InfoAndComments = (props) =>{
-    console.log(props.webId);
-    const {point,marker,map, webId, session} = props;
+    const {point,marker,map, webId, session, isOwner} = props;
     return(
         <div id = "infoAndComments">
             <Container >
@@ -51,18 +50,21 @@ const InfoAndComments = (props) =>{
                 <Card>
 
                 </Card>
+                {isOwner?
+                    <Button variant="contained" color="primary" onClick={() => {
+                        EditPoint(point.id, marker, map, webId, session);
+                    }}>
+                        Edit
+                    </Button>
+                    : null}
 
-                <Button variant="contained" color="primary" onClick={() => {
-                    EditPoint(point.id, marker, map, webId, session);
-                }}>
-                    Edit
-                </Button>
 
-
-                <Button variant="contained" color="primary" onClick={() => {
-                    DeletePoint(point.id, marker, map, session, webId);
-                }}>Delete
-                </Button>
+                {isOwner?
+                    <Button variant="contained" color="primary" onClick={() => {
+                        DeletePoint(point.id, marker, map, session, webId);
+                    }}>Delete
+                    </Button>
+                : null}
             </Container>
         </div>
     );
