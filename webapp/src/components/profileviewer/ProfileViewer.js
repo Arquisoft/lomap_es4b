@@ -37,12 +37,12 @@ const ProfileViewer = () => {
           }
 
       {marcadorMapasSeleccionado ?
-        <MapList showMapPoints={(points) => {mapView.updateMarkers(points)}} session={session} webId={webId}></MapList>
+        <MapList showMapPoints={(points, webId) => {mapView.updateMarkers(points, webId)}} session={session} webId={webId}></MapList>
         :
         null
       }
       {marcadorFriendsSeleccionado ?
-        <FriendsList showFriendPoints={(points) => {mapView.updateMarkers(points)}} session={session} webId={webId}></FriendsList>
+        <FriendsList showFriendPoints={(points, webId) => {mapView.updateMarkers(points, webId)}} session={session} webId={webId}></FriendsList>
         :
         null
       }

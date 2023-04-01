@@ -5,7 +5,7 @@ function CreatePoint (position, map,markers, name,description, category, webId, 
 
     updatePoints(1, position.lat,position.lng,name,description,category,session,webId).then((id) => {
         console.log(id);
-        AddMarker(position, map, id, category, markers, webId, session);
+        AddMarker(position, map, id, category, markers, webId, session, true);
     });
 }
 
