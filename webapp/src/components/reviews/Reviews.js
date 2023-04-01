@@ -1,5 +1,5 @@
 import { Card,Button } from "@material-ui/core";
-
+import "./Reviews.css"
 import Review from './Review'
 import {useState} from "react";
 
@@ -11,7 +11,7 @@ export default function Reviews (props){
             <Review review={name}/>
         );
     })
-    return <div>
+    return <div class={"main"}>
         <h2>
             Reseñas
         </h2>

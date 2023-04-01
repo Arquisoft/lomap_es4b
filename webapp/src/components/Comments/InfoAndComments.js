@@ -10,6 +10,7 @@ import {getSpecificPoint} from "../../helper/PodHelper";
 import Reviews from "../reviews/Reviews";
 import {useState} from "react";
 import ReactDOM from "react-dom";
+import "./InfoAndComments.css"
 
 const InfoAndComments = (props) =>{
     const {point,marker,map,webId, session} = props;
@@ -24,8 +25,8 @@ const InfoAndComments = (props) =>{
         });
     };
     return(
-        <div id = "infoAndComments">
-            <Container >
+        <div id = "infoAndComments" >
+            <Container class={"main"}>
                 <Card>
                     <CardContent>
                         <Typography gutterBottom variant="h5" component={'span'}>
