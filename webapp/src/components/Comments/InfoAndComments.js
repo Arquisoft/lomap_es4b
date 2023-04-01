@@ -5,9 +5,24 @@ import { Button} from "@material-ui/core";
 import EditPoint from "../map/EditPoint";
 import DeletePoint from "../map/DeletePoint";
 import CommentBox from "./CommentBox";
+import ReviewBox from "../reviews/ReviewBox";
+import {getSpecificPoint} from "../../helper/PodHelper";
+import Reviews from "../reviews/Reviews";
+import {useState} from "react";
+import ReactDOM from "react-dom";
 
 const InfoAndComments = (props) =>{
     const {point,marker,map,webId, session} = props;
+    const refrescar = ()=>{
+        getSpecificPoint(session, webId, point.id).then((point) => {
+            let myDiv = document.createElement('div');
+            ReactDOM.render(
+                <InfoAndComments point={point} marker={marker} map={map} webId={webId} session={session} />,
+                myDiv
+            );
+            marker.bindPopup(myDiv).openPopup();
+        });
+    };
     return(
         <div id = "infoAndComments">
             <Container >
@@ -48,11 +63,15 @@ const InfoAndComments = (props) =>{
                     <CardActionArea style={{ justifyContent: "left", display: "flex" }}>
                     </CardActionArea>
                 </Card>
-                <CommentBox mapId = {map} pointId = {point} session={session} webId={webId}>
+                <CommentBox mapId = {map} pointId = {point} session={session} webId={webId}  refresh={refrescar}>
                 </CommentBox>
                 <Card>
+                    <Reviews list={point.reviewScores}/>
+                    <ReviewBox mapId = {map} pointId = {point} session={session} webId={webId} refresh={refrescar}>
 
+                    </ReviewBox>
                 </Card>
+
                 <Button variant="contained" color="primary" onClick={() => {
                     EditPoint(point.id, marker, map, webId, session);
                 }}>
