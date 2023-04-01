@@ -27,6 +27,11 @@ export default Comment = (props)=>{
                     </Text>
         </Typography>
         <Typography gutterBottom >
+            <Text>
+                {"Fecha: "+(comment.date)}
+            </Text>
+        </Typography>
+        <Typography gutterBottom >
                     <Text>
                         {"Comentario: "+(comment.comment)}
                     </Text>
