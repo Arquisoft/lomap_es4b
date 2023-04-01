@@ -11,7 +11,7 @@ import InfoIcon from "@mui/icons-material/Info"
 import SortIcon from "@mui/icons-material/Sort"
 import MapIcon from '@mui/icons-material/Map';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { updatePoints,filterPoints,deletePoints,friendsAclPermission, addMap, editPoint, addComment, addScore} from '../../helper/PodHelper';
+import {deletePoints,friendsAclPermission,addComment} from '../../helper/PodHelper';
 import {Filtro} from "./Filtro/Filtro";
 
 import "./SideBar.css"

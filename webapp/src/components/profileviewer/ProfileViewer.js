@@ -1,4 +1,4 @@
-import { useState} from "react";
+import { useState, useEffect} from "react";
 import { useSession } from "@inrupt/solid-ui-react";
 import { Container} from "@material-ui/core";
 import MapView from "../map/MapView";
@@ -8,6 +8,7 @@ import MarkersList from '../markersList/Markerslist';
 import MapList from '../mapList/MapList';
 import FriendsList  from "../friendsList/FriendsList";
 import AddMapForm from "../map/AddMapForm";
+import {friendsAclPermission} from "../../helper/PodHelper";
 
 
 const ProfileViewer = () => {
@@ -18,6 +19,16 @@ const ProfileViewer = () => {
   const [marcadorFriendsSeleccionado,setMarcadorFriendsSeleccionado] = useState(false);
   const [marcadorAñadirMapaSeleccionado, setMarcadorAñadirMapaSeleccionado] = useState(false);
   const [mapView, setMapView] = useState(null);
+
+
+  useEffect(() => {
+    const fetchFriendPermissions = async() => {
+      friendsAclPermission(webId,session);
+    }
+    fetchFriendPermissions();
+  }, []);
+
+
   return (
     <Container maxWidth={false} disableGutters={true} id="profileContainer">
 

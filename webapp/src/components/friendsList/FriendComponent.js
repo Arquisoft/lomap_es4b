@@ -1,4 +1,4 @@
-import imagen from '../../images/default-icon.png';
+import pordefecto from '../../images/default-user.jpg';
 import {getImageFromPod,getAllPointsInCurrentMap} from '../../helper/PodHelper';
 import { useState,useEffect} from "react";
 import {getAllMaps, get} from '../../helper/PodHelper';
@@ -15,7 +15,10 @@ export function FriendComponent(props) {
       const fetchFriendMapsAndImage = async() => {
         const result = await getAllMaps(session,friendURL);
         setFriendMaps(result);
-        const image = await getImageFromPod(props.friendURL);
+        let image = await getImageFromPod(props.friendURL);
+        if(image == 'NoImage'){
+          image = pordefecto;
+        }
         setFriendImage(image);
       }
       fetchFriendMapsAndImage();

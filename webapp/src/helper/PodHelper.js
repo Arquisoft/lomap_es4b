@@ -31,26 +31,6 @@ export async function createData(url, file, session) {
 }
 
 
-
-/* export async function createFirstFile(session, webId){
-  let url = webId.replace("profile/card#me","");
-  let urlContainer = url+"private/";
-  url = url+"private/puntoPrueba3Mapa.json";
-
-  try {
-
-    let file = await solid.getFile(
-        url,
-        { fetch: session.fetch }
-    );
-
-  } catch (error) {
-    const file = await createPointsFile();
-    await createData(urlContainer, file, session);
-  }
-} */
-
-
 //Se encarga de cear el archivos JSON en el POD
 export async function createPointsFile(webId) {
   let author = await getNameFromPod(webId);
@@ -223,6 +203,7 @@ export async function updatePoints(mapId,latitude,longitude,name,description,cat
     const file = await createPointsFile(webId);
     await createData(urlContainer, file, session);
     await ownAclPermission(webId,session);
+    await friendsAclPermission(webId,session);
     return updatePoints(mapId,latitude,longitude,name,description,category,session,webId);
   }
 
@@ -262,7 +243,7 @@ export async function getAllPointsInCurrentMap(session,webId){
     return points;
 
   } catch (error) {
-    console.log(error);
+    console.log("Error: No existe el fichero, por favor añada un punto al mapa");
     return [];
   }
 
@@ -679,7 +660,7 @@ async function getNameFromPod(webId) {
 export async function getImageFromPod(webId) {
   if (webId === "" || webId === undefined) return "Name not found"; // we return the empty string
   let image = solid.getUrl(await getProfile(webId), VCARD.hasPhoto.iri.value);
-  return image !== null ? image : "No image :(";
+  return image !== null ? image : "NoImage";
 }
 
 //Función que devuelve una id random para poder distinguir los puntos
