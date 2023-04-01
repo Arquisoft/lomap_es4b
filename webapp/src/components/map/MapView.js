@@ -28,7 +28,7 @@ export default class MapView extends Component{
       isLogged: props.isLogged,
         map: null,
         markers: [],
-        isOwner: true,
+        isOwner: false,
     };
   }
 
