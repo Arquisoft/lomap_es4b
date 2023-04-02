@@ -10,7 +10,7 @@ export default function EditPoint (pointId, marker, map, webId, session) {
             let formDiv = document.createElement('div');
             let popup = L.popup();
             ReactDOM.render(
-                <EditPointForm name={point.name} description={point.description} category={point.category} pointId={pointId} latLng={marker.getLatLng()} map={map} popup={popup} webId={webId} session={session}/>,
+                <EditPointForm name={point.name} description={point.description} category={point.category} pointId={pointId} latLng={marker.getLatLng()} map={map} popup={popup} marker={marker} webId={webId} session={session}/>,
                 formDiv
             );
                 popup.setLatLng(marker.getLatLng())
