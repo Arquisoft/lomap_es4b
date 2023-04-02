@@ -19,7 +19,8 @@ export const SideBar = (props) => {
 
     const { collapseSidebar } = useProSidebar();
     const {session, webId, marcadorPuntosSeleccionado,setMarcadorPuntosSeleccionado, marcadorMapasSeleccionado, setMarcadorMapasSeleccionado,
-        marcadorFriendsSeleccionado, setMarcadorFriendsSeleccionado, marcadorAñadirMapaSeleccionado, setMarcadorAñadirMapaSeleccionado} = props;
+        marcadorFriendsSeleccionado, setMarcadorFriendsSeleccionado, marcadorAñadirMapaSeleccionado, setMarcadorAñadirMapaSeleccionado,
+        marcadorAñadirAmigoSeleccionado,setMarcadorAñadirAmigoSeleccionado} = props;
     const [isOpen, setOpen] = useState(true);
 
     return(
@@ -42,6 +43,7 @@ export const SideBar = (props) => {
                     setMarcadorMapasSeleccionado(false);
                     setMarcadorFriendsSeleccionado(false);
                     setMarcadorAñadirMapaSeleccionado(false);
+                    setMarcadorAñadirAmigoSeleccionado(false);
                     }}
                     style={{ textAlign: "center" }}
                     >
@@ -60,6 +62,7 @@ export const SideBar = (props) => {
                             setMarcadorMapasSeleccionado(false);
                             setMarcadorFriendsSeleccionado(false);
                             setMarcadorAñadirMapaSeleccionado(false);
+                            setMarcadorAñadirAmigoSeleccionado(false);
                             setMarcadorPuntosSeleccionado(!marcadorPuntosSeleccionado);
                         }}>
                        Ver puntos
@@ -95,6 +98,7 @@ export const SideBar = (props) => {
                             setMarcadorFriendsSeleccionado(false);
                             setMarcadorPuntosSeleccionado(false); 
                             setMarcadorAñadirMapaSeleccionado(false);
+                            setMarcadorAñadirAmigoSeleccionado(false);
                             setMarcadorMapasSeleccionado(!marcadorMapasSeleccionado);
                         }}>
                        Ver mapas
@@ -105,6 +109,7 @@ export const SideBar = (props) => {
                                 setMarcadorFriendsSeleccionado(false);
                                 setMarcadorPuntosSeleccionado(false);
                                 setMarcadorMapasSeleccionado(false);
+                                setMarcadorAñadirAmigoSeleccionado(false);
                                 setMarcadorAñadirMapaSeleccionado(!marcadorAñadirMapaSeleccionado); }}>
                         Añadir mapa </MenuItem>
                 </SubMenu >
@@ -116,6 +121,7 @@ export const SideBar = (props) => {
                             setMarcadorPuntosSeleccionado(false);
                             setMarcadorMapasSeleccionado(false); 
                             setMarcadorAñadirMapaSeleccionado(false);
+                            setMarcadorAñadirAmigoSeleccionado(false);
                             setMarcadorFriendsSeleccionado(!marcadorFriendsSeleccionado);
                         }else{
                             collapseSidebar();
@@ -125,16 +131,15 @@ export const SideBar = (props) => {
                     <div style={{display : isOpen? "block" : "none"}}>Amigos</div>
                 </MenuItem>
                 <MenuItem className='menuItem'
-                    icon={<GroupIcon />} 
-                    onClick={() => { 
-                        if(isOpen){
-                            friendsAclPermission(webId,session);
-                        }else{
-                            collapseSidebar();
-                            setOpen(!isOpen);
-                        }
-                    }}>
-                    <div style={{display : isOpen? "block" : "none"}}>Dar Permisos Amigos</div>
+                        icon={<GroupIcon />} 
+                        onClick={() =>{
+                                setMarcadorFriendsSeleccionado(false);
+                                setMarcadorPuntosSeleccionado(false);
+                                setMarcadorMapasSeleccionado(false);
+                                setMarcadorAñadirMapaSeleccionado(false);
+                                setMarcadorAñadirAmigoSeleccionado(!marcadorAñadirAmigoSeleccionado);
+                            }}>
+                        Añadir Amigo
                 </MenuItem>
                 <MenuItem className='menuItem' 
                     icon={<InfoIcon />} onClick={() => { 

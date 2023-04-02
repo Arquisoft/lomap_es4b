@@ -633,6 +633,36 @@ export async function getAllFriendMaps(webId) {
 }
 
 
+export async function addFriend(webID, session, friend) {
+  let profile = webID.split("#")[0]; 
+  let friendWebId = "https://"+friend+".inrupt.net/profile/card#me";
+  console.log(friendWebId);
+  let dataSet = await solid.getSolidDataset(profile);  
+
+  let dataSetThing = solid.getThing(dataSet, webID);
+
+  try {
+    let existsFriend = solid.getUrlAll(dataSetThing, FOAF.knows)
+    if (existsFriend.some((url) => url === friendWebId)){
+      console.log("Este usuario ya es amigo");
+    }
+    else{
+      // We create the friend
+    let newFriend = solid.buildThing(dataSetThing)
+    .addUrl(FOAF.knows, friendWebId)
+    .build();
+
+    // insert friend in dataset
+    dataSet = solid.setThing(dataSet, newFriend);
+    dataSet = await solid.saveSolidDatasetAt(webID, dataSet, {fetch: session.fetch})
+    alert('Nuevo amigo, \"' + friend + '\" añadido.');
+    console.log("Usuario añadido a lista de Amigos");
+    }
+  } catch (error){
+    console.log(error);
+  } 
+}
+
 
 /**
  * ----------------------------------------------------------------------------------------------------

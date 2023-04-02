@@ -3,6 +3,8 @@ import {BubbleChart} from "@mui/icons-material";
 import {Button} from "@material-ui/core";
 import React, { useState } from "react";
 import {filterPoints} from "../../../helper/PodHelper"
+
+
 export function Filtro(props){
     const [listaCosasFiltradas, setListaCosasFiltradas] = useState([]) ;
     const {session, webId} = props;
