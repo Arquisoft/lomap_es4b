@@ -43,13 +43,13 @@ export default class MapView extends Component{
         for(let i = 0; i < this.state.markers.length; i++){
             this.state.map.target.removeLayer(this.state.markers[i]);
         }
+        let isOwner = webId == this.state.webId;
+        this.setState({isOwner: isOwner});
         //creamos los nuevos markers
         for (let i=0; i < points.length; i++) {
             // Por cada punto se crea un marcador, asociandole el id del punto
             let lat = points[i].latitude;
             let lng = points[i].longitude;
-            let isOwner = webId == this.state.webId;
-            this.setState({isOwner: isOwner});
             AddMarker([lat, lng], this.state.map.target, points[i].id, points[i].category, this.state.markers, webId, this.state.session, isOwner);
         }
     }
