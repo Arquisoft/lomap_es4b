@@ -4,19 +4,11 @@ import ReactDOM from "react-dom";
 import L from "leaflet";
 import InfoAndComments from "../Comments/InfoAndComments";
 import {getSpecificPoint} from "../../helper/PodHelper";
+import Icon from "./IconLocation";
 
 // Crea un marcador, le asocia un popup con el contenido del componente InfoAndComments y lo asocia al mapa
 function AddMarker (position, map, pointId, markerIcon, markers, webId, session, isOwner) {
-    const IconLocation = L.icon({
-        iconUrl: require('../../images/' + markerIcon + '.png'),
-        iconRetinaUrl: require('../../images/blue-marker.png'),
-        iconAnchor:null,
-        shadowUrl:null,
-        shadowSize:null,
-        shadowAnchor:null,
-        iconSize: [35,35],
-        className:"leaflet-venue-icon",
-    });
+    const IconLocation = Icon(markerIcon);
     const marker = L.marker(position, {icon: IconLocation, riseOnHover:true});
     marker.addTo(map);
     markers.push(marker);
