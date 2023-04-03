@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {editPoint} from "../../helper/PodHelper";
+import {Category} from '../../entities/Entities';
 
 export default class EditPointForm extends Component {
     constructor(props) {
@@ -54,9 +55,11 @@ export default class EditPointForm extends Component {
                         <label>
                             Selecciona una categoria:
                             <select value={this.state.category} onChange={this.handleChangeCategory}>
-                                <option value="restaurant">Restaurante</option>
-                                <option value="monument">Monumento</option>
-                                <option value="hospital">Hospital</option>
+                            {
+                                Category.map((item) => (
+                                    <option key={item.category}  value={item.category}>{item.text}</option>
+                                ))
+                            }
                             </select>
                         </label>
                     </li>

@@ -9,7 +9,8 @@ import MapList from '../mapList/MapList';
 import FriendsList  from "../friendsList/FriendsList";
 import AddFriendForm  from "../friendsList/AddFriendForm";
 import AddMapForm from "../map/AddMapForm";
-import {friendsAclPermission} from "../../helper/PodHelper";
+import FilterForm from "../filter/FilterForm";
+import {friendsAclPermission} from "../../helper/PodFriends";
 
 
 const ProfileViewer = () => {
@@ -20,6 +21,7 @@ const ProfileViewer = () => {
   const [marcadorFriendsSeleccionado,setMarcadorFriendsSeleccionado] = useState(false);
   const [marcadorAñadirMapaSeleccionado, setMarcadorAñadirMapaSeleccionado] = useState(false);
   const [marcadorAñadirAmigoSeleccionado, setMarcadorAñadirAmigoSeleccionado] = useState(false);
+  const [marcadorFiltroSeleccionado, setMarcadorFiltroSeleccionado] = useState(false);
   const [mapView, setMapView] = useState(null);
 
 
@@ -41,7 +43,8 @@ const ProfileViewer = () => {
         marcadorMapasSeleccionado={marcadorMapasSeleccionado } setMarcadorMapasSeleccionado={setMarcadorMapasSeleccionado}
         marcadorFriendsSeleccionado={marcadorFriendsSeleccionado } setMarcadorFriendsSeleccionado={setMarcadorFriendsSeleccionado}
         marcadorAñadirMapaSeleccionado={marcadorAñadirMapaSeleccionado} setMarcadorAñadirMapaSeleccionado={setMarcadorAñadirMapaSeleccionado}
-        marcadorAñadirAmigoSeleccionado={marcadorAñadirAmigoSeleccionado} setMarcadorAñadirAmigoSeleccionado={setMarcadorAñadirAmigoSeleccionado}/>
+        marcadorAñadirAmigoSeleccionado={marcadorAñadirAmigoSeleccionado} setMarcadorAñadirAmigoSeleccionado={setMarcadorAñadirAmigoSeleccionado}
+        marcadorFiltroSeleccionado={marcadorFiltroSeleccionado} setMarcadorFiltroSeleccionado={setMarcadorFiltroSeleccionado}/>
 
           {/* Le pasa la referencia a la funcion centerMapOnPoint de MapView */}
           {marcadorPuntosSeleccionado ?
@@ -67,6 +70,11 @@ const ProfileViewer = () => {
       }
       {marcadorAñadirAmigoSeleccionado ?
         <AddFriendForm session={session} webId={webId}></AddFriendForm>
+        :
+        null
+      }
+      {marcadorFiltroSeleccionado ?
+        <FilterForm session={session} webId={webId}></FilterForm>
         :
         null
       }

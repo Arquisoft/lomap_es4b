@@ -1,5 +1,5 @@
 import {Component} from "react";
-import {addFriend} from "../../helper/PodHelper";
+import {addFriend} from "../../helper/PodFriends";
 import './FriendList.css'
 
 export default class AddFriendForm extends Component {
