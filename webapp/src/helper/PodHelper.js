@@ -463,6 +463,7 @@ export async function addComment(mapId,pointId,comment,session,webId){
     var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
 
     await updateData(fichero, webId, session);
+    return newComment;
 
   } catch (error) {
     console.log(error);
@@ -517,7 +518,7 @@ export async function addScore(mapId,pointId,score,session,webId){
   } catch (error) {
     console.log(error);
   }
-
+  return newScore;
 }
 
 
