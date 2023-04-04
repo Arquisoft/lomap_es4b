@@ -1,7 +1,7 @@
 import pordefecto from '../../images/default-user.jpg';
-import {getImageFromPod,getAllPointsInCurrentMap} from '../../helper/PodHelper';
+import {getImageFromPod} from '../../helper/PodHelper';
 import { useState,useEffect} from "react";
-import {getAllMaps, get} from '../../helper/PodHelper';
+import {getAllMaps,getAllPointsInCurrentMap} from '../../helper/PodMaps';
 
 export function FriendComponent(props) {
 

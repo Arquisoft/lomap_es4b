@@ -1,5 +1,5 @@
 import imagen from '../../images/default-icon.png';
-import {getAllPointsInCurrentMap} from "../../helper/PodHelper";
+import {getAllPointsInCurrentMap} from "../../helper/PodMaps";
 
 export function MapListComponent(props) {
 

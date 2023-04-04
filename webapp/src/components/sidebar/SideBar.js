@@ -69,16 +69,6 @@ export const SideBar = (props) => {
                         }}>
                        Ver puntos
                     </MenuItem>
-                    <MenuItem className='subMenuItem'
-                        icon={<AddLocationAltIcon />} 
-                        onClick={() =>
-                            { addComment("1","xdjmz1zlqhgmrp158fj0","Depu",session,webId)}}>
-                        Añadir punto </MenuItem>
-                    <MenuItem className='subMenuItem'
-                        icon={<WrongLocationIcon />} 
-                        onClick={() =>
-                            { deletePoints(session,webId, "txo5ke76cjs5r5r3pg1x");}}> 
-                        Eliminar punto </MenuItem>
                     <MenuItem className="subMenuItem" label="Ver puntos"
                         icon={<FilterAltIcon />}
                         onClick={()=>{ 
