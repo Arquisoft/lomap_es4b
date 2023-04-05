@@ -23,7 +23,7 @@ export function MapList(props) {
           <div className='sideList' id='pointsList'>
             {
               maps.map((item) => (
-                <MapListComponent showMapPoints={(points, webId) => {props.showMapPoints(points, webId)}} key={item.id} name={item.name} description={item.description} session={session} webId={webId}/>
+                <MapListComponent showMapPoints={(points, webId, mapId) => {props.showMapPoints(points, webId, mapId)}} mapId={item.id} name={item.name} description={item.description} session={session} webId={webId}/>
               ))
 
             }

@@ -33,8 +33,8 @@ export function FriendComponent(props) {
 
     const handleClick = () => {
       if(selectedValue != ''){
-        getAllPointsInCurrentMap(session,friendURL,1).then((points)=>{
-            props.showFriendPoints(points, friendURL);
+        getAllPointsInCurrentMap(session,friendURL,selectedValue).then((points)=>{
+            props.showFriendPoints(points, friendURL, selectedValue);
             }
         );
       }

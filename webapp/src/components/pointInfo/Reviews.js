@@ -22,7 +22,7 @@ const Reviews = (params) =>{
     average = average / params.reviews.length;
 
     const handleSubmit= () => {
-        addScore(1, params.pointId, value, params.session, params.webId).then((r) => {
+        addScore(params.mapId, params.pointId, value, params.session, params.webId).then((r) => {
             const newList = reviews.concat({author: r.author, score: r.score, date: r.date})
             setReviews(newList);
             console.log(newList);

@@ -3,12 +3,10 @@ import {getAllPointsInCurrentMap} from "../../helper/PodMaps";
 
 export function MapListComponent(props) {
 
-    const { webId,session} = props;
-
+    const { webId,session,mapId} = props;
     const handleClick = () => {
-        getAllPointsInCurrentMap(session,webId,1).then((points)=>{
-            console.log(points);
-            props.showMapPoints(points, webId);
+        getAllPointsInCurrentMap(session,webId,mapId).then((points)=>{
+            props.showMapPoints(points, webId, mapId);
         });
     };
 

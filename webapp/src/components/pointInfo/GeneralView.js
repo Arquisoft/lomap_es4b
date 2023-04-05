@@ -99,7 +99,7 @@ export default function GeneralView(params){
 
                 {params.isOwner?
                     <button className='button-17' onClick={() => {
-                        DeletePoint(params.point.id, params.marker, params.map, params.session, params.webId);
+                        DeletePoint(params.point.id, params.marker, params.map, params.mapId, params.session, params.webId);
                     }}>Delete
                     </button>
                     : null}

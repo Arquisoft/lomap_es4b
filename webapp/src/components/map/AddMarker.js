@@ -6,7 +6,7 @@ import Icon from "./IconLocation";
 import PointInfo from "../pointInfo/PointInfo";
 
 // Crea un marcador, le asocia un popup con el contenido del componente InfoAndComments y lo asocia al mapa
-function AddMarker (position, map, pointId, markerIcon, markers, webId, session, isOwner) {
+function AddMarker (position, map, mapId, pointId, markerIcon, markers, webId, session, isOwner) {
     const IconLocation = Icon(markerIcon);
     const marker = L.marker(position, {icon: IconLocation, riseOnHover:true});
     marker.addTo(map);
@@ -24,7 +24,7 @@ function AddMarker (position, map, pointId, markerIcon, markers, webId, session,
         let myDiv = document.createElement('div');
         ReactDOM.render(
             //<InfoAndComments point={point} marker={marker} map={map} webId={webId} session={session} isOwner={isOwner}/>,
-            <PointInfo pointId={pointId} marker={marker} map={map} webId={webId} session={session} isOwner={isOwner}/>,
+            <PointInfo pointId={pointId} marker={marker} map={map} mapId={mapId} webId={webId} session={session} isOwner={isOwner}/>,
             myDiv
         );
         let popup = L.popup({minWidth:750, maxWidth:550, maxHeight:800});

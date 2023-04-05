@@ -11,7 +11,7 @@ const Comments = (params) => {
     }
 
     const handleSubmit = () => {
-        addComment(1,params.pointId,comment,params.session,params.webId).then((comment) => {
+        addComment(params.mapId, params.pointId,comment,params.session,params.webId).then((comment) => {
             console.log(comment);
             const newList = comments.concat({author:comment.author, comment:comment.comment, date:comment.date});
             setComments(newList);

@@ -17,6 +17,7 @@ class PointInfo extends Component {
             point: null,
             marker: this.props.marker,
             map: this.props.map,
+            mapId: this.props.mapId,
             webId: this.props.webId,
             session: this.props.session,
             isOwner: this.props.isOwner,
@@ -24,8 +25,7 @@ class PointInfo extends Component {
             comments: null,
             isLoading: true,
         }
-        console.log(this.props);
-        getSpecificPoint(this.props.session, this.props.webId, this.props.pointId,1).then((point) => {
+        getSpecificPoint(this.props.session, this.props.webId, this.props.pointId,this.props.mapId).then((point) => {
             this.setState({point: point});
             this.setState({reviews:point.reviewScores});
             this.setState({comments: point.comments});
@@ -51,19 +51,19 @@ class PointInfo extends Component {
 
     renderGeneralViewContent(){
         return (
-            <GeneralView point={this.state.point} isOwner={this.state.isOwner} marker={this.state.marker} map={this.state.map} webId={this.state.webId} session={this.state.session}/>
+            <GeneralView point={this.state.point} mapId={this.state.mapId} isOwner={this.state.isOwner} marker={this.state.marker} map={this.state.map} webId={this.state.webId} session={this.state.session}/>
         )
     }
 
     renderReviewContent(){
         return (
-            <Reviews reviews={this.state.reviews} updateReviews={this.updateReviews} pointId={this.state.point.id} session={this.state.session} webId={this.state.webId}/>
+            <Reviews reviews={this.state.reviews} updateReviews={this.updateReviews} pointId={this.state.point.id} mapId={this.state.mapId} session={this.state.session} webId={this.state.webId}/>
     )
     }
 
     renderCommentsContent(){
         return (
-            <Comments comments={this.state.comments} updateComments={this.updateComments} pointId={this.state.point.id} session={this.state.session} webId={this.state.webId}/>
+            <Comments comments={this.state.comments} updateComments={this.updateComments} pointId={this.state.point.id} mapId={this.state.mapId} session={this.state.session} webId={this.state.webId}/>
         )
     }
 

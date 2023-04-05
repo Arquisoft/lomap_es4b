@@ -29,6 +29,7 @@ export default class MapView extends Component{
         map: null,
         markers: [],
         isOwner: false,
+        mapId: '',
     };
   }
 
@@ -38,7 +39,8 @@ export default class MapView extends Component{
         }
     }
 
-    updateMarkers(points, webId){
+    updateMarkers(points, webId, mapId){
+      this.setState({mapId: mapId});
       // Borramos los anteriores markers
         for(let i = 0; i < this.state.markers.length; i++){
             this.state.map.target.removeLayer(this.state.markers[i]);
@@ -50,7 +52,7 @@ export default class MapView extends Component{
             // Por cada punto se crea un marcador, asociandole el id del punto
             let lat = points[i].latitude;
             let lng = points[i].longitude;
-            AddMarker([lat, lng], this.state.map.target, points[i].id, points[i].category, this.state.markers, webId, this.state.session, isOwner);
+            AddMarker([lat, lng], this.state.map.target, mapId, points[i].id, points[i].category, this.state.markers, webId, this.state.session, isOwner);
         }
     }
 
@@ -67,11 +69,12 @@ export default class MapView extends Component{
 
           map.target.on("click", (e) => {
               if (this.state.isOwner) {
+                  console.log(this.state.mapId);
                   const {lat, lng} = e.latlng;
                   let formDiv = document.createElement('div');
                   let popup = L.popup();
                   ReactDOM.render(
-                      <AddPointForm position={e.latlng} map={map.target} markers={this.state.markers} webId={this.state.webId}
+                      <AddPointForm position={e.latlng} map={map.target} mapId={this.state.mapId} markers={this.state.markers} webId={this.state.webId}
                                     session={this.state.session} popup={popup}/>,
                       formDiv
                   );
