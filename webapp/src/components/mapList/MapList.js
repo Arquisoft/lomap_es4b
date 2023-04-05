@@ -1,7 +1,7 @@
 import {MapListComponent} from './MapListComponent';
 import React, { useState, useEffect } from 'react';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
-import {getAllMaps} from '../../helper/PodHelper';
+import {getAllMaps} from '../../helper/PodMaps';
 import "./MapList.css"
 
 export function MapList(props) {

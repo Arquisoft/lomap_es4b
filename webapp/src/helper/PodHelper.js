@@ -1,80 +1,8 @@
-/*import { saveFileInContainer,getFile,overwriteFile, getThing, getStringNoLocale, getSolidDataset, getThingAll, getUrlAll, getStringEnglish} from "@inrupt/solid-client";*/
 import * as solid from '@inrupt/solid-client';
 import {Point} from "../entities/Entities";
 import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
-
-
-
-/**
- * ----------------------------------------------------------------------------------------------------
- * Funciones sobre ficheros
- * ----------------------------------------------------------------------------------------------------
- */
-
-
-//Guarda el archivo pasado por parámetro en el pod
-export async function createData(url, file, session) {
-
-  try {
-
-    let savedFile = await solid.saveFileInContainer(
-        url,
-        file,
-        { slug: file.name, contentType: file.type, fetch: session.fetch }
-
-    );
-    
-  } catch (error) {
-    console.log(error);
-  }
-
-}
-
-
-//Se encarga de cear el archivos JSON en el POD
-export async function createPointsFile(webId) {
-  let author = await getNameFromPod(webId);
-
-  var r = {
-    maps: [{
-      id: "1",
-      name: "Primer mapa",
-      author: author,
-      locations: []
-    }
-    ]
-  };
-
-  const blob = new Blob([JSON.stringify(r, null, 2)], {
-    type: "application/json",
-  });
-
-  var file = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
-  return file;
-
-}
-
-
-
-//Se encarga de actualizar el JSON ya existente en el POD
-export async function updateData(file,webId,session) {
-
-  let url = webId.replace("profile/card#me","");
-  url = url+"private/puntoPrueba3Mapa.json";
-
-   try {
-    var savedFile = await solid.overwriteFile(
-      url,
-      file,
-      { contentType: file.type, fetch: session.fetch }
-
-    );
-
-      } catch (error) {
-    console.log(error);
-  }
-}
-
+import {ownAclPermission, friendsAclPermission} from './PodFriends';
+import {updateData, createPointsFile, createData} from './PodFiles';
 
 
 /**
@@ -82,17 +10,12 @@ export async function updateData(file,webId,session) {
  * Funciones directas a los puntos
  * ----------------------------------------------------------------------------------------------------
  */
-
-
+ 
 
 //Borrará del pod el punto cuya id se pasa por parámetro
-export async function deletePoints(session, webId, pointId){
+export async function deletePoints(session, webId, pointId,mapId){
 
-  let mapId = "1";
-
-  let url = webId.replace("profile/card#me","");
-  let urlContainer = url+"private/";
-  url = url+"private/puntoPrueba3Mapa.json";
+  let url = urlCreator(webId);
 
   try {
     let file = await solid.getFile(
@@ -124,13 +47,10 @@ export async function deletePoints(session, webId, pointId){
 }
 
 //Devuelve un array con la lista de puntos filtrados
-export async function filterPoints(session, webId, categories){
+export async function filterPoints(session, webId, categories, mapId){
 
-  let mapId = "1";
+  let url = urlCreator(webId);
 
-  let url = webId.replace("profile/card#me","");
-  let urlContainer = url+"private/";
-  url = url+"private/puntoPrueba3Mapa.json";
 
   try {
     let file = await solid.getFile(
@@ -155,10 +75,9 @@ export async function filterPoints(session, webId, categories){
 //Actualiza los datos del JSON introduciéndo un nuevo punto
 export async function updatePoints(mapId,latitude,longitude,name,description,category,session,webId){
 
-  let url = webId.replace("profile/card#me","");
-  let urlContainer = url+"private/";
-
-  url = url+"private/puntoPrueba3Mapa.json";
+  let url = urlCreator(webId);
+  let urlContainer = url.replace("private/puntoPrueba3Mapa.json","");
+  urlContainer=urlContainer+"private/";
 
   try {
     let solidFile = await solid.getFile(
@@ -211,53 +130,12 @@ export async function updatePoints(mapId,latitude,longitude,name,description,cat
 
 
 
-//Devolverá todos los puntos dentro del Pod
-export async function getAllPointsInCurrentMap(session,webId){
-
-  let mapId = "1";
-
-  let url = webId.replace("profile/card#me","");
-  let urlContainer = url+"private/";
-  url = url+"private/puntoPrueba3Mapa.json";
-
-  try {
-
-    let file = await solid.getFile(
-        url,
-        { fetch: session.fetch }
-    );
-
-    let mapsString = await file.text();
-    var jsonMaps = JSON.parse(mapsString);
-    const mapPoints = jsonMaps.maps.find(map => map.id == mapId).locations;
-
-    var points = [];
-
-    for(var i in mapPoints) {
-      let p = new Point(mapPoints[i].id,mapPoints[i].author,mapPoints[i].latitude,
-        mapPoints[i].longitude, mapPoints[i].name, mapPoints[i].description, mapPoints[i].category,
-        mapPoints[i].comments, mapPoints[i].reviewScores);
-      points.push(p);
-    }
-
-    return points;
-
-  } catch (error) {
-    console.log("Error: No existe el fichero, por favor añada un punto al mapa");
-    return [];
-  }
-
-}
 
 
 //Método que devuelve el punto específico del pod
-export async function getSpecificPoint(session, webId,pointId){
+export async function getSpecificPoint(session, webId,pointId,mapId){
 
-  let mapId = "1";
-
-  let url = webId.replace("profile/card#me","");
-  let urlContainer = url+"private/";
-  url = url+"private/puntoPrueba3Mapa.json";
+  let url = urlCreator(webId);
 
   try {
     let file = await solid.getFile(
@@ -287,13 +165,9 @@ export async function getSpecificPoint(session, webId,pointId){
 
 
 //Editará el punto del que se pasa la id como parámetro
-export async function editPoint(pointId,latitude,longitude,name,description,category,session,webId){
+export async function editPoint(pointId,latitude,longitude,name,description,category,session,webId,mapId){
 
-  let mapId = "1";
-
-  let url = webId.replace("profile/card#me","");
-  let urlContainer = url+"private/";
-  url = url+"private/puntoPrueba3Mapa.json";
+  let url = urlCreator(webId);
 
   try {
 
@@ -331,108 +205,20 @@ export async function editPoint(pointId,latitude,longitude,name,description,cate
 
 }
 
-//Método que devuelve una lista con los mapas del pod
-export async function getAllMaps(session, webId){
 
-  let url = webId.replace("profile/card#me","");
-  let urlContainer = url+"private/";
-  url = url+"private/puntoPrueba3Mapa.json";
-
-  try {
-    let file = await solid.getFile(
-      url,
-      { fetch: session.fetch }
-
-    );
-
-    let mapsString = await file.text();
-    var jsonMaps = JSON.parse(mapsString);
-
-    var maps = jsonMaps.maps;
-
-  //   const extractedMaps = [];
-
-  //   for (let i = 0; i < maps.length; i++) {
-  //     const map = maps[i];
-  //     const extractedMap = {
-  //       "id": map.id,
-  //       "name": map.name
-  //     };
-
-  //   extractedMaps.push(extractedMap);
-
-  // }
-
-  // return extractedMaps;
-
-    return maps;
-
-
-  } catch (error) {
-    console.log(error);
-    return [];
-  }
-}
-
-//Actualiza los datos del JSON introduciéndo un nuevo mapa
-export async function addMap(name,session,webId){
-
-  let url = webId.replace("profile/card#me","");
-  let urlContainer = url+"private/";
-
-  url = url+"private/puntoPrueba3Mapa.json";
-
-  try {
-    let solidFile = await solid.getFile(
-        url,
-        { fetch: session.fetch }
-    );
-
-    let author = await getNameFromPod(webId);
-
-    let mapId = randomId(20);
-
-    var newMap = {
-      id:mapId,
-      name:name,
-      author:author,
-      locations:[]
-    }
-
-    let mapsString = await solidFile.text();
-    var jsonMaps = JSON.parse(mapsString);
-
-    jsonMaps.maps.push(newMap);
-
-    const blob = new Blob([JSON.stringify(jsonMaps, null, 2)], {
-      type: "application/json",
-    });
-
-    var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
-
-    await updateData(fichero, webId, session)
-
-    return mapId;
-
-  } catch (error) {
-    console.log(error);
-  }
-
-}
 
 //Añade un comentario a un punto
-export async function addComment(mapId,pointId,comment,session,webId){
+export async function addComment(mapId,pointId,comment,session,webIdPar){
 
-  let url = webId.replace("profile/card#me","");
-  let urlContainer = url+"private/";
-
-  url = url+"private/puntoPrueba3Mapa.json";
+  let url = urlCreator(webIdPar);
 
   try {
     let solidFile = await solid.getFile(
         url,
         { fetch: session.fetch }
     );
+
+    const { webId } = session.info;
 
     let author = await getNameFromPod(webId);
 
@@ -462,7 +248,8 @@ export async function addComment(mapId,pointId,comment,session,webId){
 
     var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
 
-    await updateData(fichero, webId, session);
+    await updateData(fichero, webIdPar, session);
+    return newComment;
 
   } catch (error) {
     console.log(error);
@@ -471,18 +258,17 @@ export async function addComment(mapId,pointId,comment,session,webId){
 }
 
 //Añade un comentario a un punto
-export async function addScore(mapId,pointId,score,session,webId){
+export async function addScore(mapId,pointId,score,session,webIdPar){
 
-  let url = webId.replace("profile/card#me","");
-  let urlContainer = url+"private/";
-
-  url = url+"private/puntoPrueba3Mapa.json";
+  let url = urlCreator(webIdPar);
 
   try {
     let solidFile = await solid.getFile(
         url,
         { fetch: session.fetch }
     );
+
+    const { webId } = session.info;
 
     let author = await getNameFromPod(webId);
 
@@ -512,126 +298,13 @@ export async function addScore(mapId,pointId,score,session,webId){
 
     var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
 
-    await updateData(fichero, webId, session);
+    await updateData(fichero, webIdPar, session);
 
   } catch (error) {
     console.log(error);
   }
-
+  return newScore;
 }
-
-
-/**
- * ----------------------------------------------------------------------------------------------------
- * AMIGOS POD
- * ----------------------------------------------------------------------------------------------------
- */
-
-
-
-//Se encarga de crear el primer acl del json, dándole permisos de owner al propietario
-async function ownAclPermission(webId,session) {
-
-  let url = webId.replace("profile/card#me","");
-  let urlContainer = url+"private/";
-  url = url+"private/puntoPrueba3Mapa.json"; 
-
-  try {
-    let file = await solid.getFile(
-      url,
-      { fetch: session.fetch }
-    );
-
-      let resourceAcl = solid.createAcl(file);
-
-     const updatedAcl = solid.setAgentResourceAccess(
-      resourceAcl,
-      webId,
-      { read: true, append: true, write: true, control: true }
-    );
-
-    await solid.saveAclFor(file, updatedAcl, { fetch: session.fetch }); 
-
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-
-//Se encarga de darle permisos de lectura y escritura a los amigos del pod
-export async function friendsAclPermission(webId,session) {
-
-  let friendsURL = solid.getUrlAll(await getProfile(webId), FOAF.knows);
-
-  let url = webId.replace("profile/card#me","");
-  let urlContainer = url+"private/";
-  url = url+"private/puntoPrueba3Mapa.json"; 
-
-  try {
-    let file = await solid.getFile(
-      url,
-      { fetch: session.fetch }
-    );
-
-    for(var i in friendsURL){
-      let resourceAcl = solid.createAcl(file);
-
-      const updatedAcl = solid.setAgentResourceAccess(
-        resourceAcl,
-        friendsURL[i],
-        { read: true, append: false, write: true, control: false }
-      );
- 
-     await solid.saveAclFor(file, updatedAcl, { fetch: session.fetch }); 
-    }
-
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-//Devuevle los amigos de usuario registrado
-export async function getAllFriendsFromPod(webId) {
-
-  let friendsURL = solid.getUrlAll(await getProfile(webId), FOAF.knows);
-
-  let friends = [];
-
-  for(var i in friendsURL){
-
-    let name = await getNameFromPod(friendsURL[i]);
-    var friend = {
-      friendURL:friendsURL[i],
-      friendName:name,
-    }
-    friends.push(friend);
-  }
-
-  return friends;
-
-}
-
-//Devuelve los mapas del amigo que se pasa por parámetro
-export async function getAllFriendMaps(webId) {
-
-  let friendsURL = solid.getUrlAll(await getProfile(webId), FOAF.knows);
-
-  let friends = [];
-
-  for(var i in friendsURL){
-
-    let name = await getNameFromPod(friendsURL[i]);
-    var friend = {
-      friendURL:friendsURL[i],
-      friendName:name,
-    }
-    friends.push(friend);
-  }
-
-  return friends;
-
-}
-
 
 
 /**
@@ -641,8 +314,16 @@ export async function getAllFriendMaps(webId) {
  */
 
 
+//Devuelve la url para poder acceder al json
+export function urlCreator(webId){
+  let url = webId.replace("profile/card#me","");
+  url = url+"private/puntoPrueba3Mapa.json";
+  return url; 
+}
+
+
 //Devuelve la información del perfil
-async function getProfile(webId){ 
+export async function getProfile(webId){ 
   let profileDocumentURI = webId.split("#")[0]; // we remove the right hand side of the # for consistency
   let myDataset = await solid.getSolidDataset(profileDocumentURI); // obtain the dataset from the URI
   return solid.getThing(myDataset, webId); // we obtain the thing we are looking for from the dataset
@@ -650,7 +331,7 @@ async function getProfile(webId){
 
 
 //Devuelve el nombre del usuario logeado
-async function getNameFromPod(webId) {
+export async function getNameFromPod(webId) {
   if (webId === "" || webId === undefined) return "Name not found"; // we return the empty string
   let name = solid.getStringNoLocale(await getProfile(webId), FOAF.name);
   return name !== null ? name : "No name :(";
@@ -664,7 +345,7 @@ export async function getImageFromPod(webId) {
 }
 
 //Función que devuelve una id random para poder distinguir los puntos
-const randomId = function(length) {
+export const randomId = function(length) {
   return (Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2)).substring(0, length);
 };
 

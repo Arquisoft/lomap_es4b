@@ -1,12 +1,12 @@
 import imagen from '../../images/default-icon.png';
-import {getAllPointsInCurrentMap} from "../../helper/PodHelper";
+import {getAllPointsInCurrentMap} from "../../helper/PodMaps";
 
 export function MapListComponent(props) {
 
     const { webId,session} = props;
 
     const handleClick = () => {
-        getAllPointsInCurrentMap(session,webId).then((points)=>{
+        getAllPointsInCurrentMap(session,webId,1).then((points)=>{
             console.log(points);
             props.showMapPoints(points, webId);
         });

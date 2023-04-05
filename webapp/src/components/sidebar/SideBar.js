@@ -19,7 +19,8 @@ export const SideBar = (props) => {
 
     const { collapseSidebar } = useProSidebar();
     const {session, webId, marcadorPuntosSeleccionado,setMarcadorPuntosSeleccionado, marcadorMapasSeleccionado, setMarcadorMapasSeleccionado,
-        marcadorFriendsSeleccionado, setMarcadorFriendsSeleccionado, marcadorAñadirMapaSeleccionado, setMarcadorAñadirMapaSeleccionado} = props;
+        marcadorFriendsSeleccionado, setMarcadorFriendsSeleccionado, marcadorAñadirMapaSeleccionado, setMarcadorAñadirMapaSeleccionado,
+        marcadorAñadirAmigoSeleccionado,setMarcadorAñadirAmigoSeleccionado,marcadorFiltroSeleccionado,setMarcadorFiltroSeleccionado} = props;
     const [isOpen, setOpen] = useState(true);
 
     return(
@@ -42,6 +43,8 @@ export const SideBar = (props) => {
                     setMarcadorMapasSeleccionado(false);
                     setMarcadorFriendsSeleccionado(false);
                     setMarcadorAñadirMapaSeleccionado(false);
+                    setMarcadorAñadirAmigoSeleccionado(false);
+                    setMarcadorFiltroSeleccionado(false);
                     }}
                     style={{ textAlign: "center" }}
                     >
@@ -60,27 +63,25 @@ export const SideBar = (props) => {
                             setMarcadorMapasSeleccionado(false);
                             setMarcadorFriendsSeleccionado(false);
                             setMarcadorAñadirMapaSeleccionado(false);
+                            setMarcadorAñadirAmigoSeleccionado(false);
+                            setMarcadorFiltroSeleccionado(false);
                             setMarcadorPuntosSeleccionado(!marcadorPuntosSeleccionado);
                         }}>
                        Ver puntos
                     </MenuItem>
-                    <MenuItem className='subMenuItem'
-                        icon={<AddLocationAltIcon />} 
-                        onClick={() =>
-                            { addComment("1","xdjmz1zlqhgmrp158fj0","Depu",session,webId)}}>
-                        Añadir punto </MenuItem>
-                    <MenuItem className='subMenuItem'
-                        icon={<WrongLocationIcon />} 
-                        onClick={() =>
-                            { deletePoints(session,webId, "txo5ke76cjs5r5r3pg1x");}}> 
-                        Eliminar punto </MenuItem>
-                    <SubMenu className="menuFiltro" label="Filtrar puntos">
-                        <MenuItem className="subMenuFiltro" label="filtros">
-                            <Filtro session={session} webId={webId}>
-
-                            </Filtro>
-                        </MenuItem>
-                    </SubMenu>
+                    <MenuItem className="subMenuItem" label="Ver puntos"
+                        icon={<FilterAltIcon />}
+                        onClick={()=>{ 
+                            setMarcadorMapasSeleccionado(false);
+                            setMarcadorFriendsSeleccionado(false);
+                            setMarcadorAñadirMapaSeleccionado(false);
+                            setMarcadorAñadirAmigoSeleccionado(false);
+                            setMarcadorPuntosSeleccionado(false);
+                            setMarcadorFiltroSeleccionado(!marcadorFiltroSeleccionado);
+                        }}>
+                       Filtrar Puntos
+                    </MenuItem>
+                 
                 </SubMenu >
 
                 <SubMenu className="subMenu" label={isOpen? "Gestionar mapas" : ""} icon={<SortIcon />}
@@ -95,6 +96,8 @@ export const SideBar = (props) => {
                             setMarcadorFriendsSeleccionado(false);
                             setMarcadorPuntosSeleccionado(false); 
                             setMarcadorAñadirMapaSeleccionado(false);
+                            setMarcadorAñadirAmigoSeleccionado(false);
+                            setMarcadorFiltroSeleccionado(false);
                             setMarcadorMapasSeleccionado(!marcadorMapasSeleccionado);
                         }}>
                        Ver mapas
@@ -105,6 +108,8 @@ export const SideBar = (props) => {
                                 setMarcadorFriendsSeleccionado(false);
                                 setMarcadorPuntosSeleccionado(false);
                                 setMarcadorMapasSeleccionado(false);
+                                setMarcadorAñadirAmigoSeleccionado(false);
+                                setMarcadorFiltroSeleccionado(false);
                                 setMarcadorAñadirMapaSeleccionado(!marcadorAñadirMapaSeleccionado); }}>
                         Añadir mapa </MenuItem>
                 </SubMenu >
@@ -116,6 +121,8 @@ export const SideBar = (props) => {
                             setMarcadorPuntosSeleccionado(false);
                             setMarcadorMapasSeleccionado(false); 
                             setMarcadorAñadirMapaSeleccionado(false);
+                            setMarcadorAñadirAmigoSeleccionado(false);
+                            setMarcadorFiltroSeleccionado(false);
                             setMarcadorFriendsSeleccionado(!marcadorFriendsSeleccionado);
                         }else{
                             collapseSidebar();
@@ -125,16 +132,16 @@ export const SideBar = (props) => {
                     <div style={{display : isOpen? "block" : "none"}}>Amigos</div>
                 </MenuItem>
                 <MenuItem className='menuItem'
-                    icon={<GroupIcon />} 
-                    onClick={() => { 
-                        if(isOpen){
-                            friendsAclPermission(webId,session);
-                        }else{
-                            collapseSidebar();
-                            setOpen(!isOpen);
-                        }
-                    }}>
-                    <div style={{display : isOpen? "block" : "none"}}>Dar Permisos Amigos</div>
+                        icon={<GroupIcon />} 
+                        onClick={() =>{
+                                setMarcadorFriendsSeleccionado(false);
+                                setMarcadorPuntosSeleccionado(false);
+                                setMarcadorMapasSeleccionado(false);
+                                setMarcadorAñadirMapaSeleccionado(false);
+                                setMarcadorFiltroSeleccionado(false);
+                                setMarcadorAñadirAmigoSeleccionado(!marcadorAñadirAmigoSeleccionado);
+                            }}>
+                        Añadir Amigo
                 </MenuItem>
                 <MenuItem className='menuItem' 
                     icon={<InfoIcon />} onClick={() => { 

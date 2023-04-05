@@ -1,7 +1,7 @@
 import {MarkerComponent} from './MarkerComponent';
 import React, { useState, useEffect } from 'react';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
-import {getAllPointsInCurrentMap} from '../../helper/PodHelper';
+import {getAllPointsInCurrentMap} from '../../helper/PodMaps';
 import "./markerslist.css"
 
 export function MarkersList(props) {
@@ -12,7 +12,7 @@ export function MarkersList(props) {
 
     useEffect(() => {
       const fetchPoints = async() => {
-        const result = await getAllPointsInCurrentMap(session, webId);
+        const result = await getAllPointsInCurrentMap(session, webId,1);
         setPoints(result);
       }
       fetchPoints();

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import CreatePoint from "./CreatePoint"
-import {addMap} from "../../helper/PodHelper.js"
+import {addMap} from "../../helper/PodMaps.js"
 import './MapView.css'
 
 export default class AddMapForm extends Component {

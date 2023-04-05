@@ -1,12 +1,14 @@
 import React, {Component} from "react";
-import CreatePoint from "./CreatePoint"
+import CreatePoint from "./CreatePoint";
+import {Category} from '../../entities/Entities';
+
 
 export default class AddPointForm extends Component {
     constructor(props) {
         super(props);
         this.state = {name: '',
             description: '',
-            category: 'monument',
+            category: Category[0].category,
             position: this.props.position,
             map: this.props.map,
             popup: this.props.popup,
@@ -53,9 +55,11 @@ export default class AddPointForm extends Component {
                         <label>
                             Selecciona una categoria:
                             <select value={this.state.category} onChange={this.handleChangeCategory}>
-                                <option value="restaurant">Restaurante</option>
-                                <option value="monument">Monumento</option>
-                                <option value="hospital">Hospital</option>
+                                {
+                                    Category.map((item) => (
+                                        <option key={item.category} value={item.category}>{item.text}</option>
+                                ))
+                                }
                             </select>
                         </label>
                     </li>

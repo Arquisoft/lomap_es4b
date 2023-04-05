@@ -1,7 +1,7 @@
 import pordefecto from '../../images/default-user.jpg';
-import {getImageFromPod,getAllPointsInCurrentMap} from '../../helper/PodHelper';
+import {getImageFromPod} from '../../helper/PodHelper';
 import { useState,useEffect} from "react";
-import {getAllMaps, get} from '../../helper/PodHelper';
+import {getAllMaps,getAllPointsInCurrentMap} from '../../helper/PodMaps';
 
 export function FriendComponent(props) {
 
@@ -33,7 +33,7 @@ export function FriendComponent(props) {
 
     const handleClick = () => {
       if(selectedValue != ''){
-        getAllPointsInCurrentMap(session,friendURL).then((points)=>{
+        getAllPointsInCurrentMap(session,friendURL,1).then((points)=>{
             props.showFriendPoints(points, friendURL);
             }
         );

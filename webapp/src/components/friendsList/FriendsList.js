@@ -1,7 +1,7 @@
 import {FriendComponent} from './FriendComponent';
 import React, { useState, useEffect } from 'react';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
-import {getAllFriendsFromPod} from '../../helper/PodHelper';
+import {getAllFriendsFromPod} from '../../helper/PodFriends';
 import "./FriendList.css"
 
 export function FriendsList(props) {

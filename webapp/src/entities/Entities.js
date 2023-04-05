@@ -4,6 +4,9 @@ export const PointStruct = {
     longitude:"",
     comment:""
 };
+
+export const Category = [{text:"Restaurante",category:"restaurant"},{text:"Monumento",category:"monument"}, 
+                        {text:"Hospital",category:"hospital"}];
   
 export class CommentEntity{
     constructor(username, text) {
