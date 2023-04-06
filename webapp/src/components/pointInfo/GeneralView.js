@@ -90,7 +90,7 @@ export default function GeneralView(params){
             <div className='editDelete'>
                 {params.isOwner?
                     <button className='button-17' onClick={() => {
-                        EditPoint(params.point.id, params.marker, params.map, params.webId, params.session);
+                        EditPoint(params.point.id, params.marker, params.map, params.mapId, params.webId, params.session);
                     }}>
                         Edit
                     </button>
