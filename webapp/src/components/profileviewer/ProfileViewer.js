@@ -11,6 +11,7 @@ import AddFriendForm  from "../friendsList/AddFriendForm";
 import AddMapForm from "../map/AddMapForm";
 import FilterForm from "../filter/FilterForm";
 import {friendsAclPermission} from "../../helper/PodFriends";
+import {Filtro} from "../sidebar/Filtro/Filtro";
 
 
 const ProfileViewer = () => {
@@ -74,7 +75,7 @@ const ProfileViewer = () => {
         null
       }
       {marcadorFiltroSeleccionado ?
-        <FilterForm session={session} webId={webId}></FilterForm>
+        <Filtro session={session} webId={webId}></Filtro>
         :
         null
       }

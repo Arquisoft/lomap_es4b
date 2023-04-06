@@ -3,12 +3,13 @@ import {BubbleChart} from "@mui/icons-material";
 import {Button} from "@material-ui/core";
 import React, { useState } from "react";
 import {filterPoints} from "../../../helper/PodHelper"
+import {Category} from "../../../entities/Entities";
 
 
 export function Filtro(props){
     const [listaCosasFiltradas, setListaCosasFiltradas] = useState([]) ;
     const {session, webId} = props;
-    var listaFiltro=[{texto:"Restaurante",token:"restaurant"},{texto:"Monumento",token:"monument"}, {texto:"Hospital",token:"hospital"}];
+    var listaFiltro=Category;
     const handleSelect = (event) => {
         const value = event.target.value;
         const isChecked = event.target.checked;
@@ -28,32 +29,35 @@ export function Filtro(props){
 
     const filterList = listaFiltro.map((categoria)=>{
         return (
-            <li>
-                <div>
-                    <label class="label" htmlFor={"checkbox"+categoria.token}>{categoria.texto}</label>
+                <div className={"filaFiltro"}>
+                    <img src={ "\\lomap_es4b\\webapp\\src\\images\\"+categoria.category+".png"} alt={categoria.text}/>
+                    <label class="label" htmlFor={"checkbox"+categoria.category}>{categoria.text}</label>
                     <input type="checkbox"
-                        id={"checkbox"+categoria.token}
-                        name={categoria.token}
-                        value={categoria.token}
+                        id={"checkbox"+categoria.text}
+                        name={categoria.text}
+                        value={categoria.category}
                            onChange={handleSelect}
                        />
 
 
-                </div>
-            </li>)
+                </div>)
 
     });
 
-    return <div>
-        <ul>
+    return (
+    <div className={"filtro"}>
+        <h2>
+            Seleccione las categorías a filtrar
+        </h2>
             {filterList}
-            <Button onClick={
+        <div className={"botonFiltro"}>
+            <Button color="blue" variant={"outlined"} size="large"onClick={
                 async ()=>{
                     var puntos = await filterPoints(session,webId,listaCosasFiltradas);
                 }
             }>
                 Filtrar
             </Button>
-        </ul>
-    </div>
+        </div>
+    </div>);
 }
