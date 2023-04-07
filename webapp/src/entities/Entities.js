@@ -15,7 +15,7 @@ export class CommentEntity{
     }
 }
 export class Point{
-    constructor(id, author, latitude, longitude, name, description, category, comments, reviewScores){
+    constructor(id, author, latitude, longitude, name, description, category, comments, reviewScores, pictures){
         this.id = id;
         this.author = author;
         this.latitude = latitude;
@@ -25,6 +25,7 @@ export class Point{
         this.category = category;
         this.comments = comments;
         this.reviewScores = reviewScores;
+        this.pictures = pictures;
     }
 
 }
@@ -51,5 +52,12 @@ export class ReviewScore{
         this.author = author;
         this.score = score;
         this.date = date;
+    }
+}
+
+export class Picture{
+    constructor(author, pictureURL){
+        this.author = author;
+        this.pictureURL = pictureURL;
     }
 }

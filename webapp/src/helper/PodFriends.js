@@ -1,6 +1,6 @@
 import * as solid from '@inrupt/solid-client';
 import { FOAF } from "@inrupt/lit-generated-vocab-common";
-import {getProfile,getNameFromPod} from './PodHelper';
+import {getProfile,getNameFromPod,urlCreator} from './PodHelper';
 
 /**
  * ----------------------------------------------------------------------------------------------------
@@ -13,9 +13,7 @@ import {getProfile,getNameFromPod} from './PodHelper';
 //Se encarga de crear el primer acl del json, dándole permisos de owner al propietario
 export async function ownAclPermission(webId,session) {
 
-    let url = webId.replace("profile/card#me","");
-    let urlContainer = url+"private/";
-    url = url+"private/puntoPrueba3Mapa.json"; 
+      let url = urlCreator(webId);
   
     try {
       let file = await solid.getFile(
@@ -44,9 +42,8 @@ export async function ownAclPermission(webId,session) {
   
     let friendsURL = solid.getUrlAll(await getProfile(webId), FOAF.knows);
   
-    let url = webId.replace("profile/card#me","");
-    let urlContainer = url+"private/";
-    url = url+"private/puntoPrueba3Mapa.json"; 
+    let url = urlCreator(webId);
+
   
     try {
       let file = await solid.getFile(
@@ -113,7 +110,7 @@ export async function ownAclPermission(webId,session) {
   
   }
   
-  
+  //Añade un amigo a lista de amigos del usuario que está iniciado en sesión
   export async function addFriend(webID, session, friend) {
     let profile = webID.split("#")[0]; 
     let friendWebId = "https://"+friend+".inrupt.net/profile/card#me";

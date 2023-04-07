@@ -27,7 +27,7 @@ export async function getAllPointsInCurrentMap(session,webId,mapId){
       for(var i in mapPoints) {
         let p = new Point(mapPoints[i].id,mapPoints[i].author,mapPoints[i].latitude,
           mapPoints[i].longitude, mapPoints[i].name, mapPoints[i].description, mapPoints[i].category,
-          mapPoints[i].comments, mapPoints[i].reviewScores);
+          mapPoints[i].comments, mapPoints[i].reviewScores, mapPoints[i].pictures);
         points.push(p);
       }
   
