@@ -11,12 +11,12 @@ export function MapListComponent(props) {
     };
 
     return (
-      <div className="sideComponent">
+      <div className="sideComponentMap">
         {/* <div className="componentInfo"> */}
-        <header className='pointHeader'>
-          <p className='name'>{props.name} </p>
+        <header className='pointHeaderMap'>
+          <p className='nameMap'>{props.name} </p>
         </header>
-        <div className="descriptionAndImage">
+        <div className="descriptionAndImageMap">
             <img src={imagen} alt="Imagen del mapa"/>
             <p>{props.description}</p>
           </div>

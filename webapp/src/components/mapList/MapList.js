@@ -18,9 +18,9 @@ export function MapList(props) {
     }, []);
 
     return (
-      <ScrollArea.Root className="ScrollAreaRoot">
+      <ScrollArea.Root className="ScrollAreaRootMaps">
         <ScrollArea.Viewport className="ScrollAreaViewport">
-          <div className='sideList' id='pointsList'>
+          <div className='sideListMaps' id='pointsList'>
             {
               maps.map((item) => (
                 <MapListComponent showMapPoints={(points, webId, mapId) => {props.showMapPoints(points, webId, mapId)}} mapId={item.id} name={item.name} description={item.description} session={session} webId={webId}/>

@@ -1,8 +1,8 @@
-.sideList{
+.sideListFriends{
     height: 100%;
 }
 
-.sideComponent{
+.sideComponentFriend{
     margin: 0.5em;
     padding: 0.5em;
     padding-bottom: 1em;
@@ -13,13 +13,13 @@
     width: 24.5em;
 }
 
-.pointHeader{
+.pointHeaderFriend{
     display: flex;
     flex-direction: row;
     margin-left: 0.5em;
 }
 
-.name{
+.nameFriend{
     margin-top: 0.5em;
     margin-bottom: 0.5em;
     font-size: large;
@@ -54,10 +54,11 @@
 
 
 /* Scroll */
-.ScrollAreaRoot {
+.ScrollAreaRootFriends {
     width: 30%;
     overflow: visible;
     --scrollbar-size: 10px;
+    z-index: 1;
 }
   
 

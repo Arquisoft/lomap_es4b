@@ -19,9 +19,9 @@ export function MarkersList(props) {
     }, []);
 
     return (
-      <ScrollArea.Root className="ScrollAreaRoot">
+      <ScrollArea.Root className="ScrollAreaRootLocations">
         <ScrollArea.Viewport className="ScrollAreaViewport">
-          <div className='sideList' id='pointsList'>
+          <div className='sideListLocations' id='pointsList'>
             {
               points.map((item) => (
                 <MarkerComponent centerMap={(position) => props.centerMap(position)} key={item.id} name={item.name} category={item.category}
