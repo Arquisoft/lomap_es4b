@@ -110,11 +110,36 @@ export async function addMap(name,session,webId){
       return mapId;
   
     } catch (error) {
-      const file = await createPointsFile(webId);
+      const file = await createPointsFile(webId, name);
       await createData(urlContainer, file, session);
       await ownAclPermission(webId,session);
       await friendsAclPermission(webId,session);
       //return addMap(name,session,webId);
-    }
-  
+    }  
+}
+
+//Método que devuelve una lista con los mapas del pod
+export async function getFirstMap(session, webId){
+
+  let url = urlCreator(webId);
+
+  try {
+    let file = await solid.getFile(
+      url,
+      { fetch: session.fetch }
+
+    );
+
+    let mapsString = await file.text();
+    var jsonMaps = JSON.parse(mapsString);
+
+    var maps = jsonMaps.maps;
+
+    return maps[0];
+
+
+  } catch (error) {
+    console.log(error);
+    return [];
   }
+}

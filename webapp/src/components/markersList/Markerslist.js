@@ -6,13 +6,12 @@ import "./markerslist.css"
 
 export function MarkersList(props) {
 
-    const {session,webId} = props;
+    const {mapId, session, webId} = props;
     const [points, setPoints] = useState([]);
-    // 
 
     useEffect(() => {
       const fetchPoints = async() => {
-        const result = await getAllPointsInCurrentMap(session, webId,1);
+        const result = await getAllPointsInCurrentMap(session, webId, mapId);
         setPoints(result);
       }
       fetchPoints();
