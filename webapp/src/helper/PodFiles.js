@@ -29,13 +29,13 @@ export async function createData(url, file, session) {
   
   
   //Se encarga de cear el archivos JSON en el POD
-  export async function createPointsFile(webId) {
+  export async function createPointsFile(webId, mapName="Primer mapa") {
     let author = await getNameFromPod(webId);
   
     var r = {
       maps: [{
         id: "1",
-        name: "Primer mapa",
+        name: mapName,
         author: author,
         locations: []
       }

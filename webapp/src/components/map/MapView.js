@@ -5,7 +5,7 @@ import "leaflet/dist/leaflet.css";
 import * as L from "leaflet";
 import AddMarker from'./AddMarker';
 import AddPointForm from "./AddPointForm";
-import ProfileViewer from "../ProfileViewer";
+import {getFirstMap} from "../../helper/PodMaps.js"
 
 
 // Centra el mapa a la ubicacion actual del navegador
@@ -32,6 +32,19 @@ export default class MapView extends Component{
         mapId: '',
     };
   }
+
+    async componentDidMount(){
+      let firstMap = await getFirstMap(this.state.session, this.state.webId);
+      this.setState({mapId: firstMap.id});
+      let points = firstMap.locations;
+      for (let i=0; i < points.length; i++) {
+        // Por cada punto se crea un marcador, asociandole el id del punto
+        let lat = points[i].latitude;
+        let lng = points[i].longitude;
+        AddMarker([lat, lng], this.state.map.target, this.state.mapId, points[i].id, points[i].category, this.state.markers, 
+          this.state.webId, this.state.session, this.state.isOwner);
+      }
+    }
 
     centerMapOnPoint(location) {
         if (this.state.map != null) {

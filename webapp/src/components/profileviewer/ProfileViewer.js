@@ -23,6 +23,7 @@ const ProfileViewer = () => {
   const [marcadorAñadirAmigoSeleccionado, setMarcadorAñadirAmigoSeleccionado] = useState(false);
   const [marcadorFiltroSeleccionado, setMarcadorFiltroSeleccionado] = useState(false);
   const [mapView, setMapView] = useState(null);
+  const [currentMapId, setCurrentMapId] = useState();
 
 
   useEffect(() => {
@@ -46,15 +47,15 @@ const ProfileViewer = () => {
         marcadorAñadirAmigoSeleccionado={marcadorAñadirAmigoSeleccionado} setMarcadorAñadirAmigoSeleccionado={setMarcadorAñadirAmigoSeleccionado}
         marcadorFiltroSeleccionado={marcadorFiltroSeleccionado} setMarcadorFiltroSeleccionado={setMarcadorFiltroSeleccionado}/>
 
-          {/* Le pasa la referencia a la funcion centerMapOnPoint de MapView */}
-          {marcadorPuntosSeleccionado ?
-              <MarkersList centerMap={(position) => {mapView.centerMapOnPoint(position)}} session={session} webId={webId}></MarkersList>
-              :
-              null
-          }
+      {/* Le pasa la referencia a la funcion centerMapOnPoint de MapView */}
+      {marcadorPuntosSeleccionado ?
+        <MarkersList centerMap={(position) => {mapView.centerMapOnPoint(position)}} mapId={currentMapId} session={session} webId={webId}></MarkersList>
+        :
+        null
+      }
 
       {marcadorMapasSeleccionado ?
-        <MapList showMapPoints={(points, webId, mapId) => {mapView.updateMarkers(points, webId, mapId)}} session={session} webId={webId}></MapList>
+        <MapList showMapPoints={(points, webId, mapId) => {mapView.updateMarkers(points, webId, mapId)}} setCurrentMapId={setCurrentMapId} session={session} webId={webId}></MapList>
         :
         null
       }

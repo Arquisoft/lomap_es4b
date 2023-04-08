@@ -6,7 +6,7 @@ import "./MapList.css"
 
 export function MapList(props) {
 
-    const {session,webId} = props;
+    const {session, webId} = props;
     const [maps, setMaps] = useState([]);
 
     useEffect(() => {
@@ -23,7 +23,8 @@ export function MapList(props) {
           <div className='sideListMaps' id='pointsList'>
             {
               maps.map((item) => (
-                <MapListComponent showMapPoints={(points, webId, mapId) => {props.showMapPoints(points, webId, mapId)}} mapId={item.id} name={item.name} description={item.description} session={session} webId={webId}/>
+                <MapListComponent showMapPoints={(points, webId, mapId) => {props.showMapPoints(points, webId, mapId)}} mapId={item.id}
+                  setCurrentMapId={props.setCurrentMapId} name={item.name} description={item.description} session={session} webId={webId}/>
               ))
 
             }
