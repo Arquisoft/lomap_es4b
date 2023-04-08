@@ -42,9 +42,9 @@ export function FriendComponent(props) {
     };
 
     return (
-      <div className="sideComponent">
-        <header className='pointHeader'>
-          <p className='name'>{friendName} </p>
+      <div className="sideComponentFriend">
+        <header className='pointHeaderFriend'>
+          <p className='nameFriend'>{friendName} </p>
         </header>
         <div className="comboAndImage">
             <img src={friendImage} alt="Imagen del usuario"/>
