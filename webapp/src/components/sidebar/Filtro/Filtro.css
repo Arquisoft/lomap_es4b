@@ -1,5 +1,5 @@
 
-h2{
+.tituloFiltro{
     flex-direction: row;
     margin-left: 0.1em;
     margin-right: 0.5em;
@@ -10,8 +10,9 @@ h2{
     text-align: center;
     border-radius: 0.2em;
 }
-img{
-    border-radius: 0.5em;
+.icono{
+    width: 2em;
+    height: 2em;
 }
 
 
@@ -55,6 +56,17 @@ img{
     align-content: center;
     align-self: center;
     align-items: center;
-    padding-left: 4.2em;
+    background-color: #0099CC;
+    color: white;
+    alignment: center;
+    width: 4em;
+    height: 3em;
+    border-radius: 1em;
+}
+.divBotonFiltro{
+    align-content: center;
+    alignment: center;
+    margin-left: 12em;
+    margin-bottom: 2em;
 }
 

@@ -20,7 +20,7 @@ export function FriendsList(props) {
     return (
       <ScrollArea.Root className="ScrollAreaRoot">
         <ScrollArea.Viewport className="ScrollAreaViewport">
-          <div className='sideList' id='pointsList' >
+          <div data-testid="listaAmigos" className='sideList' id='pointsList' >
             {
               friends.map((item) => (
                 <FriendComponent showFriendPoints={(points, webId) => {props.showFriendPoints(points, webId)}} friendURL={item.friendURL} friendName={item.friendName} webId={webId} session={session} key={item.friendURL}/>

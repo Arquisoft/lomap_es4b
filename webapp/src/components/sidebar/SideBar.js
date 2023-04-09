@@ -25,8 +25,8 @@ export const SideBar = (props) => {
 
     return(
         <div className='sideBar'>
-        <Sidebar>
-            <Menu className='menu' menuItemStyles={{
+        <Sidebar data-testid = "sidebar">
+            <Menu data-testid = "sidebarMenu" className='menu' menuItemStyles={{
                 button: {
                     '&:hover': {
                      backgroundColor: 'Highlight',
@@ -34,7 +34,7 @@ export const SideBar = (props) => {
                 },
             }}>
 
-                <MenuItem className='menuItem'
+                <MenuItem data-testid = "sidebarFirst" className='menuItem'
                     icon={<MenuIcon />}
                     onClick={() => {
                     collapseSidebar();
@@ -51,7 +51,7 @@ export const SideBar = (props) => {
                     {" "}
                 </MenuItem>
 
-                <SubMenu className="subMenu" label={isOpen? "Gestionar puntos" : ""} icon={<SortIcon />}
+                <SubMenu data-testid = "sidebarPoints" className="subMenu" label={isOpen? "Gestionar puntos" : ""} icon={<SortIcon />}
                         onClick={()=> {if(!isOpen){
                             collapseSidebar();
                             setOpen(!isOpen);
@@ -84,7 +84,7 @@ export const SideBar = (props) => {
                  
                 </SubMenu >
 
-                <SubMenu className="subMenu" label={isOpen? "Gestionar mapas" : ""} icon={<SortIcon />}
+                <SubMenu data-testid = "sidebarMapas" className="subMenu" label={isOpen? "Gestionar mapas" : ""} icon={<SortIcon />}
                         onClick={()=> {if(!isOpen){
                             collapseSidebar();
                             setOpen(!isOpen);
@@ -114,7 +114,7 @@ export const SideBar = (props) => {
                         Añadir mapa </MenuItem>
                 </SubMenu >
                 
-                <MenuItem className='menuItem' label="Amigos"
+                <MenuItem data-testid = "sidebarFriends" className='menuItem' label="Amigos"
                     icon={<GroupIcon />} 
                     onClick={() => { 
                         if(isOpen){

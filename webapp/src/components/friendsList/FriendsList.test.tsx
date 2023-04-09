@@ -3,5 +3,7 @@ import FriendsList from "./FriendsList";
 
 test('check that the login form renders propertly', async () => {
     const {getByText} = render(<FriendsList session={[]} webId={""}/>);
-    expect(getByText("a")).toBeInTheDocument();
+    const {getByTestId} = render(<FriendsList session={[]} webId={""}/>);
+    expect(getByTestId("listaAmigos")).toBeInTheDocument();
+    expect(getByTestId("listaAmigos")).toBeVisible();
 });

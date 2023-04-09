@@ -6,6 +6,7 @@ import {filterPoints} from "../../../helper/PodHelper"
 import {Category} from "../../../entities/Entities";
 
 
+
 export function Filtro(props){
     const [listaCosasFiltradas, setListaCosasFiltradas] = useState([]) ;
     const {session, webId} = props;
@@ -28,9 +29,10 @@ export function Filtro(props){
     };
 
     const filterList = listaFiltro.map((categoria)=>{
+        var image = require('../../../images/' + categoria.category + '.png');
         return (
                 <div className={"filaFiltro"}>
-                    <img src={ "\\lomap_es4b\\webapp\\src\\images\\"+categoria.category+".png"} alt={categoria.text}/>
+                    <img className={"icono"} src={ image} alt={categoria.text}/>
                     <label class="label" htmlFor={"checkbox"+categoria.category}>{categoria.text}</label>
                     <input type="checkbox"
                         id={"checkbox"+categoria.text}
@@ -46,18 +48,20 @@ export function Filtro(props){
 
     return (
     <div className={"filtro"}>
-        <h2>
+        <h2 className={"tituloFiltro"}>
             Seleccione las categorías a filtrar
         </h2>
             {filterList}
-        <div className={"botonFiltro"}>
-            <Button color="blue" variant={"outlined"} size="large"onClick={
+        <div className={"divBotonFiltro"} >
+            <button className={"botonFiltro"} onClick={
                 async ()=>{
                     var puntos = await filterPoints(session,webId,listaCosasFiltradas);
                 }
             }>
                 Filtrar
-            </Button>
+            </button>
         </div>
     </div>);
+
 }
+export default Filtro;

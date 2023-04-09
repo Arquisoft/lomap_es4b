@@ -39,7 +39,7 @@ const ProfileViewer = () => {
 
       <div className="profileViewer">
 
-      <SideBar className="sideBar" session={session} webId={webId}
+      <SideBar data-testid = "sidebarProfile" className="sideBar" session={session} webId={webId}
         marcadorPuntosSeleccionado={marcadorPuntosSeleccionado} setMarcadorPuntosSeleccionado={setMarcadorPuntosSeleccionado}
         marcadorMapasSeleccionado={marcadorMapasSeleccionado } setMarcadorMapasSeleccionado={setMarcadorMapasSeleccionado}
         marcadorFriendsSeleccionado={marcadorFriendsSeleccionado } setMarcadorFriendsSeleccionado={setMarcadorFriendsSeleccionado}
