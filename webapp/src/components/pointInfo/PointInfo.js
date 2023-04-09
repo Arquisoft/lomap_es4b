@@ -23,12 +23,14 @@ class PointInfo extends Component {
             isOwner: this.props.isOwner,
             reviews: null,
             comments: null,
+            pictures: null,
             isLoading: true,
         }
         getSpecificPoint(this.props.session, this.props.webId, this.props.pointId,this.props.mapId).then((point) => {
             this.setState({point: point});
             this.setState({reviews:point.reviewScores});
             this.setState({comments: point.comments});
+            this.setState({pictures: point.pictures})
             this.setState({content: this.renderGeneralViewContent()});
             this.setState({isLoading: false});
             }
@@ -39,6 +41,7 @@ class PointInfo extends Component {
         this.handleCommentsClick = this.handleCommentsClick.bind(this)
         this.updateReviews = this.updateReviews.bind(this)
         this.updateComments = this.updateComments.bind(this)
+        this.updatePictures = this.updatePictures.bind(this)
     }
 
     updateReviews(reviews){
@@ -49,9 +52,15 @@ class PointInfo extends Component {
         this.setState({comments: comments});
     }
 
+    updatePictures(pictures){
+        this.setState({pictures: pictures});
+    }
+
     renderGeneralViewContent(){
         return (
-            <GeneralView point={this.state.point} mapId={this.state.mapId} isOwner={this.state.isOwner} marker={this.state.marker} map={this.state.map} webId={this.state.webId} session={this.state.session}/>
+            <GeneralView point={this.state.point} mapId={this.state.mapId} isOwner={this.state.isOwner} marker={this.state.marker} 
+            map={this.state.map} webId={this.state.webId} session={this.state.session} updatePictures={this.updatePictures}
+            pictures={this.state.pictures}/>
         )
     }
 
