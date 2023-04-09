@@ -7,7 +7,7 @@ import {
   } from "../config/firebase.config";
 
   import {randomId} from './PodHelper';
-  import imagenLogo from '../images/lomapLogo.png';
+  import imagenLogo from '../images/lomapLogo.png'; 
 
   export async function saveImages(image){
 
