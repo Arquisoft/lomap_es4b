@@ -1,23 +1,16 @@
 import {
     LOCATIONS_BUCKET,
-    // ref,
     storage,
-    // uploadBytes,
-    // getDownloadURL,
   } from "../config/firebase.config";
 
-  import { getStorage, uploadBytes, ref, getDownloadURL } from "firebase/storage";
+  import {uploadBytes, ref, getDownloadURL } from "firebase/storage";
 
   import {randomId} from './PodHelper';
-  import imagenLogo from '../images/lomapLogo.png'; 
+  import { addPicture } from "./PodHelper";
 
-  export async function saveImages(image){
+  export async function saveImages(mapId, pointId, image, session, webId, callback){
 
-    image = new Image();
-    image.src = 'https://images.unsplash.com/photo-1547005327-ef75a6961556?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8b2NlYW58ZW58MHwyfDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60';
-    console.log(image);
-
-    const imgExtension = 'png';
+    const imgExtension = image.name.split(".").slice().pop();
     const imgId = randomId();
   
     try {
@@ -27,9 +20,11 @@ import {
     ).then((snapshot) => {
         getDownloadURL(snapshot.ref).then((downloadUrl) => {
           console.log(downloadUrl);
+          addPicture(mapId,pointId,downloadUrl,session,webId).then((savedPicture) =>{
+            callback(savedPicture);
+          });
         });
     })
-     
     } catch (err) {
     console.log(err);
     }
