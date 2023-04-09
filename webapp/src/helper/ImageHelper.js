@@ -1,10 +1,12 @@
 import {
     LOCATIONS_BUCKET,
-    ref,
+    // ref,
     storage,
-    uploadBytes,
-    getDownloadURL,
+    // uploadBytes,
+    // getDownloadURL,
   } from "../config/firebase.config";
+
+  import { getStorage, uploadBytes, ref, getDownloadURL } from "firebase/storage";
 
   import {randomId} from './PodHelper';
   import imagenLogo from '../images/lomapLogo.png'; 

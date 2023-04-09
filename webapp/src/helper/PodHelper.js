@@ -99,7 +99,7 @@ export async function updatePoints(mapId,latitude,longitude,name,description,cat
       category:category,
       comments:[],
       reviewScores:[],
-      pictures:[]
+      pictures:[],
     }
 
     let mapsString = await solidFile.text();
@@ -120,11 +120,12 @@ export async function updatePoints(mapId,latitude,longitude,name,description,cat
 
   } catch (error) {
 
-    const file = await createPointsFile(webId);
-    await createData(urlContainer, file, session);
-    await ownAclPermission(webId,session);
-    await friendsAclPermission(webId,session);
-    return updatePoints(mapId,latitude,longitude,name,description,category,session,webId);
+    // const file = await createPointsFile(webId);
+    // await createData(urlContainer, file, session);
+    // await ownAclPermission(webId,session);
+    // await friendsAclPermission(webId,session);
+    // return updatePoints(mapId,latitude,longitude,name,description,category,session,webId);
+    console.log(error);
   }
 
 }
