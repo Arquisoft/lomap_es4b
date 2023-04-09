@@ -13,6 +13,7 @@ import MapIcon from '@mui/icons-material/Map';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import {deletePoints,friendsAclPermission,addComment} from '../../helper/PodHelper';
 import {Filtro} from "./Filtro/Filtro";
+import {saveImages} from '../../helper/ImageHelper';
 import "./SideBar.css"
 
 export const SideBar = (props) => {
@@ -146,7 +147,7 @@ export const SideBar = (props) => {
                 <MenuItem className='menuItem' 
                     icon={<InfoIcon />} onClick={() => { 
                         if(isOpen){
-                            
+                            saveImages();
                         }else{
                             collapseSidebar();
                             setOpen(!isOpen);

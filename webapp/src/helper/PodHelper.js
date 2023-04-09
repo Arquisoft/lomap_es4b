@@ -98,7 +98,8 @@ export async function updatePoints(mapId,latitude,longitude,name,description,cat
       description:description,
       category:category,
       comments:[],
-      reviewScores:[]
+      reviewScores:[],
+      pictures:[]
     }
 
     let mapsString = await solidFile.text();
@@ -154,7 +155,7 @@ export async function getSpecificPoint(session, webId,pointId,mapId){
       console.log("Error: No existe el punto del pod");
     }else{
       let specificPoint = new Point(point.id, point.author, point.latitude, point.longitude, point.name, 
-        point.description, point.category, point.comments, point.reviewScores);
+        point.description, point.category, point.comments, point.reviewScores,point.pictures);
       return specificPoint;
     }
 
@@ -257,7 +258,7 @@ export async function addComment(mapId,pointId,comment,session,webIdPar){
 
 }
 
-//Añade un comentario a un punto
+//Añade una review a un punto
 export async function addScore(mapId,pointId,score,session,webIdPar){
 
   let url = urlCreator(webIdPar);
@@ -304,6 +305,48 @@ export async function addScore(mapId,pointId,score,session,webIdPar){
     console.log(error);
   }
   return newScore;
+}
+
+
+//Añade una foto a un punto
+export async function addPicture(mapId,pointId,pictureURL,session,webIdPar){
+
+  let url = urlCreator(webIdPar);
+
+  try {
+    let solidFile = await solid.getFile(
+        url,
+        { fetch: session.fetch }
+    );
+
+    const { webId } = session.info;
+
+    let author = await getNameFromPod(webId);
+
+    var newPicture = {
+      author:author,
+      pictureURL:pictureURL,
+    }
+
+    let mapsString = await solidFile.text();
+    var jsonMaps = JSON.parse(mapsString);
+    const map = jsonMaps.maps.find(map => map.id == mapId);
+    const point = map.locations.find(point => point.id == pointId);
+
+    point.pictures.push(newPicture);
+
+    const blob = new Blob([JSON.stringify(jsonMaps, null, 2)], {
+      type: "application/json",
+    });
+
+    var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
+
+    await updateData(fichero, webIdPar, session);
+
+  } catch (error) {
+    console.log(error);
+  }
+  return newPicture;
 }
 
 

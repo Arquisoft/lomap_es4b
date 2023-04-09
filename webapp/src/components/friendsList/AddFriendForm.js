@@ -35,6 +35,7 @@ export default class AddFriendForm extends Component {
                     <input className="addFriendName" type="text" placeholder="Nombre del amigo"
                         value={this.state.name} onChange={this.handleChangeName} />
                     <input className="addFriendButton" type="submit" value="Agregar amigo" />
+
                 </div>
             </form>
             </div>
