@@ -25,6 +25,7 @@ const ProfileViewer = () => {
   const [marcadorFiltroSeleccionado, setMarcadorFiltroSeleccionado] = useState(false);
   const [mapView, setMapView] = useState(null);
   const [currentMapId, setCurrentMapId] = useState();
+  const [currentMapWebId, setCurrentMapWebId] = useState();
 
 
   useEffect(() => {
@@ -61,7 +62,7 @@ const ProfileViewer = () => {
         null
       }
       {marcadorFriendsSeleccionado ?
-        <FriendsList showFriendPoints={(points, webId, mapId) => {mapView.updateMarkers(points, webId, mapId)}} session={session} webId={webId}></FriendsList>
+        <FriendsList showFriendPoints={(points, webId, mapId) => {mapView.updateMarkers(points, webId, mapId)}} setCurrentMapId={setCurrentMapId} session={session} webId={webId}></FriendsList>
         :
         null
       }
@@ -76,13 +77,13 @@ const ProfileViewer = () => {
         null
       }
       {marcadorFiltroSeleccionado ?
-        <Filtro session={session} webId={webId}></Filtro>
+        <Filtro showFilteredPoints={(points, webId, mapId) => {mapView.updateMarkers(points, webId, mapId)}} mapId={currentMapId} session={session} webId={currentMapWebId}></Filtro>
         :
         null
       }
 
           {/* Guarda la instancia del mapView en el mapView de profileViewer */}
-          <MapView ref={instance => { setMapView(instance)}} session={session}  webId={webId} isLogged={true}/>
+          <MapView ref={instance => { setMapView(instance)}} setCurrentMapId={setCurrentMapId} setCurrentMapWebId={setCurrentMapWebId} session={session}  webId={webId} isLogged={true}/>
       </div>
  
     </Container>

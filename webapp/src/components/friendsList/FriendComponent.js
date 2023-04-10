@@ -35,6 +35,7 @@ export function FriendComponent(props) {
       if(selectedValue != ''){
         getAllPointsInCurrentMap(session,friendURL,selectedValue).then((points)=>{
             props.showFriendPoints(points, friendURL, selectedValue);
+            props.setCurrentMapId(selectedValue);
             }
         );
       }

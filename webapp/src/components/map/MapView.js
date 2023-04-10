@@ -30,12 +30,16 @@ export default class MapView extends Component{
         markers: [],
         isOwner: false,
         mapId: '',
+        setCurrentMapId: this.props.setCurrentMapId,
+        setCurrentMapWebId : this.props.setCurrentMapWebId,
     };
   }
 
     async componentDidMount(){
       let firstMap = await getFirstMap(this.state.session, this.state.webId);
+      this.state.setCurrentMapWebId(this.state.webId);
       this.setState({mapId: firstMap.id});
+      this.state.setCurrentMapId(firstMap.id);
       let points = firstMap.locations;
       if(firstMap.length != 0){
          this.setState({isOwner: true});
@@ -63,6 +67,8 @@ export default class MapView extends Component{
         }
         let isOwner = webId == this.state.webId;
         this.setState({isOwner: isOwner});
+        this.state.setCurrentMapWebId(webId);
+
         //creamos los nuevos markers
         for (let i=0; i < points.length; i++) {
             // Por cada punto se crea un marcador, asociandole el id del punto

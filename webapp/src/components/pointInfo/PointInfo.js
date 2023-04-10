@@ -5,8 +5,8 @@ import GeneralView from "./GeneralView";
 import './PointInfo.css';
 import {getSpecificPoint} from "../../helper/PodHelper";
 import LoadingSpinner from "./LoadingSpinner";
-import {Button} from "@material-ui/core";
-import {ButtonGroup} from "@mui/material";
+import {Category} from '../../entities/Entities';
+
 
 class PointInfo extends Component {
 
@@ -25,6 +25,7 @@ class PointInfo extends Component {
             comments: null,
             pictures: null,
             isLoading: true,
+            categoryText: null,
         }
         getSpecificPoint(this.props.session, this.props.webId, this.props.pointId,this.props.mapId).then((point) => {
             console.log(props);
@@ -35,6 +36,7 @@ class PointInfo extends Component {
             this.setState({pictures: point.pictures})
             this.setState({content: this.renderGeneralViewContent()});
             this.setState({isLoading: false});
+            this.setState({categoryText: Category.find(item => item.category==this.state.point.category).text})
             }
         )
 
@@ -104,7 +106,7 @@ class PointInfo extends Component {
             <div>
                 {/* Informacion general del punto(titulo, autor y categoria*/}
                 <h1>{this.state.point.name} ({this.state.point.author})</h1>
-                <h2>{this.state.point.category}</h2>
+                <h2>{ this.state.categoryText }</h2>
                 {/*Vista general del punto: descripcion e imagenes*/}
                 <div className='pointInfoMenuButtons'>
                     <button className='button-48' onClick={this.handleGeneralViewClick}>
