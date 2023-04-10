@@ -11,6 +11,7 @@ import AddFriendForm  from "../friendsList/AddFriendForm";
 import AddMapForm from "../map/AddMapForm";
 import FilterForm from "../filter/FilterForm";
 import {friendsAclPermission} from "../../helper/PodFriends";
+import {Filtro} from "../sidebar/Filtro/Filtro";
 
 
 const ProfileViewer = () => {
@@ -39,7 +40,7 @@ const ProfileViewer = () => {
 
       <div className="profileViewer">
 
-      <SideBar className="sideBar" session={session} webId={webId}
+      <SideBar data-testid = "sidebarProfile" className="sideBar" session={session} webId={webId}
         marcadorPuntosSeleccionado={marcadorPuntosSeleccionado} setMarcadorPuntosSeleccionado={setMarcadorPuntosSeleccionado}
         marcadorMapasSeleccionado={marcadorMapasSeleccionado } setMarcadorMapasSeleccionado={setMarcadorMapasSeleccionado}
         marcadorFriendsSeleccionado={marcadorFriendsSeleccionado } setMarcadorFriendsSeleccionado={setMarcadorFriendsSeleccionado}
@@ -75,8 +76,7 @@ const ProfileViewer = () => {
         null
       }
       {marcadorFiltroSeleccionado ?
-          <FilterForm showFilteredPoints={(points, webId, mapId) => {mapView.updateMarkers(points, webId, mapId)}} mapId={currentMapId} session={session} webId={webId}></FilterForm>
-
+        <Filtro session={session} webId={webId}></Filtro>
         :
         null
       }
