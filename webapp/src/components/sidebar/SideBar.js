@@ -142,7 +142,7 @@ export const SideBar = (props) => {
                                 setMarcadorFiltroSeleccionado(false);
                                 setMarcadorAñadirAmigoSeleccionado(!marcadorAñadirAmigoSeleccionado);
                             }}>
-                        Añadir Amigo
+                        <div style={{display : isOpen? "block" : "none"}}>Añadir Amigo</div>
                 </MenuItem>
                 <MenuItem className='menuItem' 
                     icon={<InfoIcon />} onClick={() => { 
