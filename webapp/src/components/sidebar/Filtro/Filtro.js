@@ -55,7 +55,13 @@ export function Filtro(props){
         <div className={"divBotonFiltro"} >
             <button className={"botonFiltro"} onClick={
                 async ()=>{
-                    var puntos = await filterPoints(session,webId,listaCosasFiltradas, mapId);
+                    console.log(session);
+                    console.log(webId);
+                    console.log(props.mapId);
+                    filterPoints(session,webId,listaCosasFiltradas, mapId).then((puntos)=>{
+                        console.log(puntos);
+                        props.showFilteredPoints(puntos, webId, mapId);
+                    });
                 }
             }>
                 Filtrar

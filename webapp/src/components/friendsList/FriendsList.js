@@ -23,7 +23,7 @@ export function FriendsList(props) {
           <div data-testid= "nombreAmigoP" className='sideListFriends' id='pointsList' >
             {
               friends.map((item) => (
-                <FriendComponent showFriendPoints={(points, webId, mapId) => {props.showFriendPoints(points, webId, mapId)}} friendURL={item.friendURL} friendName={item.friendName} webId={webId} session={session} key={item.friendURL}/>
+                <FriendComponent showFriendPoints={(points, webId, mapId) => {props.showFriendPoints(points, webId, mapId)}} friendURL={item.friendURL} friendName={item.friendName} setCurrentMapId={props.setCurrentMapId} webId={webId} session={session} key={item.friendURL}/>
               ))
 
             }
