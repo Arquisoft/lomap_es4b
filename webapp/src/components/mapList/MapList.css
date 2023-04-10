@@ -1,13 +1,23 @@
 .sideListMaps{
     height: 100%;
 }
-
+.nameMap{
+    flex-direction: row;
+    margin-left: 0.1em;
+    margin-right: 0.5em;
+    background-color: #5b606a;
+    color: white;
+    align-self: center;
+    align-content: center;
+    text-align: center;
+    border-radius: 0.2em;
+}
 .sideComponentMap{
     margin: 0.5em;
     padding-bottom: 0.5em;
     border-style: groove;
     border-radius: 5%;
-    border-color: #4285F4;
+    border-color: gray;
     background-color: rgb(255, 255, 255);
 }
 
@@ -43,8 +53,8 @@
 .showPointsButton button{
     font-weight: bold;
     border-radius: 25%;
-    background-color: rgb(12, 32, 78);
-    color: aliceblue;
+    background-color: #0099CC;
+    color: white;
     margin-left: 8em;
 }
 
