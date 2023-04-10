@@ -76,7 +76,7 @@ const ProfileViewer = () => {
         null
       }
       {marcadorFiltroSeleccionado ?
-        <Filtro session={session} webId={webId}></Filtro>
+        <Filtro session={session} webId={webId} mapId={currentMapId}></Filtro>
         :
         null
       }

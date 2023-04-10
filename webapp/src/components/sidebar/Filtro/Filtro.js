@@ -9,7 +9,7 @@ import {Category} from "../../../entities/Entities";
 
 export function Filtro(props){
     const [listaCosasFiltradas, setListaCosasFiltradas] = useState([]) ;
-    const {session, webId} = props;
+    const {session, webId, mapId} = props;
     var listaFiltro=Category;
     const handleSelect = (event) => {
         const value = event.target.value;
@@ -55,7 +55,7 @@ export function Filtro(props){
         <div className={"divBotonFiltro"} >
             <button className={"botonFiltro"} onClick={
                 async ()=>{
-                    var puntos = await filterPoints(session,webId,listaCosasFiltradas);
+                    var puntos = await filterPoints(session,webId,listaCosasFiltradas, mapId);
                 }
             }>
                 Filtrar
