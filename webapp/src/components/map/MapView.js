@@ -37,8 +37,9 @@ export default class MapView extends Component{
       let firstMap = await getFirstMap(this.state.session, this.state.webId);
       this.setState({mapId: firstMap.id});
       let points = firstMap.locations;
-      if(!firstMap.isEmpty())
+      if(firstMap.length != 0){
          this.setState({isOwner: true});
+      }
       for (let i=0; i < points.length; i++) {
         // Por cada punto se crea un marcador, asociandole el id del punto
         let lat = points[i].latitude;
