@@ -26,7 +26,10 @@ export function FilterForm(props) {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(listaFiltrada);
-        filterPoints(session,webId,listaFiltrada,1).then((points)=>console.log(points));
+        filterPoints(session,webId,listaFiltrada,props.mapId).then((points)=>{
+            console.log(points);
+            props.showFilteredPoints(points, webId, props.mapId);
+        });
     }; 
 
     return (

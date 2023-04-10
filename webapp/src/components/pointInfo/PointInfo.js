@@ -27,6 +27,8 @@ class PointInfo extends Component {
             isLoading: true,
         }
         getSpecificPoint(this.props.session, this.props.webId, this.props.pointId,this.props.mapId).then((point) => {
+            console.log(props);
+            console.log(point);
             this.setState({point: point});
             this.setState({reviews:point.reviewScores});
             this.setState({comments: point.comments});

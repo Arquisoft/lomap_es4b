@@ -75,7 +75,8 @@ const ProfileViewer = () => {
         null
       }
       {marcadorFiltroSeleccionado ?
-        <FilterForm session={session} webId={webId}></FilterForm>
+          <FilterForm showFilteredPoints={(points, webId, mapId) => {mapView.updateMarkers(points, webId, mapId)}} mapId={currentMapId} session={session} webId={webId}></FilterForm>
+
         :
         null
       }
