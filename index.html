@@ -707,8 +707,8 @@ These stakeholders determine the extent and the level of detail of your work and
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Profesores</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Contact-1</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Coordinadores del proyecto</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Profesores de la asignatura</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Aplicación SOLID funcional con los requisitos indicados en el enunciado y que demuestre los conocimientos adquiridos
 de la asignatura.</em></p></td>
 </tr>
@@ -725,7 +725,7 @@ interés)</em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Administrador</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Contact-2</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Equipo de desarrollo</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Usuario con privilegios que tiene acceso a datos y funcionalidad especial de la aplicación</em></p></td>
 </tr>
 </tbody>
@@ -993,9 +993,6 @@ Refer to details in the following sections.</p>
 <p>Solid: una aplicación SOLID asegura la privacidad de los datos de sus usuarios.</p>
 </li>
 <li>
-<p>MongoDB: base de datos no relacional.</p>
-</li>
-<li>
 <p>MVC: patrón arquitectónico ideal para aplicacioens con interfaz de usuario.</p>
 </li>
 <li>
@@ -1136,7 +1133,7 @@ In the best case you will get away with examples or simple signatures.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/05_building_block_view.png" alt="05 building block view">
+<img src="./images/05_building_block_view_1.png" alt="05 building block view 1">
 </div>
 </div>
 <div class="dlist">
@@ -1168,10 +1165,6 @@ In the best case you will get away with examples or simple signatures.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PODS</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">es donde se almacenan los datos de los usuarios.</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">BBDD</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">es donde se almacenan los datos de la aplicación.</p></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -1190,7 +1183,7 @@ Leave out normal, simple, boring or standardized parts of your system</p>
 </div>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="./images/05_building_block_view2.jpeg" alt="nivel2"></span></p>
+<p><span class="image"><img src="./images/05_building_block_view_2.png" alt="nivel2"></span></p>
 </div>
 <div class="paragraph">
 <div class="title">Motivacion</div>
@@ -1208,12 +1201,12 @@ Leave out normal, simple, boring or standardized parts of your system</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Responsabilidad</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Capa de servicio o frontend</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Consiste en las interfaces y vistas que se le mostrarán al usuario</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interfaz de usuario</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Contiene las interfaces y vistas que se le mostrarán al usuario</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Capa de datos o backend</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">En esta capa se tratará con los datos de la aplicación.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Acceso a datos</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Parte de la aplicación que se ocupara del intercambio de datos entre la interfaz de usuario y los servicios usados (POD Solid y Firebase)</p></td>
 </tr>
 </tbody>
 </table>
@@ -1231,32 +1224,49 @@ part of arc42 for additional levels.</p>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_white_box_building_block_x_1">5.3.1. White Box &lt;_building block x.1_&gt;</h4>
-<div class="sidebarblock arc42help">
-<div class="content">
 <div class="paragraph">
-<p>Specifies the internal structure of <em>building block x.1</em>.</p>
+<p><span class="image"><img src="./images/05_building_block_view_3.png" alt="nivel3"></span></p>
 </div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Motivacion</dt>
+<dd>
+<p>Estructura detallada del sistema.</p>
+</dd>
+<dt class="hdlist1">Contained Building Blocks</dt>
+</dl>
 </div>
-</div>
-<div class="paragraph">
-<p><em>&lt;white box template&gt;</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_white_box_building_block_x_2">5.3.2. White Box &lt;_building block x.2_&gt;</h4>
-<div class="paragraph">
-<p><em>&lt;white box template&gt;</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_white_box_building_block_y_1">5.3.3. White Box &lt;_building block y.1_&gt;</h4>
-<div class="paragraph">
-<p><em>&lt;white box template&gt;</em></p>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Vistas</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Parte de la aplicacion con la cual el usuario interacciona directamente.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Login</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pantalla inicial de la aplicacion. Se muestra un mensaje con el nombre de la misma y una pequeña descripcion, ademas del boton de login para entrar en la cuenta personal.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Perfil del usuario</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Vista mas importante de la aplicacion. Aqui se encuentra practicamente toda la funcionalidad de la misma, desde ver tus propios mapas y los de tus amigos, a crear nuevos mapas y puntos, añadir nuevos amigos, etc.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Firebase</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usada para poder guardar y acceder a las imagenes que los usuarios añaden a la descricion de los puntos.</p></td>
+</tr>
+</tbody>
+</table>
 <div style="page-break-after: always;"></div>
-</div>
 </div>
 </div>
 </div>
@@ -1328,7 +1338,7 @@ You will mainly capture scenarios in your documentation to communicate your arch
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Crear%20mapa.png" alt="Crear mapa" width="691" height="506">
+<img src="./images/Crear%20mapa.png" alt="Crear mapa" width="704" height="506">
 </div>
 </div>
 </div>
@@ -1350,7 +1360,7 @@ You will mainly capture scenarios in your documentation to communicate your arch
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Publicar%20comentario.png" alt="Publicar comentario" width="640" height="782">
+<img src="./images/Publicar%20comentario.png" alt="Publicar comentario" width="627" height="721">
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -1986,7 +1996,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-03-29 13:45:09 +0200
+Last updated 2023-03-26 17:28:48 +0200
 </div>
 </div>
 </body>
