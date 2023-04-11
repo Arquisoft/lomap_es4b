@@ -1,22 +1,26 @@
 import React, {Component} from "react";
-import CreatePoint from "./CreatePoint"
+import CreatePoint from "./CreatePoint";
+import {Category} from '../../entities/Entities';
+
 
 export default class AddPointForm extends Component {
     constructor(props) {
         super(props);
         this.state = {name: '',
-            comment: '',
-            category: 'monument',
+            description: '',
+            category: Category[0].category,
             position: this.props.position,
             map: this.props.map,
+            mapId: this.props.mapId,
             popup: this.props.popup,
             webId: this.props.webId,
             session: this.props.session,
+            markers: this.props.markers,
         };
 
         this.handleChangeName = this.handleChangeName.bind(this);
         this.handleChangeCategory = this.handleChangeCategory.bind(this);
-        this.handleChangeComment = this.handleChangeComment.bind(this);
+        this.handleChangeDescription = this.handleChangeDescription.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -26,14 +30,14 @@ export default class AddPointForm extends Component {
     handleChangeCategory(event) {
         this.setState({category: event.target.value});
     }
-    handleChangeComment(event) {
-        this.setState({comment: event.target.value});
+    handleChangeDescription(event) {
+        this.setState({description: event.target.value});
     }
 
     handleSubmit(event) {
-        alert('Nuevo punto creado con titulo: ' + this.state.name + ', categoria:' + this.state.category +', comentario:' + this.state.comment);
+        alert('Nuevo punto creado con titulo: ' + this.state.name + ', categoria:' + this.state.category +', comentario:' + this.state.description);
         event.preventDefault();
-        CreatePoint(this.state.position, this.state.map, this.state.name, this.state.comment, this.state.category, this.state.webId, this.state.session);
+        CreatePoint(this.state.position, this.state.map, this.state.mapId, this.state.markers, this.state.name, this.state.description, this.state.category, this.state.webId, this.state.session);
         this.state.map.removeLayer(this.state.popup);
     }
 
@@ -52,16 +56,18 @@ export default class AddPointForm extends Component {
                         <label>
                             Selecciona una categoria:
                             <select value={this.state.category} onChange={this.handleChangeCategory}>
-                                <option value="restaurant">Restaurante</option>
-                                <option value="monument">Monumento</option>
-                                <option value="hospital">Hospital</option>
+                                {
+                                    Category.map((item) => (
+                                        <option key={item.category} value={item.category}>{item.text}</option>
+                                ))
+                                }
                             </select>
                         </label>
                     </li>
                     <li>
                         <label>
-                            Comentario:
-                            <input type="text" value={this.state.comment} onChange={this.handleChangeComment} />
+                            Descripcion:
+                            <input type="text" value={this.state.description} onChange={this.handleChangeDescription} />
                         </label>
                     </li>
                     <input type="submit" value="Agregar punto" />

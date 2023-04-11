@@ -16,17 +16,24 @@ class Comment{
         </Card>;
     }
 }
-export default Comment = (username,texto)=>{
+export default Comment = (props)=>{
+    const{comment} =props;
+
     return <Card>
-        <h2 text={ username}></h2>
+        <h2 text={ comment.author}></h2>
         <Typography gutterBottom variant="h5" component="h2">
                     <Text>
-                        {"Nombre del autor: "+ (username.username)}
+                        {"Nombre del autor: "+ (comment.author)}
                     </Text>
         </Typography>
         <Typography gutterBottom >
+            <Text>
+                {"Fecha: "+(comment.date)}
+            </Text>
+        </Typography>
+        <Typography gutterBottom >
                     <Text>
-                        {"Comentario: "+(username.comment)}
+                        {"Comentario: "+(comment.comment)}
                     </Text>
         </Typography>
     </Card>;

@@ -1,0 +1,144 @@
+.sideListFriends{
+    height: 100%;
+}
+
+.sideComponentFriend{
+    margin: 0.5em;
+    padding: 0.5em;
+    padding-bottom: 1em;
+    border-style: groove;
+    border-radius: 5%;
+    border-color: gray;
+    background-color: rgb(255, 255, 255);
+    width: 24.5em;
+}
+
+.pointHeaderFriend{
+    display: flex;
+    flex-direction: row;
+    margin-left: 0.5em;
+}
+
+.nameFriend{
+    flex-direction: row;
+    margin-left: 0.1em;
+    margin-right: 0.5em;
+    background-color: #5b606a;
+    color: white;
+    align-self: center;
+    align-content: center;
+    text-align: center;
+    border-radius: 0.2em;
+
+}
+
+.comboAndImage{
+    margin-left: 1em;
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    height: 75%;
+}
+
+.comboAndImage img{
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+}
+
+.comboAndImage select{
+    font-weight: bold;
+    border-radius: 10%;
+}
+
+.comboAndImage button{
+    font-weight: bold;
+    border-radius: 25%;
+    background-color: #4285F4;
+    color:white;
+
+}
+
+
+/* Scroll */
+.ScrollAreaRootFriends {
+    width: 30%;
+    overflow: visible;
+    --scrollbar-size: 10px;
+    z-index: 1;
+}
+  
+
+.ScrollAreaViewport {
+    width: 100%;
+    height: 100%;
+}
+  
+
+
+.addMapForm{
+    margin: 0.5em;
+    padding-left: 1em;
+    border-style: groove;
+    border-radius: 5%;
+    border-color: #4285F4;
+    background-color: rgb(255, 255, 255);
+    height: 10.8em;
+    width: 20em;
+    z-index: 1;
+}
+
+.addFriendHeader{
+    flex-direction: row;
+    margin-left: 0.1em;
+    margin-right: 0.5em;
+    background-color: #5b606a;
+    color: white;
+    align-self: center;
+    align-content: center;
+    text-align: center;
+    border-radius: 0.2em;
+
+}
+
+.addFriendText{
+    margin: 0;
+    margin-top: 0.5em;
+}
+
+.inputAndButton{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+    margin-right: 0.5em;
+    gap: 0.7em;
+}
+
+.addFriendName{
+    margin-right: 3em;
+    height: 1.5em;
+    font-size: 1em;
+}
+
+.addFriendButton {
+    background-color: #4285f4;
+    border-radius: 0.35em;
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
+    margin-left: 9em;
+    width: 8em;
+    padding: 0.5em 0.5em;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+  
+.addFriendButton:hover {
+    background-color: #357ae8;
+}
+  
+.addFriendButton:active {
+    background-color: #1669ce;
+    transition: none;
+}
+  

@@ -1,6 +1,7 @@
 .sideBar{
     background-color: #454950;
     font-size: large;
+    z-index: 1;
 }
 
 .menu{
@@ -11,3 +12,7 @@
 .subMenuItem{
     background-color: #5b606a;
 }
+.menuFiltro{
+    background-color: #5b606a;
+}
+

@@ -6,6 +6,7 @@ import ProfileViewer from "./components/profileviewer/ProfileViewer"
 import { useSession } from "@inrupt/solid-ui-react/dist";
 import Navbar from "./components/navbar/Navbar";
 import { ProSidebarProvider } from 'react-pro-sidebar';
+import MapView from './components/map/MapView';
 
 
 const App = () => {
@@ -13,10 +14,7 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   //With this we can control the login status for solid
-  const { session } = useSession();
-
-  const [marcadorSeleccionado,setMarcadorSeleccionado] = useState(false);
-
+  const { session } = useSession();  
 
   //We have logged in
   session.onLogin(()=>{
@@ -39,8 +37,6 @@ const App = () => {
         : 
         <ProSidebarProvider><ProfileViewer
                                   className="profileViewer" 
-                                  marcadorSeleccionado={marcadorSeleccionado}
-                                  setMarcadorSeleccionado={setMarcadorSeleccionado}
                                   /></ProSidebarProvider>
       }
       </SessionProvider>

@@ -41,7 +41,7 @@ title Creación de mapas
 Actor Usuario
 Participant LoMap
 Database Pod as "Pod del usuario" #pink
-Database DataBase as "Base de datos" #lightgreen
+Database DataBase as "Proveedor Inrupt" #lightgreen
 
 skinparam responseMessageBelowArrow true
 
@@ -59,7 +59,7 @@ Usuario -> LoMap: Selecciona opción de crear mapa
 LoMap -> Pod: Añade un mapa nuevo a su lista de mapas
 LoMap <-- Pod: Confirma la creación del nuevo mapa
 
-Usuario <-- LoMap: Muestra mensaje de confirmación
+Usuario <-- LoMap: Mensaje de confirmación
 ----
 
 === Usuario añade un restaurante a su mapa
@@ -78,12 +78,12 @@ skinparam responseMessageBelowArrow true
 
 ...
 
-Usuario -> LoMap: Abre un mapa
+Usuario -> LoMap: Selecciona opción de cargar mapa
 
 LoMap -> Pod: Solicita datos del mapa
 LoMap <-- Pod: Devuelve datos del mapa
 
-Usuario <-- LoMap: Muestra estado del mapa actual
+Usuario <-- LoMap: Muestra estado del mapa seleccionado
 
 
 Usuario -> LoMap: Selecciona acción de añadir punto de interés
@@ -120,12 +120,12 @@ LoMap <-- Pod: Devuelve lista de amigos
 Usuario <-- LoMap: Muestra lista de amigos
 
 
-Usuario -> LoMap: Selecciona uno de los mapas
+Usuario -> LoMap: Selecciona mapa de un amigo
 
-LoMap -> PodAmigo: Solicita acceder al mapa
+LoMap -> PodAmigo: Solicita obtener datos del mapa
 LoMap <-- PodAmigo: Confirma solicitud
 
-Usuario <-- LoMap: Muestra mapa en pantalla
+Usuario <-- LoMap: Muestra datos del mapa en pantalla
 
 Usuario -> LoMap: Selecciona un punto de interés del mapa
 
@@ -134,17 +134,12 @@ LoMap <-- PodAmigo: Confirma solicitud
 
 Usuario <-- LoMap: Muestra información del punto de interés
 
-
-Usuario -> LoMap: Selecciona opción para escribir comentario
-Usuario <-- LoMap: Muestra teclado y cuadro de texto
-
-
 Usuario -> LoMap: Publica comentario
 
 LoMap -> PodAmigo: Solicita añadir comentario
 LoMap <-- PodAmigo: Confirma solicitud
 
-Usuario <-- LoMap: Muestra mensaje de confirmación
+Usuario <-- LoMap: Muestra el comentario en pantalla
 
 ----
 

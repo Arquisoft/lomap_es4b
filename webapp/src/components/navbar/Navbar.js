@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import { LoginButton, LogoutButton, CombinedDataProvider, Image, useSession, Text} from "@inrupt/solid-ui-react";
-import { Button, TextField, FormGroup, CardActionArea, IconButton, MoreVertIcon, Avatar } from "@material-ui/core";
-import App from "../../App"
+import { Button} from "@material-ui/core";
 import logo from '../../images/lomapLogo.png';
 import { VCARD, FOAF } from "@inrupt/lit-generated-vocab-common";
-import {savePoints} from "../../helper/PointsManager";
 import "./NavBar.css"
 
 export default function Navbar(props){

@@ -1,38 +1,40 @@
-.sideList{
+.sideListLocations{
     height: 100%;
+    width: 30%;
 }
 
-.sideComponent{
+.sideComponentLocation{
     margin: 0.5em;
     border-style: groove;
     border-radius: 5%;
     border-color: #4285F4;
     background-color: rgb(255, 255, 255);
     height: 50%;
+    width: 18em;
 }
 
-.pointHeader{
+.pointHeaderLocation{
     display: flex;
     flex-direction: row;
     margin-left: 1em;
     gap: 2em;
 }
 
-.name{
+.nameLocation{
     margin-top: 0.5em;
     margin-bottom: 0.5em;
     font-size: large;
     font-weight: bold;
 }
 
-.category{
+.categoryLocation{
     margin-top: 0.6em;
     margin-bottom: 0.5em;
     font-style: italic;
 }
 
 
-.descriptionAndImage{
+.descriptionAndImageLocation{
     margin-left: 1em;
     display: flex;
     flex-direction: row;
@@ -40,11 +42,11 @@
     height: 75%;
 }
 
-.descriptionAndImage img{
+.descriptionAndImageLocation img{
     object-fit: contain;
 }
 
-.descriptionAndImage p{
+.descriptionAndImageLocation p{
     margin: 0;
 }
 
@@ -55,13 +57,21 @@
     font-size: small;
 }
 
-
+.centerMapButton button{
+    font-weight: bold;
+    border-radius: 25%;
+    background-color: rgb(12, 32, 78);
+    color: aliceblue;
+    margin-bottom: 0.5em;
+    margin-left: 9em;
+}
 
 /* Scroll */
-.ScrollAreaRoot {
+.ScrollAreaRootLocations {
     width: 30%;
     overflow: visible;
     --scrollbar-size: 10px;
+    z-index: 1;
 }
   
 

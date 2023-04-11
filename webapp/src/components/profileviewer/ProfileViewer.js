@@ -1,59 +1,89 @@
-
-import React from "react";
-import { useSession, CombinedDataProvider, Image, LogoutButton, Text } from "@inrupt/solid-ui-react";
-import { Button, Card, CardActionArea, CardContent, Container, Typography, TextField, FormGroup } from "@material-ui/core";
-import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
-import {updatePoints, filterPoints, deletePoints, getFriendWebId} from "../../helper/PodHelper";
+import { useState, useEffect} from "react";
+import { useSession } from "@inrupt/solid-ui-react";
+import { Container} from "@material-ui/core";
 import MapView from "../map/MapView";
-import InfoAndComments from "../Comments/InfoAndComments";
 import SideBar from "../sidebar/SideBar";
 import "./ProfileViewer.css"
 import MarkersList from '../markersList/Markerslist';
+import MapList from '../mapList/MapList';
+import FriendsList  from "../friendsList/FriendsList";
+import AddFriendForm  from "../friendsList/AddFriendForm";
+import AddMapForm from "../map/AddMapForm";
+import FilterForm from "../filter/FilterForm";
+import {friendsAclPermission} from "../../helper/PodFriends";
+import {Filtro} from "../sidebar/Filtro/Filtro";
 
 
-
-const ProfileViewer = (props) => {
+const ProfileViewer = () => {
   const { session } = useSession();
   const { webId } = session.info;
-  const {marcadorSeleccionado,setMarcadorSeleccionado} = props;
+  const [marcadorPuntosSeleccionado,setMarcadorPuntosSeleccionado] =  useState(false);
+  const [marcadorMapasSeleccionado,setMarcadorMapasSeleccionado] = useState(false);
+  const [marcadorFriendsSeleccionado,setMarcadorFriendsSeleccionado] = useState(false);
+  const [marcadorAñadirMapaSeleccionado, setMarcadorAñadirMapaSeleccionado] = useState(false);
+  const [marcadorAñadirAmigoSeleccionado, setMarcadorAñadirAmigoSeleccionado] = useState(false);
+  const [marcadorFiltroSeleccionado, setMarcadorFiltroSeleccionado] = useState(false);
+  const [mapView, setMapView] = useState(null);
+  const [currentMapId, setCurrentMapId] = useState();
+  const [currentMapWebId, setCurrentMapWebId] = useState();
+
+
+  useEffect(() => {
+    const fetchFriendPermissions = async() => {
+      friendsAclPermission(webId,session);
+    }
+    fetchFriendPermissions();
+  }, []);
+
 
   return (
-
     <Container maxWidth={false} disableGutters={true} id="profileContainer">
 
       <div className="profileViewer">
 
-      <SideBar className="sideBar" session={session} webId={webId}
-        marcadorSeleccionado={marcadorSeleccionado} setMarcadorSeleccionado={setMarcadorSeleccionado}/>
+      <SideBar data-testid = "sidebarProfile" className="sideBar" session={session} webId={webId}
+        marcadorPuntosSeleccionado={marcadorPuntosSeleccionado} setMarcadorPuntosSeleccionado={setMarcadorPuntosSeleccionado}
+        marcadorMapasSeleccionado={marcadorMapasSeleccionado } setMarcadorMapasSeleccionado={setMarcadorMapasSeleccionado}
+        marcadorFriendsSeleccionado={marcadorFriendsSeleccionado } setMarcadorFriendsSeleccionado={setMarcadorFriendsSeleccionado}
+        marcadorAñadirMapaSeleccionado={marcadorAñadirMapaSeleccionado} setMarcadorAñadirMapaSeleccionado={setMarcadorAñadirMapaSeleccionado}
+        marcadorAñadirAmigoSeleccionado={marcadorAñadirAmigoSeleccionado} setMarcadorAñadirAmigoSeleccionado={setMarcadorAñadirAmigoSeleccionado}
+        marcadorFiltroSeleccionado={marcadorFiltroSeleccionado} setMarcadorFiltroSeleccionado={setMarcadorFiltroSeleccionado}/>
 
-      {marcadorSeleccionado ? 
-        <MarkersList session={session} webId={webId}></MarkersList>
+      {/* Le pasa la referencia a la funcion centerMapOnPoint de MapView */}
+      {marcadorPuntosSeleccionado ?
+        <MarkersList centerMap={(position) => {mapView.centerMapOnPoint(position)}} mapId={currentMapId} session={session} webId={webId}></MarkersList>
         :
         null
       }
 
-      {/* <Button
-        onClick={() =>{ updatePoints(43.430423, -5.839197, "Aaron", "sdfdsfdsf", "Museo",session, webId);}}>
-          Modificar
-      </Button>
+      {marcadorMapasSeleccionado ?
+        <MapList showMapPoints={(points, webId, mapId) => {mapView.updateMarkers(points, webId, mapId)}} setCurrentMapId={setCurrentMapId} session={session} webId={webId}></MapList>
+        :
+        null
+      }
+      {marcadorFriendsSeleccionado ?
+        <FriendsList showFriendPoints={(points, webId, mapId) => {mapView.updateMarkers(points, webId, mapId)}} setCurrentMapId={setCurrentMapId} session={session} webId={webId}></FriendsList>
+        :
+        null
+      }
+      {marcadorAñadirMapaSeleccionado ?
+        <AddMapForm session={session} webId={webId}></AddMapForm>
+        :
+        null
+      }
+      {marcadorAñadirAmigoSeleccionado ?
+        <AddFriendForm session={session} webId={webId}></AddFriendForm>
+        :
+        null
+      }
+      {marcadorFiltroSeleccionado ?
+        <Filtro showFilteredPoints={(points, webId, mapId) => {mapView.updateMarkers(points, webId, mapId)}} mapId={currentMapId} session={session} webId={currentMapWebId}></Filtro>
+        :
+        null
+      }
 
-      <Button
-        onClick={() =>{ deletePoints(session,webId, "x3jq4fsqyzlaxj2z00dj");}}>
-          Delete
-      </Button>
-
-      <Button
-        onClick={() => { getFriendWebId(webId);}}>
-          Amigos
-      </Button>
-
-      <Button
-        onClick={ () => { filterPoints(session, webId,["Casa", "Resturante"]) } }>
-          Filtrar Pod
-      </Button> */}
-
-        <MapView session={session}  webId={webId} isLogged={true}/>
-      
+          {/* Guarda la instancia del mapView en el mapView de profileViewer */}
+          <MapView ref={instance => { setMapView(instance)}} setCurrentMapId={setCurrentMapId} setCurrentMapWebId={setCurrentMapWebId} session={session}  webId={webId} isLogged={true}/>
       </div>
  
     </Container>

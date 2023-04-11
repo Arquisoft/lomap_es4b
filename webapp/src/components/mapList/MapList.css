@@ -1,0 +1,74 @@
+.sideListMaps{
+    height: 100%;
+}
+.nameMap{
+    flex-direction: row;
+    margin-left: 0.1em;
+    margin-right: 0.5em;
+    background-color: #5b606a;
+    color: white;
+    align-self: center;
+    align-content: center;
+    text-align: center;
+    border-radius: 0.2em;
+}
+.sideComponentMap{
+    margin: 0.5em;
+    padding-bottom: 0.5em;
+    border-style: groove;
+    border-radius: 5%;
+    border-color: gray;
+    background-color: rgb(255, 255, 255);
+}
+
+.pointHeaderMap{
+    display: flex;
+    flex-direction: row;
+    margin-left: 0.5em;
+}
+
+.nameMap{
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    font-size: large;
+    font-weight: bold;
+}
+
+.descriptionAndImageMap{
+    margin-left: 1em;
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    height: 75%;
+}
+
+.descriptionAndImageMap img{
+    object-fit: contain;
+}
+
+.descriptionAndImageMap p{
+    margin: 0;
+}
+
+.showPointsButton button{
+    font-weight: bold;
+    border-radius: 25%;
+    background-color: #0099CC;
+    color: white;
+    margin-left: 8em;
+}
+
+/* Scroll */
+.ScrollAreaRootMaps {
+    width: 15%;
+    overflow: visible;
+    --scrollbar-size: 10px;
+    z-index: 1;
+}
+  
+
+.ScrollAreaViewport {
+    width: 100%;
+    height: 100%;
+}
+  

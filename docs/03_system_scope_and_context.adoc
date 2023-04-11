@@ -10,18 +10,19 @@ image::03_system_scope.png[]
 |Elemento de comunicación|Entrada|Salida
 |Usuario|El usuario recibirá una respuesta de la aplicación a través del dispositivo que esté utilizando para acceder a la web|Será el propio usuario el que interactuará con la aplicación
 |Solid POD|El Pod será creado por el usuario para poder almacenar la información necesaria|La información solo se mostrará si el usuario es autentificado
-|MongoDB|La base de datos aceptará peticiones de la aplicación|La base de datos responderá a la aplicación con los datos solicitados.
 |OpenStreetMap Maps API|La API obtendrá las diferentes ubicaciones del mapa|Nos mostrará información acerca de los lugares (comentarios, fotos, reseñas ...)
 |===
 
 
 
 === Contexto Técnico
+
+image::03_technical.png[]
+
 [%header, cols=2]
 |===
 |Tecnología utilizada|Descripción
 |SOLID|Nos permitirá almacenar de forma segura la información del usuario
 |JavaScript|Lenguaje de programación que utlizaremos durante el desarrollo
 |React|Biblioteca de JavaScript que se utilizará a la hora de crear las interfaces de nuestra aplicación
-|MongoDB|Sistema de base de datos NoSQL, donde almacenaremos los datos de los puntos del mapa
 |===

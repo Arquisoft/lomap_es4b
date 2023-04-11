@@ -1,11 +1,11 @@
 import AddMarker from "./AddMarker";
 import {updatePoints} from "../../helper/PodHelper";
 
-function CreatePoint (position, map,name,comment, category, webId, session) {
+function CreatePoint (position, map, mapId, markers, name,description, category, webId, session) {
 
-    updatePoints(position.lat,position.lng,name,comment,category,session,webId).then((id) => {
+    updatePoints(mapId, position.lat,position.lng,name,description,category,session,webId).then((id) => {
         console.log(id);
-        AddMarker(position, map, id, category, webId, session);
+        AddMarker(position, map, mapId, id, category, markers, webId, session, true);
     });
 }
 

@@ -1,31 +1,30 @@
 import {MarkerComponent} from './MarkerComponent';
 import React, { useState, useEffect } from 'react';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
-import {getAllPoints} from '../../helper/PodHelper';
+import {getAllPointsInCurrentMap} from '../../helper/PodMaps';
 import "./markerslist.css"
 
 export function MarkersList(props) {
 
-    const {session,webId} = props;
+    const {mapId, session, webId} = props;
     const [points, setPoints] = useState([]);
-    //
 
     useEffect(() => {
       const fetchPoints = async() => {
-        const result = await getAllPoints(session, webId);
+        const result = await getAllPointsInCurrentMap(session, webId, mapId);
         setPoints(result);
       }
       fetchPoints();
     }, []);
 
     return (
-      <ScrollArea.Root className="ScrollAreaRoot">
+      <ScrollArea.Root className="ScrollAreaRootLocations">
         <ScrollArea.Viewport className="ScrollAreaViewport">
-          <div className='sideList' id='pointsList'>
+          <div className='sideListLocations' id='pointsList'>
             {
               points.map((item) => (
-                <MarkerComponent key={item.id} name={item.name} category={item.category}
-                description={item.comment}  lat={item.latitude} lon={item.longitude} />
+                <MarkerComponent centerMap={(position) => props.centerMap(position)} key={item.id} name={item.name} category={item.category}
+                description={item.description}  lat={item.latitude} lon={item.longitude} />
               ))
 
             }
@@ -39,18 +38,3 @@ export function MarkersList(props) {
   }
 
   export default MarkersList;
-
-  // const getData = async () => {
-  //   const response = await fetch('https://api.example.com/data');
-  //   const data = await response.json();
-  //   return data;
-  // }
-  
-  // const filterData = async () => {
-  //   const dataArray = await getData();
-  //   const filteredArray = dataArray.filter(item => item.category === 'fruit');
-  //   return filteredArray;
-  // }
-  
-  // const fruitsArray = await filterData();
-  // console.log(fruitsArray);
