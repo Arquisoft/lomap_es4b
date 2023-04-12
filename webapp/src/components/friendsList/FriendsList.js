@@ -2,7 +2,7 @@ import {FriendComponent} from './FriendComponent';
 import React, { useState, useEffect } from 'react';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
 import {getAllFriendsFromPod} from '../../helper/PodFriends';
-import "./FriendList.css"
+//import "./FriendList.css"
 
 export function FriendsList(props) {
 
@@ -18,12 +18,12 @@ export function FriendsList(props) {
     }, []);
 
     return (
-      <ScrollArea.Root className="ScrollAreaRoot">
+      <ScrollArea.Root className="ScrollAreaRootFriends">
         <ScrollArea.Viewport className="ScrollAreaViewport">
-          <div className='sideList' id='pointsList' >
+          <div data-testid= "nombreAmigoP" className='sideListFriends' id='pointsList' >
             {
               friends.map((item) => (
-                <FriendComponent showFriendPoints={(points, webId) => {props.showFriendPoints(points, webId)}} friendURL={item.friendURL} friendName={item.friendName} webId={webId} session={session} key={item.friendURL}/>
+                <FriendComponent showFriendPoints={(points, webId, mapId) => {props.showFriendPoints(points, webId, mapId)}} friendURL={item.friendURL} friendName={item.friendName} setCurrentMapId={props.setCurrentMapId} webId={webId} session={session} key={item.friendURL}/>
               ))
 
             }

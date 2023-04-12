@@ -32,12 +32,13 @@ export default class AddFriendForm extends Component {
         return (
             <div className="addMapForm">
             <form  onSubmit={this.handleSubmit}>
-                <h2 className="addFriendHeader">Agregar Amigo</h2>
+                <h2  className="addFriendHeader">Agregar Amigo</h2>
                 <p className="addFriendText">Introduce el nombre:</p>
                 <div className="inputAndButton">
-                    <input className="addFriendName" type="text" placeholder="Nombre del amigo"
+                    <input data-testid = "nombreAmigo" className="addFriendName" type="text" placeholder="Nombre del amigo"
                         value={this.state.name} onChange={this.handleChangeName} />
-                    <input className="addFriendButton" type="submit" value="Agregar amigo" />
+                    <input data-testid = "botonAmigo" className="addFriendButton" type="submit" value="Agregar amigo" />
+
                 </div>
             </form>
             </div>

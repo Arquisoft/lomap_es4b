@@ -5,7 +5,7 @@ import "leaflet/dist/leaflet.css";
 import * as L from "leaflet";
 import AddMarker from'./AddMarker';
 import AddPointForm from "./AddPointForm";
-import ProfileViewer from "../ProfileViewer";
+import {getFirstMap} from "../../helper/PodMaps.js"
 
 
 // Centra el mapa a la ubicacion actual del navegador
@@ -29,8 +29,29 @@ export default class MapView extends Component{
         map: null,
         markers: [],
         isOwner: false,
+        mapId: '',
+        setCurrentMapId: this.props.setCurrentMapId,
+        setCurrentMapWebId : this.props.setCurrentMapWebId,
     };
   }
+
+    async componentDidMount(){
+      let firstMap = await getFirstMap(this.state.session, this.state.webId);
+      this.state.setCurrentMapWebId(this.state.webId);
+      this.setState({mapId: firstMap.id});
+      this.state.setCurrentMapId(firstMap.id);
+      let points = firstMap.locations;
+      if(firstMap.length != 0){
+         this.setState({isOwner: true});
+      }
+      for (let i=0; i < points.length; i++) {
+        // Por cada punto se crea un marcador, asociandole el id del punto
+        let lat = points[i].latitude;
+        let lng = points[i].longitude;
+        AddMarker([lat, lng], this.state.map.target, this.state.mapId, points[i].id, points[i].category, this.state.markers, 
+          this.state.webId, this.state.session, this.state.isOwner);
+      }
+    }
 
     centerMapOnPoint(location) {
         if (this.state.map != null) {
@@ -38,19 +59,22 @@ export default class MapView extends Component{
         }
     }
 
-    updateMarkers(points, webId){
+    updateMarkers(points, webId, mapId){
+      this.setState({mapId: mapId});
       // Borramos los anteriores markers
         for(let i = 0; i < this.state.markers.length; i++){
             this.state.map.target.removeLayer(this.state.markers[i]);
         }
         let isOwner = webId == this.state.webId;
         this.setState({isOwner: isOwner});
+        this.state.setCurrentMapWebId(webId);
+
         //creamos los nuevos markers
         for (let i=0; i < points.length; i++) {
             // Por cada punto se crea un marcador, asociandole el id del punto
             let lat = points[i].latitude;
             let lng = points[i].longitude;
-            AddMarker([lat, lng], this.state.map.target, points[i].id, points[i].category, this.state.markers, webId, this.state.session, isOwner);
+            AddMarker([lat, lng], this.state.map.target, mapId, points[i].id, points[i].category, this.state.markers, webId, this.state.session, isOwner);
         }
     }
 
@@ -67,11 +91,12 @@ export default class MapView extends Component{
 
           map.target.on("click", (e) => {
               if (this.state.isOwner) {
+                  console.log(this.state.mapId);
                   const {lat, lng} = e.latlng;
                   let formDiv = document.createElement('div');
                   let popup = L.popup();
                   ReactDOM.render(
-                      <AddPointForm position={e.latlng} map={map.target} markers={this.state.markers} webId={this.state.webId}
+                      <AddPointForm position={e.latlng} map={map.target} mapId={this.state.mapId} markers={this.state.markers} webId={this.state.webId}
                                     session={this.state.session} popup={popup}/>,
                       formDiv
                   );

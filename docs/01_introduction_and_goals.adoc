@@ -86,10 +86,10 @@ Table with role names, person names, and their expectations with respect to the 
 [options="header",cols="1,2,2"]
 |===
 |Role/Name|Contact|Expectations
-| _Profesores_ | _Contact-1_ | _Aplicación SOLID funcional con los requisitos indicados en el enunciado y que demuestre los conocimientos adquiridos
+| _Coordinadores del proyecto_ | _Profesores de la asignatura_ | _Aplicación SOLID funcional con los requisitos indicados en el enunciado y que demuestre los conocimientos adquiridos
 de la asignatura._
 | _Cliente_ | _Ayuntamiento de Bruselas_ | _Aplicación de mapas para los ciudadanos._
 | _Usuarios_ | _Ciudadanos de Bruselas_ | _Aplicación intuitiva que satisfaga sus necesidades como usuarios (crear mapas personalizados con puntos de
 interés)_
-| _Administrador_ | _Contact-2_ | _Usuario con privilegios que tiene acceso a datos y funcionalidad especial de la aplicación_
+| _Administrador_ | _Equipo de desarrollo_ | _Usuario con privilegios que tiene acceso a datos y funcionalidad especial de la aplicación_
 |===

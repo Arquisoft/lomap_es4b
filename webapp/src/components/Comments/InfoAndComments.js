@@ -16,7 +16,7 @@ const InfoAndComments = (props) =>{
     const {point,marker,map, webId, session, isOwner} = props;
 
     const refrescar = ()=>{
-        getSpecificPoint(session, webId, point.id).then((p) => {
+        getSpecificPoint(session, webId, point.id,1).then((p) => {
             let myDiv = document.createElement('div');
             ReactDOM.render(
                 <InfoAndComments point={p} marker={marker} map={map} webId={webId} session={session} />,

@@ -57,7 +57,7 @@ In the best case you will get away with examples or simple signatures.
 
 ****
 
-image::05_building_block_view.png[]
+image::05_building_block_view_1.png[]
 
 Motivation::
 
@@ -69,7 +69,6 @@ En este diagrama podemos observar los principales agentes de la aplicación (los
 |Nombre|Responsabilidad
 |LoMap|es la aplicación en si, en ella están contenidas todas las funcionalidades y servicios necesarios
 |PODS|es donde se almacenan los datos de los usuarios.
-|BBDD|es donde se almacenan los datos de la aplicación.
 |===
 
 
@@ -85,7 +84,7 @@ Leave out normal, simple, boring or standardized parts of your system
 ****
 
 :imagesdir: images/
-image:05_building_block_view2.jpeg[nivel2]
+image:05_building_block_view_2.png[nivel2]
 
 .Motivacion
 Aqui se mostrarán las dos partes principales que componen la aplicación.
@@ -94,8 +93,8 @@ Aqui se mostrarán las dos partes principales que componen la aplicación.
 [options=""header", cols="1,5"]
 |====
 | Nombre | Responsabilidad
-| Capa de servicio o frontend| Consiste en las interfaces y vistas que se le mostrarán al usuario
-| Capa de datos o backend| En esta capa se tratará con los datos de la aplicación.
+| Interfaz de usuario | Contiene las interfaces y vistas que se le mostrarán al usuario
+| Acceso a datos | Parte de la aplicación que se ocupara del intercambio de datos entre la interfaz de usuario y los servicios usados (POD Solid y Firebase)
 |====
 
 
@@ -110,24 +109,26 @@ When you need more detailed levels of your architecture please copy this
 part of arc42 for additional levels.
 ****
 
+:imagesdir: images/
+image:05_building_block_view_3.png[nivel3]
 
-==== White Box <_building block x.1_>
+Motivacion::
+Estructura detallada del sistema.
 
-[role="arc42help"]
-****
-Specifies the internal structure of _building block x.1_.
-****
+Contained Building Blocks::
+[options="header",cols="1,3"]
+|===
+|Name| Description
 
+|*Vistas*
+|Parte de la aplicacion con la cual el usuario interacciona directamente.
 
-_<white box template>_
+|*Login*
+| Pantalla inicial de la aplicacion. Se muestra un mensaje con el nombre de la misma y una pequeña descripcion, ademas del boton de login para entrar en la cuenta personal.
 
+|*Perfil del usuario*
+|Vista mas importante de la aplicacion. Aqui se encuentra practicamente toda la funcionalidad de la misma, desde ver tus propios mapas y los de tus amigos, a crear nuevos mapas y puntos, añadir nuevos amigos, etc.
 
-==== White Box <_building block x.2_>
-
-_<white box template>_
-
-
-
-==== White Box <_building block y.1_>
-
-_<white box template>_
+|*Firebase*
+|Usada para poder guardar y acceder a las imagenes que los usuarios añaden a la descricion de los puntos.
+|===

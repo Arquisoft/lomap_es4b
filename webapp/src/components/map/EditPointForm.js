@@ -13,6 +13,7 @@ export default class EditPointForm extends Component {
             latLng: this.props.latLng,
             popup: this.props.popup,
             map: this.props.map,
+            mapId: this.props.mapId,
             marker: this.props.marker,
             webId: this.props.webId,
             session: this.props.session,
@@ -37,7 +38,7 @@ export default class EditPointForm extends Component {
     handleSubmit(event) {
         alert('Punto editado con titulo: ' + this.state.name + ', categoria:' + this.state.category +', descripcion:' + this.state.description);
         event.preventDefault();
-        editPoint(this.state.pointId, this.state.latLng.lat, this.state.latLng.lng, this.state.name, this.state.description, this.state.category, this.state.session, this.state.webId).then(
+        editPoint(this.state.pointId, this.state.latLng.lat, this.state.latLng.lng, this.state.name, this.state.description, this.state.category, this.state.session, this.state.webId,this.state.mapId).then(
             this.state.marker.setIcon(Icon(this.state.category)),
             this.state.map.removeLayer(this.state.popup)
         );

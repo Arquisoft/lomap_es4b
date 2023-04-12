@@ -6,9 +6,8 @@ import {getNameFromPod,randomId,urlCreator} from "./PodHelper";
 
 
 //Devolverá todos los puntos dentro del Pod
-export async function getAllPointsInCurrentMap(session,webId){
+export async function getAllPointsInCurrentMap(session,webId,mapId){
 
-    let mapId = "1";
   
     let url = urlCreator(webId);
   
@@ -28,7 +27,7 @@ export async function getAllPointsInCurrentMap(session,webId){
       for(var i in mapPoints) {
         let p = new Point(mapPoints[i].id,mapPoints[i].author,mapPoints[i].latitude,
           mapPoints[i].longitude, mapPoints[i].name, mapPoints[i].description, mapPoints[i].category,
-          mapPoints[i].comments, mapPoints[i].reviewScores);
+          mapPoints[i].comments, mapPoints[i].reviewScores, mapPoints[i].pictures);
         points.push(p);
       }
   
@@ -111,11 +110,36 @@ export async function addMap(name,session,webId){
       return mapId;
   
     } catch (error) {
-      const file = await createPointsFile(webId);
+      const file = await createPointsFile(webId, name);
       await createData(urlContainer, file, session);
       await ownAclPermission(webId,session);
       await friendsAclPermission(webId,session);
-      return addMap(name,session,webId);
-    }
-  
+      //return addMap(name,session,webId);
+    }  
+}
+
+//Método que devuelve una lista con los mapas del pod
+export async function getFirstMap(session, webId){
+
+  let url = urlCreator(webId);
+
+  try {
+    let file = await solid.getFile(
+      url,
+      { fetch: session.fetch }
+
+    );
+
+    let mapsString = await file.text();
+    var jsonMaps = JSON.parse(mapsString);
+
+    var maps = jsonMaps.maps;
+
+    return maps[0];
+
+
+  } catch (error) {
+    console.log(error);
+    return [];
   }
+}

@@ -32,7 +32,6 @@ Se han decidido las siguientes tecnologías para llevar a cabo el desarrollo de 
 * React: biblioteca de código abierto de JavaScript diseñada para crear interfaces de usuario.
 * GitHub: para llevar un control de versiones 
 * Solid: una aplicación SOLID asegura la privacidad de los datos de sus usuarios.
-* MongoDB: base de datos no relacional.
 * MVC: patrón arquitectónico ideal para aplicacioens con interfaz de usuario.
 * JavaScript: lenguaje de programación basado en JavaScript que añade tipos estáticos y objetos basados en clases.
 * Tailwind UI: es el frameworks de CSS que vamos a utilizar en la aplicación.

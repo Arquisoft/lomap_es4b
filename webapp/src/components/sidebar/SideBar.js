@@ -12,8 +12,9 @@ import SortIcon from "@mui/icons-material/Sort"
 import MapIcon from '@mui/icons-material/Map';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import {deletePoints,friendsAclPermission,addComment} from '../../helper/PodHelper';
-import "./SideBar.css"
 import {Filtro} from "./Filtro/Filtro";
+import {saveImages} from '../../helper/ImageHelper';
+import "./SideBar.css"
 
 export const SideBar = (props) => {
 
@@ -25,8 +26,8 @@ export const SideBar = (props) => {
 
     return(
         <div className='sideBar'>
-        <Sidebar>
-            <Menu className='menu' menuItemStyles={{
+        <Sidebar data-testid = "sidebar">
+            <Menu data-testid = "sidebarMenu" className='menu' menuItemStyles={{
                 button: {
                     '&:hover': {
                      backgroundColor: 'Highlight',
@@ -34,7 +35,7 @@ export const SideBar = (props) => {
                 },
             }}>
 
-                <MenuItem className='menuItem'
+                <MenuItem data-testid = "sidebarFirst" className='menuItem'
                     icon={<MenuIcon />}
                     onClick={() => {
                     collapseSidebar();
@@ -51,7 +52,7 @@ export const SideBar = (props) => {
                     {" "}
                 </MenuItem>
 
-                <SubMenu className="subMenu" label={isOpen? "Gestionar puntos" : ""} icon={<SortIcon />}
+                <SubMenu data-testid = "sidebarPoints" className="subMenu" label={isOpen? "Gestionar puntos" : ""} icon={<SortIcon />}
                         onClick={()=> {if(!isOpen){
                             collapseSidebar();
                             setOpen(!isOpen);
@@ -84,7 +85,7 @@ export const SideBar = (props) => {
                  
                 </SubMenu >
 
-                <SubMenu className="subMenu" label={isOpen? "Gestionar mapas" : ""} icon={<SortIcon />}
+                <SubMenu data-testid = "sidebarMapas" className="subMenu" label={isOpen? "Gestionar mapas" : ""} icon={<SortIcon />}
                         onClick={()=> {if(!isOpen){
                             collapseSidebar();
                             setOpen(!isOpen);
@@ -114,7 +115,7 @@ export const SideBar = (props) => {
                         Añadir mapa </MenuItem>
                 </SubMenu >
                 
-                <MenuItem className='menuItem' label="Amigos"
+                <MenuItem data-testid = "sidebarFriends" className='menuItem' label="Amigos"
                     icon={<GroupIcon />} 
                     onClick={() => { 
                         if(isOpen){
@@ -141,12 +142,12 @@ export const SideBar = (props) => {
                                 setMarcadorFiltroSeleccionado(false);
                                 setMarcadorAñadirAmigoSeleccionado(!marcadorAñadirAmigoSeleccionado);
                             }}>
-                        Añadir Amigo
+                        <div style={{display : isOpen? "block" : "none"}}>Añadir Amigo</div>
                 </MenuItem>
                 <MenuItem className='menuItem' 
                     icon={<InfoIcon />} onClick={() => { 
                         if(isOpen){
-                            
+                            saveImages();
                         }else{
                             collapseSidebar();
                             setOpen(!isOpen);

@@ -39,13 +39,13 @@
     text-align: center;
     transition: background-color 0.3s ease;
 }
-  
+
 .filterPoints:hover {
     background-color: #357ae8;
 }
-  
+
 .filterPoints:active {
     background-color: #1669ce;
     transition: none;
 }
-  
+

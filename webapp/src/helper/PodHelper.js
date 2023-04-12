@@ -10,12 +10,10 @@ import {updateData, createPointsFile, createData} from './PodFiles';
  * Funciones directas a los puntos
  * ----------------------------------------------------------------------------------------------------
  */
-
+ 
 
 //Borrará del pod el punto cuya id se pasa por parámetro
-export async function deletePoints(session, webId, pointId){
-
-  let mapId = "1";
+export async function deletePoints(session, webId, pointId,mapId){
 
   let url = urlCreator(webId);
 
@@ -49,9 +47,7 @@ export async function deletePoints(session, webId, pointId){
 }
 
 //Devuelve un array con la lista de puntos filtrados
-export async function filterPoints(session, webId, categories){
-
-  let mapId = "1";
+export async function filterPoints(session, webId, categories, mapId){
 
   let url = urlCreator(webId);
 
@@ -102,7 +98,8 @@ export async function updatePoints(mapId,latitude,longitude,name,description,cat
       description:description,
       category:category,
       comments:[],
-      reviewScores:[]
+      reviewScores:[],
+      pictures:[],
     }
 
     let mapsString = await solidFile.text();
@@ -123,11 +120,12 @@ export async function updatePoints(mapId,latitude,longitude,name,description,cat
 
   } catch (error) {
 
-    const file = await createPointsFile(webId);
-    await createData(urlContainer, file, session);
-    await ownAclPermission(webId,session);
-    await friendsAclPermission(webId,session);
-    return updatePoints(mapId,latitude,longitude,name,description,category,session,webId);
+    // const file = await createPointsFile(webId);
+    // await createData(urlContainer, file, session);
+    // await ownAclPermission(webId,session);
+    // await friendsAclPermission(webId,session);
+    // return updatePoints(mapId,latitude,longitude,name,description,category,session,webId);
+    console.log(error);
   }
 
 }
@@ -137,9 +135,7 @@ export async function updatePoints(mapId,latitude,longitude,name,description,cat
 
 
 //Método que devuelve el punto específico del pod
-export async function getSpecificPoint(session, webId,pointId){
-
-  let mapId = "1";
+export async function getSpecificPoint(session, webId,pointId,mapId){
 
   let url = urlCreator(webId);
 
@@ -160,7 +156,7 @@ export async function getSpecificPoint(session, webId,pointId){
       console.log("Error: No existe el punto del pod");
     }else{
       let specificPoint = new Point(point.id, point.author, point.latitude, point.longitude, point.name, 
-        point.description, point.category, point.comments, point.reviewScores);
+        point.description, point.category, point.comments, point.reviewScores,point.pictures);
       return specificPoint;
     }
 
@@ -171,9 +167,7 @@ export async function getSpecificPoint(session, webId,pointId){
 
 
 //Editará el punto del que se pasa la id como parámetro
-export async function editPoint(pointId,latitude,longitude,name,description,category,session,webId){
-
-  let mapId = "1";
+export async function editPoint(pointId,latitude,longitude,name,description,category,session,webId,mapId){
 
   let url = urlCreator(webId);
 
@@ -216,15 +210,17 @@ export async function editPoint(pointId,latitude,longitude,name,description,cate
 
 
 //Añade un comentario a un punto
-export async function addComment(mapId,pointId,comment,session,webId){
+export async function addComment(mapId,pointId,comment,session,webIdPar){
 
-  let url = urlCreator(webId);
+  let url = urlCreator(webIdPar);
 
   try {
     let solidFile = await solid.getFile(
         url,
         { fetch: session.fetch }
     );
+
+    const { webId } = session.info;
 
     let author = await getNameFromPod(webId);
 
@@ -254,7 +250,8 @@ export async function addComment(mapId,pointId,comment,session,webId){
 
     var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
 
-    await updateData(fichero, webId, session);
+    await updateData(fichero, webIdPar, session);
+    return newComment;
 
   } catch (error) {
     console.log(error);
@@ -262,16 +259,18 @@ export async function addComment(mapId,pointId,comment,session,webId){
 
 }
 
-//Añade un comentario a un punto
-export async function addScore(mapId,pointId,score,session,webId){
+//Añade una review a un punto
+export async function addScore(mapId,pointId,score,session,webIdPar){
 
-  let url = urlCreator(webId);
+  let url = urlCreator(webIdPar);
 
   try {
     let solidFile = await solid.getFile(
         url,
         { fetch: session.fetch }
     );
+
+    const { webId } = session.info;
 
     let author = await getNameFromPod(webId);
 
@@ -301,12 +300,54 @@ export async function addScore(mapId,pointId,score,session,webId){
 
     var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
 
-    await updateData(fichero, webId, session);
+    await updateData(fichero, webIdPar, session);
 
   } catch (error) {
     console.log(error);
   }
+  return newScore;
+}
 
+
+//Añade una foto a un punto
+export async function addPicture(mapId,pointId,pictureURL,session,webIdPar){
+
+  let url = urlCreator(webIdPar);
+
+  try {
+    let solidFile = await solid.getFile(
+        url,
+        { fetch: session.fetch }
+    );
+
+    const { webId } = session.info;
+
+    let author = await getNameFromPod(webId);
+
+    var newPicture = {
+      author:author,
+      pictureURL:pictureURL,
+    }
+
+    let mapsString = await solidFile.text();
+    var jsonMaps = JSON.parse(mapsString);
+    const map = jsonMaps.maps.find(map => map.id == mapId);
+    const point = map.locations.find(point => point.id == pointId);
+
+    point.pictures.push(newPicture);
+
+    const blob = new Blob([JSON.stringify(jsonMaps, null, 2)], {
+      type: "application/json",
+    });
+
+    var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
+
+    await updateData(fichero, webIdPar, session);
+
+  } catch (error) {
+    console.log(error);
+  }
+  return newPicture;
 }
 
 

@@ -30,6 +30,5 @@ Potentially more columns in case you need translations.
 | Arc42                         | Arc42 es una plantilla para la documentacion arquitectonica.
 | API                           | Application Programming Interface, permite la comunicación entre dos aplicaciones de software a través de un conjunto de reglas
 | Solid POD                     | Permite a los usuarios guardar sus datos de manera segura y descentralizada.
-| MongoDB                       | MongoDB es un programa de manejo de bases de datos NoSQL de codigo abierto.
-| TypeScript                    | TypeScript es un lenguake de programacion desarrollado y mantenido por Microsoft.
+| JavaScript                    | JavaScript es un lenguake de programacion desarrollado y mantenido por Microsoft.
 |===
