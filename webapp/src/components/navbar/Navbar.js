@@ -46,7 +46,7 @@ export default function Navbar(props){
                   </Button>
               </LoginButton> 
             </>
-          )}
+          )} 
 
           
         </nav>
