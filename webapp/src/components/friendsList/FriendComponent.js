@@ -33,8 +33,9 @@ export function FriendComponent(props) {
 
     const handleClick = () => {
       if(selectedValue != ''){
-        getAllPointsInCurrentMap(session,friendURL).then((points)=>{
-            props.showFriendPoints(points, friendURL);
+        getAllPointsInCurrentMap(session,friendURL,selectedValue).then((points)=>{
+            props.showFriendPoints(points, friendURL, selectedValue);
+            props.setCurrentMapId(selectedValue);
             }
         );
       }
@@ -42,9 +43,9 @@ export function FriendComponent(props) {
     };
 
     return (
-      <div className="sideComponent">
-        <header className='pointHeader'>
-          <p className='name'>{friendName} </p>
+      <div className="sideComponentFriend">
+        <header className='pointHeaderFriend'>
+          <p data-testid= "nombreAmigoP" className='nameFriend'>{friendName} </p>
         </header>
         <div className="comboAndImage">
             <img src={friendImage} alt="Imagen del usuario"/>

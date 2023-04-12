@@ -1,29 +1,35 @@
-.sideList{
+.sideListFriends{
     height: 100%;
 }
 
-.sideComponent{
+.sideComponentFriend{
     margin: 0.5em;
     padding: 0.5em;
     padding-bottom: 1em;
     border-style: groove;
     border-radius: 5%;
-    border-color: #4285F4;
+    border-color: gray;
     background-color: rgb(255, 255, 255);
     width: 24.5em;
 }
 
-.pointHeader{
+.pointHeaderFriend{
     display: flex;
     flex-direction: row;
     margin-left: 0.5em;
 }
 
-.name{
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    font-size: large;
-    font-weight: bold;
+.nameFriend{
+    flex-direction: row;
+    margin-left: 0.1em;
+    margin-right: 0.5em;
+    background-color: #5b606a;
+    color: white;
+    align-self: center;
+    align-content: center;
+    text-align: center;
+    border-radius: 0.2em;
+
 }
 
 .comboAndImage{
@@ -48,16 +54,18 @@
 .comboAndImage button{
     font-weight: bold;
     border-radius: 25%;
-    background-color: rgb(9, 248, 21);
+    background-color: #4285F4;
+    color:white;
 
 }
 
 
 /* Scroll */
-.ScrollAreaRoot {
+.ScrollAreaRootFriends {
     width: 30%;
     overflow: visible;
     --scrollbar-size: 10px;
+    z-index: 1;
 }
   
 
@@ -76,13 +84,21 @@
     border-color: #4285F4;
     background-color: rgb(255, 255, 255);
     height: 10.8em;
-    width: 18em;
+    width: 20em;
     z-index: 1;
 }
 
 .addFriendHeader{
-    margin: 0;
-    margin-top: 0.5em;
+    flex-direction: row;
+    margin-left: 0.1em;
+    margin-right: 0.5em;
+    background-color: #5b606a;
+    color: white;
+    align-self: center;
+    align-content: center;
+    text-align: center;
+    border-radius: 0.2em;
+
 }
 
 .addFriendText{
@@ -106,12 +122,12 @@
 
 .addFriendButton {
     background-color: #4285f4;
-    border: none;
     border-radius: 0.35em;
     color: white;
     cursor: pointer;
     font-size: 1em;
     margin-left: 9em;
+    width: 8em;
     padding: 0.5em 0.5em;
     text-align: center;
     transition: background-color 0.3s ease;

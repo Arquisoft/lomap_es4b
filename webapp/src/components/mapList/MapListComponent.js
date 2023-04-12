@@ -3,22 +3,21 @@ import {getAllPointsInCurrentMap} from "../../helper/PodMaps";
 
 export function MapListComponent(props) {
 
-    const { webId,session} = props;
-
+    const {mapId, setCurrentMapId, webId, session} = props;
     const handleClick = () => {
-        getAllPointsInCurrentMap(session,webId).then((points)=>{
-            console.log(points);
-            props.showMapPoints(points, webId);
+        getAllPointsInCurrentMap(session,webId,mapId).then((points)=>{
+            props.showMapPoints(points, webId, mapId);
+            setCurrentMapId(mapId);
         });
     };
 
     return (
-      <div className="sideComponent">
+      <div className="sideComponentMap">
         {/* <div className="componentInfo"> */}
-        <header className='pointHeader'>
-          <p className='name'>{props.name} </p>
+        <header className='pointHeaderMap'>
+          <p className='nameMap'>{props.name} </p>
         </header>
-        <div className="descriptionAndImage">
+        <div className="descriptionAndImageMap">
             <img src={imagen} alt="Imagen del mapa"/>
             <p>{props.description}</p>
           </div>

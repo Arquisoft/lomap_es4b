@@ -6,22 +6,21 @@ import "./markerslist.css"
 
 export function MarkersList(props) {
 
-    const {session,webId} = props;
+    const {mapId, session, webId} = props;
     const [points, setPoints] = useState([]);
-    // 
 
     useEffect(() => {
       const fetchPoints = async() => {
-        const result = await getAllPointsInCurrentMap(session, webId);
+        const result = await getAllPointsInCurrentMap(session, webId, mapId);
         setPoints(result);
       }
       fetchPoints();
     }, []);
 
     return (
-      <ScrollArea.Root className="ScrollAreaRoot">
+      <ScrollArea.Root className="ScrollAreaRootLocations">
         <ScrollArea.Viewport className="ScrollAreaViewport">
-          <div className='sideList' id='pointsList'>
+          <div className='sideListLocations' id='pointsList'>
             {
               points.map((item) => (
                 <MarkerComponent centerMap={(position) => props.centerMap(position)} key={item.id} name={item.name} category={item.category}
