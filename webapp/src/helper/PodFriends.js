@@ -123,11 +123,15 @@ export async function ownAclPermission(webId,session) {
     let dataSetThing = solid.getThing(dataSet, webID);
   
     try {
+      let friendName = await getNameFromPod(friendWebId);
       let existsFriend = solid.getUrlAll(dataSetThing, FOAF.knows)
+
       if (existsFriend.some((url) => url === friendWebId)){
         console.log("Este usuario ya es amigo");
-      }
-      else{
+      
+      }else if(typeof friendName === 'undefined'){
+        console.log("Este usuario no existe");
+      }else{
         // We create the friend
       let newFriend = solid.buildThing(dataSetThing)
       .addUrl(FOAF.knows, friendWebId)

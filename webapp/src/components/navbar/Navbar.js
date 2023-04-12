@@ -3,6 +3,7 @@ import { LoginButton, LogoutButton, CombinedDataProvider, Image, useSession, Tex
 import { Button} from "@material-ui/core";
 import logo from '../../images/lomapLogo.png';
 import { VCARD, FOAF } from "@inrupt/lit-generated-vocab-common";
+import pordefecto from '../../images/default-user.jpg';
 import "./NavBar.css"
 
 export default function Navbar(props){
@@ -11,6 +12,7 @@ export default function Navbar(props){
   const { session } = useSession();
   const { webId } = session.info;
   const {logggin} = props;
+
 
   useEffect(() => {
     setCurrentUrl(window.location.href);
@@ -28,7 +30,22 @@ export default function Navbar(props){
             <>
               <div className="navProfile">
               <CombinedDataProvider datasetUrl={webId} thingUrl={webId} className="image-button" style={{flexDirection: 'row'}}>
-                  <Image property={VCARD.hasPhoto.iri.value} alt="Foto de perfil del usuario" style={{width:70, height:70, borderRadius:40}}/>
+                  {typeof VCARD.hasPhoto.iri.value === null ? (
+                    <>
+                     <img src={VCARD.hasPhoto.iri.value} alt="Foto de perfil del usuario" style={{width:70, height:70, borderRadius:40}} 
+                     onError={event => {
+                          event.target.src = pordefecto
+                          event.onerror = null
+                        }}  
+                    />
+                    </>
+                  ):(
+                    <>
+                     <Image property={VCARD.hasPhoto.iri.value} alt="Foto de perfil del usuario" style={{width:70, height:70, borderRadius:40}} />
+                    </> 
+                  )}
+                  {/* <Image property={VCARD.hasPhoto.iri.value} alt="Foto de perfil del usuario" style={{width:70, height:70, borderRadius:40}}/> */}
+                 
                   <Text property={FOAF.name.iri.value} style={{ fontSize: 18 }}/>
                 </CombinedDataProvider> 
                 <LogoutButton >

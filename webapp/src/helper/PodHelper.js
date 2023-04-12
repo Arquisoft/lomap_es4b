@@ -335,9 +335,14 @@ export async function getProfile(webId){
 
 //Devuelve el nombre del usuario logeado
 export async function getNameFromPod(webId) {
-  if (webId === "" || webId === undefined) return "Name not found"; // we return the empty string
-  let name = solid.getStringNoLocale(await getProfile(webId), FOAF.name);
-  return name !== null ? name : "No name :(";
+  try{
+    if (webId === "" || webId === undefined) return "Name not found"; // we return the empty string
+    let name = solid.getStringNoLocale(await getProfile(webId), FOAF.name);
+    return name !== null ? name : "NoName";
+  
+  }catch(error){
+    console.log(error);
+  }
 }
 
 

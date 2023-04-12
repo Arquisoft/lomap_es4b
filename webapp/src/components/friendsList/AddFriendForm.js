@@ -1,5 +1,5 @@
 import {Component} from "react";
-import {addFriend} from "../../helper/PodFriends";
+import {addFriend,friendsAclPermission} from "../../helper/PodFriends";
 import './FriendList.css'
 
 export default class AddFriendForm extends Component {
@@ -10,6 +10,7 @@ export default class AddFriendForm extends Component {
             author: '',
             webId: this.props.webId,
             session: this.props.session,
+            setMarcadorAñadirAmigoSeleccionado: this.props.setMarcadorAñadirAmigoSeleccionado,
         };
 
         this.handleChangeName = this.handleChangeName.bind(this);
@@ -23,6 +24,8 @@ export default class AddFriendForm extends Component {
     handleSubmit(event) {
         event.preventDefault();
        addFriend(this.state.webId, this.state.session, this.state.name);
+       friendsAclPermission(this.state.webId, this.state.session);
+       this.state.setMarcadorAñadirAmigoSeleccionado(false);
     }
 
     render() {

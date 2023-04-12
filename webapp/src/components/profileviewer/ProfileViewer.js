@@ -64,12 +64,12 @@ const ProfileViewer = () => {
         null
       }
       {marcadorAñadirMapaSeleccionado ?
-        <AddMapForm session={session} webId={webId}></AddMapForm>
+        <AddMapForm session={session} webId={webId} setMarcadorAñadirMapaSeleccionado={setMarcadorAñadirMapaSeleccionado}></AddMapForm>
         :
         null
       }
       {marcadorAñadirAmigoSeleccionado ?
-        <AddFriendForm session={session} webId={webId}></AddFriendForm>
+        <AddFriendForm session={session} webId={webId} setMarcadorAñadirAmigoSeleccionado={setMarcadorAñadirAmigoSeleccionado}></AddFriendForm>
         :
         null
       }

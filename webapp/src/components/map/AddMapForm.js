@@ -11,6 +11,7 @@ export default class AddMapForm extends Component {
             author: '',
             webId: this.props.webId,
             session: this.props.session,
+            setMarcadorAñadirMapaSeleccionado: this.props.setMarcadorAñadirMapaSeleccionado,
         };
 
         this.handleChangeName = this.handleChangeName.bind(this);
@@ -25,6 +26,7 @@ export default class AddMapForm extends Component {
         alert('Nuevo mapa \"' + this.state.name + '\" creado.');
         event.preventDefault();
         addMap(this.state.name, this.state.session, this.state.webId)
+        this.state.setMarcadorAñadirMapaSeleccionado(false);
     }
 
     render() {
