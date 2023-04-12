@@ -20,7 +20,7 @@ export default function Navbar(props){
         <nav className="navBar">
 
           <a href="/home">
-            <img src={logo} alt="Logo de Lomap"/>
+            <img src={logo} alt="Logo de Lomap"/> 
           </a>
 
           
@@ -41,7 +41,10 @@ export default function Navbar(props){
           ) : (
             <>
               <LoginButton oidcIssuer={idp} redirectUrl={currentUrl} className="login_button">
-                <Button variant="contained" color="primary" /* onClick={savePoints(session,webId)} */>
+                <Button type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}>
                   Login
                   </Button>
               </LoginButton> 
