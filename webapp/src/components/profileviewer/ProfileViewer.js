@@ -1,14 +1,14 @@
 import { useState, useEffect} from "react";
 import { useSession } from "@inrupt/solid-ui-react";
 import { Container} from "@material-ui/core";
-import MapView from "../map/MapView";
+import MapView from "../map/mapView/MapView";
 import SideBar from "../sidebar/SideBar";
 import "./ProfileViewer.css"
 import MarkersList from '../markersList/Markerslist';
 import MapList from '../mapList/MapList';
 import FriendsList  from "../friendsList/FriendsList";
 import AddFriendForm  from "../friendsList/AddFriendForm";
-import AddMapForm from "../map/AddMapForm";
+import AddMapForm from "../map/addMap/AddMapForm";
 import FilterForm from "../filter/FilterForm";
 import {friendsAclPermission} from "../../helper/PodFriends";
 import {Filtro} from "../sidebar/Filtro/Filtro";

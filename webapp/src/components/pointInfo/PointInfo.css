@@ -97,3 +97,7 @@
     text-align: center;
     justify-content: space-around;
 }
+
+.pointInfoContainer {
+    height: 500px;
+}

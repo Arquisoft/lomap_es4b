@@ -1,0 +1,52 @@
+input[type=text] {
+    width:100%;
+}
+
+.pointFormHeader {
+    background-color: #5b606a;
+    color: white;
+    text-align: center;
+}
+
+.pointFormSubmit {
+    background-color: #4285f4;
+    border-radius: 0.75em;
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
+    width: 8em;
+    padding: 0.5em 0.5em;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.pointFormSubmit:hover {
+    background-color: #174ea6;
+}
+
+.select-style {
+    border: 1px solid #ccc;
+    width: 120px;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.select-style select {
+    padding: 5px 8px;
+    width: 130%;
+    border: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+}
+
+.select-style select:hover {
+    background-color: #d3d3d3;
+}
+
+.select-style option {
+    background-color: white;
+}
+
+.select-style select:focus {
+    outline: none;
+}

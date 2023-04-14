@@ -1,5 +1,5 @@
-import AddMarker from "./AddMarker";
-import {updatePoints} from "../../helper/PodHelper";
+import AddMarker from "../mapView/AddMarker";
+import {updatePoints} from "../../../helper/PodHelper";
 
 function CreatePoint (position, map, mapId, markers, name,description, category, webId, session) {
 
