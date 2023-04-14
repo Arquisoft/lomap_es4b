@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import {editPoint} from "../../helper/PodHelper";
-import {Category} from '../../entities/Entities';
-import Icon from "./IconLocation";
+import {editPoint} from "../../../helper/PodHelper";
+import {Category} from '../../../entities/Entities';
+import Icon from "../iconLocation/IconLocation";
 
 export default class EditPointForm extends Component {
     constructor(props) {
@@ -47,34 +47,28 @@ export default class EditPointForm extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <h1>Editar Punto</h1>
-                <ul>
-                    <li>
-                        <label>
-                            Titulo:
-                            <input type="text" value={this.state.name} onChange={this.handleChangeName} />
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            Selecciona una categoria:
-                            <select value={this.state.category} onChange={this.handleChangeCategory}>
-                            {
-                                Category.map((item) => (
-                                    <option key={item.category}  value={item.category}>{item.text}</option>
-                                ))
-                            }
-                            </select>
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            Descripcion:
-                            <input type="text" value={this.state.description} onChange={this.handleChangeDescription} />
-                        </label>
-                    </li>
-                    <input type="submit" value="Editar punto" />
-                </ul>
+                <h1 className='pointFormHeader'>Editar Punto</h1>
+                <label>
+                    Titulo:
+                    <input type="text" placeholder="Titulo" value={this.state.name} onChange={this.handleChangeName} required maxLength='20'/>
+                </label>
+                <label>
+                    Selecciona una categoria:
+                    <div className="select-style">
+                    <select value={this.state.category} onChange={this.handleChangeCategory}>
+                        {
+                            Category.map((item) => (
+                                <option key={item.category}  value={item.category}>{item.text}</option>
+                            ))
+                        }
+                    </select>
+                    </div>
+                </label>
+                <label>
+                    Descripcion:
+                    <input type="text" placeholder="Descripcion" value={this.state.description} onChange={this.handleChangeDescription} required maxLength='50'/>
+                </label>
+                <input type="submit" className="pointFormSubmit" value="Editar punto" />
             </form>
         );
     }

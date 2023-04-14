@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Container } from "@material-ui/core";
-import MapView from '../map/MapView'
+import MapView from '../map/mapView/MapView'
 import SideBar from '../sidebar/SideBar';
 import Home from '../home/pages/Home';
 
