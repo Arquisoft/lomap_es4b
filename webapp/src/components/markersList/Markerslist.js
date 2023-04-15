@@ -15,7 +15,7 @@ export function MarkersList(props) {
         setPoints(result);
       }
       fetchPoints();
-    }, []);
+    }, [props.mapId, props.session, props.webId]);
 
     return (
       <ScrollArea.Root className="ScrollAreaRootLocations">
