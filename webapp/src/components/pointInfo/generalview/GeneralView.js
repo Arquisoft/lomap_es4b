@@ -1,9 +1,9 @@
 import React from "react";
 import {MdChevronLeft, MdChevronRight} from 'react-icons/md';
 import './GeneralView.css'
-import EditPoint from "../map/EditPoint";
-import DeletePoint from "../map/DeletePoint";
-import { saveImages } from "../../helper/ImageHelper";
+import EditPoint from "../../map/editPoint/EditPoint";
+import DeletePoint from "../../map/deletePoint/DeletePoint";
+import { saveImages } from "../../../helper/ImageHelper";
 
 
 
@@ -35,10 +35,9 @@ export default function GeneralView(params){
     }
 
     return (
-        <>
-        <p>{params.point.description}</p>
-
-            <div className='galleryContainer'>
+        <div className="generalViewContainer">
+            <p>{params.point.description}</p>
+            {pictures.length > 0 && <div className='galleryContainer'>
                 <MdChevronLeft className='mdchevron' onClick={slideLeft} size={40} />
                 <div
                     id='slider'
@@ -52,14 +51,14 @@ export default function GeneralView(params){
                     ))}
                 </div>
                 <MdChevronRight className='mdchevron' onClick={slideRight} size={40} />
-            </div>
+            </div>}
 
             <div className='editDelete'>
                 {params.isOwner?
                     <button className='button-17' onClick={() => {
                         EditPoint(params.point.id, params.marker, params.map, params.mapId, params.webId, params.session);
                     }}>
-                        Edit
+                        Editar
                     </button>
                     : null}
 
@@ -67,15 +66,13 @@ export default function GeneralView(params){
                 {params.isOwner?
                     <button className='button-17' onClick={() => {
                         DeletePoint(params.point.id, params.marker, params.map, params.mapId, params.session, params.webId);
-                    }}>Delete
+                    }}>Borrar
                     </button>
                     : null}
                     
                     <button className='button-17' onClick={openFileDialog}>Añadir imagen</button>
                     <input type="file" id="fileInput" onChange={handleFileSelect} accept="image/png,image/jpeg" hidden={true}></input>
-                    
-
             </div>
-        </>
+        </div>
     )
 }

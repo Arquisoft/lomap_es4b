@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import Reviews from "./Reviews";
-import Comments from "./Comments";
-import GeneralView from "./GeneralView";
+import Reviews from "./reviews/Reviews";
+import Comments from "./comments/Comments";
+import GeneralView from "./generalview/GeneralView";
 import './PointInfo.css';
 import {getSpecificPoint} from "../../helper/PodHelper";
-import LoadingSpinner from "./LoadingSpinner";
+import LoadingSpinner from "./spinner/LoadingSpinner";
 import {Category} from '../../entities/Entities';
 
 
@@ -28,8 +28,6 @@ class PointInfo extends Component {
             categoryText: null,
         }
         getSpecificPoint(this.props.session, this.props.webId, this.props.pointId,this.props.mapId).then((point) => {
-            console.log(props);
-            console.log(point);
             this.setState({point: point});
             this.setState({reviews:point.reviewScores});
             this.setState({comments: point.comments});
@@ -128,7 +126,7 @@ class PointInfo extends Component {
 
     render(){
         return (
-            <div>
+            <div className="pointInfoContainer">
             {this.state.isLoading ? <LoadingSpinner /> : this.renderPointInfo()}
             </div>
         )

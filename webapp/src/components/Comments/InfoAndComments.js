@@ -2,8 +2,8 @@ import { Container , Card, CardContent, Typography, CardActionArea} from "@mater
 import Comments from './Comments'
 import {Text} from 'react-native';
 import { Button} from "@material-ui/core";
-import EditPoint from "../map/EditPoint";
-import DeletePoint from "../map/DeletePoint";
+import EditPoint from "../map/editPoint/EditPoint";
+import DeletePoint from "../map/deletePoint/DeletePoint";
 import CommentBox from "./CommentBox";
 import ReviewBox from "../reviews/ReviewBox";
 import {getSpecificPoint} from "../../helper/PodHelper";

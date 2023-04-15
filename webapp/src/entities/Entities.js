@@ -6,7 +6,7 @@ export const PointStruct = {
 };
 
 export const Category = [{text:"Restaurante",category:"restaurant"},{text:"Monumento",category:"monument"}, 
-                        {text:"Hospital",category:"hospital"}];
+                        {text:"Hospital",category:"hospital"}, {text:"Gimnasio", category: "gym"}, {text: "Aeropuerto", category: "airport"}, {text: "Parque", category: "park"}, {text: "Peluqueria", category: "hairSalon"}];
   
 export class CommentEntity{
     constructor(username, text) {

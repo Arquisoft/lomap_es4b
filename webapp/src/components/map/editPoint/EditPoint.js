@@ -1,4 +1,4 @@
-import {getSpecificPoint} from "../../helper/PodHelper";
+import {getSpecificPoint} from "../../../helper/PodHelper";
 import ReactDOM from "react-dom";
 import EditPointForm from "./EditPointForm";
 import L from "leaflet";

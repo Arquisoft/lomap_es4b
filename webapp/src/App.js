@@ -6,7 +6,7 @@ import ProfileViewer from "./components/profileviewer/ProfileViewer"
 import { useSession } from "@inrupt/solid-ui-react/dist";
 import Navbar from "./components/navbar/Navbar";
 import { ProSidebarProvider } from 'react-pro-sidebar';
-import MapView from './components/map/MapView';
+import MapView from './components/map/mapView/MapView';
 
 
 const App = () => {
