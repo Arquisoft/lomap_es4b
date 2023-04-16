@@ -67,52 +67,8 @@ export default function Navbar(props){
                 </>
             )}
 
-          {logggin ? (
-            <>
-              <div className="navProfile">
-              <CombinedDataProvider datasetUrl={webId} thingUrl={webId} className="image-button" style={{flexDirection: 'row'}}>
-                  {typeof VCARD.hasPhoto.iri.value === null ? (
-                    <>
-                     <img src={VCARD.hasPhoto.iri.value} alt="Foto de perfil del usuario" style={{width:70, height:70, borderRadius:40}}
-                     onError={event => {
-                          event.target.src = pordefecto
-                          event.onerror = null
-                        }}
-                    />
-                    </>
-                  ):(
-                    <>
-                     <Image property={VCARD.hasPhoto.iri.value} alt="Foto de perfil del usuario" style={{width:70, height:70, borderRadius:40}} />
-                    </>
-                  )}
-                  {/* <Image property={VCARD.hasPhoto.iri.value} alt="Foto de perfil del usuario" style={{width:70, height:70, borderRadius:40}}/> */}
 
-                  <Text property={FOAF.name.iri.value} style={{ fontSize: 18 }}/>
-                </CombinedDataProvider>
-                <LogoutButton >
-                  <Button variant="contained" color="primary">
-                    Logout
-                  </Button>
-                </LogoutButton>
-              </div>
-            </>
-          ) : (
-            <>
-                <select value={idp} onChange={handleChange}>
-                    <option value="a">Selecciona un Proveedor</option>
-                    {listaProveedores.map((proveedor) => (
-                        <option key={proveedor.url} value={proveedor.url}>
-                            {proveedor.url}
-                        </option>
-                    ))}
-                </select>
-              <LoginButton oidcIssuer={idp} redirectUrl={currentUrl} className="login_button">
-                <Button variant="contained" color="primary" /* onClick={savePoints(session,webId)} */>
-                  Login
-                  </Button>
-              </LoginButton>
-            </>
-          )}
+
 
           
         </nav>
