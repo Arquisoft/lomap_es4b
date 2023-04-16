@@ -45,7 +45,7 @@ export function FriendComponent(props) {
     return (
       <div className="sideComponentFriend">
         <header className='pointHeaderFriend'>
-          <p data-testid= "nombreAmigoP" className='nameFriend'>{friendName} </p>
+          <p data-testid= "nombreAmigoParrafo" className='nameFriend'>{friendName} </p>
         </header>
         <div className="comboAndImage">
             <img src={friendImage} alt="Imagen del usuario"/>

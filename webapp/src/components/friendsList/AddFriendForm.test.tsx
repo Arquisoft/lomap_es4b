@@ -2,7 +2,6 @@ import { render } from "@testing-library/react";
 import AddFriendForm from "./AddFriendForm";
 
 test('check that the add friend form renders propertly', async () => {
-    const {getByText} = await render(<AddFriendForm session={[]} webId={"https://uo281835.inrupt.net/profile/card#me"}/>);
     const {getByTestId} = await render(<AddFriendForm session={[]} webId={"https://uo281835.inrupt.net/profile/card#me"}/>);
     /*expect(getByText("Agregar Amigo")).toBeInTheDocument();
     expect(getByText("Agregar Amigo")).toBeVisible();
@@ -14,7 +13,6 @@ test('check that the add friend form renders propertly', async () => {
     expect(getByTestId("botonAmigo")).toBeVisible();
 });
 test('check that the add friend button can be clicked properly', async () => {
-    const {getByText} = await render(<AddFriendForm session={[]} webId={"https://uo281835.inrupt.net/profile/card#me"}/>);
     const {getByTestId} = await render(<AddFriendForm session={[]} webId={"https://uo281835.inrupt.net/profile/card#me"}/>);
     /*expect(getByText("Agregar Amigo")).toBeInTheDocument();
     expect(getByText("Agregar Amigo")).toBeVisible();
