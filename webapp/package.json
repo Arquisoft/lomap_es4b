@@ -73,5 +73,15 @@
     "start-server-and-test": "^1.14.0",
     "ts-jest": "^29.0.4",
     "ts-node-dev": "^2.0.0"
+  },
+  "jest": {
+    "testMatch": ["**/__tests__/**/*.ts?(x)","**/?(*.)+(test).ts?(x)"],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+
+    },
+    "transformIgnorePatterns": [
+      "/node_modules/(?!@toolz/allow-react)/"
+    ]
   }
 }

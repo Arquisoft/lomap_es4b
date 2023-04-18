@@ -10,8 +10,8 @@ const LoginForm = () => {
   return (
   
     <Container data-testid="containerLoginForm" maxWidth={false} disableGutters={true} id="loginContainer" >
-      <div className="loginForm">
-        <Home data-testid="homeLoginForm"></Home>
+      <div className="loginForm" data-testid="homeLoginForm">
+        <Home ></Home>
       </div>
     </Container>
   );
