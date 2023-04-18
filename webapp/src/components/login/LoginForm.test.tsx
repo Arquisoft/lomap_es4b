@@ -8,3 +8,5 @@ test('check that the login form renders propertly', async () => {
     expect(getByTestId("homeLoginForm")).toBeInTheDocument();
     expect(getByTestId("homeLoginForm")).toBeVisible();
   });
+  
+  export{};

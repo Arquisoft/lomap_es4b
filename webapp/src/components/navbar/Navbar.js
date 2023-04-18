@@ -27,7 +27,7 @@ export default function Navbar(props){
     return (
         <nav className="navBar">
 
-            <a href="/home">
+            <a className={"logo"} href="/home">
                 <img src={logo} alt="Logo de Lomap"/>
             </a>
 
@@ -64,6 +64,7 @@ export default function Navbar(props){
                             Login
                         </Button>
                     </LoginButton>
+                    <button name="botonñorda">aaa</button>
                 </>
             )}
 
