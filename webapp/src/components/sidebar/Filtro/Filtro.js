@@ -10,7 +10,7 @@ import {Category} from "../../../entities/Entities";
 export function Filtro(props){
     const [listaCosasFiltradas, setListaCosasFiltradas] = useState([]) ;
     const {session, webId, mapId} = props;
-    var listaFiltro=Category;
+    let listaFiltro=Category;
     const handleSelect = (event) => {
         const value = event.target.value;
         const isChecked = event.target.checked;
@@ -29,7 +29,7 @@ export function Filtro(props){
     };
 
     const filterList = listaFiltro.map((categoria)=>{
-        var image = require('../../../images/' + categoria.category + '.png');
+        let image = require('../../../images/' + categoria.category + '.png');
         return (
                 <div className={"filaFiltro"} >
                     <img className={"icono"} src={ image} alt={categoria.text}/>

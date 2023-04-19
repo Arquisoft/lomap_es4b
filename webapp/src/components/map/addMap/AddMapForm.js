@@ -22,7 +22,7 @@ export default class AddMapForm extends Component {
     }
 
     handleSubmit(event) {
-        alert('Nuevo mapa \"' + this.state.name + '\" creado.');
+        alert('Nuevo mapa "' + this.state.name + '" creado.');
         event.preventDefault();
         addMap(this.state.name, this.state.session, this.state.webId)
         this.state.setMarcadorAñadirMapaSeleccionado(false);

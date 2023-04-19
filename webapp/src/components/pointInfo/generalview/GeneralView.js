@@ -12,12 +12,12 @@ export default function GeneralView(params){
     const [pictures, setPictures] = React.useState(params.pictures);
 
     const slideLeft = () => {
-        var slider = document.getElementById('slider')
+        let slider = document.getElementById('slider')
         slider.scrollLeft = slider.scrollLeft - 500;
     }
 
     const slideRight = () => {
-        var slider = document.getElementById('slider')
+        let slider = document.getElementById('slider')
         slider.scrollLeft = slider.scrollLeft + 500;
     }
 

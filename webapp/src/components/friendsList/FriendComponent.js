@@ -5,7 +5,7 @@ import {getAllMaps,getAllPointsInCurrentMap} from '../../helper/PodMaps';
 
 export function FriendComponent(props) {
 
-  const { friendURL,friendName,webId,session} = props;
+  const { friendURL,friendName,session} = props;
   const [selectedValue, setSelectedValue] = useState('');
   const [friendMaps, setFriendMaps] = useState([]);
   const [friendImage, setFriendImage] = useState('');
@@ -24,8 +24,6 @@ export function FriendComponent(props) {
       fetchFriendMapsAndImage();
     }, []);
 
-/*     let imagen = "";
-    getImageFromPod(props.friendURL).then((image)=>imagen=image);  */
 
     const handleChange = (event) => {
       setSelectedValue(event.target.value);
