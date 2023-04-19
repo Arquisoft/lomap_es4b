@@ -39,7 +39,7 @@ export default function Navbar(props){
                             <Image property={VCARD.hasPhoto.iri.value} alt="Foto de perfil del usuario" style={{width:70, height:70, borderRadius:40}}/>
                             <Text property={FOAF.name.iri.value} style={{ fontSize: 18 }}/>
                         </CombinedDataProvider>
-                        <LogoutButton >
+                        <LogoutButton id={"logout-button"}>
                             <Button variant="contained" color="primary">
                                 Logout
                             </Button>
@@ -56,7 +56,7 @@ export default function Navbar(props){
                             </option>
                         ))}
                     </select>
-                    <LoginButton oidcIssuer={idp} redirectUrl={currentUrl} className="login_button">
+                    <LoginButton id={"login-button"} oidcIssuer={idp} redirectUrl={currentUrl} className="login_button">
                         <Button type="submit"
                                 fullWidth
                                 variant="contained"
@@ -64,7 +64,6 @@ export default function Navbar(props){
                             Login
                         </Button>
                     </LoginButton>
-                    <button name="botonñorda">aaa</button>
                 </>
             )}
 

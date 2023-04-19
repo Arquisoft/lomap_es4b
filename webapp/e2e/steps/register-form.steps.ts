@@ -8,7 +8,7 @@ let browser: puppeteer.Browser;
 
 defineFeature(feature, test => {
   
-  beforeAll(async () => {
+  beforeEach(async () => {
     browser = process.env.GITHUB_ACTIONS
       ? await puppeteer.launch()
       : await puppeteer.launch({ headless: false, slowMo: 50 });
@@ -21,51 +21,76 @@ defineFeature(feature, test => {
       .catch(() => {});
   });
 
-  // test('The user is not registered in the site', ({given,when,then}) => {
-    
-  //   let email:string;
-  //   let username:string;
+  test('The user is not logged in the site and introduces wrong data', ({given,when,then}) => {
 
-  //   given('An unregistered user', () => {
-  //     email = "newuser@test.com"
-  //     username = "newuser"
-  //   });
-
-  //   when('I fill the data in the form and press submit', async () => {
-  //     await expect(page).toFillForm('form[name="register"]', {
-  //       username: username,
-  //       email: email,
-  //     })
-  //     await expect(page).toClick('button', { text: 'Accept' })
-  //   });
-
-  //   then('A confirmation message should be shown in the screen', async () => {
-  //     await expect(page).toMatch('You have been registered in the system!')
-  //   });
-  // })
-
-  test('The user is not registered in the site', ({given,when,then}) => {
-    
-    let email:string;
     let username:string;
+    let password:string;
 
-    given('An unregistered user', () => {
-      email = "newuser@test.com"
-      username = "newuser"
+    given('A not logged user', () => {
+      username = "fhdsgfhsd"
+      password = "fhgsdhjfsk"
+    });
+
+    when('I fill wrong data in the form and press submit', async () => {
+      await expect(page).toClick('Button', { text: 'Login' })
+      await delay(5000)
+      await expect(page).toFillForm('form[class="form-horizontal login-up-form"]', {
+        username: username,
+        password: password,
+      })
+      await expect(page).toClick('button', { text: 'Log In' })
+      await delay(1000)
+    });
+
+    then('An error message appears on screen', async () => {
+      const text = await page.evaluate(() => document.body.textContent);
+      expect(text).toMatch("No user found for that username");
+    });
+  })
+
+  test('The user is not logged in the site', ({given,when,then}) => {
+
+    let username:string;
+    let password:string;
+
+    given('A not logged user', () => {
+      username = "uo276467"
+      password = "e2ff3d361A_"
     });
 
     when('I fill the data in the form and press submit', async () => {
       await expect(page).toClick('Button', { text: 'Login' })
+      await delay(3000)
+      await expect(page).toFillForm('form[class="form-horizontal login-up-form"]', {
+        username: username,
+        password: password,
+      })
+      await expect(page).toClick('button', { text: 'Log In' })
+      await delay(5000)
     });
 
-    then('A confirmation message should be shown in the screen', async () => {
-      await expect(page).toMatch('Logout')
+    then('The main page is shown in the screen', async () => {
+      const text = await page.evaluate(() => document.body.textContent);
+      expect(text).toMatch("Logout");
+      expect(text).toMatch("Gestionar puntos");
+      expect(text).toMatch("Gestionar mapas");
+      expect(text).toMatch("Amigos");
+      expect(text).toMatch("Añadir Amigo");
+      expect(text).toMatch("About");
     });
   })
 
-  afterAll(async ()=>{
+  
+
+  afterEach(async ()=>{
     browser.close()
   })
+
+  function delay(time: number) {
+    return new Promise(function (resolve) {
+      setTimeout(resolve, time);
+    });
+  }
 
 });
 
