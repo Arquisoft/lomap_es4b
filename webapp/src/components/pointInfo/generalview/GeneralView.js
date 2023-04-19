@@ -35,7 +35,7 @@ export default function GeneralView(params){
     }
 
     return (
-        <div className="generalViewContainer">
+        <div className="generalViewContainer"data-testid={"generalViewContainer"}>
             <p>{params.point.description}</p>
             {pictures.length > 0 && <div className='galleryContainer'>
                 <MdChevronLeft className='mdchevron' onClick={slideLeft} size={40} />

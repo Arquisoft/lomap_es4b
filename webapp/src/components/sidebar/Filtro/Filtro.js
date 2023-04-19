@@ -31,14 +31,15 @@ export function Filtro(props){
     const filterList = listaFiltro.map((categoria)=>{
         var image = require('../../../images/' + categoria.category + '.png');
         return (
-                <div className={"filaFiltro"}>
+                <div className={"filaFiltro"} >
                     <img className={"icono"} src={ image} alt={categoria.text}/>
                     <label class="label" htmlFor={"checkbox"+categoria.category}>{categoria.text}</label>
                     <input type="checkbox"
                         id={"checkbox"+categoria.text}
                         name={categoria.text}
                         value={categoria.category}
-                           onChange={handleSelect}
+                        data-testid ={categoria.category}
+                        onChange={handleSelect}
                        />
 
 
@@ -48,12 +49,12 @@ export function Filtro(props){
 
     return (
     <div className={"filtro"}>
-        <h2 className={"tituloFiltro"}>
+        <h2 className={"tituloFiltro"}data-testid={"tituloFiltro"}>
             Seleccione las categorías a filtrar
         </h2>
             {filterList}
         <div className={"divBotonFiltro"} >
-            <button className={"botonFiltro"} onClick={
+            <button className={"botonFiltro"} data-testid ={"filtrar"}onClick={
                 async ()=>{
                     console.log(session);
                     console.log(webId);
