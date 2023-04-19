@@ -16,7 +16,7 @@ export function MarkerComponent(props) {
           <p className='categoryLocation'>({props.category})</p>
         </header>
           <div className="descriptionAndImageLocation">
-            <img src={imagen} alt="Imagen de la ubicación"/>
+            <img src={imagen} alt="Imagen de la ubicación" data-testid={"Imagen del Punto."}/>
             <p>{props.description}</p>
           </div>
           <div className="coordinates">
