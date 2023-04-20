@@ -20,7 +20,8 @@ export const SideBar = (props) => {
     const { collapseSidebar } = useProSidebar();
     const {session, webId, marcadorPuntosSeleccionado,setMarcadorPuntosSeleccionado, marcadorMapasSeleccionado, setMarcadorMapasSeleccionado,
         marcadorFriendsSeleccionado, setMarcadorFriendsSeleccionado, marcadorAñadirMapaSeleccionado, setMarcadorAñadirMapaSeleccionado,
-        marcadorAñadirAmigoSeleccionado,setMarcadorAñadirAmigoSeleccionado,marcadorFiltroSeleccionado,setMarcadorFiltroSeleccionado} = props;
+        marcadorAñadirAmigoSeleccionado,setMarcadorAñadirAmigoSeleccionado,marcadorFiltroSeleccionado,setMarcadorFiltroSeleccionado,
+        marcadorAboutSeleccionado, setMarcadorAboutSeleccionado} = props;
     const [isOpen, setOpen] = useState(true);
 
     return(
@@ -45,6 +46,7 @@ export const SideBar = (props) => {
                     setMarcadorAñadirMapaSeleccionado(false);
                     setMarcadorAñadirAmigoSeleccionado(false);
                     setMarcadorFiltroSeleccionado(false);
+                    setMarcadorAboutSeleccionado(false);
                     }}
                     style={{ textAlign: "center" }}
                     >
@@ -65,6 +67,7 @@ export const SideBar = (props) => {
                             setMarcadorAñadirMapaSeleccionado(false);
                             setMarcadorAñadirAmigoSeleccionado(false);
                             setMarcadorFiltroSeleccionado(false);
+                            setMarcadorAboutSeleccionado(false);
                             setMarcadorPuntosSeleccionado(!marcadorPuntosSeleccionado);
                         }}>
                        Ver puntos
@@ -77,6 +80,7 @@ export const SideBar = (props) => {
                             setMarcadorAñadirMapaSeleccionado(false);
                             setMarcadorAñadirAmigoSeleccionado(false);
                             setMarcadorPuntosSeleccionado(false);
+                            setMarcadorAboutSeleccionado(false);
                             setMarcadorFiltroSeleccionado(!marcadorFiltroSeleccionado);
                         }}>
                        Filtrar Puntos
@@ -98,6 +102,7 @@ export const SideBar = (props) => {
                             setMarcadorAñadirMapaSeleccionado(false);
                             setMarcadorAñadirAmigoSeleccionado(false);
                             setMarcadorFiltroSeleccionado(false);
+                            setMarcadorAboutSeleccionado(false);
                             setMarcadorMapasSeleccionado(!marcadorMapasSeleccionado);
                         }}>
                        Ver mapas
@@ -110,7 +115,8 @@ export const SideBar = (props) => {
                                 setMarcadorMapasSeleccionado(false);
                                 setMarcadorAñadirAmigoSeleccionado(false);
                                 setMarcadorFiltroSeleccionado(false);
-                                setMarcadorAñadirMapaSeleccionado(!marcadorAñadirMapaSeleccionado); }}>
+                            setMarcadorAboutSeleccionado(false);
+                            setMarcadorAñadirMapaSeleccionado(!marcadorAñadirMapaSeleccionado); }}>
                         Añadir mapa </MenuItem>
                 </SubMenu >
                 
@@ -123,6 +129,7 @@ export const SideBar = (props) => {
                             setMarcadorAñadirMapaSeleccionado(false);
                             setMarcadorAñadirAmigoSeleccionado(false);
                             setMarcadorFiltroSeleccionado(false);
+                            setMarcadorAboutSeleccionado(false);
                             setMarcadorFriendsSeleccionado(!marcadorFriendsSeleccionado);
                         }else{
                             collapseSidebar();
@@ -139,20 +146,29 @@ export const SideBar = (props) => {
                                 setMarcadorMapasSeleccionado(false);
                                 setMarcadorAñadirMapaSeleccionado(false);
                                 setMarcadorFiltroSeleccionado(false);
-                                setMarcadorAñadirAmigoSeleccionado(!marcadorAñadirAmigoSeleccionado);
+                            setMarcadorAboutSeleccionado(false);
+                            setMarcadorAñadirAmigoSeleccionado(!marcadorAñadirAmigoSeleccionado);
                             }}>
                         <div style={{display : isOpen? "block" : "none"}}>Añadir Amigo</div>
                 </MenuItem>
                 <MenuItem className='menuItem' 
                     icon={<InfoIcon />} onClick={() => { 
                         if(isOpen){
-                            saveImages();
+                            setMarcadorPuntosSeleccionado(false);
+                            setMarcadorMapasSeleccionado(false);
+                            setMarcadorAñadirMapaSeleccionado(false);
+                            setMarcadorAñadirAmigoSeleccionado(false);
+                            setMarcadorFiltroSeleccionado(false);
+                            setMarcadorAboutSeleccionado(!marcadorAboutSeleccionado);
+                            setMarcadorFriendsSeleccionado(false);
                         }else{
                             collapseSidebar();
                             setOpen(!isOpen);
                         }
                     }}>
-                    <div style={{display : isOpen? "block" : "none"}}>About</div> 
+                    <div style={{display : isOpen? "block" : "none"}}>
+                        About
+                    </div>
                 </MenuItem>
             </Menu>
         </Sidebar>

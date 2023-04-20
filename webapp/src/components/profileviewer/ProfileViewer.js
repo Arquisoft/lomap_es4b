@@ -13,6 +13,7 @@ import FilterForm from "../filter/FilterForm";
 import {friendsAclPermission} from "../../helper/PodFriends";
 import {Filtro} from "../sidebar/Filtro/Filtro";
 import LoadedMapInfo from "../map/loadedMapInfo/LoadedMapInfo";
+import About from "../about/About";
 
 
 const ProfileViewer = () => {
@@ -24,6 +25,7 @@ const ProfileViewer = () => {
   const [marcadorAñadirMapaSeleccionado, setMarcadorAñadirMapaSeleccionado] = useState(false);
   const [marcadorAñadirAmigoSeleccionado, setMarcadorAñadirAmigoSeleccionado] = useState(false);
   const [marcadorFiltroSeleccionado, setMarcadorFiltroSeleccionado] = useState(false);
+  const [marcadorAboutSeleccionado, setMarcadorAboutSeleccionado] = useState(false);
   const [mapView, setMapView] = useState(null);
   const [currentMapId, setCurrentMapId] = useState("1");
   const [currentMapWebId, setCurrentMapWebId] = useState(webId);
@@ -51,7 +53,9 @@ const ProfileViewer = () => {
         marcadorFriendsSeleccionado={marcadorFriendsSeleccionado } setMarcadorFriendsSeleccionado={setMarcadorFriendsSeleccionado}
         marcadorAñadirMapaSeleccionado={marcadorAñadirMapaSeleccionado} setMarcadorAñadirMapaSeleccionado={setMarcadorAñadirMapaSeleccionado}
         marcadorAñadirAmigoSeleccionado={marcadorAñadirAmigoSeleccionado} setMarcadorAñadirAmigoSeleccionado={setMarcadorAñadirAmigoSeleccionado}
-        marcadorFiltroSeleccionado={marcadorFiltroSeleccionado} setMarcadorFiltroSeleccionado={setMarcadorFiltroSeleccionado}/>
+        marcadorFiltroSeleccionado={marcadorFiltroSeleccionado} setMarcadorFiltroSeleccionado={setMarcadorFiltroSeleccionado}
+        marcadorAboutSeleccionado={marcadorAboutSeleccionado} setMarcadorAboutSeleccionado={setMarcadorAboutSeleccionado}
+      />
 
       {/* Le pasa la referencia a la funcion centerMapOnPoint de MapView */}
       {marcadorPuntosSeleccionado ?
@@ -85,6 +89,11 @@ const ProfileViewer = () => {
         :
         null
       }
+          {marcadorAboutSeleccionado ?
+              <About marcadorAboutSeleccionado={marcadorAboutSeleccionado} setMarcadorAboutSeleccionado={setMarcadorAboutSeleccionado}></About>
+              :
+              null
+          }
 
       {/* Guarda la instancia del mapView en el mapView de profileViewer */}
       <MapView ref={instance => { setMapView(instance)}} setCurrentMapId={setCurrentMapId} setCurrentMapWebId={setCurrentMapWebId} session={session}  webId={webId} isLogged={true}/>
