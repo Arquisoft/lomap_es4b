@@ -42,7 +42,7 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 18
-    - run: npm --prefix webapp install
+    - run: npm --prefix webapp install --legacy-peer-deps
     - run: npm --prefix restapi install
     - run: npm --prefix webapp run build
     - run: npm --prefix webapp run test:e2e
