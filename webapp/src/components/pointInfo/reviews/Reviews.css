@@ -1,0 +1,28 @@
+div.reviewsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+ul.reviews {
+    list-style: none;
+}
+
+.sendReview {
+    margin-left: auto;
+}
+
+div.reviewsList {
+    overflow-y: auto;
+    max-height:13em;
+}
+
+div.createReview {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2em;
+    padding: 1.5em;
+}

@@ -4,7 +4,8 @@ import HeroSection from '../HeroSection';
 function Home() {
   return (
     <>
-      <HeroSection data-testid={"section"} />
+        <div data-testid={"section"}></div>
+      <HeroSection  />
     </>
   );
 }

@@ -18,7 +18,7 @@ export function MapListComponent(props) {
           <p className='nameMap'>{props.name} </p>
         </header>
         <div className="descriptionAndImageMap">
-            <img src={imagen} alt="Imagen del mapa"/>
+            <img src={imagen} alt="Imagen del mapa" data-testid={"Imagen"}/>
             <p>{props.description}</p>
           </div>
           <div className="showPointsButton">

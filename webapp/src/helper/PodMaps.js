@@ -143,3 +143,29 @@ export async function getFirstMap(session, webId){
     return [];
   }
 }
+
+  //Método que devuelve un mapa en específico del pod
+  export async function getMap(mapId, webId, session){
+    
+    let url = urlCreator(webId);
+  
+    try {
+      let file = await solid.getFile(
+        url,
+        { fetch: session.fetch }
+  
+      );
+  
+      let mapsString = await file.text();
+      var jsonMaps = JSON.parse(mapsString);
+  
+      var maps = jsonMaps.maps;
+      var map = maps.find(map => map.id === mapId);
+  
+      return map;
+  
+    } catch (error) {
+      console.log(error);
+      return undefined;
+    }
+  }

@@ -29,7 +29,7 @@ jobs:
     - run: npm --prefix restapi ci
     - run: npm --prefix webapp test --coverage --watchAll
     - run: npm --prefix restapi test --coverage --watchAll
-    - run: npm --prefix webapp run test:e2e --coverage --watchAll
+    - run: npm --prefix webapp run test:e2e --coverage --watchAll -v
     - name: Analyze with SonarCloud
       uses: sonarsource/sonarcloud-github-action@master
       env:
@@ -43,7 +43,7 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 18
-    - run: npm --prefix webapp install
+    - run: npm --prefix webapp install --legacy-peer-deps
     - run: npm --prefix restapi install
     - run: npm --prefix webapp run build
     - run: npm --prefix webapp run test:e2e -v

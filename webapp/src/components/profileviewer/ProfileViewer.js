@@ -1,17 +1,19 @@
 import { useState, useEffect} from "react";
 import { useSession } from "@inrupt/solid-ui-react";
 import { Container} from "@material-ui/core";
-import MapView from "../map/MapView";
+import MapView from "../map/mapView/MapView";
 import SideBar from "../sidebar/SideBar";
 import "./ProfileViewer.css"
 import MarkersList from '../markersList/Markerslist';
 import MapList from '../mapList/MapList';
 import FriendsList  from "../friendsList/FriendsList";
 import AddFriendForm  from "../friendsList/AddFriendForm";
-import AddMapForm from "../map/AddMapForm";
+import AddMapForm from "../map/addMap/AddMapForm";
 import FilterForm from "../filter/FilterForm";
 import {friendsAclPermission} from "../../helper/PodFriends";
 import {Filtro} from "../sidebar/Filtro/Filtro";
+import LoadedMapInfo from "../map/loadedMapInfo/LoadedMapInfo";
+import About from "../about/About";
 
 
 const ProfileViewer = () => {
@@ -23,9 +25,10 @@ const ProfileViewer = () => {
   const [marcadorAñadirMapaSeleccionado, setMarcadorAñadirMapaSeleccionado] = useState(false);
   const [marcadorAñadirAmigoSeleccionado, setMarcadorAñadirAmigoSeleccionado] = useState(false);
   const [marcadorFiltroSeleccionado, setMarcadorFiltroSeleccionado] = useState(false);
+  const [marcadorAboutSeleccionado, setMarcadorAboutSeleccionado] = useState(false);
   const [mapView, setMapView] = useState(null);
-  const [currentMapId, setCurrentMapId] = useState();
-  const [currentMapWebId, setCurrentMapWebId] = useState();
+  const [currentMapId, setCurrentMapId] = useState("1");
+  const [currentMapWebId, setCurrentMapWebId] = useState(webId);
 
 
   useEffect(() => {
@@ -41,17 +44,22 @@ const ProfileViewer = () => {
 
       <div className="profileViewer">
 
-      <SideBar data-testid = "sidebarProfile" className="sideBar" session={session} webId={webId}
+        {/*Información del mapa actualmente cargado*/}
+      <LoadedMapInfo mapId={currentMapId} webId={currentMapWebId} session={session}></LoadedMapInfo>
+
+      <SideBar data-testid = "sidebarProfile" className="sideBar" session={session} webId={currentMapWebId}
         marcadorPuntosSeleccionado={marcadorPuntosSeleccionado} setMarcadorPuntosSeleccionado={setMarcadorPuntosSeleccionado}
         marcadorMapasSeleccionado={marcadorMapasSeleccionado } setMarcadorMapasSeleccionado={setMarcadorMapasSeleccionado}
         marcadorFriendsSeleccionado={marcadorFriendsSeleccionado } setMarcadorFriendsSeleccionado={setMarcadorFriendsSeleccionado}
         marcadorAñadirMapaSeleccionado={marcadorAñadirMapaSeleccionado} setMarcadorAñadirMapaSeleccionado={setMarcadorAñadirMapaSeleccionado}
         marcadorAñadirAmigoSeleccionado={marcadorAñadirAmigoSeleccionado} setMarcadorAñadirAmigoSeleccionado={setMarcadorAñadirAmigoSeleccionado}
-        marcadorFiltroSeleccionado={marcadorFiltroSeleccionado} setMarcadorFiltroSeleccionado={setMarcadorFiltroSeleccionado}/>
+        marcadorFiltroSeleccionado={marcadorFiltroSeleccionado} setMarcadorFiltroSeleccionado={setMarcadorFiltroSeleccionado}
+        marcadorAboutSeleccionado={marcadorAboutSeleccionado} setMarcadorAboutSeleccionado={setMarcadorAboutSeleccionado}
+      />
 
       {/* Le pasa la referencia a la funcion centerMapOnPoint de MapView */}
       {marcadorPuntosSeleccionado ?
-        <MarkersList centerMap={(position) => {mapView.centerMapOnPoint(position)}} mapId={currentMapId} session={session} webId={webId}></MarkersList>
+        <MarkersList centerMap={(position) => {mapView.centerMapOnPoint(position)}} mapId={currentMapId} session={session} webId={currentMapWebId}></MarkersList>
         :
         null
       }
@@ -67,12 +75,12 @@ const ProfileViewer = () => {
         null
       }
       {marcadorAñadirMapaSeleccionado ?
-        <AddMapForm session={session} webId={webId}></AddMapForm>
+        <AddMapForm session={session} webId={webId} setMarcadorAñadirMapaSeleccionado={setMarcadorAñadirMapaSeleccionado}></AddMapForm>
         :
         null
       }
       {marcadorAñadirAmigoSeleccionado ?
-        <AddFriendForm session={session} webId={webId}></AddFriendForm>
+        <AddFriendForm session={session} webId={webId} setMarcadorAñadirAmigoSeleccionado={setMarcadorAñadirAmigoSeleccionado}></AddFriendForm>
         :
         null
       }
@@ -81,9 +89,15 @@ const ProfileViewer = () => {
         :
         null
       }
+          {marcadorAboutSeleccionado ?
+              <About marcadorAboutSeleccionado={marcadorAboutSeleccionado} setMarcadorAboutSeleccionado={setMarcadorAboutSeleccionado}></About>
+              :
+              null
+          }
 
-          {/* Guarda la instancia del mapView en el mapView de profileViewer */}
-          <MapView ref={instance => { setMapView(instance)}} setCurrentMapId={setCurrentMapId} setCurrentMapWebId={setCurrentMapWebId} session={session}  webId={webId} isLogged={true}/>
+      {/* Guarda la instancia del mapView en el mapView de profileViewer */}
+      <MapView ref={instance => { setMapView(instance)}} setCurrentMapId={setCurrentMapId} setCurrentMapWebId={setCurrentMapWebId} session={session}  webId={webId} isLogged={true}/>
+
       </div>
  
     </Container>
