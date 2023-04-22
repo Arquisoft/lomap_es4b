@@ -62,16 +62,16 @@ export default function GeneralView(params){
                     </button>
                     : null}
 
+                    
+                    <button className='button-17' onClick={openFileDialog}>Añadir imagen</button>
+                    <input type="file" id="fileInput" onChange={handleFileSelect} accept="image/png,image/jpeg" hidden={true}></input>
 
-                {params.isOwner?
-                    <button className='button-17' onClick={() => {
+                    {params.isOwner?
+                    <button id="deleteButton" className='button-17' onClick={() => {
                         DeletePoint(params.point.id, params.marker, params.map, params.mapId, params.session, params.webId);
                     }}>Borrar
                     </button>
                     : null}
-                    
-                    <button className='button-17' onClick={openFileDialog}>Añadir imagen</button>
-                    <input type="file" id="fileInput" onChange={handleFileSelect} accept="image/png,image/jpeg" hidden={true}></input>
             </div>
         </div>
     )
