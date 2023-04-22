@@ -36,6 +36,10 @@ export default class AddPointForm extends Component {
     }
 
     handleSubmit(event) {
+<<<<<<< HEAD
+=======
+        alert('Nuevo punto creado con titulo: ' + this.state.name + ', categoria:' + this.state.category +', comentario:' + this.state.description);
+>>>>>>> parent of ca7733a (test e2e arreglados)
         event.preventDefault();
         CreatePoint(this.state.position, this.state.map, this.state.mapId, this.state.markers, this.state.name, this.state.description, this.state.category, this.state.webId, this.state.session);
         this.state.map.removeLayer(this.state.popup);
@@ -43,11 +47,11 @@ export default class AddPointForm extends Component {
 
     render() {
         return (
-            <form class="addPointForm" onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit}>
                 <h1 className='pointFormHeader'>Agregar Punto</h1>
                 <label>
                     Titulo:
-                    <input name="name" type="text" placeholder="Titulo" value={this.state.name} onChange={this.handleChangeName} required maxLength='20'/>
+                    <input type="text" placeholder="Titulo" value={this.state.name} onChange={this.handleChangeName} required maxLength='20'/>
                 </label>
                 <label>
                     Selecciona una categoria:
@@ -63,7 +67,7 @@ export default class AddPointForm extends Component {
                 </label>
                 <label>
                     Descripcion:
-                    <input name="description" type="text" placeholder="Descripcion" value={this.state.description} onChange={this.handleChangeDescription} required maxLength='50'/>
+                    <input type="text" placeholder="Descripcion" value={this.state.description} onChange={this.handleChangeDescription} required maxLength='50'/>
                 </label>
                 <input type="submit" className="pointFormSubmit" value="Agregar punto" />
             </form>
