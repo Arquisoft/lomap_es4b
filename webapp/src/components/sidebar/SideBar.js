@@ -2,8 +2,6 @@
 import { Sidebar, Menu, MenuItem, SubMenu, useProSidebar} from 'react-pro-sidebar';
 import {useState} from 'react';
 import MenuIcon from "@mui/icons-material/Menu"
-import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt"
-import WrongLocationIcon from "@mui/icons-material/WrongLocation"
 import FilterAltIcon from "@mui/icons-material/FilterAlt"
 import FmdGoodIcon from "@mui/icons-material/FmdGood"
 import GroupIcon from "@mui/icons-material/Group"
@@ -11,14 +9,12 @@ import InfoIcon from "@mui/icons-material/Info"
 import SortIcon from "@mui/icons-material/Sort"
 import MapIcon from '@mui/icons-material/Map';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import {deletePoints,friendsAclPermission,addComment} from '../../helper/PodHelper';
-import {saveImages} from '../../helper/ImageHelper';
 import "./SideBar.css"
 
 export const SideBar = (props) => {
 
     const { collapseSidebar } = useProSidebar();
-    const {session, webId, marcadorPuntosSeleccionado,setMarcadorPuntosSeleccionado, marcadorMapasSeleccionado, setMarcadorMapasSeleccionado,
+    const { marcadorPuntosSeleccionado,setMarcadorPuntosSeleccionado, marcadorMapasSeleccionado, setMarcadorMapasSeleccionado,
         marcadorFriendsSeleccionado, setMarcadorFriendsSeleccionado, marcadorAñadirMapaSeleccionado, setMarcadorAñadirMapaSeleccionado,
         marcadorAñadirAmigoSeleccionado,setMarcadorAñadirAmigoSeleccionado,marcadorFiltroSeleccionado,setMarcadorFiltroSeleccionado,
         marcadorAboutSeleccionado, setMarcadorAboutSeleccionado} = props;

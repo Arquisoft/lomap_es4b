@@ -9,7 +9,6 @@ import MapList from '../mapList/MapList';
 import FriendsList  from "../friendsList/FriendsList";
 import AddFriendForm  from "../friendsList/AddFriendForm";
 import AddMapForm from "../map/addMap/AddMapForm";
-import FilterForm from "../filter/FilterForm";
 import {friendsAclPermission} from "../../helper/PodFriends";
 import {Filtro} from "../sidebar/Filtro/Filtro";
 import LoadedMapInfo from "../map/loadedMapInfo/LoadedMapInfo";
@@ -47,7 +46,7 @@ const ProfileViewer = () => {
         {/*Información del mapa actualmente cargado*/}
       <LoadedMapInfo mapId={currentMapId} webId={currentMapWebId} session={session}></LoadedMapInfo>
 
-      <SideBar data-testid = "sidebarProfile" className="sideBar" session={session} webId={currentMapWebId}
+      <SideBar data-testid = "sidebarProfile" className="sideBar" 
         marcadorPuntosSeleccionado={marcadorPuntosSeleccionado} setMarcadorPuntosSeleccionado={setMarcadorPuntosSeleccionado}
         marcadorMapasSeleccionado={marcadorMapasSeleccionado } setMarcadorMapasSeleccionado={setMarcadorMapasSeleccionado}
         marcadorFriendsSeleccionado={marcadorFriendsSeleccionado } setMarcadorFriendsSeleccionado={setMarcadorFriendsSeleccionado}

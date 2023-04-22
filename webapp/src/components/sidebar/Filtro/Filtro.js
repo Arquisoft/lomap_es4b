@@ -1,6 +1,4 @@
 import "./Filtro.css"
-import {BubbleChart} from "@mui/icons-material";
-import {Button} from "@material-ui/core";
 import React, { useState } from "react";
 import {filterPoints} from "../../../helper/PodHelper"
 import {Category} from "../../../entities/Entities";

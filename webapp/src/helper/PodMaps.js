@@ -20,7 +20,7 @@ export async function getAllPointsInCurrentMap(session,webId,mapId){
   
       let mapsString = await file.text();
       var jsonMaps = JSON.parse(mapsString);
-      const mapPoints = jsonMaps.maps.find(map => map.id == mapId).locations;
+      const mapPoints = jsonMaps.maps.find(map => map.id === mapId).locations;
   
       var points = [];
   

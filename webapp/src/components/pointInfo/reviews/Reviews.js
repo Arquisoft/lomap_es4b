@@ -59,7 +59,7 @@ const Reviews = (params) =>{
                             size="small" readOnly />  ({content.date})</li>
                     ))}
                 </ul>
-                {reviews.length == 0 &&
+                {reviews.length === 0 && 
                     <p>Aún no hay reseñas de este punto.</p>
                 }
             </div>

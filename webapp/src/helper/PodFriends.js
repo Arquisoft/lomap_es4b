@@ -124,7 +124,7 @@ export async function ownAclPermission(webId,session) {
       let existsFriend = solid.getUrlAll(dataSetThing, FOAF.knows)
 
       if (existsFriend.some((url) => url === friendWebId)){
-        alert('El usuario \"' + friend + '\" ya es amigo.');
+        alert('El usuario "' + friend + '" ya es amigo.');
         console.log("Este usuario ya es amigo");
       
       }else if(typeof friendName === 'undefined'){
@@ -139,7 +139,7 @@ export async function ownAclPermission(webId,session) {
       // insert friend in dataset
       dataSet = solid.setThing(dataSet, newFriend);
       dataSet = await solid.saveSolidDatasetAt(webID, dataSet, {fetch: session.fetch})
-      alert('Nuevo amigo, \"' + friend + '\" añadido.');
+      alert('Nuevo amigo, "' + friend + '" añadido.');
       console.log("Usuario añadido a lista de Amigos");
       }
     } catch (error){

@@ -1,8 +1,7 @@
 import * as solid from '@inrupt/solid-client';
 import {Point} from "../entities/Entities";
 import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
-import {ownAclPermission, friendsAclPermission} from './PodFriends';
-import {updateData, createPointsFile, createData} from './PodFiles';
+import {updateData} from './PodFiles';
 
 
 /**
@@ -26,7 +25,7 @@ export async function deletePoints(session, webId, pointId,mapId){
 
     let mapsString = await file.text();
     var jsonMaps = JSON.parse(mapsString);
-    var map = jsonMaps.maps.find(map => map.id == mapId);
+    var map = jsonMaps.maps.find(map => map.id === mapId);
 
     const pointIndex = map.locations.findIndex(p => p.id === pointId);
 
@@ -61,7 +60,7 @@ export async function filterPoints(session, webId, categories, mapId){
 
     let mapsString = await file.text();
     var jsonMaps = JSON.parse(mapsString);
-    const mapPoints = jsonMaps.maps.find(map => map.id == mapId).locations;
+    const mapPoints = jsonMaps.maps.find(map => map.id === mapId).locations;
 
     var result = mapPoints.filter(item => categories.includes(item.category));
 
@@ -76,8 +75,7 @@ export async function filterPoints(session, webId, categories, mapId){
 export async function updatePoints(mapId,latitude,longitude,name,description,category,session,webId){
 
   let url = urlCreator(webId);
-  let urlContainer = url.replace("private/puntoPrueba3Mapa.json","");
-  urlContainer=urlContainer+"private/";
+
 
   try {
     let solidFile = await solid.getFile(
@@ -104,7 +102,7 @@ export async function updatePoints(mapId,latitude,longitude,name,description,cat
 
     let mapsString = await solidFile.text();
     var jsonMaps = JSON.parse(mapsString);
-    const map = jsonMaps.maps.find(map => map.id == mapId);
+    const map = jsonMaps.maps.find(map => map.id === mapId);
 
     map.locations.push(newPoint);
 
@@ -120,11 +118,6 @@ export async function updatePoints(mapId,latitude,longitude,name,description,cat
 
   } catch (error) {
 
-    // const file = await createPointsFile(webId);
-    // await createData(urlContainer, file, session);
-    // await ownAclPermission(webId,session);
-    // await friendsAclPermission(webId,session);
-    // return updatePoints(mapId,latitude,longitude,name,description,category,session,webId);
     console.log(error);
   }
 
@@ -148,9 +141,9 @@ export async function getSpecificPoint(session, webId,pointId,mapId){
 
     let mapsString = await file.text();
     var jsonMaps = JSON.parse(mapsString);
-    const mapPoints = jsonMaps.maps.find(map => map.id == mapId).locations;  
+    const mapPoints = jsonMaps.maps.find(map => map.id === mapId).locations;  
 
-    var point = mapPoints.find(item => item.id == pointId);
+    var point = mapPoints.find(item => item.id === pointId);
 
     if(point === undefined){
       console.log("Error: No existe el punto del pod");
@@ -180,10 +173,9 @@ export async function editPoint(pointId,latitude,longitude,name,description,cate
 
     let mapsString = await file.text();
     var jsonMaps = JSON.parse(mapsString);
-    const mapPoints = jsonMaps.maps.find(map => map.id == mapId).locations;
-    const point = mapPoints.find(point => point.id == pointId);
+    const mapPoints = jsonMaps.maps.find(map => map.id === mapId).locations;
     mapPoints.map(point => {
-      if(point.id == pointId){
+      if(point.id === pointId){
         point.latitude = latitude;
         point.longitude = longitude;
         point.name = name;
@@ -239,8 +231,8 @@ export async function addComment(mapId,pointId,comment,session,webIdPar){
 
     let mapsString = await solidFile.text();
     var jsonMaps = JSON.parse(mapsString);
-    const map = jsonMaps.maps.find(map => map.id == mapId);
-    const point = map.locations.find(point => point.id == pointId);
+    const map = jsonMaps.maps.find(map => map.id === mapId);
+    const point = map.locations.find(point => point.id === pointId);
 
     point.comments.push(newComment);
 
@@ -289,8 +281,8 @@ export async function addScore(mapId,pointId,score,session,webIdPar){
 
     let mapsString = await solidFile.text();
     var jsonMaps = JSON.parse(mapsString);
-    const map = jsonMaps.maps.find(map => map.id == mapId);
-    const point = map.locations.find(point => point.id == pointId);
+    const map = jsonMaps.maps.find(map => map.id === mapId);
+    const point = map.locations.find(point => point.id === pointId);
 
     point.reviewScores.push(newScore);
 
@@ -331,8 +323,8 @@ export async function addPicture(mapId,pointId,pictureURL,session,webIdPar){
 
     let mapsString = await solidFile.text();
     var jsonMaps = JSON.parse(mapsString);
-    const map = jsonMaps.maps.find(map => map.id == mapId);
-    const point = map.locations.find(point => point.id == pointId);
+    const map = jsonMaps.maps.find(map => map.id === mapId);
+    const point = map.locations.find(point => point.id === pointId);
 
     point.pictures.push(newPicture);
 
