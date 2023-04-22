@@ -36,10 +36,6 @@ export default class AddPointForm extends Component {
     }
 
     handleSubmit(event) {
-<<<<<<< HEAD
-=======
-        alert('Nuevo punto creado con titulo: ' + this.state.name + ', categoria:' + this.state.category +', comentario:' + this.state.description);
->>>>>>> parent of ca7733a (test e2e arreglados)
         event.preventDefault();
         CreatePoint(this.state.position, this.state.map, this.state.mapId, this.state.markers, this.state.name, this.state.description, this.state.category, this.state.webId, this.state.session);
         this.state.map.removeLayer(this.state.popup);
