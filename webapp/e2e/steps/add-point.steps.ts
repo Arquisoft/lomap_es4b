@@ -63,6 +63,31 @@ defineFeature(feature, test => {
         await expect(text).toMatch("e2e name");
         await expect(text).toMatch("e2e description");
     });
+
+  })
+
+  test('The user wants to delete a point', ({given,when,then}) => {
+
+    given('A point', () => {
+
+    });
+
+    when('I click on the map and open the popup menu', async () => {
+      await expect(page).toClick('div[id="map"]')
+      await delay(8000)
+      await expect(page).toClick('button[id="deleteButton"]')
+      await delay(5000)
+    });
+
+    then('The point is removed from the points list', async () => {
+        await expect(page).toClick('span', { text: 'Gestionar puntos' })
+        await expect(page).toClick('span', { text: 'Ver puntos' })
+        await delay(5000)
+        const text = await page.evaluate(() => document.body.textContent);
+        await expect(text).not.toMatch("e2e name");
+        await expect(text).not.toMatch("e2e description");
+    });
+    
   })
 
   afterEach(async ()=>{

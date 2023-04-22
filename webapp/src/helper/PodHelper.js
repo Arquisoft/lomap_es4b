@@ -131,9 +131,6 @@ export async function updatePoints(mapId,latitude,longitude,name,description,cat
 }
 
 
-
-
-
 //Método que devuelve el punto específico del pod
 export async function getSpecificPoint(session, webId,pointId,mapId){
 
