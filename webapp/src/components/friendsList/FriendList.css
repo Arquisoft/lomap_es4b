@@ -10,7 +10,6 @@
     border-radius: 5%;
     border-color: gray;
     background-color: rgb(255, 255, 255);
-    width: 30em;
 }
 
 .pointHeaderFriend{
@@ -36,7 +35,7 @@
     margin-left: 1em;
     display: flex;
     flex-direction: row;
-    gap: 2em;
+    gap: 1.5em;
     height: 75%;
 }
 
@@ -49,16 +48,18 @@
 .comboAndImage select{
     font-weight: bold;
     border-radius: 10%;
-    width: 15em;
+    width: 12em;
 }
 
 .comboAndImage button{
     display: flex;
     align-items: center;
+    justify-content: center;
     font-weight: bold;
     border-radius: 25%;
     background-color: #4285F4;
     color:white;
+    width: 10em;
 }
 
 /* Scroll */
