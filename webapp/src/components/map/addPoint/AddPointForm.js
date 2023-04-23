@@ -52,7 +52,7 @@ export default class AddPointForm extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <h1 className='pointFormHeader'>Agregar Punto</h1>
+                <h1 className='pointFormHeader'>Añadir Punto</h1>
                 <label>
                     Titulo:
                     <input type="text" placeholder="Titulo" value={this.state.name} onChange={this.handleChangeName} required maxLength='20'/>
