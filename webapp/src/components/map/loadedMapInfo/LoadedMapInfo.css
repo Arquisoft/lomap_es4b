@@ -1,4 +1,6 @@
 .loadedMapInfo {
+    display: flex;
+    align-items: center;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 1.8em;
