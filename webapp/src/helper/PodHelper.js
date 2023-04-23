@@ -35,7 +35,7 @@ export async function deletePoints(session, webId, pointId,mapId){
       type: "application/json",
     });
 
-    var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
+    var fichero = new File([blob], "locations.json", { type: blob.type });
 
     await updateData(fichero, webId, session);
 
@@ -84,8 +84,13 @@ export async function updatePoints(mapId,latitude,longitude,name,description,cat
     );
 
     let author = await getNameFromPod(webId);
-
     let idPunto = randomId(20);
+
+    let date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let formattedDate = `${day}/${month}/${year}`;
 
     var newPoint = {
       id:idPunto,
@@ -98,6 +103,7 @@ export async function updatePoints(mapId,latitude,longitude,name,description,cat
       comments:[],
       reviewScores:[],
       pictures:[],
+      date: formattedDate,
     }
 
     let mapsString = await solidFile.text();
@@ -110,7 +116,7 @@ export async function updatePoints(mapId,latitude,longitude,name,description,cat
       type: "application/json",
     });
 
-    var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
+    var fichero = new File([blob], "locations.json", { type: blob.type });
 
     await updateData(fichero, webId, session)
 
@@ -146,7 +152,7 @@ export async function getSpecificPoint(session, webId,pointId,mapId){
       console.log("Error: No existe el punto del pod");
     }else{
       let specificPoint = new Point(point.id, point.author, point.latitude, point.longitude, point.name, 
-        point.description, point.category, point.comments, point.reviewScores,point.pictures);
+        point.description, point.category, point.date, point.comments, point.reviewScores,point.pictures);
       return specificPoint;
     }
 
@@ -185,7 +191,7 @@ export async function editPoint(pointId,latitude,longitude,name,description,cate
       type: "application/json",
     });
 
-    var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
+    var fichero = new File([blob], "locations.json", { type: blob.type });
 
     await updateData(fichero, webId, session);
 
@@ -237,7 +243,7 @@ export async function addComment(mapId,pointId,comment,session,webIdPar){
       type: "application/json",
     });
 
-    var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
+    var fichero = new File([blob], "locations.json", { type: blob.type });
 
     await updateData(fichero, webIdPar, session);
     return newComment;
@@ -287,7 +293,7 @@ export async function addScore(mapId,pointId,score,session,webIdPar){
       type: "application/json",
     });
 
-    var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
+    var fichero = new File([blob], "locations.json", { type: blob.type });
 
     await updateData(fichero, webIdPar, session);
 
@@ -299,7 +305,7 @@ export async function addScore(mapId,pointId,score,session,webIdPar){
 
 
 //Añade una foto a un punto
-export async function addPicture(mapId,pointId,pictureURL,session,webIdPar){
+export async function addPicture(mapId,pointId,pictureUrl,session,webIdPar){
 
   let url = urlCreator(webIdPar);
 
@@ -315,7 +321,7 @@ export async function addPicture(mapId,pointId,pictureURL,session,webIdPar){
 
     var newPicture = {
       author:author,
-      pictureURL:pictureURL,
+      pictureUrl:pictureUrl,
     }
 
     let mapsString = await solidFile.text();
@@ -329,7 +335,7 @@ export async function addPicture(mapId,pointId,pictureURL,session,webIdPar){
       type: "application/json",
     });
 
-    var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
+    var fichero = new File([blob], "locations.json", { type: blob.type });
 
     await updateData(fichero, webIdPar, session);
 
@@ -350,7 +356,7 @@ export async function addPicture(mapId,pointId,pictureURL,session,webIdPar){
 //Devuelve la url para poder acceder al json
 export function urlCreator(webId){
   let url = webId.replace("profile/card#me","");
-  url = url+"private/puntoPrueba3Mapa.json";
+  url = url+"private/locations.json";
   return url; 
 }
 

@@ -46,7 +46,7 @@ export async function createData(url, file, session) {
       type: "application/json",
     });
   
-    var file = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
+    var file = new File([blob], "locations.json", { type: blob.type });
     return file;
   
   }
@@ -57,7 +57,7 @@ export async function createData(url, file, session) {
   export async function updateData(file,webId,session) {
   
     let url = webId.replace("profile/card#me","");
-    url = url+"private/puntoPrueba3Mapa.json";
+    url = url+"private/locations.json";
   
      try {
       var savedFile = await solid.overwriteFile(

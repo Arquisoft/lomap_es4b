@@ -74,7 +74,7 @@ export async function getAllMaps(session, webId){
 export async function addMap(name,session,webId){
 
     let url = urlCreator(webId);
-    let urlContainer = url.replace("private/puntoPrueba3Mapa.json","");
+    let urlContainer = url.replace("private/locations.json","");
     urlContainer=urlContainer+"private/";
   
     try {
@@ -103,7 +103,7 @@ export async function addMap(name,session,webId){
         type: "application/json",
       });
   
-      var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
+      var fichero = new File([blob], "locations.json", { type: blob.type });
   
       await updateData(fichero, webId, session)
   

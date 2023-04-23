@@ -28,7 +28,7 @@ export default function GeneralView(params){
     function handleFileSelect(event) {
         const selectedFile = event.target.files[0];
         saveImages(params.mapId, params.point.id, selectedFile, params.session, params.webId, (picture) => {
-            const newList = pictures.concat({author:picture.author, pictureURL:picture.pictureURL});
+            const newList = pictures.concat({author:picture.author, pictureUrl:picture.pictureUrl});
             setPictures(newList);
             params.updatePictures(newList);
         })
@@ -45,7 +45,7 @@ export default function GeneralView(params){
                     {pictures.map((picture) => (
                         <img
                             className='gallery'
-                            src={picture.pictureURL}
+                            src={picture.pictureUrl}
                             alt='/'
                         />
                     ))}
