@@ -29,6 +29,9 @@ const ProfileViewer = () => {
   const [mapView, setMapView] = useState(null);
   const [currentMapId, setCurrentMapId] = useState("1");
   const [currentMapWebId, setCurrentMapWebId] = useState(webId);
+  const [pointsLoading, setPointsLoading] = useState(false);
+  const [mapsLoading, setMapsLoading] = useState(false);
+  const [friendsLoading, setFriendsLoading] = useState(false);
 
 
   useEffect(() => {
@@ -55,22 +58,23 @@ const ProfileViewer = () => {
         marcadorAñadirAmigoSeleccionado={marcadorAñadirAmigoSeleccionado} setMarcadorAñadirAmigoSeleccionado={setMarcadorAñadirAmigoSeleccionado}
         marcadorFiltroSeleccionado={marcadorFiltroSeleccionado} setMarcadorFiltroSeleccionado={setMarcadorFiltroSeleccionado}
         marcadorAboutSeleccionado={marcadorAboutSeleccionado} setMarcadorAboutSeleccionado={setMarcadorAboutSeleccionado}
+               pointsLoading={pointsLoading} mapsLoading={mapsLoading} friendsLoading={friendsLoading}
       />
 
       {/* Le pasa la referencia a la funcion centerMapOnPoint de MapView */}
       {marcadorPuntosSeleccionado ?
-        <MarkersList centerMap={(position) => {mapView.centerMapOnPoint(position)}} mapId={currentMapId} session={session} webId={currentMapWebId}></MarkersList>
+        <MarkersList setPointsLoading={setPointsLoading} centerMap={(position) => {mapView.centerMapOnPoint(position)}} mapId={currentMapId} session={session} webId={currentMapWebId}></MarkersList>
         :
         null
       }
 
       {marcadorMapasSeleccionado ?
-        <MapList showMapPoints={(points, webId, mapId) => {mapView.updateMarkers(points, webId, mapId)}} setCurrentMapId={setCurrentMapId} session={session} webId={webId}></MapList>
+        <MapList setMapsLoading={setMapsLoading} showMapPoints={(points, webId, mapId) => {mapView.updateMarkers(points, webId, mapId)}} setCurrentMapId={setCurrentMapId} session={session} webId={webId}></MapList>
         :
         null
       }
       {marcadorFriendsSeleccionado ?
-        <FriendsList showFriendPoints={(points, webId, mapId) => {mapView.updateMarkers(points, webId, mapId)}} setCurrentMapId={setCurrentMapId} session={session} webId={webId}></FriendsList>
+        <FriendsList setFriendsLoading={setFriendsLoading} showFriendPoints={(points, webId, mapId) => {mapView.updateMarkers(points, webId, mapId)}} setCurrentMapId={setCurrentMapId} session={session} webId={webId}></FriendsList>
         :
         null
       }

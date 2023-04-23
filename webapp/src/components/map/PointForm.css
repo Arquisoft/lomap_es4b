@@ -9,12 +9,14 @@ input[type=text] {
 }
 
 .pointFormSubmit {
+    display: flex;
+    align-items: center;
     background-color: #4285f4;
     border-radius: 0.75em;
     color: white;
     cursor: pointer;
     font-size: 1em;
-    width: 8em;
+    width: auto;
     padding: 0.5em 0.5em;
     text-align: center;
     transition: background-color 0.3s ease;

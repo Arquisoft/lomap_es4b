@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {editPoint} from "../../../helper/PodHelper";
 import {Category} from '../../../entities/Entities';
 import Icon from "../iconLocation/IconLocation";
+import {ListLoadingItem} from "../../loadingComponents/ListLoadingItem";
 
 export default class EditPointForm extends Component {
     constructor(props) {
@@ -17,6 +18,7 @@ export default class EditPointForm extends Component {
             marker: this.props.marker,
             webId: this.props.webId,
             session: this.props.session,
+            pointEditing: false,
         };
 
         this.handleChangeName = this.handleChangeName.bind(this);
@@ -36,12 +38,15 @@ export default class EditPointForm extends Component {
     }
 
     handleSubmit(event) {
-        alert('Punto editado con titulo: ' + this.state.name + ', categoria:' + this.state.category +', descripcion:' + this.state.description);
         event.preventDefault();
-        editPoint(this.state.pointId, this.state.latLng.lat, this.state.latLng.lng, this.state.name, this.state.description, this.state.category, this.state.session, this.state.webId,this.state.mapId).then(
-            this.state.marker.setIcon(Icon(this.state.category)),
-            this.state.map.removeLayer(this.state.popup)
-        );
+        this.setState({pointEditing: true});
+        editPoint(this.state.pointId, this.state.latLng.lat, this.state.latLng.lng, this.state.name, this.state.description, this.state.category, this.state.session, this.state.webId,this.state.mapId).then(() => {
+            this.state.marker.setIcon(Icon(this.state.category));
+            this.setState({pointEditing: false});
+            this.state.map.removeLayer(this.state.popup);
+            alert('Punto editado con titulo: ' + this.state.name + ', categoria:' + this.state.category + ', descripcion:' + this.state.description);
+        }
+    );
     }
 
     render() {
@@ -68,7 +73,10 @@ export default class EditPointForm extends Component {
                     Descripcion:
                     <input type="text" placeholder="Descripcion" value={this.state.description} onChange={this.handleChangeDescription} required maxLength='50'/>
                 </label>
-                <input type="submit" className="pointFormSubmit" value="Editar punto" />
+                <button type="submit" className="pointFormSubmit" onClick={this.handleSubmit} disabled={this.state.pointEditing}>
+                    {this.state.pointEditing && <ListLoadingItem/>}
+                    {this.state.pointEditing ? <span>Editando</span> : <span>Editar Punto</span>}
+                </button>
             </form>
         );
     }

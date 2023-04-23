@@ -51,8 +51,11 @@
 }
 
 .showPointsButton button{
+    display: flex;
+    align-items: center;
+    padding: 1em;
     font-weight: bold;
-    border-radius: 25%;
+    border-radius: 15%;
     background-color: #0099CC;
     color: white;
     margin-left: 8em;

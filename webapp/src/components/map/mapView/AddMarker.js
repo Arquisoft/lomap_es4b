@@ -24,7 +24,4 @@ function AddMarker (position, map, mapId, pointId, markerIcon, markers, webId, s
     })
 }
 
-
-
-
 export default AddMarker

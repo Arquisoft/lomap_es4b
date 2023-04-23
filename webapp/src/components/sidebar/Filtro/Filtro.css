@@ -53,20 +53,20 @@
     transition: none;
 }
 .botonFiltro{
+    display: flex;
     align-content: center;
     align-self: center;
     align-items: center;
+    padding: 0.75em;
     background-color: #0099CC;
     color: white;
     alignment: center;
-    width: 4em;
-    height: 3em;
     border-radius: 1em;
 }
 .divBotonFiltro{
     align-content: center;
     alignment: center;
-    margin-left: 12em;
-    margin-bottom: 2em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 

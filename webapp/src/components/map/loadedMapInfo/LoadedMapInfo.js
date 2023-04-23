@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import './LoadedMapInfo.css';
 import {getMap} from "../../../helper/PodMaps"
+import {LoadingMapInfo} from "../../loadingComponents/LoadingMapInfo";
 
 const LoadedMapInfo = (props) => {
   const [mapInfo, setMapInfo] = useState(undefined)
+  const [loadingInfo, setLoadingInfo] = useState(false);
 
   useEffect(() => {
     const fetchMap = async() => {
+      setLoadingInfo(true);
+      text = <p>Cargando</p>
       setMapInfo(await getMap(props.mapId, props.webId, props.session));
+      setLoadingInfo(false);
     }
     fetchMap();
   }, [props.mapId, props.webId, props.session]);
@@ -21,7 +26,10 @@ const LoadedMapInfo = (props) => {
 
   return (
     <div className="loadedMapInfo">
-      {text}
+      {loadingInfo && <LoadingMapInfo/>}
+      {mapInfo==undefined &&  <p>Cargando</p>}
+      {mapInfo!=undefined && !loadingInfo && <p>{mapInfo.name + " de " + mapInfo.author}</p>}
+      {mapInfo!=undefined && loadingInfo && <p>Cargando</p>}
     </div>
   );
 }

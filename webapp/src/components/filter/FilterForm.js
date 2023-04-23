@@ -8,6 +8,7 @@ export function FilterForm(props) {
     const {session,webId} = props;
     const [listaFiltrada, setListaFiltrada] = useState([]) ;
     const listaFiltro=Category;
+    const [loadingFilteredPoints, setLoadingFilteredPoints] = useState(false);
 
     const handleSelect = (event) => {
         const value = event.target.value;
@@ -26,9 +27,11 @@ export function FilterForm(props) {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(listaFiltrada);
+        setLoadingFilteredPoints(true);
         filterPoints(session,webId,listaFiltrada,props.mapId).then((points)=>{
             console.log(points);
             props.showFilteredPoints(points, webId, props.mapId);
+            setLoadingFilteredPoints(false);
         });
     }; 
 

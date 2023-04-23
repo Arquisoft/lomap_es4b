@@ -1,9 +1,8 @@
 import "./Filtro.css"
-import {BubbleChart} from "@mui/icons-material";
-import {Button} from "@material-ui/core";
 import React, { useState } from "react";
 import {filterPoints} from "../../../helper/PodHelper"
 import {Category} from "../../../entities/Entities";
+import {ListLoadingItem} from "../../loadingComponents/ListLoadingItem";
 
 
 
@@ -11,6 +10,7 @@ export function Filtro(props){
     const [listaCosasFiltradas, setListaCosasFiltradas] = useState([]) ;
     const {session, webId, mapId} = props;
     let listaFiltro=Category;
+    const [loadingFilteredPoints, setLoadingFilteredPoints] = useState(false);
     const handleSelect = (event) => {
         const value = event.target.value;
         const isChecked = event.target.checked;
@@ -59,13 +59,16 @@ export function Filtro(props){
                     console.log(session);
                     console.log(webId);
                     console.log(props.mapId);
+                    setLoadingFilteredPoints(true);
                     filterPoints(session,webId,listaCosasFiltradas, mapId).then((puntos)=>{
                         console.log(puntos);
                         props.showFilteredPoints(puntos, webId, mapId);
+                        setLoadingFilteredPoints(false);
                     });
                 }
             }>
-                Filtrar
+                {loadingFilteredPoints && <ListLoadingItem/>}
+                {loadingFilteredPoints ? <span>Filtrando</span> : <span>Filtrar</span>}
             </button>
         </div>
     </div>);
