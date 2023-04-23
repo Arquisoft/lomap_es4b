@@ -108,6 +108,7 @@ export async function updatePoints(mapId,latitude,longitude,name,description,cat
 
     let mapsString = await solidFile.text();
     var jsonMaps = JSON.parse(mapsString);
+    console.log(jsonMaps)
     const map = jsonMaps.maps.find(map => map.id === mapId);
 
     map.locations.push(newPoint);
@@ -356,7 +357,7 @@ export async function addPicture(mapId,pointId,pictureUrl,session,webIdPar){
 //Devuelve la url para poder acceder al json
 export function urlCreator(webId){
   let url = webId.replace("profile/card#me","");
-  url = url+"private/locations.json";
+  url = url+"lomap/locations.json";
   return url; 
 }
 

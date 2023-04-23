@@ -74,8 +74,8 @@ export async function getAllMaps(session, webId){
 export async function addMap(name,session,webId){
 
     let url = urlCreator(webId);
-    let urlContainer = url.replace("private/locations.json","");
-    urlContainer=urlContainer+"private/";
+    let urlContainer = url.replace("lomap/locations.json","");
+    urlContainer=urlContainer+"lomap/";
   
     try {
       let solidFile = await solid.getFile(
@@ -111,6 +111,9 @@ export async function addMap(name,session,webId){
   
     } catch (error) {
       const file = await createPointsFile(webId, name);
+      await solid.createContainerAt(urlContainer, {
+        fetch: session.fetch,
+      });
       await createData(urlContainer, file, session);
       await ownAclPermission(webId,session);
       await friendsAclPermission(webId,session);

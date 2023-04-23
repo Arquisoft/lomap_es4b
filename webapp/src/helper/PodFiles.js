@@ -57,7 +57,7 @@ export async function createData(url, file, session) {
   export async function updateData(file,webId,session) {
   
     let url = webId.replace("profile/card#me","");
-    url = url+"private/locations.json";
+    url = url+"lomap/locations.json";
   
      try {
       var savedFile = await solid.overwriteFile(
