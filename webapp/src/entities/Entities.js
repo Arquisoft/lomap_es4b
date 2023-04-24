@@ -15,7 +15,7 @@ export class CommentEntity{
     }
 }
 export class Point{
-    constructor(id, author, latitude, longitude, name, description, category, comments, reviewScores, pictures){
+    constructor(id, author, latitude, longitude, name, description, category, date, comments, reviewScores, pictures){
         this.id = id;
         this.author = author;
         this.latitude = latitude;
@@ -23,6 +23,7 @@ export class Point{
         this.name = name;
         this.description = description;
         this.category = category;
+        this.date = date;
         this.comments = comments;
         this.reviewScores = reviewScores;
         this.pictures = pictures;

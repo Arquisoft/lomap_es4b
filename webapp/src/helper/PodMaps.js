@@ -20,7 +20,7 @@ export async function getAllPointsInCurrentMap(session,webId,mapId){
   
       let mapsString = await file.text();
       var jsonMaps = JSON.parse(mapsString);
-      const mapPoints = jsonMaps.maps.find(map => map.id == mapId).locations;
+      const mapPoints = jsonMaps.maps.find(map => map.id === mapId).locations;
   
       var points = [];
   
@@ -74,8 +74,8 @@ export async function getAllMaps(session, webId){
 export async function addMap(name,session,webId){
 
     let url = urlCreator(webId);
-    let urlContainer = url.replace("private/puntoPrueba3Mapa.json","");
-    urlContainer=urlContainer+"private/";
+    let urlContainer = url.replace("lomap/locations.json","");
+    urlContainer=urlContainer+"lomap/";
   
     try {
       let solidFile = await solid.getFile(
@@ -103,7 +103,7 @@ export async function addMap(name,session,webId){
         type: "application/json",
       });
   
-      var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
+      var fichero = new File([blob], "locations.json", { type: blob.type });
   
       await updateData(fichero, webId, session)
   
@@ -111,6 +111,9 @@ export async function addMap(name,session,webId){
   
     } catch (error) {
       const file = await createPointsFile(webId, name);
+      await solid.createContainerAt(urlContainer, {
+        fetch: session.fetch,
+      });
       await createData(urlContainer, file, session);
       await ownAclPermission(webId,session);
       await friendsAclPermission(webId,session);

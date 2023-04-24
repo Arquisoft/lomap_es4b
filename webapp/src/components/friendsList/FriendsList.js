@@ -6,13 +6,15 @@ import {getAllFriendsFromPod} from '../../helper/PodFriends';
 
 export function FriendsList(props) {
 
-    const {session,webId} = props;
+    const {session,webId, setFriendsLoading} = props;
     const [friends, setFriends] = useState([]);
 
     useEffect(() => {
       const fetchFriends = async() => {
-        const result = await getAllFriendsFromPod(webId);
-        setFriends(result);
+          setFriendsLoading(true);
+          const result = await getAllFriendsFromPod(webId);
+          setFriendsLoading(false);
+          setFriends(result);
       }
       fetchFriends();
     }, []);

@@ -6,13 +6,15 @@ import "./MapList.css"
 
 export function MapList(props) {
 
-    const {session, webId} = props;
+    const {session, webId, setMapsLoading} = props;
     const [maps, setMaps] = useState([]);
 
     useEffect(() => {
       const fetchMaps = async() => {
-        const result = await getAllMaps(session, webId);
-        setMaps(result);
+          setMapsLoading(true);
+          const result = await getAllMaps(session, webId);
+          setMaps(result);
+          setMapsLoading(false);
       }
       fetchMaps();
     }, []);

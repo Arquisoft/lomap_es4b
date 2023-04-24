@@ -51,11 +51,17 @@
 }
 
 .showPointsButton button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
     font-weight: bold;
-    border-radius: 25%;
+    border-radius: 15%;
     background-color: #0099CC;
     color: white;
-    margin-left: 8em;
+    margin-left: 35%;
+    height: 3em;
+    width: 9.5em;
 }
 
 /* Scroll */

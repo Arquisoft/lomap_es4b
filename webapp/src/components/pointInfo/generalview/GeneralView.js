@@ -28,7 +28,7 @@ export default function GeneralView(params){
     function handleFileSelect(event) {
         const selectedFile = event.target.files[0];
         saveImages(params.mapId, params.point.id, selectedFile, params.session, params.webId, (picture) => {
-            const newList = pictures.concat({author:picture.author, pictureURL:picture.pictureURL});
+            const newList = pictures.concat({author:picture.author, pictureUrl:picture.pictureUrl});
             setPictures(newList);
             params.updatePictures(newList);
         })
@@ -45,7 +45,7 @@ export default function GeneralView(params){
                     {pictures.map((picture) => (
                         <img
                             className='gallery'
-                            src={picture.pictureURL}
+                            src={picture.pictureUrl}
                             alt='/'
                         />
                     ))}
@@ -62,16 +62,16 @@ export default function GeneralView(params){
                     </button>
                     : null}
 
+                    
+                    <button className='button-17' onClick={openFileDialog}>Añadir imagen</button>
+                    <input type="file" id="fileInput" onChange={handleFileSelect} accept="image/png,image/jpeg" hidden={true}></input>
 
-                {params.isOwner?
-                    <button className='button-17' onClick={() => {
+                    {params.isOwner?
+                    <button id="deleteButton" className='button-17' onClick={() => {
                         DeletePoint(params.point.id, params.marker, params.map, params.mapId, params.session, params.webId);
                     }}>Borrar
                     </button>
                     : null}
-                    
-                    <button className='button-17' onClick={openFileDialog}>Añadir imagen</button>
-                    <input type="file" id="fileInput" onChange={handleFileSelect} accept="image/png,image/jpeg" hidden={true}></input>
             </div>
         </div>
     )

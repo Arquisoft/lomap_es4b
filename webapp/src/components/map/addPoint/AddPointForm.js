@@ -1,7 +1,9 @@
 import React, {Component} from "react";
-import CreatePoint from "./CreatePoint";
 import {Category} from '../../../entities/Entities';
 import '../PointForm.css';
+import {updatePoints} from "../../../helper/PodHelper";
+import AddMarker from "../mapView/AddMarker";
+import {ListLoadingItem} from "../../loadingComponents/ListLoadingItem";
 
 
 export default class AddPointForm extends Component {
@@ -17,6 +19,7 @@ export default class AddPointForm extends Component {
             webId: this.props.webId,
             session: this.props.session,
             markers: this.props.markers,
+            pointCreating: false,
         };
 
         this.handleChangeName = this.handleChangeName.bind(this);
@@ -37,20 +40,24 @@ export default class AddPointForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        CreatePoint(this.state.position, this.state.map, this.state.mapId, this.state.markers, this.state.name, this.state.description, this.state.category, this.state.webId, this.state.session);
-        this.state.map.removeLayer(this.state.popup);
+        this.setState({pointCreating: true});
+        updatePoints(this.state.mapId, this.state.position.lat,this.state.position.lng,this.state.name,this.state.description,this.state.category,this.state.session,this.state.webId).then((id) => {
+            AddMarker(this.state.position, this.state.map, this.state.mapId, id, this.state.category, this.state.markers, this.state.webId, this.state.session, true);
+            this.setState({pointCreating: false});
+            this.state.map.removeLayer(this.state.popup);
+        });
     }
 
     render() {
         return (
-            <form class="addPointForm" onSubmit={this.handleSubmit}>
-                <h1 className='pointFormHeader'>Agregar Punto</h1>
+            <form id="addPointForm" onSubmit={this.handleSubmit}>
+                <h1 className='pointFormHeader'>Añadir Punto</h1>
                 <label>
-                    Titulo:
-                    <input name="name" type="text" placeholder="Titulo" value={this.state.name} onChange={this.handleChangeName} required maxLength='20'/>
+                    Título:
+                    <input name="titulo" type="text" placeholder="Titulo" value={this.state.name} onChange={this.handleChangeName} required maxLength='20'/>
                 </label>
                 <label>
-                    Selecciona una categoria:
+                    Selecciona una categoría:
                     <div className="select-style">
                     <select value={this.state.category} onChange={this.handleChangeCategory}>
                         {
@@ -62,10 +69,13 @@ export default class AddPointForm extends Component {
                     </div>
                 </label>
                 <label>
-                    Descripcion:
-                    <input name="description" type="text" placeholder="Descripcion" value={this.state.description} onChange={this.handleChangeDescription} required maxLength='50'/>
+                    Descripción:
+                    <input name="descripcion" type="text" placeholder="Descripcion" value={this.state.description} onChange={this.handleChangeDescription} required maxLength='50'/>
                 </label>
-                <input type="submit" className="pointFormSubmit" value="Agregar punto" />
+                <button id="addPointSubmit" type="submit" className="pointFormSubmit" onClick={this.handleSubmit} disabled={this.state.pointCreating}>
+                    {this.state.pointCreating && <ListLoadingItem/>}
+                    {this.state.pointCreating ? <span>Creando</span> : <span>Agregar Punto</span>}
+                </button>
             </form>
         );
     }

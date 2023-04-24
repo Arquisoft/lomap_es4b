@@ -11,17 +11,16 @@ import InfoIcon from "@mui/icons-material/Info"
 import SortIcon from "@mui/icons-material/Sort"
 import MapIcon from '@mui/icons-material/Map';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import {deletePoints,friendsAclPermission,addComment} from '../../helper/PodHelper';
-import {saveImages} from '../../helper/ImageHelper';
-import "./SideBar.css"
+import "./SideBar.css";
+import {SidebarLoadingItem} from '../loadingComponents/SidebarLoadingItem'
 
 export const SideBar = (props) => {
 
     const { collapseSidebar } = useProSidebar();
-    const {session, webId, marcadorPuntosSeleccionado,setMarcadorPuntosSeleccionado, marcadorMapasSeleccionado, setMarcadorMapasSeleccionado,
+    const { marcadorPuntosSeleccionado,setMarcadorPuntosSeleccionado, marcadorMapasSeleccionado, setMarcadorMapasSeleccionado,
         marcadorFriendsSeleccionado, setMarcadorFriendsSeleccionado, marcadorAñadirMapaSeleccionado, setMarcadorAñadirMapaSeleccionado,
         marcadorAñadirAmigoSeleccionado,setMarcadorAñadirAmigoSeleccionado,marcadorFiltroSeleccionado,setMarcadorFiltroSeleccionado,
-        marcadorAboutSeleccionado, setMarcadorAboutSeleccionado} = props;
+        marcadorAboutSeleccionado, setMarcadorAboutSeleccionado, pointsLoading, mapsLoading, friendsLoading} = props;
     const [isOpen, setOpen] = useState(true);
 
     return(
@@ -70,7 +69,10 @@ export const SideBar = (props) => {
                             setMarcadorAboutSeleccionado(false);
                             setMarcadorPuntosSeleccionado(!marcadorPuntosSeleccionado);
                         }}>
-                       Ver puntos
+                        <div className="menuItemContent" style={{display : "flex"}}>
+                            {pointsLoading && <SidebarLoadingItem/>}
+                            Ver puntos
+                        </div>
                     </MenuItem>
                     <MenuItem className="subMenuItem" label="Ver puntos"
                         icon={<FilterAltIcon />}
@@ -105,7 +107,10 @@ export const SideBar = (props) => {
                             setMarcadorAboutSeleccionado(false);
                             setMarcadorMapasSeleccionado(!marcadorMapasSeleccionado);
                         }}>
-                       Ver mapas
+                        <div className="menuItemContent" style={{display : "flex"}}>
+                            {mapsLoading && <SidebarLoadingItem/>}
+                            Ver mapas
+                        </div>
                     </MenuItem>
                     <MenuItem className='subMenuItem'
                         icon={<AddCircleIcon />} 
@@ -117,7 +122,8 @@ export const SideBar = (props) => {
                                 setMarcadorFiltroSeleccionado(false);
                             setMarcadorAboutSeleccionado(false);
                             setMarcadorAñadirMapaSeleccionado(!marcadorAñadirMapaSeleccionado); }}>
-                        Añadir mapa </MenuItem>
+                                Añadir mapa
+                        </MenuItem>
                 </SubMenu >
                 
                 <MenuItem data-testid = "sidebarFriends" className='menuItem' label="Amigos"
@@ -136,7 +142,10 @@ export const SideBar = (props) => {
                             setOpen(!isOpen);
                         }
                     }}>
-                    <div style={{display : isOpen? "block" : "none"}}>Amigos</div>
+                    <div className="menuItemContent" style={{display : isOpen? "flex" : "none"}}>
+                        {friendsLoading && <SidebarLoadingItem/>}
+                        Amigos
+                    </div>
                 </MenuItem>
                 <MenuItem className='menuItem'
                         icon={<GroupIcon />} 

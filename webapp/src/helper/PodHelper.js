@@ -1,8 +1,7 @@
 import * as solid from '@inrupt/solid-client';
 import {Point} from "../entities/Entities";
 import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
-import {ownAclPermission, friendsAclPermission} from './PodFriends';
-import {updateData, createPointsFile, createData} from './PodFiles';
+import {updateData} from './PodFiles';
 
 
 /**
@@ -26,7 +25,7 @@ export async function deletePoints(session, webId, pointId,mapId){
 
     let mapsString = await file.text();
     var jsonMaps = JSON.parse(mapsString);
-    var map = jsonMaps.maps.find(map => map.id == mapId);
+    var map = jsonMaps.maps.find(map => map.id === mapId);
 
     const pointIndex = map.locations.findIndex(p => p.id === pointId);
 
@@ -36,7 +35,7 @@ export async function deletePoints(session, webId, pointId,mapId){
       type: "application/json",
     });
 
-    var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
+    var fichero = new File([blob], "locations.json", { type: blob.type });
 
     await updateData(fichero, webId, session);
 
@@ -61,7 +60,7 @@ export async function filterPoints(session, webId, categories, mapId){
 
     let mapsString = await file.text();
     var jsonMaps = JSON.parse(mapsString);
-    const mapPoints = jsonMaps.maps.find(map => map.id == mapId).locations;
+    const mapPoints = jsonMaps.maps.find(map => map.id === mapId).locations;
 
     var result = mapPoints.filter(item => categories.includes(item.category));
 
@@ -76,8 +75,7 @@ export async function filterPoints(session, webId, categories, mapId){
 export async function updatePoints(mapId,latitude,longitude,name,description,category,session,webId){
 
   let url = urlCreator(webId);
-  let urlContainer = url.replace("private/puntoPrueba3Mapa.json","");
-  urlContainer=urlContainer+"private/";
+
 
   try {
     let solidFile = await solid.getFile(
@@ -86,8 +84,13 @@ export async function updatePoints(mapId,latitude,longitude,name,description,cat
     );
 
     let author = await getNameFromPod(webId);
-
     let idPunto = randomId(20);
+
+    let date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let formattedDate = `${day}/${month}/${year}`;
 
     var newPoint = {
       id:idPunto,
@@ -100,11 +103,13 @@ export async function updatePoints(mapId,latitude,longitude,name,description,cat
       comments:[],
       reviewScores:[],
       pictures:[],
+      date: formattedDate,
     }
 
     let mapsString = await solidFile.text();
     var jsonMaps = JSON.parse(mapsString);
-    const map = jsonMaps.maps.find(map => map.id == mapId);
+    console.log(jsonMaps)
+    const map = jsonMaps.maps.find(map => map.id === mapId);
 
     map.locations.push(newPoint);
 
@@ -112,7 +117,7 @@ export async function updatePoints(mapId,latitude,longitude,name,description,cat
       type: "application/json",
     });
 
-    var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
+    var fichero = new File([blob], "locations.json", { type: blob.type });
 
     await updateData(fichero, webId, session)
 
@@ -120,18 +125,10 @@ export async function updatePoints(mapId,latitude,longitude,name,description,cat
 
   } catch (error) {
 
-    // const file = await createPointsFile(webId);
-    // await createData(urlContainer, file, session);
-    // await ownAclPermission(webId,session);
-    // await friendsAclPermission(webId,session);
-    // return updatePoints(mapId,latitude,longitude,name,description,category,session,webId);
     console.log(error);
   }
 
 }
-
-
-
 
 
 //Método que devuelve el punto específico del pod
@@ -148,15 +145,15 @@ export async function getSpecificPoint(session, webId,pointId,mapId){
 
     let mapsString = await file.text();
     var jsonMaps = JSON.parse(mapsString);
-    const mapPoints = jsonMaps.maps.find(map => map.id == mapId).locations;  
+    const mapPoints = jsonMaps.maps.find(map => map.id === mapId).locations;  
 
-    var point = mapPoints.find(item => item.id == pointId);
+    var point = mapPoints.find(item => item.id === pointId);
 
     if(point === undefined){
       console.log("Error: No existe el punto del pod");
     }else{
       let specificPoint = new Point(point.id, point.author, point.latitude, point.longitude, point.name, 
-        point.description, point.category, point.comments, point.reviewScores,point.pictures);
+        point.description, point.category, point.date, point.comments, point.reviewScores,point.pictures);
       return specificPoint;
     }
 
@@ -180,10 +177,9 @@ export async function editPoint(pointId,latitude,longitude,name,description,cate
 
     let mapsString = await file.text();
     var jsonMaps = JSON.parse(mapsString);
-    const mapPoints = jsonMaps.maps.find(map => map.id == mapId).locations;
-    const point = mapPoints.find(point => point.id == pointId);
+    const mapPoints = jsonMaps.maps.find(map => map.id === mapId).locations;
     mapPoints.map(point => {
-      if(point.id == pointId){
+      if(point.id === pointId){
         point.latitude = latitude;
         point.longitude = longitude;
         point.name = name;
@@ -196,7 +192,7 @@ export async function editPoint(pointId,latitude,longitude,name,description,cate
       type: "application/json",
     });
 
-    var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
+    var fichero = new File([blob], "locations.json", { type: blob.type });
 
     await updateData(fichero, webId, session);
 
@@ -239,8 +235,8 @@ export async function addComment(mapId,pointId,comment,session,webIdPar){
 
     let mapsString = await solidFile.text();
     var jsonMaps = JSON.parse(mapsString);
-    const map = jsonMaps.maps.find(map => map.id == mapId);
-    const point = map.locations.find(point => point.id == pointId);
+    const map = jsonMaps.maps.find(map => map.id === mapId);
+    const point = map.locations.find(point => point.id === pointId);
 
     point.comments.push(newComment);
 
@@ -248,7 +244,7 @@ export async function addComment(mapId,pointId,comment,session,webIdPar){
       type: "application/json",
     });
 
-    var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
+    var fichero = new File([blob], "locations.json", { type: blob.type });
 
     await updateData(fichero, webIdPar, session);
     return newComment;
@@ -289,8 +285,8 @@ export async function addScore(mapId,pointId,score,session,webIdPar){
 
     let mapsString = await solidFile.text();
     var jsonMaps = JSON.parse(mapsString);
-    const map = jsonMaps.maps.find(map => map.id == mapId);
-    const point = map.locations.find(point => point.id == pointId);
+    const map = jsonMaps.maps.find(map => map.id === mapId);
+    const point = map.locations.find(point => point.id === pointId);
 
     point.reviewScores.push(newScore);
 
@@ -298,7 +294,7 @@ export async function addScore(mapId,pointId,score,session,webIdPar){
       type: "application/json",
     });
 
-    var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
+    var fichero = new File([blob], "locations.json", { type: blob.type });
 
     await updateData(fichero, webIdPar, session);
 
@@ -310,7 +306,7 @@ export async function addScore(mapId,pointId,score,session,webIdPar){
 
 
 //Añade una foto a un punto
-export async function addPicture(mapId,pointId,pictureURL,session,webIdPar){
+export async function addPicture(mapId,pointId,pictureUrl,session,webIdPar){
 
   let url = urlCreator(webIdPar);
 
@@ -326,13 +322,13 @@ export async function addPicture(mapId,pointId,pictureURL,session,webIdPar){
 
     var newPicture = {
       author:author,
-      pictureURL:pictureURL,
+      pictureUrl:pictureUrl,
     }
 
     let mapsString = await solidFile.text();
     var jsonMaps = JSON.parse(mapsString);
-    const map = jsonMaps.maps.find(map => map.id == mapId);
-    const point = map.locations.find(point => point.id == pointId);
+    const map = jsonMaps.maps.find(map => map.id === mapId);
+    const point = map.locations.find(point => point.id === pointId);
 
     point.pictures.push(newPicture);
 
@@ -340,7 +336,7 @@ export async function addPicture(mapId,pointId,pictureURL,session,webIdPar){
       type: "application/json",
     });
 
-    var fichero = new File([blob], "puntoPrueba3Mapa.json", { type: blob.type });
+    var fichero = new File([blob], "locations.json", { type: blob.type });
 
     await updateData(fichero, webIdPar, session);
 
@@ -361,7 +357,7 @@ export async function addPicture(mapId,pointId,pictureURL,session,webIdPar){
 //Devuelve la url para poder acceder al json
 export function urlCreator(webId){
   let url = webId.replace("profile/card#me","");
-  url = url+"private/puntoPrueba3Mapa.json";
+  url = url+"lomap/locations.json";
   return url; 
 }
 
