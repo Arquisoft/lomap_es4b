@@ -46,20 +46,20 @@ defineFeature(feature, test => {
 
     when('I click on the map and fill the add point form', async () => {
       await expect(page).toClick('div[id="map"]')
-      await delay(1000)
+      await delay(2000)
       await expect(page).toFillForm('form[id="addPointForm"]', {
         titulo: titulo,
         descripcion: descripcion,
       })
       await expect(page).toClick('button[id="addPointSubmit"]')
-      await delay(2000)
+      await delay(4000)
     });
 
     then('The new point appears on the point list', async () => {
         await expect(page).toClick('span', { text: 'Gestionar puntos' })
         await delay(1000)
         await expect(page).toClick('span', { text: 'Ver puntos' })
-        await delay(3000)
+        await delay(5000)
         const text = await page.evaluate(() => document.body.textContent);
         await expect(text).toMatch("e2e name");
         await expect(text).toMatch("e2e description");
@@ -75,15 +75,15 @@ defineFeature(feature, test => {
 
     when('I click on the map and open the popup menu', async () => {
       await expect(page).toClick('div[id="map"]')
-      await delay(5000)
+      await delay(8000)
       await expect(page).toClick('button[id="deleteButton"]')
-      await delay(3000)
+      await delay(6000)
     });
 
     then('The point is removed from the points list', async () => {
         await expect(page).toClick('span', { text: 'Gestionar puntos' })
         await expect(page).toClick('span', { text: 'Ver puntos' })
-        await delay(3000)
+        await delay(4000)
         const text = await page.evaluate(() => document.body.textContent);
         await expect(text).not.toMatch("e2e name");
         await expect(text).not.toMatch("e2e description");
