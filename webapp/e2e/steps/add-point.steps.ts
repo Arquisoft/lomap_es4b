@@ -75,9 +75,9 @@ defineFeature(feature, test => {
 
     when('I click on the map and open the popup menu', async () => {
       await expect(page).toClick('div[id="map"]')
-      await delay(3000)
+      await delay(5000)
       await expect(page).toClick('button[id="deleteButton"]')
-      await delay(2000)
+      await delay(3000)
     });
 
     then('The point is removed from the points list', async () => {
