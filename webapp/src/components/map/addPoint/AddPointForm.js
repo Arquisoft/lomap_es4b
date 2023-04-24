@@ -45,20 +45,19 @@ export default class AddPointForm extends Component {
             AddMarker(this.state.position, this.state.map, this.state.mapId, id, this.state.category, this.state.markers, this.state.webId, this.state.session, true);
             this.setState({pointCreating: false});
             this.state.map.removeLayer(this.state.popup);
-            alert('Nuevo punto creado con titulo: ' + this.state.name + ', categoria:' + this.state.category +', comentario:' + this.state.description);
         });
     }
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form id="addPointForm" onSubmit={this.handleSubmit}>
                 <h1 className='pointFormHeader'>Añadir Punto</h1>
                 <label>
-                    Titulo:
-                    <input type="text" placeholder="Titulo" value={this.state.name} onChange={this.handleChangeName} required maxLength='20'/>
+                    Título:
+                    <input name="titulo" type="text" placeholder="Titulo" value={this.state.name} onChange={this.handleChangeName} required maxLength='20'/>
                 </label>
                 <label>
-                    Selecciona una categoria:
+                    Selecciona una categoría:
                     <div className="select-style">
                     <select value={this.state.category} onChange={this.handleChangeCategory}>
                         {
@@ -70,10 +69,10 @@ export default class AddPointForm extends Component {
                     </div>
                 </label>
                 <label>
-                    Descripcion:
-                    <input type="text" placeholder="Descripcion" value={this.state.description} onChange={this.handleChangeDescription} required maxLength='50'/>
+                    Descripción:
+                    <input name="descripcion" type="text" placeholder="Descripcion" value={this.state.description} onChange={this.handleChangeDescription} required maxLength='50'/>
                 </label>
-                <button type="submit" className="pointFormSubmit" onClick={this.handleSubmit} disabled={this.state.pointCreating}>
+                <button id="addPointSubmit" type="submit" className="pointFormSubmit" onClick={this.handleSubmit} disabled={this.state.pointCreating}>
                     {this.state.pointCreating && <ListLoadingItem/>}
                     {this.state.pointCreating ? <span>Creando</span> : <span>Agregar Punto</span>}
                 </button>
