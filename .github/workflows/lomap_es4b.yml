@@ -28,6 +28,7 @@ jobs:
     - run: npm --prefix restapi ci
     - run: npm --prefix webapp test --coverage --watchAll
     - run: npm --prefix restapi test --coverage --watchAll
+    - run: npm --prefix webapp run test:e2e --coverage --watchAll
     # - run: npm --prefix webapp run test:e2e --coverage --watchAll -v
     - name: Analyze with SonarCloud
       uses: sonarsource/sonarcloud-github-action@v1.8
@@ -45,8 +46,7 @@ jobs:
     - run: npm --prefix webapp install --legacy-peer-deps
     - run: npm --prefix restapi install
     - run: CI=false && npm --prefix webapp run build
-    - run: npm --prefix webapp run test:e2e --coverage --watchAll -v
-    #- run: npm --prefix webapp run test:e2e
+    - run: npm --prefix webapp run test:e2e
     - name: Analyze with SonarCloud
       uses: sonarsource/sonarcloud-github-action@v1.8
       env:
