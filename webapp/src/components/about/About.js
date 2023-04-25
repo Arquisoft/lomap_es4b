@@ -29,7 +29,7 @@ export default function About (props) {
     }
 
     return (
-        <div className="aboutContainer">
+        <div className="aboutContainer" data-testid={"contenedorAbout"}>
             {props.marcadorAboutSeleccionado && <Popup
                 content={content()}
                 handleClose={togglePopup}

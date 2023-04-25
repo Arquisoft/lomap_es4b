@@ -89,7 +89,7 @@ export function FriendComponent(props) {
                     </ContentLoader>
                 )
                 :
-                (<select value={selectedValue} onChange={handleChange}>
+                (<select data-testid= "selectFriendComponent" value={selectedValue} onChange={handleChange}>
                     <option value="">Selecciona un Mapa</option>
                     {friendMaps.map((friendMap) => (
                         <option key={friendMap.id} value={friendMap.id}>
@@ -99,7 +99,7 @@ export function FriendComponent(props) {
                 </select>)
             }
 
-            <button onClick={handleClick} disabled={friendMapsLoading}>
+            <button data-testid= "botonFriendComponent" onClick={handleClick} disabled={friendMapsLoading}>
                 {mapLoading && <ListLoadingItem/>}
                 {mapLoading ? <span>Cargando</span> : <span>Cargar Mapa</span>}
             </button>
