@@ -70,3 +70,13 @@
     margin-bottom: 1em;
 }
 
+.listaFiltros {
+    overflow-y: auto;
+    max-height:16em;
+}
+
+.filaFiltro {
+    display: flex;
+    align-items: center;
+    padding-top: 0.25em;
+}
