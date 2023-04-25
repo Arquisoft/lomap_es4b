@@ -15,7 +15,7 @@ on:
       - develop
 
 jobs:
-  unit&e2e-tests:
+  unit-tests:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
