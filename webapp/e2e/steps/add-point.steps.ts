@@ -52,7 +52,7 @@ defineFeature(feature, test => {
         descripcion: descripcion,
       })
       await expect(page).toClick('button[id="addPointSubmit"]')
-      await delay(2000)
+      await delay(3000)
     });
 
     then('The new point appears on the point list', async () => {
@@ -75,9 +75,9 @@ defineFeature(feature, test => {
 
     when('I click on the map and open the popup menu', async () => {
       await expect(page).toClick('div[id="map"]')
-      await delay(3000)
+      await delay(6000)
       await expect(page).toClick('button[id="deleteButton"]')
-      await delay(2000)
+      await delay(4000)
     });
 
     then('The point is removed from the points list', async () => {
