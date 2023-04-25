@@ -59,7 +59,7 @@ jobs:
       env:
         API_URI: http://${{ secrets.DEPLOY_HOST }}:5000/api
       with:
-          name: arquisoft/lomap_es4a/webapp
+          name: arquisoft/lomap_es4b/webapp
           username: ${{ github.actor }}
           password: ${{ secrets.DOCKER_PUSH_TOKEN }}
           registry: ghcr.io
@@ -75,7 +75,7 @@ jobs:
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@v5
       with:
-          name: arquisoft/lomap_es4a/restapi
+          name: arquisoft/lomap_es4b/restapi
           username: ${{ github.actor }}
           password: ${{ secrets.DOCKER_PUSH_TOKEN }}
           registry: ghcr.io
