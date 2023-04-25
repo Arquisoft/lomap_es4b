@@ -24,13 +24,13 @@ defineFeature(feature, test => {
       let password = "e2ff3d361A_"
 
       await expect(page).toClick('Button', { text: 'Login' })
-      await delay(3500)
+      await delay(10000)
       await expect(page).toFillForm('form[class="form-horizontal login-up-form"]', {
         username: username,
         password: password,
       })
       await expect(page).toClick('button', { text: 'Log In' })
-      await delay(7000)
+      await delay(20000)
   });
 
 
@@ -59,7 +59,7 @@ defineFeature(feature, test => {
         await expect(page).toClick('span', { text: 'Gestionar puntos' })
         await delay(1000)
         await expect(page).toClick('span', { text: 'Ver puntos' })
-        await delay(3000)
+        await delay(5000)
         const text = await page.evaluate(() => document.body.textContent);
         await expect(text).toMatch("e2e name");
         await expect(text).toMatch("e2e description");
@@ -82,8 +82,9 @@ defineFeature(feature, test => {
 
     then('The point is removed from the points list', async () => {
         await expect(page).toClick('span', { text: 'Gestionar puntos' })
+        await delay(1000)
         await expect(page).toClick('span', { text: 'Ver puntos' })
-        await delay(3000)
+        await delay(5000)
         const text = await page.evaluate(() => document.body.textContent);
         await expect(text).not.toMatch("e2e name");
         await expect(text).not.toMatch("e2e description");
