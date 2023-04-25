@@ -6,7 +6,15 @@ export const PointStruct = {
 };
 
 export const Category = [{text:"Restaurante",category:"restaurant"},{text:"Monumento",category:"monument"}, 
-                        {text:"Hospital",category:"hospital"}, {text:"Gimnasio", category: "gym"}, {text: "Aeropuerto", category: "airport"}, {text: "Parque", category: "park"}, {text: "Peluqueria", category: "hairSalon"}];
+                        {text:"Hospital",category:"hospital"}, {text:"Club de deportes", category: "sportsClub"},
+                        {text: "Parque", category: "park"}, {text: "Otro", category: "other"},
+                        {text: "Policia", category: "policeStation"}, {text: "Bar", category: "bar"},
+                        {text: "Tienda", category: "shop"}, {text: "Supermercado", category: "supermarket"},
+                        {text: "Hotel", category: "hotel"}, {text: "Cine", category: "cinema"},
+                        {text: "Institucion Academica", category: "academicInstitution"}, {text: "Institucion publica", category: "publicInstitution"},
+                        {text: "Museo", category: "museum"}, {text: "Paisaje", category: "landscape"},
+                        {text: "Centro de Transporte", category: "transportCenter"}, {text: "Ocio", category: "entertainment"}
+                        ];
   
 export class CommentEntity{
     constructor(username, text) {
