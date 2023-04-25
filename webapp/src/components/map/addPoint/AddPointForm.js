@@ -72,7 +72,7 @@ export default class AddPointForm extends Component {
                     Descripción:
                     <input name="descripcion" type="text" placeholder="Descripcion" value={this.state.description} onChange={this.handleChangeDescription} required maxLength='50'/>
                 </label>
-                <button id="addPointSubmit" type="submit" className="pointFormSubmit" onClick={this.handleSubmit} disabled={this.state.pointCreating}>
+                <button id="addPointSubmit" data-testid={"addPointSubmit"} type="submit" className="pointFormSubmit" onClick={this.handleSubmit} disabled={this.state.pointCreating}>
                     {this.state.pointCreating && <ListLoadingItem/>}
                     {this.state.pointCreating ? <span>Creando</span> : <span>Agregar Punto</span>}
                 </button>
