@@ -29,11 +29,6 @@ export default class AddPointForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    // componentDidMount() {
-    //     const {session} = useSession();
-    //     this.state.session = session;
-    //   }
-
     handleChangeName(event) {
         this.setState({name: event.target.value});
     }

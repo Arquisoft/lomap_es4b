@@ -11,11 +11,11 @@ test('check that the add point form renders propertly', async () => {
     expect(getByText("Añadir Punto")).toBeInTheDocument();
     expect(getByText("Selecciona una categoría:")).toBeInTheDocument();
     expect(getByText("Descripción:")).toBeInTheDocument();
-    expect(getByText("Agregar Punto")).toBeInTheDocument();
+    expect(getByText("Agregar Punto")).toBeInTheDocument(); 
 });
 
 test('check that the add point form can be filled', async () => {
-    const {getByLabelText} = await render(<AddPointForm webId={"https://uo276467.inrupt.net/profile/card#me"}
+    const {getByLabelText,getByTestId,getByText} = await render(<AddPointForm session={[]} webId={"https://uo276467.inrupt.net/profile/card#me"}
         position={10} map={[]} mapId={1} markers={[]}
         popup={{}}/>);
 
@@ -23,12 +23,7 @@ test('check that the add point form can be filled', async () => {
     fireEvent.change(titleInput, { target: { value: 'Punto unit test' } });
     const descriptionInput = getByLabelText("Descripción:");
     fireEvent.change(descriptionInput, { target: { value: 'Descripción unit test' } });
+    // getByTestId("addPointSubmit").click();
+    // expect(getByText("Creando")).toBeInTheDocument();
 
-    // fireEvent.click(screen.getByText("Agregar Punto"));
-
-    // waitFor(() => {
-    //   expect(
-    //     screen.getByText("Creando")
-    //   ).toBeInTheDocument();
-    // });
 });

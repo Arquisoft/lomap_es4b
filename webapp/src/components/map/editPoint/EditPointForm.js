@@ -55,7 +55,7 @@ export default class EditPointForm extends Component {
                 <h1 className='pointFormHeader'>Edicion de Punto</h1>
                 <label>
                     Titulo:
-                    <input type="text" placeholder="Titulo" value={this.state.name} onChange={this.handleChangeName} required maxLength='20'/>
+                    <input type="text" placeholder="Titulo" data-testid={"editPointTitle"} value={this.state.name} onChange={this.handleChangeName} required maxLength='20'/>
                 </label>
                 <label>
                     Selecciona una categoria:
@@ -71,9 +71,9 @@ export default class EditPointForm extends Component {
                 </label>
                 <label>
                     Descripcion:
-                    <input type="text" placeholder="Descripcion" value={this.state.description} onChange={this.handleChangeDescription} required maxLength='50'/>
+                    <input type="text" placeholder="Descripcion" data-testid={"editPointDescription"} value={this.state.description} onChange={this.handleChangeDescription} required maxLength='50'/>
                 </label>
-                <button type="submit" className="pointFormSubmit" onClick={this.handleSubmit} disabled={this.state.pointEditing}>
+                <button type="submit" className="pointFormSubmit" onClick={this.handleSubmit} data-testid={"editPointSubmit"} disabled={this.state.pointEditing}>
                     {this.state.pointEditing && <ListLoadingItem/>}
                     {this.state.pointEditing ? <span>Editando</span> : <span>Editar Punto</span>}
                 </button>
