@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSession } from "@inrupt/solid-ui-react";
 import './LoadedMapInfo.css';
 import {getMap} from "../../../helper/PodMaps"
 import {LoadingMapInfo} from "../../loadingComponents/LoadingMapInfo";
@@ -6,16 +7,18 @@ import {LoadingMapInfo} from "../../loadingComponents/LoadingMapInfo";
 const LoadedMapInfo = (props) => {
   const [mapInfo, setMapInfo] = useState(undefined)
   const [loadingInfo, setLoadingInfo] = useState(false);
+  const{session} = useSession();
 
   useEffect(() => {
     const fetchMap = async() => {
+      
       setLoadingInfo(true);
       text = <p>Cargando</p>
-      setMapInfo(await getMap(props.mapId, props.webId, props.session));
+      setMapInfo(await getMap(props.mapId, props.webId, session));
       setLoadingInfo(false);
     }
     fetchMap();
-  }, [props.mapId, props.webId, props.session]);
+  }, [props.mapId, props.webId, session]);
 
   let text;
   if(mapInfo === undefined){

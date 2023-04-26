@@ -73,7 +73,8 @@ const ProfileViewer = () => {
         null
       }
       {marcadorFriendsSeleccionado ?
-        <FriendsList setFriendsLoading={setFriendsLoading} showFriendPoints={(points, webId, mapId) => {mapView.updateMarkers(points, webId, mapId)}} setCurrentMapId={setCurrentMapId} session={session} webId={webId}></FriendsList>
+        <FriendsList setFriendsLoading={setFriendsLoading}
+                     showFriendPoints={(points, webId, mapId) => {mapView.updateMarkers(points, webId, mapId)}} setCurrentMapId={setCurrentMapId} session={session} webId={webId}></FriendsList>
         :
         null
       }
@@ -99,7 +100,8 @@ const ProfileViewer = () => {
           }
 
       {/* Guarda la instancia del mapView en el mapView de profileViewer */}
-      <MapView ref={instance => { setMapView(instance)}} setCurrentMapId={setCurrentMapId} setCurrentMapWebId={setCurrentMapWebId} session={session}  webId={webId} isLogged={true}/>
+      <MapView ref={instance => { setMapView(instance)}} setCurrentMapId={setCurrentMapId} setCurrentMapWebId={setCurrentMapWebId} 
+                session={session}  webId={webId} isLogged={true} testId={"mapView"} />
 
       </div>
  

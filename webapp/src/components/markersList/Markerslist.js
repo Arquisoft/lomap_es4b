@@ -2,12 +2,14 @@ import {MarkerComponent} from './MarkerComponent';
 import React, { useState, useEffect } from 'react';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
 import {getAllPointsInCurrentMap} from '../../helper/PodMaps';
+import { useSession } from "@inrupt/solid-ui-react";
 import "./markerslist.css"
 
 export function MarkersList(props) {
 
-    const {mapId, session, webId, setPointsLoading} = props;
+    const {mapId, webId, setPointsLoading} = props;
     const [points, setPoints] = useState([]);
+    const {session} = useSession();
 
     useEffect(() => {
       const fetchPoints = async() => {
@@ -17,7 +19,7 @@ export function MarkersList(props) {
           setPointsLoading(false);
       }
       fetchPoints();
-    }, [props.mapId, props.session, props.webId]);
+    }, [props.mapId, props.webId, session]);
 
     return (
       <ScrollArea.Root className="ScrollAreaRootLocations">

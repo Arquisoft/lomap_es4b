@@ -21,7 +21,7 @@ export function MapList(props) {
 
     return (
       <ScrollArea.Root className="ScrollAreaRootMaps">
-        <ScrollArea.Viewport className="ScrollAreaViewport">
+        <ScrollArea.Viewport data-testid="scrollAreaMaps" className="ScrollAreaViewport">
           <div className='sideListMaps' id='pointsList'>
             {
               maps.map((item) => (
