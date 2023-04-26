@@ -8,7 +8,8 @@ import "./NavBar.css"
 
 export default function Navbar(props){
     const [idp, setIdp] = useState("https://inrupt.net/");
-    const [currentUrl, setCurrentUrl] = useState("https://localhost:3000/");
+    //const [currentUrl, setCurrentUrl] = useState("https://localhost:3000/");
+    const [currentUrl, setCurrentUrl] = useState(window.location.href);
     const { session } = useSession();
     const { webId } = session.info;
     const {logggin} = props;
