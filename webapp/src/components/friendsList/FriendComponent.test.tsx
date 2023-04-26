@@ -5,7 +5,7 @@ import FriendComponent from "./FriendComponent";
 import React from "react"; 
 
 test('check that the FriendComponent renders properly', async () => {
-    const {getByTestId} =  await render(<FriendComponent  showFriendPoints={() => {}} friendURL={"https://uo281835.inrupt.net/profile/card#me"} friendName={'Usuario'} session={[]}/>);
+    const {getByTestId} =  await render(<FriendComponent  showFriendPoints={() => {}} friendURL={"https://uo281997.inrupt.net/profile/card#me"} friendName={'Usuario'} session={[]}/>);
     expect(getByTestId("nombreAmigoParrafo")).toBeInTheDocument();
     expect(getByTestId("nombreAmigoParrafo")).toBeVisible();
     expect(getByTestId("botonFriendComponent")).toBeInTheDocument();
@@ -14,6 +14,6 @@ test('check that the FriendComponent renders properly', async () => {
 
 
 test('check that the FriendComponent renders properly', async () => {
-    const {getByTestId, container} = await render(<FriendComponent  showFriendPoints={() => {}} friendURL={"https://uo281835.inrupt.net/profile/card#me"} friendName={'Usuario'} session={[]}/>);
-    getByTestId("botonFriendComponent").click();
+    const {getByTestId, container} = await render(<FriendComponent  showFriendPoints={() => {}} friendURL={"https://uo281997.inrupt.net/profile/card#me"} friendName={'Usuario'} session={[]}/>);
+    getByTestId("botonFriendComponent").click(); 
 });

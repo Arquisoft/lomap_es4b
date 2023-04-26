@@ -58,7 +58,7 @@ export const SideBar = (props) => {
                             setOpen(!isOpen);
                         }
                     }}>
-                    <MenuItem className="subMenuItem" label="Ver puntos"
+                    <MenuItem data-testid = "sidebarViewPoints" className="subMenuItem" label="Ver puntos"
                         icon={<FmdGoodIcon />}
                         onClick={()=>{ 
                             setMarcadorMapasSeleccionado(false);
@@ -74,7 +74,7 @@ export const SideBar = (props) => {
                             Ver puntos
                         </div>
                     </MenuItem>
-                    <MenuItem className="subMenuItem" label="Ver puntos"
+                    <MenuItem data-testid = "sidebarFilterPoints" className="subMenuItem" label="Ver puntos"
                         icon={<FilterAltIcon />}
                         onClick={()=>{ 
                             setMarcadorMapasSeleccionado(false);
@@ -96,7 +96,7 @@ export const SideBar = (props) => {
                             setOpen(!isOpen);
                         }
                     }}>
-                    <MenuItem className="subMenuItem"
+                    <MenuItem data-testid = "sidebarViewMaps" className="subMenuItem"
                         icon={<MapIcon />}
                         onClick={()=>{
                             setMarcadorFriendsSeleccionado(false);
@@ -112,7 +112,7 @@ export const SideBar = (props) => {
                             Ver mapas
                         </div>
                     </MenuItem>
-                    <MenuItem className='subMenuItem'
+                    <MenuItem  data-testid = "sidebarAddMap" className='subMenuItem'
                         icon={<AddCircleIcon />} 
                         onClick={() =>{
                                 setMarcadorFriendsSeleccionado(false);
@@ -147,7 +147,7 @@ export const SideBar = (props) => {
                         Amigos
                     </div>
                 </MenuItem>
-                <MenuItem className='menuItem'
+                <MenuItem data-testid = "sidebarAddFriend" className='menuItem'
                         icon={<GroupIcon />} 
                         onClick={() =>{
                                 setMarcadorFriendsSeleccionado(false);
@@ -160,7 +160,7 @@ export const SideBar = (props) => {
                             }}>
                         <div style={{display : isOpen? "block" : "none"}}>Añadir Amigo</div>
                 </MenuItem>
-                <MenuItem className='menuItem' 
+                <MenuItem  data-testid = "sidebarAbout" className='menuItem' 
                     icon={<InfoIcon />} onClick={() => { 
                         if(isOpen){
                             setMarcadorPuntosSeleccionado(false);
