@@ -63,9 +63,21 @@
     alignment: center;
     border-radius: 1em;
 }
+.botonFiltroTodo{
+    display: flex;
+    align-content: center;
+    align-self: center;
+    align-items: center;
+    padding: 0.75em;
+    background-color: #0099CC;
+    color: white;
+    alignment: center;
+    border-radius: 1em;
+}
 .divBotonFiltro{
     align-content: center;
     alignment: center;
+    display: flex;
     margin-top: 1em;
     margin-bottom: 1em;
 }

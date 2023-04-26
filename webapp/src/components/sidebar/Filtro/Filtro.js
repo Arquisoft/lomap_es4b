@@ -53,14 +53,15 @@ export function Filtro(props){
             Seleccione las categorías a filtrar
         </h2>
             {filterList}
-        <div className={"divBotonFiltroTodo"} >
+
+        <div className={"divBotonFiltro"} >
             <button className={"botonFiltroTodo"} data-testid ={"filtrarTodo"}onClick={
                 async ()=>{
                     console.log(session);
                     console.log(webId);
                     console.log(props.mapId);
                     setLoadingFilteredPoints(true);
-                    filterPoints(session,webId,listaFiltro.map(e=>{e.category}), mapId).then((puntos)=>{
+                    filterPoints(session,webId,listaFiltro.map(e=>{return e.category}), mapId).then((puntos)=>{
                         console.log(puntos);
                         props.showFilteredPoints(puntos, webId, mapId);
                         setLoadingFilteredPoints(false);
@@ -71,8 +72,6 @@ export function Filtro(props){
                 {loadingFilteredPoints && <ListLoadingItem/>}
                 {loadingFilteredPoints ? <span>Mostrando</span> : <span>Mostrar todos</span>}
             </button>
-        </div>
-        <div className={"divBotonFiltro"} >
             <button className={"botonFiltro"} data-testid ={"filtrar"}onClick={
                 async ()=>{
                     console.log(session);
