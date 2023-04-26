@@ -8,7 +8,7 @@ import {getNameFromPod,randomId,urlCreator} from "./PodHelper";
 //Devolverá todos los puntos dentro del Pod
 export async function getAllPointsInCurrentMap(session,webId,mapId){
 
-  
+    console.log(session);
     let url = urlCreator(webId);
   
     try {
@@ -35,6 +35,7 @@ export async function getAllPointsInCurrentMap(session,webId,mapId){
   
     } catch (error) {
       console.log("Error: No existe el fichero, por favor añada un punto al mapa");
+      console.log(error);
       return [];
     }
   

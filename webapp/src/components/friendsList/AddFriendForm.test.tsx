@@ -8,5 +8,5 @@ test('check that the About page renders properly', async () => {
     getByTestId("nombreAmigo").nodeValue = "amigoPrueba"
     expect(getByTestId("botonAmigo")).toBeInTheDocument();
     expect(getByTestId("botonAmigo")).toBeVisible();
-    getByTestId("botonAmigo").click();
+    // getByTestId("botonAmigo").click();
 });

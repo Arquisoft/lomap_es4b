@@ -31,9 +31,9 @@ export function Filtro(props){
     const filterList = listaFiltro.map((categoria)=>{
         let image = require('../../../images/' + categoria.category + '.png');
         return (
-                <div className={"filaFiltro"} >
+                <div key={categoria.category} className={"filaFiltro"} >
                     <img className={"icono"} src={ image} alt={categoria.text}/>
-                    <label class="label" htmlFor={"checkbox"+categoria.category}>{categoria.text}</label>
+                    <label className="label" htmlFor={"checkbox"+categoria.category}>{categoria.text}</label>
                     <input type="checkbox"
                         id={"checkbox"+categoria.text}
                         name={categoria.text}

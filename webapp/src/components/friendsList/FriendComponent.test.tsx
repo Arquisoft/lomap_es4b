@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import { useState, useEffect} from "react";
 import FriendComponent from "./FriendComponent";
-import ReactDOM from 'react-dom/client';
+//import ReactDOM from 'react-dom/client';
 import React from "react";
 import {act} from "react-dom/test-utils";
 import ProfileViewer from "../profileviewer/ProfileViewer";
