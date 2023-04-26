@@ -21,7 +21,7 @@ export function FriendsList(props) {
 
     return (
       <ScrollArea.Root className="ScrollAreaRootFriends">
-        <ScrollArea.Viewport className="ScrollAreaViewport">
+        <ScrollArea.Viewport data-testid="scrollAreaFriends" className="ScrollAreaViewport">
           <div data-testid= "nombreAmigoP" className='sideListFriends' id='pointsList' >
             {
               friends.map((item) => (

@@ -1,5 +1,6 @@
 import pordefecto from '../../images/default-user.jpg';
 import {getImageFromPod} from '../../helper/PodHelper';
+import React from "react";
 import { useState,useEffect} from "react";
 import {getAllMaps,getAllPointsInCurrentMap} from '../../helper/PodMaps';
 import {ListLoadingItem} from "../loadingComponents/ListLoadingItem";
@@ -9,7 +10,7 @@ export function FriendComponent(props) {
 
   const { friendURL,friendName,session} = props;
   const [selectedValue, setSelectedValue] = useState('');
-  const [friendMaps, setFriendMaps] = useState([]);
+  const [friendMaps, setFriendMaps] = React.useState([]);
   const [friendImage, setFriendImage] = useState('');
   const [mapLoading, setMapLoading] = useState(false);
   const [friendImageLoading, setFriendImageLoading] = useState(false);

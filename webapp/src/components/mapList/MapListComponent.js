@@ -3,7 +3,7 @@ import {getAllPointsInCurrentMap} from "../../helper/PodMaps";
 import { useState} from "react";
 import {ListLoadingItem} from '../loadingComponents/ListLoadingItem';
 
-export function MapListComponent(props) {
+export function MapListComponent(props) { 
 
     const {mapId, setCurrentMapId, webId, session} = props;
     const [mapLoading, setMapLoading] = useState(false);
