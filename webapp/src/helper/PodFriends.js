@@ -128,7 +128,7 @@ export async function ownAclPermission(webId,session) {
         console.log("Este usuario ya es amigo");
       
       }else if(typeof friendName === 'undefined'){
-        alert('No existe este usuario.');
+        //alert('No existe este usuario.');
         console.log("Este usuario no existe");
       }else{
         // We create the friend

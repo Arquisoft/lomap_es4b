@@ -53,7 +53,7 @@ const Reviews = (params) =>{
             </label>
 
             <div className='reviewsList'>
-                <ul className='reviews'>
+                <ul key={value} className='reviews'>
                     {reviews.map(content => (
                         <li>{content.author}: <Rating
                             name="text-feedback"
