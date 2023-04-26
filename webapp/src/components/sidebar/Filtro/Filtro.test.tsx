@@ -15,10 +15,10 @@ test('check that the monument filter can be selected properly', async () => {
     //Desmarcar checkbox
     getByTestId("monument").click();
     getByTestId("filtrar").click();
-    expect(getByText("Filtrando")).toBeInTheDocument();
+    expect(getByText("Filtrar")).toBeInTheDocument();
 });
 test('check that the Mostrar Todo button can be clicked properly', async () => {
     const {getByTestId,getByText,container} =  render(<Filtro showFilteredPoints={() => {}} mapId={1}session={[]} webId={"https://uo281835.inrupt.net/profile/card#me"}/>);
     getByTestId("filtrarTodo").click();
-    expect(getByText("Mostrando")).toBeInTheDocument();
+    expect(getByText("Mostrar todos")).toBeInTheDocument();
 });
