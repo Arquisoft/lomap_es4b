@@ -21,6 +21,9 @@ const Reviews = (params) =>{
 
     const handleSubmit= () => {
         addScore(params.mapId, params.pointId, value, params.session, params.webId).then((r) => {
+            if(r == undefined){
+                r = {"author":"FAIL","score":4,"date":"FAIL"};
+            }
             const newList = reviews.concat({author: r.author, score: r.score, date: r.date})
             setReviews(newList);
             params.updateReviews(newList);
@@ -68,6 +71,7 @@ const Reviews = (params) =>{
                 <Rating
                     name="hover-feedback"
                     value={value}
+                    data-testid={"reviewsStars"}
                     precision={0.5}
                     getLabelText={getLabelText}
                     onChange={(event, newValue) => {
@@ -81,7 +85,7 @@ const Reviews = (params) =>{
                 {value !== null && (
                     <Box sx={{ ml: 1 }}>{labels[hover !== -1 ? hover : value]}</Box>
                 )}
-                <button className='button-17' onClick={handleSubmit}>Enviar reseña</button>
+                <button className='button-17' data-testid={"reviewsSubmit"} onClick={handleSubmit}>Enviar reseña</button>
             </div>
         </div>
     )

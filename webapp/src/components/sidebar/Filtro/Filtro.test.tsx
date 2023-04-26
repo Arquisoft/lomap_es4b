@@ -7,21 +7,18 @@ test('check that the filter shows properly', async () => {
     expect(getByTestId("monument")).toBeInTheDocument();
     expect(getByTestId("restaurant")).toBeInTheDocument();
     expect(getByTestId("hospital")).toBeInTheDocument();
+    expect(getByTestId("filtrarTodo")).toBeInTheDocument();
 });
 test('check that the monument filter can be selected properly', async () => {
-    const {getByTestId,container} =  render(<Filtro showFilteredPoints={() => {}} mapId={1}session={[]} webId={"https://uo281835.inrupt.net/profile/card#me"}/>);
+    const {getByTestId,getByText,container} =  render(<Filtro showFilteredPoints={() => {}} mapId={1}session={[]} webId={"https://uo281835.inrupt.net/profile/card#me"}/>);
     getByTestId("monument").click();
+    //Desmarcar checkbox
+    getByTestId("monument").click(); 
+    getByTestId("filtrar").click();
+    expect(getByTestId("filtrar")).toBeInTheDocument();
 });
-test('check that the hospital filter can be selected properly', async () => {
-    const {getByTestId, container} =  render(<Filtro showFilteredPoints={() => {}} mapId={1}session={[]} webId={"https://uo281835.inrupt.net/profile/card#me"}/>);
-    getByTestId("hospital").click();
-});
-test('check that the restaurant filter can be selected properly', async () => {
-    const {getByTestId,container} =  render(<Filtro showFilteredPoints={() => {}} mapId={1}session={[]} webId={"https://uo281835.inrupt.net/profile/card#me"}/>);
-    getByTestId("restaurant").click();
-});
-test('check that the button can be clicked properly', async () => {
-    const {getByTestId, container} =  render(<Filtro showFilteredPoints={() => {}} mapId={1}session={[]} webId={"https://uo281835.inrupt.net/profile/card#me"}/>);
-    getByTestId("hospital").click();
-    // getByTestId("filtrar").click();
+test('check that the Mostrar Todo button can be clicked properly', async () => {
+    const {getByTestId,getByText,container} =  render(<Filtro showFilteredPoints={() => {}} mapId={1}session={[]} webId={"https://uo281835.inrupt.net/profile/card#me"}/>);
+    getByTestId("filtrarTodo").click();
+    expect(getByTestId("filtrarTodo")).toBeInTheDocument();
 });

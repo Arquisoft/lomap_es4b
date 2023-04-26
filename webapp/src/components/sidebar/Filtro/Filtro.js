@@ -58,9 +58,6 @@ export function Filtro(props){
         <div className={"divBotonFiltro"} >
             <button className={"botonFiltroTodo"} data-testid ={"filtrarTodo"}onClick={
                 async ()=>{
-                    console.log(session);
-                    console.log(webId);
-                    console.log(props.mapId);
                     setLoadingFilteredPoints(true);
                     filterPoints(session,webId,listaFiltro.map(e=>{return e.category}), mapId).then((puntos)=>{
                         console.log(puntos);
@@ -75,9 +72,6 @@ export function Filtro(props){
             </button>
             <button className={"botonFiltro"} data-testid ={"filtrar"}onClick={
                 async ()=>{
-                    console.log(session);
-                    console.log(webId);
-                    console.log(props.mapId);
                     setLoadingFilteredPoints(true);
                     filterPoints(session,webId,listaCosasFiltradas, mapId).then((puntos)=>{
                         console.log(puntos);
