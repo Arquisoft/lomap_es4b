@@ -129,7 +129,7 @@ export async function ownAclPermission(webId,session) {
       
       }else if(typeof friendName === 'undefined'){
         //alert('No existe este usuario.');
-        console.log("Este usuario no existe");
+        //console.log("Este usuario no existe");
       }else{
         // We create the friend
       let newFriend = solid.buildThing(dataSetThing)
