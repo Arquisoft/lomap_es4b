@@ -24,6 +24,6 @@ test('check that the add point form can be filled', async () => {
     const descriptionInput = getByLabelText("Descripción:");
     fireEvent.change(descriptionInput, { target: { value: 'Descripción unit test' } });
     // getByTestId("addPointSubmit").click();
-    // expect(getByText("Creando")).toBeInTheDocument();
+    // expect(getByText("Creando")).toBeInTheDocument(); 
 
 });

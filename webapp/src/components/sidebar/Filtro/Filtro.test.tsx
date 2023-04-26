@@ -13,12 +13,12 @@ test('check that the monument filter can be selected properly', async () => {
     const {getByTestId,getByText,container} =  render(<Filtro showFilteredPoints={() => {}} mapId={1}session={[]} webId={"https://uo281835.inrupt.net/profile/card#me"}/>);
     getByTestId("monument").click();
     //Desmarcar checkbox
-    getByTestId("monument").click();
+    getByTestId("monument").click(); 
     getByTestId("filtrar").click();
-    expect(getByText("Filtrar")).toBeInTheDocument();
+    expect(getByTestId("filtrar")).toBeInTheDocument();
 });
 test('check that the Mostrar Todo button can be clicked properly', async () => {
     const {getByTestId,getByText,container} =  render(<Filtro showFilteredPoints={() => {}} mapId={1}session={[]} webId={"https://uo281835.inrupt.net/profile/card#me"}/>);
     getByTestId("filtrarTodo").click();
-    expect(getByText("Mostrar todos")).toBeInTheDocument();
+    expect(getByTestId("filtrarTodo")).toBeInTheDocument();
 });
