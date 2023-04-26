@@ -27,7 +27,7 @@ export function MapListComponent(props) {
             <p>{props.description}</p>
           </div>
           <div className="showPointsButton">
-              <button onClick={handleClick}>
+              <button data-testid={"mapComponentSubmit"} onClick={handleClick}>
                   {mapLoading && <ListLoadingItem/>}
                   {mapLoading ? <span>Cargando</span> : <span>Cargar Mapa</span>}
               </button>

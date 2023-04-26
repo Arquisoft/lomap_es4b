@@ -24,6 +24,7 @@ export function FriendComponent(props) {
           const result = await getAllMaps(session,friendURL);
           setFriendMaps(result);
           setFriendMapsLoading(false);
+          console.log(props.friendURL);
           let image = await getImageFromPod(props.friendURL);
           if(image == 'NoImage'){
               image = pordefecto;
