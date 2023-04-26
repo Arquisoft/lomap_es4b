@@ -8,7 +8,6 @@ import {getNameFromPod,randomId,urlCreator} from "./PodHelper";
 //Devolverá todos los puntos dentro del Pod
 export async function getAllPointsInCurrentMap(session,webId,mapId){
 
-    console.log(session);
     let url = urlCreator(webId);
   
     try {
