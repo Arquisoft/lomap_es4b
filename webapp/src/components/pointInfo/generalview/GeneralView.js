@@ -38,7 +38,7 @@ export default function GeneralView(params){
         <div className="generalViewContainer"data-testid={"generalViewContainer"}>
             <p>{params.point.description}</p>
             {pictures.length > 0 && <div className='galleryContainer'>
-                <MdChevronLeft className='mdchevron' onClick={slideLeft} size={40} />
+                <MdChevronLeft data-testid="leftButtonGeneralView" className='mdchevron' onClick={slideLeft} size={40} />
                 <div
                     id='slider'
                 >
@@ -50,12 +50,12 @@ export default function GeneralView(params){
                         />
                     ))}
                 </div>
-                <MdChevronRight className='mdchevron' onClick={slideRight} size={40} />
+                <MdChevronRight data-testid="rightButtonGeneralView" className='mdchevron' onClick={slideRight} size={40} />
             </div>}
 
             <div className='editDelete'>
                 {params.isOwner?
-                    <button className='button-17' onClick={() => {
+                    <button data-testid="editGeneralView" className='button-17' onClick={() => {
                         EditPoint(params.point.id, params.marker, params.map, params.mapId, params.webId, params.session);
                     }}>
                         Editar
@@ -67,7 +67,7 @@ export default function GeneralView(params){
                     <input type="file" id="fileInput" onChange={handleFileSelect} accept="image/png,image/jpeg" hidden={true}></input>
 
                     {params.isOwner?
-                    <button id="deleteButton" className='button-17' onClick={() => {
+                    <button id="deleteButton" data-testid="deleteGeneralView" className='button-17' onClick={() => {
                         DeletePoint(params.point.id, params.marker, params.map, params.mapId, params.session, params.webId);
                     }}>Borrar
                     </button>

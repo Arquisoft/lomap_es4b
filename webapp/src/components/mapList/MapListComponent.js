@@ -3,7 +3,7 @@ import {getAllPointsInCurrentMap} from "../../helper/PodMaps";
 import { useState} from "react";
 import {ListLoadingItem} from '../loadingComponents/ListLoadingItem';
 
-export function MapListComponent(props) {
+export function MapListComponent(props) { 
 
     const {mapId, setCurrentMapId, webId, session} = props;
     const [mapLoading, setMapLoading] = useState(false);
@@ -27,7 +27,7 @@ export function MapListComponent(props) {
             <p>{props.description}</p>
           </div>
           <div className="showPointsButton">
-              <button onClick={handleClick}>
+              <button data-testid={"mapComponentSubmit"} onClick={handleClick}>
                   {mapLoading && <ListLoadingItem/>}
                   {mapLoading ? <span>Cargando</span> : <span>Cargar Mapa</span>}
               </button>
