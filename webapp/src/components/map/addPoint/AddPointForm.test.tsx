@@ -4,7 +4,7 @@ import { useSession } from "@inrupt/solid-ui-react";
 import ProfileViewer from "../../profileviewer/ProfileViewer";
 
 test('check that the add point form renders propertly', async () => {
-    const {getByText, getByTestId} = await render(<AddPointForm webId={"https://uo276467.inrupt.net/profile/card#me"}
+    const {getByText} = await render(<AddPointForm webId={"https://uo276467.inrupt.net/profile/card#me"}
         position={10} map={[]} mapId={1} markers={[]}
         popup={{}}/>);
 
