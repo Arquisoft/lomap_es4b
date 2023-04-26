@@ -31,9 +31,9 @@ export function Filtro(props){
     const filterList = listaFiltro.map((categoria)=>{
         let image = require('../../../images/' + categoria.category + '.png');
         return (
-                <div className={"filaFiltro"} >
+                <div key={categoria.category} className={"filaFiltro"} >
                     <img className={"icono"} src={ image} alt={categoria.text}/>
-                    <label class="label" htmlFor={"checkbox"+categoria.category}>{categoria.text}</label>
+                    <label className="label" htmlFor={"checkbox"+categoria.category}>{categoria.text}</label>
                     <input type="checkbox"
                         id={"checkbox"+categoria.text}
                         name={categoria.text}
@@ -56,6 +56,23 @@ export function Filtro(props){
             {filterList}
         </div>
         <div className={"divBotonFiltro"} >
+            <button className={"botonFiltroTodo"} data-testid ={"filtrarTodo"}onClick={
+                async ()=>{
+                    console.log(session);
+                    console.log(webId);
+                    console.log(props.mapId);
+                    setLoadingFilteredPoints(true);
+                    filterPoints(session,webId,listaFiltro.map(e=>{return e.category}), mapId).then((puntos)=>{
+                        console.log(puntos);
+                        props.showFilteredPoints(puntos, webId, mapId);
+                        setLoadingFilteredPoints(false);
+                    });
+
+                }
+            }>
+                {loadingFilteredPoints && <ListLoadingItem/>}
+                {loadingFilteredPoints ? <span>Mostrando</span> : <span>Mostrar todos</span>}
+            </button>
             <button className={"botonFiltro"} data-testid ={"filtrar"}onClick={
                 async ()=>{
                     console.log(session);

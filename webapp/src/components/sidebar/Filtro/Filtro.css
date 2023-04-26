@@ -62,6 +62,16 @@
     color: white;
     border-radius: 1em;
 }
+.botonFiltroTodo{
+    display: flex;
+    align-content: center;
+    align-self: center;
+    align-items: center;
+    padding: 0.75em;
+    background-color: #0099CC;
+    color: white;
+    border-radius: 1em;
+}
 .divBotonFiltro{
     align-content: center;
     margin-top: 1em;

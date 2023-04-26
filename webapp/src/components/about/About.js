@@ -5,7 +5,6 @@ import './About.css';
 import Popup from './Popup'
 
 export default function About (props) {
-    console.log('entro');
 
     const togglePopup = () => {
        props.setMarcadorAboutSeleccionado(false);
@@ -29,7 +28,7 @@ export default function About (props) {
     }
 
     return (
-        <div className="aboutContainer">
+        <div className="aboutContainer" data-testid={"contenedorAbout"}>
             {props.marcadorAboutSeleccionado && <Popup
                 content={content()}
                 handleClose={togglePopup}

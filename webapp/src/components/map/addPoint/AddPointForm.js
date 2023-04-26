@@ -4,6 +4,7 @@ import '../PointForm.css';
 import {updatePoints} from "../../../helper/PodHelper";
 import AddMarker from "../mapView/AddMarker";
 import {ListLoadingItem} from "../../loadingComponents/ListLoadingItem";
+import { useSession } from "@inrupt/solid-ui-react";
 
 
 export default class AddPointForm extends Component {
@@ -27,6 +28,11 @@ export default class AddPointForm extends Component {
         this.handleChangeDescription = this.handleChangeDescription.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    // componentDidMount() {
+    //     const {session} = useSession();
+    //     this.state.session = session;
+    //   }
 
     handleChangeName(event) {
         this.setState({name: event.target.value});
@@ -52,9 +58,9 @@ export default class AddPointForm extends Component {
         return (
             <form id="addPointForm" onSubmit={this.handleSubmit}>
                 <h1 className='pointFormHeader'>Añadir Punto</h1>
-                <label>
+                <label htmlFor="titulo">
                     Título:
-                    <input name="titulo" type="text" placeholder="Titulo" value={this.state.name} onChange={this.handleChangeName} required maxLength='20'/>
+                    <input id="titulo" name="titulo" type="text" placeholder="Titulo" value={this.state.name} onChange={this.handleChangeName} required maxLength='20'/>
                 </label>
                 <label>
                     Selecciona una categoría:
@@ -68,9 +74,9 @@ export default class AddPointForm extends Component {
                     </select>
                     </div>
                 </label>
-                <label>
+                <label htmlFor="descripcion">
                     Descripción:
-                    <input name="descripcion" type="text" placeholder="Descripcion" value={this.state.description} onChange={this.handleChangeDescription} required maxLength='50'/>
+                    <input id="descripcion" name="descripcion" type="text" placeholder="Descripcion" value={this.state.description} onChange={this.handleChangeDescription} required maxLength='50'/>
                 </label>
                 <button id="addPointSubmit" data-testid={"addPointSubmit"} type="submit" className="pointFormSubmit" onClick={this.handleSubmit} disabled={this.state.pointCreating}>
                     {this.state.pointCreating && <ListLoadingItem/>}
