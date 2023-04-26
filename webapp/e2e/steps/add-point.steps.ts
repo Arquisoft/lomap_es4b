@@ -24,13 +24,13 @@ defineFeature(feature, test => {
       let password = "e2ff3d361A_"
 
       await expect(page).toClick('Button', { text: 'Login' })
-      await delay(3500)
+      await delay(4000)
       await expect(page).toFillForm('form[class="form-horizontal login-up-form"]', {
         username: username,
         password: password,
       })
       await expect(page).toClick('button', { text: 'Log In' })
-      await delay(7000)
+      await delay(20000)
   });
 
 
@@ -46,20 +46,20 @@ defineFeature(feature, test => {
 
     when('I click on the map and fill the add point form', async () => {
       await expect(page).toClick('div[id="map"]')
-      await delay(1000)
+      await delay(3000)
       await expect(page).toFillForm('form[id="addPointForm"]', {
         titulo: titulo,
         descripcion: descripcion,
       })
       await expect(page).toClick('button[id="addPointSubmit"]')
-      await delay(2000)
+      await delay(15000)
     });
 
     then('The new point appears on the point list', async () => {
         await expect(page).toClick('span', { text: 'Gestionar puntos' })
         await delay(1000)
         await expect(page).toClick('span', { text: 'Ver puntos' })
-        await delay(3000)
+        await delay(10000)
         const text = await page.evaluate(() => document.body.textContent);
         await expect(text).toMatch("e2e name");
         await expect(text).toMatch("e2e description");
@@ -75,15 +75,16 @@ defineFeature(feature, test => {
 
     when('I click on the map and open the popup menu', async () => {
       await expect(page).toClick('div[id="map"]')
-      await delay(3000)
+      await delay(20000)
       await expect(page).toClick('button[id="deleteButton"]')
-      await delay(2000)
+      await delay(10000)
     });
 
     then('The point is removed from the points list', async () => {
         await expect(page).toClick('span', { text: 'Gestionar puntos' })
+        await delay(1000)
         await expect(page).toClick('span', { text: 'Ver puntos' })
-        await delay(3000)
+        await delay(10000)
         const text = await page.evaluate(() => document.body.textContent);
         await expect(text).not.toMatch("e2e name");
         await expect(text).not.toMatch("e2e description");

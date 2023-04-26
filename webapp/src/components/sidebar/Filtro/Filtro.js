@@ -52,8 +52,9 @@ export function Filtro(props){
         <h2 className={"tituloFiltro"}data-testid={"tituloFiltro"}>
             Seleccione las categorías a filtrar
         </h2>
+        <div className="listaFiltros">
             {filterList}
-
+        </div>
         <div className={"divBotonFiltro"} >
             <button className={"botonFiltroTodo"} data-testid ={"filtrarTodo"}onClick={
                 async ()=>{

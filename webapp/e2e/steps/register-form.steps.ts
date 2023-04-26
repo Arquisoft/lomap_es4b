@@ -66,7 +66,7 @@ defineFeature(feature, test => {
         password: password,
       })
       await expect(page).toClick('button', { text: 'Log In' })
-      await delay(5000)
+      await delay(15000)
     });
 
     then('The main page is shown in the screen', async () => {

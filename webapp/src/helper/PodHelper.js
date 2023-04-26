@@ -2,6 +2,7 @@ import * as solid from '@inrupt/solid-client';
 import {Point} from "../entities/Entities";
 import { FOAF, VCARD } from "@inrupt/lit-generated-vocab-common";
 import {updateData} from './PodFiles';
+import { useSession } from '@inrupt/solid-ui-react';
 
 
 /**
