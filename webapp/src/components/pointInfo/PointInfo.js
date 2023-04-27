@@ -28,13 +28,16 @@ class PointInfo extends Component {
             categoryText: null,
         }
         getSpecificPoint(this.props.session, this.props.webId, this.props.pointId,this.props.mapId).then((point) => {
+            if(point === undefined){
+                point = {"category": "hospital", "reviewScores": ["FAIL"], "comments": ["FAIL"], "pictures": ["FAIL"]}
+            }
             this.setState({point: point});
             this.setState({reviews:point.reviewScores});
             this.setState({comments: point.comments});
             this.setState({pictures: point.pictures})
             this.setState({content: this.renderGeneralViewContent()});
             this.setState({isLoading: false});
-            this.setState({categoryText: Category.find(item => item.category==this.state.point.category).text})
+            this.setState({categoryText: Category.find(item => item.category==point.category).text})
             }
         )
 
