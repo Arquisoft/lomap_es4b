@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@inrupt/lit-generated-vocab-common": "^0.3.11",
-    "@inrupt/solid-ui-react": "^2.8.2"
+    "@inrupt/solid-ui-react": "^2.8.2",
+    "solid-node-client": "^2.1.10"
   }
 }
