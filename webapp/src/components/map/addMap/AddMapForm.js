@@ -37,7 +37,7 @@ export default class AddMapForm extends Component {
                 <div className="inputAndButton">
                     <input className="addMapName" type="text" placeholder="Nombre del mapa"
                         value={this.state.name} onChange={this.handleChangeName} />
-                    <input data-testid="addMapButton" className="addMapButton" type="submit" value="Agregar mapa" />
+                    <input className="addMapButton" type="submit" value="Agregar mapa" />
                 </div>
             </form>
             </div>

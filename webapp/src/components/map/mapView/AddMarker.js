@@ -14,7 +14,7 @@ function AddMarker (position, map, mapId, pointId, markerIcon, markers, webId, s
     marker.on('click', function() {
         let myDiv = document.createElement('div');
         ReactDOM.render(
-            <PointInfo isLoading={true} pointId={pointId} marker={marker} map={map} mapId={mapId} webId={webId} session={session} isOwner={isOwner}/>,
+            <PointInfo pointId={pointId} marker={marker} map={map} mapId={mapId} webId={webId} session={session} isOwner={isOwner}/>,
             myDiv
         );
         let popup = L.popup({minWidth:750, maxWidth:550, maxHeight:800, keepInView:true});
