@@ -50,7 +50,6 @@ export default class MapView extends Component{
         let isOwner = webId == this.state.webId;
         this.setState({isOwner: isOwner});
         this.state.setCurrentMapWebId(webId);
-
         //creamos los nuevos markers
         for (let i=0; i < points.length; i++) {
             // Por cada punto se crea un marcador, asociandole el id del punto
@@ -62,7 +61,7 @@ export default class MapView extends Component{
 
   render() {
     return (
-      <MapContainer id="map"
+      <MapContainer data-testid="mapContainer" id="map"
         center={[43.3548096, -5.8534699]}
         zoom={13}
         scrollWheelZoom
@@ -77,6 +76,9 @@ export default class MapView extends Component{
                 let points = firstMap.locations;
                 let isOwner = firstMap!=null;
                 this.setState({isOwner: isOwner});
+                if(points === undefined){
+                  points = [];
+                }
                 for (let i=0; i < points.length; i++) {
                     // Por cada punto se crea un marcador, asociandole el id del punto
                     let lat = points[i].latitude;

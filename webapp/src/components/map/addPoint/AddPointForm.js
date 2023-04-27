@@ -1,11 +1,9 @@
-import React, {Component} from "react";
+import {Component} from "react";
 import {Category} from '../../../entities/Entities';
 import '../PointForm.css';
 import {updatePoints} from "../../../helper/PodHelper";
 import AddMarker from "../mapView/AddMarker";
 import {ListLoadingItem} from "../../loadingComponents/ListLoadingItem";
-import { useSession } from "@inrupt/solid-ui-react";
-
 
 export default class AddPointForm extends Component {
     constructor(props) {

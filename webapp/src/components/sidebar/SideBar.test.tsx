@@ -3,7 +3,6 @@ import SideBarConProviderSOLOPARATESTS from "./SideBarConProviderSOLOPARATESTS";
 
 test('check that the sidebar renders propertly', async () => {
 
-
     const {getByTestId} = await render(<SideBarConProviderSOLOPARATESTS/>);
     expect(getByTestId("sidebar")).toBeInTheDocument();
     expect(getByTestId("sidebarMenu")).toBeInTheDocument();

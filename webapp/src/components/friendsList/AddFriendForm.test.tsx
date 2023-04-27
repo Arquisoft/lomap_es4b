@@ -11,5 +11,5 @@ test('check that the AddFriendComponent page renders properly', async () => {
     expect(getByTestId("botonAmigo")).toBeVisible();
     const friendName = getByTestId("nombreAmigo"); 
     fireEvent.change(friendName, { target: { value: 'friend' } });
-    // getByTestId("botonAmigo").click();
-}); 
+    //getByTestId("botonAmigo").click();
+});
