@@ -1,7 +1,4 @@
 import { render } from "@testing-library/react";
-import SideBar from "./SideBar";
-import sideBar from "./SideBar";
-import {ProSidebarProvider} from "react-pro-sidebar";
 import SideBarConProviderSOLOPARATESTS from "./SideBarConProviderSOLOPARATESTS";
 
 test('check that the sidebar renders propertly', async () => {

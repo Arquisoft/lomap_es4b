@@ -3,7 +3,7 @@ import './LoadingComponents.css';
 
 export const ListLoadingItem = () => {
     return (
-        <div className="threeDotsLoadingItem">
+        <div data-testid="listLoadingItem" className="threeDotsLoadingItem">
             <ThreeDots
             height="20"
             width="20"
