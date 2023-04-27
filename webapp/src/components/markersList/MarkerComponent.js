@@ -23,7 +23,7 @@ export function MarkerComponent(props) {
             <p>{props.lat}, {props.lon}</p>
           </div>
           <div className="centerMapButton">
-            <button onClick={handleClick}>
+            <button data-testid="buttonMarkerComponent"onClick={handleClick}>
                 Ver Punto en el Mapa
             </button>
           </div>
