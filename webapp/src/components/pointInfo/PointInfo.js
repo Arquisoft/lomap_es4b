@@ -28,7 +28,11 @@ class PointInfo extends Component {
             categoryText: null,
         }
         getSpecificPoint(this.props.session, this.props.webId, this.props.pointId,this.props.mapId).then((point) => {
+            if(point === undefined){
+                point = {"category": "FAIL", "reviewScores": ["FAIL"], "comments": ["FAIL"], "pictures": ["FAIL"]}
+            }
             this.setState({point: point});
+            console.log(this.point);
             this.setState({reviews:point.reviewScores});
             this.setState({comments: point.comments});
             this.setState({pictures: point.pictures})
