@@ -101,7 +101,7 @@ const ProfileViewer = () => {
 
       {/* Guarda la instancia del mapView en el mapView de profileViewer */}
       <MapView ref={instance => { setMapView(instance)}} setCurrentMapId={setCurrentMapId} setCurrentMapWebId={setCurrentMapWebId} 
-                session={session}  webId={webId} isLogged={true} testId={"mapView"} />
+                session={session}  webId={webId} isLogged={true}/>
 
       </div>
  
