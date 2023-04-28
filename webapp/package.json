@@ -94,7 +94,6 @@
     },
     "transformIgnorePatterns": [
       "/node_modules/(?!@toolz/allow-react)/"
-    ],
-    "verbose": true
+    ]
   }
 }
