@@ -71,11 +71,12 @@ export default class MapView extends Component{
             this.setState({map: map});
             // Carga del mapa por defecto al entrar en la aplicacion
             getFirstMap(this.state.session, this.state.webId).then((firstMap) => {
+                console.log(firstMap);
                 this.state.setCurrentMapWebId(this.state.webId);
                 this.setState({mapId: firstMap.id});
                 this.state.setCurrentMapId(firstMap.id);
                 let points = firstMap.locations;
-                let isOwner = firstMap!=null;
+                let isOwner = firstMap.length != 0;
                 this.setState({isOwner: isOwner});
                 for (let i=0; i < points.length; i++) {
                     // Por cada punto se crea un marcador, asociandole el id del punto
@@ -84,7 +85,9 @@ export default class MapView extends Component{
                     AddMarker([lat, lng], map.target, firstMap.id, points[i].id, points[i].category, this.state.markers,
                         this.state.webId, this.state.session, isOwner);
                 }
-            })
+            }).catch(error => {
+                console.log("Error ocurrido al cargar el mapa por defecto: " + error);
+            });
 
 
           map.target.on("click", (e) => {

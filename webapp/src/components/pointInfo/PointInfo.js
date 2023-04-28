@@ -79,6 +79,7 @@ class PointInfo extends Component {
     }
 
     handleGeneralViewClick(){
+        console.log(this.state.session)
         this.setState({
             msg : 'Course Content',
             content : this.renderGeneralViewContent()
