@@ -6,5 +6,7 @@ export default {
     moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
     moduleNameMapper:{"^uuid$": "uuid"},
     preset: "jest-puppeteer",
-    testTimeout: 100000
+    collectCoverage: true,
+    collectCoverageFrom: ["../src/components/**"],
+    testTimeout: 200000
 }

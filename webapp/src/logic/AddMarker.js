@@ -2,8 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import L from "leaflet";
-import Icon from "../iconLocation/IconLocation";
-import PointInfo from "../../pointInfo/PointInfo";
+import Icon from "./IconLocation";
+import PointInfo from "../components/pointInfo/PointInfo";
 
 // Crea un marcador, le asocia un popup con el contenido del componente InfoAndComments y lo asocia al mapa
 function AddMarker (position, map, mapId, pointId, markerIcon, markers, webId, session, isOwner) {

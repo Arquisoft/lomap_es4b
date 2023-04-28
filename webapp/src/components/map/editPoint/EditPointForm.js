@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {editPoint} from "../../../helper/PodHelper";
 import {Category} from '../../../entities/Entities';
-import Icon from "../iconLocation/IconLocation";
+import Icon from "../../../logic/IconLocation";
 import {ListLoadingItem} from "../../loadingComponents/ListLoadingItem";
 
 export default class EditPointForm extends Component {

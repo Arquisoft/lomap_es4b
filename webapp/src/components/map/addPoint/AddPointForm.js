@@ -2,7 +2,7 @@ import {Component} from "react";
 import {Category} from '../../../entities/Entities';
 import '../PointForm.css';
 import {updatePoints} from "../../../helper/PodHelper";
-import AddMarker from "../mapView/AddMarker";
+import AddMarker from "../../../logic/AddMarker";
 import {ListLoadingItem} from "../../loadingComponents/ListLoadingItem";
 
 export default class AddPointForm extends Component {

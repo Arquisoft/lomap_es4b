@@ -1,8 +1,8 @@
 import React from "react";
 import {MdChevronLeft, MdChevronRight} from 'react-icons/md';
 import './GeneralView.css'
-import EditPoint from "../../map/editPoint/EditPoint";
-import DeletePoint from "../../map/deletePoint/DeletePoint";
+import EditPoint from "../../../logic/EditPoint";
+import DeletePoint from "../../../logic/DeletePoint";
 import { saveImages } from "../../../helper/ImageHelper";
 
 
