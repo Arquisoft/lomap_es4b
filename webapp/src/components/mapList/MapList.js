@@ -19,7 +19,7 @@ export function MapList(props) {
     }, []);
 
     return (
-      <div className='mapListComponent'>
+      <div datat-testid="mapListComponent" className='mapListComponent'>
           <div className='sideListMaps' id='pointsList'>
             {
               maps.map((item) => (
