@@ -111,10 +111,8 @@ export async function ownAclPermission(webId,session) {
   }
   
   //Añade un amigo a lista de amigos del usuario que está iniciado en sesión
-  export async function addFriend(webID, session, friend) {
+  export async function addFriend(webID, session, friendWebId) {
     let profile = webID.split("#")[0]; 
-    let friendWebId = "https://"+friend+".inrupt.net/profile/card#me";
-    console.log(friendWebId);
     let dataSet = await solid.getSolidDataset(profile);  
   
     let dataSetThing = solid.getThing(dataSet, webID);
@@ -124,12 +122,12 @@ export async function ownAclPermission(webId,session) {
       let existsFriend = solid.getUrlAll(dataSetThing, FOAF.knows)
 
       if (existsFriend.some((url) => url === friendWebId)){
-        alert('El usuario "' + friend + '" ya es amigo.');
+        alert('El usuario "' + friendWebId + '" ya es amigo.');
         console.log("Este usuario ya es amigo");
       
       }else if(typeof friendName === 'undefined'){
-        //alert('No existe este usuario.');
-        //console.log("Este usuario no existe");
+        alert('No existe este usuario.');
+        console.log("Este usuario no existe");
       }else{
         // We create the friend
       let newFriend = solid.buildThing(dataSetThing)
@@ -139,7 +137,7 @@ export async function ownAclPermission(webId,session) {
       // insert friend in dataset
       dataSet = solid.setThing(dataSet, newFriend);
       dataSet = await solid.saveSolidDatasetAt(webID, dataSet, {fetch: session.fetch})
-      alert('Nuevo amigo, "' + friend + '" añadido.');
+      alert('Nuevo amigo, "' + friendWebId + '" añadido.');
       console.log("Usuario añadido a lista de Amigos");
       }
     } catch (error){
@@ -147,4 +145,39 @@ export async function ownAclPermission(webId,session) {
     } 
   }
   
+
+  //Elimina un amigo de la lista de amigos
+  export async function deleteFriend(webID, session, friendWebId) {
+    let profile = webID.split("#")[0]; 
+    let dataSet = await solid.getSolidDataset(profile);  
+  
+    let dataSetThing = solid.getThing(dataSet, webID);
+  
+    try {
+      let friendName = await getNameFromPod(friendWebId);
+      let existsFriend = solid.getUrlAll(dataSetThing, FOAF.knows)
+
+      if (!existsFriend.some((url) => url === friendWebId)){
+        alert('El usuario "' + friendWebId + '" no es amigo.');
+        console.log("Este usuario no es amigo");
+      
+      }else if(typeof friendName === 'undefined'){
+        alert('No existe este usuario.');
+        console.log("Este usuario no existe");
+      }else{
+        // We create the friend
+      let newFriend = solid.buildThing(dataSetThing)
+      .removeUrl(FOAF.knows, friendWebId)
+      .build();
+  
+      // insert friend in dataset
+      dataSet = solid.setThing(dataSet, newFriend);
+      dataSet = await solid.saveSolidDatasetAt(webID, dataSet, {fetch: session.fetch})
+      alert('Usuario, "' + friendWebId + '" borrado de la lista de amigos.');
+      console.log("Usuario borrado de la lista de Amigos");
+      }
+    } catch (error){
+      console.log(error);
+    } 
+  }
   

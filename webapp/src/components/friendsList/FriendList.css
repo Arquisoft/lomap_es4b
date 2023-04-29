@@ -62,7 +62,42 @@
     width: 12em;
 }
 
-.comboAndImage button{
+.friendProfile{
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+}
+
+.comboAndButton{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.comboAndButton select{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 2em;
+    text-align: center;
+}
+
+
+.comboAndButton option{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 2em;
+    text-align: center;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    gap:0.5em;
+}
+
+.buttons button{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -71,6 +106,11 @@
     background-color: #4285F4;
     color:white;
     width: 10em;
+    height: 2em;
+}
+
+.buttons .deleteButton{
+    background-color: #f44242;
 }
 
   

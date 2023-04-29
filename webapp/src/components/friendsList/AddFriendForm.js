@@ -23,8 +23,12 @@ export default class AddFriendForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-       addFriend(this.state.webId, this.state.session, this.state.name);
-       friendsAclPermission(this.state.webId, this.state.session);
+       addFriend(this.state.webId, this.state.session, this.state.name).then(
+        ()=>{
+            friendsAclPermission(this.state.webId, this.state.session);
+        }
+        );
+       
        this.state.setMarcadorAñadirAmigoSeleccionado(false);
     }
 
@@ -33,9 +37,9 @@ export default class AddFriendForm extends Component {
             <div className="addFriendForm">
             <form  onSubmit={this.handleSubmit}>
                 <h2  className="addFriendHeader">Agregar Amigo</h2>
-                <p className="addFriendText">Introduce el nombre:</p>
+                <p className="addFriendText">Introduce el webId:</p>
                 <div className="inputAndButton">
-                    <input data-testid = "nombreAmigo" className="addFriendName" type="text" placeholder="Nombre del amigo"
+                    <input data-testid = "nombreAmigo" className="addFriendName" type="text" placeholder="WebId del amigo"
                         value={this.state.name} onChange={this.handleChangeName} />
                     <input data-testid = "botonAmigo" className="addFriendButton" type="submit" value="Agregar amigo" />
 

@@ -16,14 +16,16 @@ export function FriendsList(props) {
           setFriends(result);
       }
       fetchFriends();
-    }, []);
+    }, [friends]);
 
     return (
       <div className='friendListComponent'>
           <div data-testid= "nombreAmigoP" className='sideListFriends' id='pointsList' >
             {
               friends.map((item) => (
-                <FriendComponent showFriendPoints={(points, webId, mapId) => {props.showFriendPoints(points, webId, mapId)}} friendURL={item.friendURL} friendName={item.friendName} setCurrentMapId={props.setCurrentMapId} session={session} key={item.friendURL}/>
+                <FriendComponent showFriendPoints={(points, webId, mapId) => {props.showFriendPoints(points, webId, mapId)}} friendURL={item.friendURL}
+                 friendName={item.friendName} setCurrentMapId={props.setCurrentMapId} session={session} key={item.friendURL} setFriends={setFriends}
+                 friendsList={friends} />
               ))
 
             }

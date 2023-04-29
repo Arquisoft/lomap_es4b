@@ -5,16 +5,19 @@ import { useState,useEffect} from "react";
 import {getAllMaps,getAllPointsInCurrentMap} from '../../helper/PodMaps';
 import {ListLoadingItem} from "../loadingComponents/ListLoadingItem";
 import ContentLoader from "react-content-loader";
+import {deleteFriend,friendsAclPermission} from "../../helper/PodFriends";
 
 export function FriendComponent(props) {
 
-  const { friendURL,friendName,session} = props;
+  const { friendURL,friendName,session,setFriends,friendsList} = props;
   const [selectedValue, setSelectedValue] = useState('');
   const [friendMaps, setFriendMaps] = React.useState([]);
   const [friendImage, setFriendImage] = useState('');
   const [mapLoading, setMapLoading] = useState(false);
   const [friendImageLoading, setFriendImageLoading] = useState(false);
   const [friendMapsLoading, setFriendMapsLoading] = useState(false);
+  const [friendDeleting, setfriendDeleting] = useState(false);
+
 
 
     useEffect(() => {
@@ -53,11 +56,24 @@ export function FriendComponent(props) {
     
     };
 
+    const handleClickDelete = () => {
+        setfriendDeleting(true);
+        deleteFriend(session.info.webId, session, friendURL).then(
+          ()=>{
+              setFriends(friendsList.filter(url => url !== friendURL));
+              console.log(friendsList);
+              friendsAclPermission(session.info.webId, session);
+          }
+          );
+    
+    };
+
     return (
       <div className="sideComponentFriend">
         <header className='pointHeaderFriend'>
           <p data-testid= "nombreAmigoParrafo" className='nameFriend'>{friendName} </p>
         </header>
+        <div className="friendProfile">
         <div className="comboAndImage">
             {friendImageLoading ?
                 (
@@ -76,6 +92,8 @@ export function FriendComponent(props) {
                 :
                 (<img src={friendImage} alt="Imagen del usuario"/>)
             }
+            </div>
+            <div className="comboAndButton">
             {friendMapsLoading ?
                 (
                     <ContentLoader
@@ -100,13 +118,20 @@ export function FriendComponent(props) {
                     ))}
                 </select>)
             }
+            
+            <div className="buttons">
+                <button data-testid= "botonFriendComponent" onClick={handleClick} disabled={friendMapsLoading}>
+                    {mapLoading && <ListLoadingItem/>}
+                    {mapLoading ? <span>Cargando</span> : <span>Cargar Mapa</span>}
+                </button>
 
-            <button data-testid= "botonFriendComponent" onClick={handleClick} disabled={friendMapsLoading}>
-                {mapLoading && <ListLoadingItem/>}
-                {mapLoading ? <span>Cargando</span> : <span>Cargar Mapa</span>}
-            </button>
+                <button className="deleteButton" data-testid= "botonDeleteFriendComponent" onClick={handleClickDelete} disabled={friendMapsLoading}>
+                    {friendDeleting && <ListLoadingItem/>}
+                    {friendDeleting ? <span>Eliminando</span> : <span>Eliminar Amigo</span>}
+                </button>
+            </div>
         </div>
-        {/* </div> */}
+        </div>
       </div>
     );
   }
