@@ -37,8 +37,8 @@ export default function Navbar(props){
                 <>
                     <div className="navProfile">
                         <CombinedDataProvider datasetUrl={webId} thingUrl={webId} className="image-button" style={{flexDirection: 'row'}}>
-                            <Image property={VCARD.hasPhoto.iri.value} alt="Foto de perfil del usuario" style={{width:70, height:70, borderRadius:40}}/>
-                            <Text property={FOAF.name.iri.value} style={{ fontSize: 18 }}/>
+                            <Image className="profileImage" property={VCARD.hasPhoto.iri.value} alt="Foto de perfil del usuario"/>
+                            <Text className="profileName" property={FOAF.name.iri.value}/>
                         </CombinedDataProvider>
                         <LogoutButton >
                             <Button variant="contained" color="primary">
@@ -49,22 +49,24 @@ export default function Navbar(props){
                 </>
             ) : (
                 <>
-                    <select value={idp} onChange={handleChange}>
-                        <option value="a">Selecciona un Proveedor</option>
-                        {listaProveedores.map((proveedor) => (
-                            <option key={proveedor.url} value={proveedor.url}>
-                                {proveedor.url}
-                            </option>
-                        ))}
-                    </select>
-                    <LoginButton oidcIssuer={idp} redirectUrl={currentUrl} className="login_button">
-                        <Button type="submit"
-                                fullWidth
-                                variant="contained"
-                                sx={{ mt: 3, mb: 2 }}>
-                            Login
-                        </Button>
-                    </LoginButton>
+                    <div className="navLogin">
+                        <select value={idp} onChange={handleChange}>
+                            <option value="a">Selecciona un Proveedor</option>
+                            {listaProveedores.map((proveedor) => (
+                                <option key={proveedor.url} value={proveedor.url}>
+                                    {proveedor.url}
+                                </option>
+                            ))}
+                        </select>
+                        <LoginButton oidcIssuer={idp} redirectUrl={currentUrl} className="login_button">
+                            <Button type="submit"
+                                    fullWidth
+                                    variant="contained"
+                                    sx={{ mt: 3, mb: 2 }}>
+                                Login
+                            </Button>
+                        </LoginButton>
+                    </div>
                 </>
             )}
 

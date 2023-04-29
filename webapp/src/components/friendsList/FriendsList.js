@@ -1,6 +1,5 @@
 import {FriendComponent} from './FriendComponent';
-import React, { useState, useEffect } from 'react';
-import * as ScrollArea from '@radix-ui/react-scroll-area';
+import { useState, useEffect } from 'react';
 import {getAllFriendsFromPod} from '../../helper/PodFriends';
 //import "./FriendList.css"
 
@@ -20,8 +19,7 @@ export function FriendsList(props) {
     }, []);
 
     return (
-      <ScrollArea.Root className="ScrollAreaRootFriends">
-        <ScrollArea.Viewport data-testid="scrollAreaFriends" className="ScrollAreaViewport">
+      <div className='friendListComponent'>
           <div data-testid= "nombreAmigoP" className='sideListFriends' id='pointsList' >
             {
               friends.map((item) => (
@@ -30,11 +28,7 @@ export function FriendsList(props) {
 
             }
           </div>
-        </ScrollArea.Viewport>
-        <ScrollArea.Scrollbar className="ScrollAreaScrollbar" orientation="vertical">
-          <ScrollArea.Thumb className="ScrollAreaThumb" />
-        </ScrollArea.Scrollbar>
-      </ScrollArea.Root>
+      </div>
     );
   }
 

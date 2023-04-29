@@ -30,7 +30,7 @@ export default class AddFriendForm extends Component {
 
     render() {
         return (
-            <div className="addMapForm">
+            <div className="addFriendForm">
             <form  onSubmit={this.handleSubmit}>
                 <h2  className="addFriendHeader">Agregar Amigo</h2>
                 <p className="addFriendText">Introduce el nombre:</p>

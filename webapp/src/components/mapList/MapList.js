@@ -1,6 +1,5 @@
 import {MapListComponent} from './MapListComponent';
-import React, { useState, useEffect } from 'react';
-import * as ScrollArea from '@radix-ui/react-scroll-area';
+import { useState, useEffect } from 'react';
 import {getAllMaps} from '../../helper/PodMaps';
 import "./MapList.css"
 
@@ -20,22 +19,17 @@ export function MapList(props) {
     }, []);
 
     return (
-      <ScrollArea.Root className="ScrollAreaRootMaps">
-        <ScrollArea.Viewport data-testid="scrollAreaMaps" className="ScrollAreaViewport">
+      <div className='mapListComponent'>
           <div className='sideListMaps' id='pointsList'>
             {
               maps.map((item) => (
                 <MapListComponent key={item.id} showMapPoints={(points, webId, mapId) => {props.showMapPoints(points, webId, mapId)}} mapId={item.id}
-                  setCurrentMapId={props.setCurrentMapId} name={item.name} description={item.description} session={session} webId={webId}/>
+                  setCurrentMapId={props.setCurrentMapId} name={item.name} session={session} webId={webId}/>
               ))
 
             }
           </div>
-        </ScrollArea.Viewport>
-        <ScrollArea.Scrollbar className="ScrollAreaScrollbar" orientation="vertical">
-          <ScrollArea.Thumb className="ScrollAreaThumb" />
-        </ScrollArea.Scrollbar>
-      </ScrollArea.Root>
+      </div>
     );
   }
 

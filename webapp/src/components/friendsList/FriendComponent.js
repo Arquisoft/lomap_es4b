@@ -63,9 +63,9 @@ export function FriendComponent(props) {
                 (
                     <ContentLoader
                         speed={2}
-                        width={"4em"}
-                        height={"4em"}
-                        viewBox="0 0 4em 4em"
+                        width={"4.37em"}
+                        height={"4.37em"}
+                        viewBox="0 0 4.37em 4.37em"
                         backgroundColor="#f3f3f3"
                         foregroundColor="#ecebeb"
                         {...props}
@@ -80,14 +80,14 @@ export function FriendComponent(props) {
                 (
                     <ContentLoader
                         speed={2}
-                        width={"13em"}
-                        height={"3em"}
-                        viewBox="0 0 13em 3em"
+                        width={"10em"}
+                        height={"4em"}
+                        viewBox="0 0 10em 4em"
                         backgroundColor="#f3f3f3"
                         foregroundColor="#ecebeb"
                         {...props}
                     >
-                        <rect x="0" y="0" rx="3" ry="3" width="13em" height="3em" />
+                        <rect x="0" y="0" rx="3" ry="3" width="10em" height="4em" />
                     </ContentLoader>
                 )
                 :

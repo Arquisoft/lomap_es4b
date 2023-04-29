@@ -2,8 +2,6 @@
 import { Sidebar, Menu, MenuItem, SubMenu, useProSidebar} from 'react-pro-sidebar';
 import {useState} from 'react';
 import MenuIcon from "@mui/icons-material/Menu"
-import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt"
-import WrongLocationIcon from "@mui/icons-material/WrongLocation"
 import FilterAltIcon from "@mui/icons-material/FilterAlt"
 import FmdGoodIcon from "@mui/icons-material/FmdGood"
 import GroupIcon from "@mui/icons-material/Group"
@@ -11,6 +9,7 @@ import InfoIcon from "@mui/icons-material/Info"
 import SortIcon from "@mui/icons-material/Sort"
 import MapIcon from '@mui/icons-material/Map';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import "./SideBar.css";
 import {SidebarLoadingItem} from '../loadingComponents/SidebarLoadingItem'
 
@@ -52,7 +51,7 @@ export const SideBar = (props) => {
                     {" "}
                 </MenuItem>
 
-                <SubMenu data-testid = "sidebarPoints" className="subMenu" label={isOpen? "Gestionar puntos" : ""} icon={<SortIcon />}
+                <SubMenu data-testid = "sidebarPoints" className="subMenu" label={isOpen? "Mis puntos" : ""} icon={<SortIcon />}
                         onClick={()=> {if(!isOpen){
                             collapseSidebar();
                             setOpen(!isOpen);
@@ -90,7 +89,7 @@ export const SideBar = (props) => {
                  
                 </SubMenu >
 
-                <SubMenu data-testid = "sidebarMapas" className="subMenu" label={isOpen? "Gestionar mapas" : ""} icon={<SortIcon />}
+                <SubMenu data-testid = "sidebarMapas" className="subMenu" label={isOpen? "Mis mapas" : ""} icon={<SortIcon />}
                         onClick={()=> {if(!isOpen){
                             collapseSidebar();
                             setOpen(!isOpen);
@@ -148,7 +147,7 @@ export const SideBar = (props) => {
                     </div>
                 </MenuItem>
                 <MenuItem data-testid = "sidebarAddFriend" className='menuItem'
-                        icon={<GroupIcon />} 
+                        icon={<PersonAddIcon />} 
                         onClick={() =>{
                                 setMarcadorFriendsSeleccionado(false);
                                 setMarcadorPuntosSeleccionado(false);
