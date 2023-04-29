@@ -22,9 +22,8 @@ export function MapListComponent(props) {
         <header className='pointHeaderMap'>
           <p className='nameMap'>{props.name} </p>
         </header>
-        <div className="descriptionAndImageMap">
+        <div className="imageMap">
             <img src={imagen} alt="Imagen del mapa" data-testid={"Imagen"}/>
-            <p>{props.description}</p>
           </div>
           <div className="showPointsButton">
               <button data-testid={"mapComponentSubmit"} onClick={handleClick}>

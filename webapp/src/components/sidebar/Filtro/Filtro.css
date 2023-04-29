@@ -58,9 +58,10 @@
     align-self: center;
     align-items: center;
     padding: 0.75em;
-    background-color: #0099CC;
+    background-color: #4285F4;
     color: white;
     border-radius: 1em;
+    font-weight: bold;
 }
 .botonFiltroTodo{
     display: flex;
@@ -68,14 +69,18 @@
     align-self: center;
     align-items: center;
     padding: 0.75em;
-    background-color: #0099CC;
+    background-color: #4285F4;
     color: white;
     border-radius: 1em;
+    font-weight: bold;
 }
 .divBotonFiltro{
+    display: flex;
+    flex-direction: row;
     align-content: center;
     margin-top: 1em;
     margin-bottom: 1em;
+    gap: 0.5em;
 }
 
 .listaFiltros {

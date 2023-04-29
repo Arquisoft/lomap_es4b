@@ -3,7 +3,7 @@ import ReactDOM  from "react-dom";
 import { MapContainer, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import * as L from "leaflet";
-import AddMarker from './AddMarker';
+import AddMarker from '../../../logic/AddMarker';
 import AddPointForm from "../addPoint/AddPointForm";
 import {getFirstMap} from "../../../helper/PodMaps.js"
 

@@ -56,6 +56,19 @@ export function Filtro(props){
             {filterList}
         </div>
         <div className={"divBotonFiltro"} >
+        <button className={"botonFiltro"} data-testid ={"filtrar"}onClick={
+                async ()=>{
+                    setLoadingFilteredPoints(true);
+                    filterPoints(session,webId,listaCosasFiltradas, mapId).then((puntos)=>{
+                        console.log(puntos);
+                        props.showFilteredPoints(puntos, webId, mapId);
+                        setLoadingFilteredPoints(false);
+                    });
+                }
+            }>
+                {loadingFilteredPoints && <ListLoadingItem/>}
+                {loadingFilteredPoints ? <span>Filtrando</span> : <span>Filtrar</span>}
+            </button>
             <button className={"botonFiltroTodo"} data-testid ={"filtrarTodo"}onClick={
                 async ()=>{
                     setLoadingFilteredPoints(true);
@@ -69,19 +82,6 @@ export function Filtro(props){
             }>
                 {loadingFilteredPoints && <ListLoadingItem/>}
                 {loadingFilteredPoints ? <span>Mostrando</span> : <span>Mostrar todos</span>}
-            </button>
-            <button className={"botonFiltro"} data-testid ={"filtrar"}onClick={
-                async ()=>{
-                    setLoadingFilteredPoints(true);
-                    filterPoints(session,webId,listaCosasFiltradas, mapId).then((puntos)=>{
-                        console.log(puntos);
-                        props.showFilteredPoints(puntos, webId, mapId);
-                        setLoadingFilteredPoints(false);
-                    });
-                }
-            }>
-                {loadingFilteredPoints && <ListLoadingItem/>}
-                {loadingFilteredPoints ? <span>Filtrando</span> : <span>Filtrar</span>}
             </button>
         </div>
     </div>);

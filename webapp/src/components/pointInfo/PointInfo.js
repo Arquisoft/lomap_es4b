@@ -24,12 +24,12 @@ class PointInfo extends Component {
             reviews: null,
             comments: null,
             pictures: null,
-            isLoading: this.props.isLoading,
+            isLoading: true,
             categoryText: null,
         }
         getSpecificPoint(this.props.session, this.props.webId, this.props.pointId,this.props.mapId).then((point) => {
             if(point === undefined){
-                point = {"name": "FAIL", "author": "FAIL", "category": "hospital", "reviewScores": ["FAIL"], "comments": ["FAIL"], "pictures": ["FAIL"]}
+                point = {"category": "hospital", "reviewScores": ["FAIL"], "comments": ["FAIL"], "pictures": ["FAIL"]}
             }
             this.setState({point: point});
             this.setState({reviews:point.reviewScores});
@@ -63,7 +63,7 @@ class PointInfo extends Component {
 
     renderGeneralViewContent(){
         return (
-            <GeneralView data-testid="generalViewRender" point={this.state.point} mapId={this.state.mapId} isOwner={this.state.isOwner} marker={this.state.marker} 
+            <GeneralView point={this.state.point} mapId={this.state.mapId} isOwner={this.state.isOwner} marker={this.state.marker} 
             map={this.state.map} webId={this.state.webId} session={this.state.session} updatePictures={this.updatePictures}
             pictures={this.state.pictures}/>
         )
@@ -111,15 +111,15 @@ class PointInfo extends Component {
                 <h2>{ this.state.categoryText }</h2>
                 {/*Vista general del punto: descripcion e imagenes*/}
                 <div className='pointInfoMenuButtons'>
-                    <button data-testid="generalViewButton" className='button-48' onClick={this.handleGeneralViewClick}>
+                    <button className='button-48' onClick={this.handleGeneralViewClick}>
                         Vista general
                     </button>
                     {/*Reseñas del punto: ver puntuacion media, reseñas y posiblidad de crear una nueva reseña*/}
-                    <button data-testid="reviewsButton" className='button-48' onClick={this.handleReviewsClick}>
+                    <button className='button-48' onClick={this.handleReviewsClick}>
                         Reseñas
                     </button>
                     {/*Comentarios del punto: Ver comentarios y posibilidad de crear un nuevo comentario*/}
-                    <button data-testid="commentsButton" className='button-48' onClick={this.handleCommentsClick}>
+                    <button className='button-48' onClick={this.handleCommentsClick}>
                         Comentarios
                     </button>
                 </div>

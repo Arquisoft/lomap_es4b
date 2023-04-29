@@ -8,9 +8,27 @@
     padding: 0.5em;
 }
 
+.navLogin{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+}
+
 .navProfile{
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 1em;
-  }
+    height: 100%;
+}
+
+.profileImage{
+    height: 100%;
+    width: 100%;
+    border-radius: 40em;
+}
+
+.profileName{
+    font-size: 1.3em;
+}
