@@ -13,7 +13,7 @@ export default function Navbar(props){
     const { session } = useSession();
     const { webId } = session.info;
     const {logggin} = props;
-    const listaProveedores = [{url:"https://inrupt.net/"}, {url:"https://solidcommunity.net/"}];
+    const listaProveedores = [{url:"https://solidcommunity.net/"}, {url:"https://inrupt.net/"}];
 
 
   useEffect(() => {
