@@ -5,7 +5,7 @@ import { useState,useEffect} from "react";
 import {getAllMaps,getAllPointsInCurrentMap} from '../../helper/PodMaps';
 import {ListLoadingItem} from "../loadingComponents/ListLoadingItem";
 import ContentLoader from "react-content-loader";
-import {deleteFriend,friendsAclPermission} from "../../helper/PodFriends";
+import {deleteFriend,friendsAclPermission,deleteFriendPermission} from "../../helper/PodFriends";
 
 export function FriendComponent(props) {
 
@@ -62,7 +62,8 @@ export function FriendComponent(props) {
           ()=>{
               setFriends(friendsList.filter(url => url !== friendURL));
               console.log(friendsList);
-              friendsAclPermission(session.info.webId, session);
+              deleteFriendPermission(session.info.webId, session,friendURL);
+              //friendsAclPermission(session.info.webId, session);
           }
           );
     

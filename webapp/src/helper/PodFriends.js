@@ -67,6 +67,33 @@ export async function ownAclPermission(webId,session) {
       console.log(error);
     }
   }
+
+  //Se encarga de quitarle los permisos a un amigo cuando ha sido borrado
+  export async function deleteFriendPermission(webId,session,friendUrl) {
+    
+    let url = urlCreator(webId);
+
+  
+    try {
+      let file = await solid.getFile(
+        url,
+        { fetch: session.fetch }
+      );
+  
+        let resourceAcl = solid.createAcl(file);
+  
+        const updatedAcl = solid.setAgentResourceAccess(
+          resourceAcl,
+          friendUrl,
+          { read: false, append: false, write: false, control: false }
+        );
+   
+       await solid.saveAclFor(file, updatedAcl, { fetch: session.fetch }); 
+  
+    } catch (error) {
+      console.log(error);
+    }
+  }
   
   //Devuevle los amigos de usuario registrado
   export async function getAllFriendsFromPod(webId) {
