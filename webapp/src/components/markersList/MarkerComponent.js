@@ -5,7 +5,7 @@ export function MarkerComponent(props) {
     // Llama a la funcion centerMapOnPoint de MapView
     const handleClick = () => {
         let latLng = [props.lat, props.lon];
-        props.centerMap(latLng);
+        props.centerMap(latLng, props.key);
     };
 
     return (

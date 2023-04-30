@@ -6,6 +6,7 @@ import * as L from "leaflet";
 import AddMarker from './AddMarker';
 import AddPointForm from "../addPoint/AddPointForm";
 import {getFirstMap} from "../../../helper/PodMaps.js"
+import PointInfo from "../../pointInfo/PointInfo";
 
 
 // Centra el mapa a la ubicacion actual del navegador
@@ -35,9 +36,30 @@ export default class MapView extends Component{
     };
   }
 
-    centerMapOnPoint(location) {
+    centerMapOnPoint(location, pointId) {
         if (this.state.map != null) {
             this.state.map.target.flyTo(location, this.state.map.target.getZoom());
+            for (let i = 0; i < this.state.markers.length; i++){
+                const id = this.state.markers[i].title;
+                console.log(this.state.markers[i].title)
+                if (this.state.markers[i].title == pointId){
+                    let myDiv = document.createElement('div');
+                    //this.props.session, this.props.webId, this.props.pointId,this.props.mapId
+                    console.log(this.state.session)
+                    console.log(this.state.webId)
+                    let pointId = id;
+                    console.log(pointId)
+                    console.log(this.state.mapId)
+                    ReactDOM.render(
+                        <PointInfo isLoading={true} pointId={pointId} marker={this.state.markers[i]} map={this.state.map} mapId={this.state.mapId} webId={this.state.webId} session={this.state.session} isOwner={this.state.isOwner}/>,
+                        myDiv
+                    );
+                    let popup = L.popup({minWidth:750, maxWidth:550, maxHeight:800, keepInView:true});
+                    popup.setContent(myDiv);
+                    this.state.markers[i].unbindPopup();
+                    this.state.markers[i].bindPopup(popup).openPopup();
+                }
+            }
         }
     }
 

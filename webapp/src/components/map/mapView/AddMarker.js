@@ -8,7 +8,8 @@ import PointInfo from "../../pointInfo/PointInfo";
 // Crea un marcador, le asocia un popup con el contenido del componente InfoAndComments y lo asocia al mapa
 function AddMarker (position, map, mapId, pointId, markerIcon, markers, webId, session, isOwner) {
     const IconLocation = Icon(markerIcon);
-    const marker = L.marker(position, {icon: IconLocation, riseOnHover:true});
+    const marker = L.marker(position, {icon: IconLocation, riseOnHover:true, title:pointId});
+    console.log(marker.riseOnHover);
     marker.addTo(map);
     markers.push(marker);
     marker.on('click', function() {

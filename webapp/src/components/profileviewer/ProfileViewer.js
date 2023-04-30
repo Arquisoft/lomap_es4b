@@ -62,7 +62,7 @@ const ProfileViewer = () => {
 
       {/* Le pasa la referencia a la funcion centerMapOnPoint de MapView */}
       {marcadorPuntosSeleccionado ?
-        <MarkersList setPointsLoading={setPointsLoading} centerMap={(position) => {mapView.centerMapOnPoint(position)}} mapId={currentMapId} session={session} webId={currentMapWebId}></MarkersList>
+        <MarkersList setPointsLoading={setPointsLoading} centerMap={(position, pointId) => {mapView.centerMapOnPoint(position, pointId)}} mapId={currentMapId} session={session} webId={currentMapWebId}></MarkersList>
         :
         null
       }
