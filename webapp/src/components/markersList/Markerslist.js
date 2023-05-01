@@ -27,7 +27,7 @@ export function MarkersList(props) {
           <div className='sideListLocations' id='pointsList' data-testid={"sideListLocations"}>
             {
               points.map((item) => (
-                <MarkerComponent centerMap={(position, pointId) => props.centerMap(position, pointId)} key={item.id} name={item.name} category={item.category}
+                <MarkerComponent centerMap={(position, pointId) => props.centerMap(position, pointId)} pointId={item.id} key={item.id} name={item.name} category={item.category}
                 description={item.description}  lat={item.latitude} lon={item.longitude} />
               ))
 
