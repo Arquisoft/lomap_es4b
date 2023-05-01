@@ -15,7 +15,7 @@
 This project is a basic example of website using **React** with **Javascript**
 
 ## Development team
-User:
+Users:
 - Aarón Orozco Fernández: UO281997 ​
 - Javier García González: UO276723
 - Daniel Suárez de la Roza: UO276467​
