@@ -79,7 +79,7 @@ const ProfileViewer = () => {
         null
       }
       {marcadorAñadirMapaSeleccionado ?
-        <AddMapForm session={session} webId={webId} setMarcadorAñadirMapaSeleccionado={setMarcadorAñadirMapaSeleccionado}></AddMapForm>
+        <AddMapForm uploadNewMap={(points, webId, mapId) => {mapView.updateMarkers(points, webId, mapId)}} setMarcadorAñadirMapaSeleccionado={setMarcadorAñadirMapaSeleccionado} setCurrentMapId={setCurrentMapId} session={session} webId={webId}></AddMapForm>
         :
         null
       }

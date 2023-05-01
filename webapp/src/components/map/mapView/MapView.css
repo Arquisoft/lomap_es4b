@@ -47,7 +47,8 @@
 
 .addMapButton {
     background-color: #4285f4;
-
+    display: flex;
+    align-items: center;
     border-radius: 0.35em;
     color: white;
     cursor: pointer;
