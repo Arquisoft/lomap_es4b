@@ -16,6 +16,7 @@ export default function Navbar(props){
     const { webId } = session.info;
     const {logggin} = props;
     const listaProveedores = [{url:"https://solidcommunity.net/"}, {url:"https://inrupt.net/"}];
+    const [imagen, setImagen]  = useState('');
 
 
   useEffect(() => {
