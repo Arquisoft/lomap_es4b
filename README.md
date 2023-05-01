@@ -15,10 +15,11 @@
 This project is a basic example of website using **React** with **Javascript**
 
 ## Development team
-Aarón Orozco Fernández: UO281997 ​
-Javier García González: UO276723
-Daniel Suárez de la Roza: UO276467​
-Juan Gómez Tejeda: UO281835
+User:
+- Aarón Orozco Fernández: UO281997 ​
+- Javier García González: UO276723
+- Daniel Suárez de la Roza: UO276467​
+- Juan Gómez Tejeda: UO281835
 
 ## Web app
 Click here to visit our page: https://lomapes4b.netlify.app/
