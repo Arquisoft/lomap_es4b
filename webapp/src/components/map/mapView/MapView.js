@@ -6,7 +6,6 @@ import * as L from "leaflet";
 import AddMarker, {addPopup} from '../../../logic/AddMarker';
 import AddPointForm from "../addPoint/AddPointForm";
 import {getFirstMap} from "../../../helper/PodMaps.js"
-import PointInfo from "../../pointInfo/PointInfo";
 
 
 // Centra el mapa a la ubicacion actual del navegador
@@ -37,7 +36,7 @@ export default class MapView extends Component{
     };
   }
 
-    centerMapOnPoint(location) {
+    centerMapOnPoint(location, pointId) {
         if (this.state.map != null) {
             this.state.map.target.flyTo(location, this.state.map.target.getZoom());
             for (let i = 0; i < this.state.markers.length; i++){
