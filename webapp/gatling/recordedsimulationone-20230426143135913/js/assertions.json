@@ -1,0 +1,10 @@
+{
+  "simulation": "lomapes4b.RecordedSimulationOne",
+  "simulationId": "recordedsimulationone-20230426143135913",
+  "start": 1682519497388,
+  "description": "",
+  "scenarios": ["RecordedSimulationOne"],
+  "assertions": [
+
+  ]
+}
