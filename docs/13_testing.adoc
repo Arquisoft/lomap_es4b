@@ -1,0 +1,24 @@
+= Testing
+
+*Tests e2e*
+
+4 tests
+
+1.	Login
+    2.	Login incorrecto
+    3.	Añadir punto
+    4.	Eliminar punto
+
+*Tests unitarios*
+
+    a. En estos tests, buscamos comprobar el correcto funcionamiento de la aplicación.
+    b. Para ello, hemos ejecutado 38 tests en total, divididos en 20 suites, una por componente de la aplicación.
+    c. Sin embargo, debido a una serie de errores que causan que los tests se ejecuten y pasen correctamente
+en local, pero a la hora de ser ejecutados en GitHub Actions no funcionen y lancen excepciones, hemos tomado la decisión de excluir ciertos tests,
+los que acceden al Pod y hacen uso de la sesión , para el cálculo del Coverage, decisión respaldada por el profesorado.
+    d. También hemos de aclarar que algunos de esos tests se encuentran comentados para evitar problemas.
+
+*Tests de carga*
+
+
+Desplegado con netlify
