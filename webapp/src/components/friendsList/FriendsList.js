@@ -16,7 +16,7 @@ export function FriendsList(props) {
           setFriends(result);
       }
       fetchFriends();
-    }, [friends]);
+    }, []);
 
     return (
       <div className='friendListComponent'>
