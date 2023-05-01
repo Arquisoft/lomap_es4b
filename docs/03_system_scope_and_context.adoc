@@ -25,4 +25,5 @@ image::03_technical.png[]
 |SOLID|Nos permitirá almacenar de forma segura la información del usuario
 |JavaScript|Lenguaje de programación que utlizaremos durante el desarrollo
 |React|Biblioteca de JavaScript que se utilizará a la hora de crear las interfaces de nuestra aplicación
+|Firebase|Plataforma móvil de Google que hemos utilizado para almacenar las imagénes de los usuarios
 |===
