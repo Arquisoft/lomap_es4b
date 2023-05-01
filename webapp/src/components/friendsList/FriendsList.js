@@ -12,11 +12,11 @@ export function FriendsList(props) {
       const fetchFriends = async() => {
           setFriendsLoading(true);
           const result = await getAllFriendsFromPod(webId);
-          setFriendsLoading(false);
           setFriends(result);
+          setFriendsLoading(false);
       }
       fetchFriends();
-    }, []);
+    }, [friends]);
 
     return (
       <div className='friendListComponent'>
