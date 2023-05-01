@@ -5,7 +5,7 @@ import { useState,useEffect} from "react";
 import {getAllMaps,getAllPointsInCurrentMap} from '../../helper/PodMaps';
 import {ListLoadingItem} from "../loadingComponents/ListLoadingItem";
 import ContentLoader from "react-content-loader";
-import {deleteFriend,friendsAclPermission} from "../../helper/PodFriends";
+import {deleteFriend,friendsAclPermission,deleteFriendPermission} from "../../helper/PodFriends";
 
 export function FriendComponent(props) {
 
@@ -62,7 +62,8 @@ export function FriendComponent(props) {
           ()=>{
               setFriends(friendsList.filter(url => url !== friendURL));
               console.log(friendsList);
-              friendsAclPermission(session.info.webId, session);
+              deleteFriendPermission(session.info.webId, session,friendURL);
+              //friendsAclPermission(session.info.webId, session);
           }
           );
     
@@ -98,14 +99,14 @@ export function FriendComponent(props) {
                 (
                     <ContentLoader
                         speed={2}
-                        width={"10em"}
-                        height={"4em"}
-                        viewBox="0 0 10em 4em"
+                        width={"12em"}
+                        height={"2em"}
+                        viewBox="0 0 12em 2em"
                         backgroundColor="#f3f3f3"
                         foregroundColor="#ecebeb"
                         {...props}
                     >
-                        <rect x="0" y="0" rx="3" ry="3" width="10em" height="4em" />
+                        <rect x="0" y="0" rx="3" ry="3" width="12em" height="2em" />
                     </ContentLoader>
                 )
                 :

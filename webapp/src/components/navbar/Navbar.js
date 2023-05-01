@@ -5,6 +5,8 @@ import logo from '../../images/lomapLogo.png';
 import { VCARD, FOAF } from "@inrupt/lit-generated-vocab-common";
 import pordefecto from '../../images/default-user.jpg';
 import "./NavBar.css"
+import {getImageFromPod} from "../../helper/PodHelper";
+import {getAllMaps} from "../../helper/PodMaps";
 
 export default function Navbar(props){
     const [idp, setIdp] = useState("https://inrupt.net/");
@@ -18,12 +20,25 @@ export default function Navbar(props){
 
   useEffect(() => {
     setCurrentUrl(window.location.href);
+
   }, [setCurrentUrl]);
 
 
     const handleChange = (event)=>{
         const value = event.target.value;
         setIdp(value);
+    }
+    const handleChangeIcon = (id)=>{
+        const fetchImage = async() => {
+            console.log(id);
+            let image = await getImageFromPod(id);
+            if(image == 'NoImage'){
+                image = pordefecto;
+            }
+            setImagen(image);
+        }
+        if(logggin)
+            fetchImage();
     }
     return (
         <nav className="navBar">
@@ -34,10 +49,13 @@ export default function Navbar(props){
 
 
             {logggin ? (
+
+
                 <>
                     <div className="navProfile">
-                        <CombinedDataProvider datasetUrl={webId} thingUrl={webId} className="image-button" style={{flexDirection: 'row'}}>
-                            <Image className="profileImage" property={VCARD.hasPhoto.iri.value} alt="Foto de perfil del usuario"/>
+                        <CombinedDataProvider datasetUrl={webId} thingUrl={webId} className="image-button" style={{flexDirection: 'row'}}
+                        onChange={handleChangeIcon(webId)}>
+                            <img className={"icono"} src={ imagen} alt="Foto de perfil del usuario"/>
                             <Text className="profileName" property={FOAF.name.iri.value}/>
                         </CombinedDataProvider>
                         <LogoutButton >

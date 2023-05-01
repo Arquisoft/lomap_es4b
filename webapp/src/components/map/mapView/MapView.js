@@ -3,7 +3,7 @@ import ReactDOM  from "react-dom";
 import { MapContainer, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import * as L from "leaflet";
-import AddMarker from '../../../logic/AddMarker';
+import AddMarker, {addPopup} from '../../../logic/AddMarker';
 import AddPointForm from "../addPoint/AddPointForm";
 import {getFirstMap} from "../../../helper/PodMaps.js"
 
@@ -32,12 +32,18 @@ export default class MapView extends Component{
         mapId: '',
         setCurrentMapId: this.props.setCurrentMapId,
         setCurrentMapWebId : this.props.setCurrentMapWebId,
+        currentMapWebId: this.props.webId,
     };
   }
 
-    centerMapOnPoint(location) {
+    centerMapOnPoint(location, pointId) {
         if (this.state.map != null) {
             this.state.map.target.flyTo(location, this.state.map.target.getZoom());
+            for (let i = 0; i < this.state.markers.length; i++){
+                if (this.state.markers[i].options.id == pointId){
+                    addPopup(pointId, this.state.markers[i], this.state.map, this.state.mapId, this.state.currentMapWebId, this.state.session, this.state.isOwner);
+                }
+            }
         }
     }
 
@@ -49,6 +55,7 @@ export default class MapView extends Component{
         }
         let isOwner = webId == this.state.webId;
         this.setState({isOwner: isOwner});
+        this.setState({currentMapWebId: webId});
         this.state.setCurrentMapWebId(webId);
         //creamos los nuevos markers
         for (let i=0; i < points.length; i++) {

@@ -53,7 +53,7 @@ export default class AddPointForm extends Component {
                 <h1 className='pointFormHeader'>Añadir Punto</h1>
                 <label htmlFor="titulo">
                     Título:
-                    <input id="titulo" name="titulo" type="text" placeholder="Titulo" value={this.state.name} onChange={this.handleChangeName} required maxLength='20'/>
+                    <input id="titulo" name="titulo" type="text" placeholder="Titulo" value={this.state.name} onChange={this.handleChangeName} required maxLength='50'/>
                 </label>
                 <label>
                     Selecciona una categoría:
@@ -69,7 +69,7 @@ export default class AddPointForm extends Component {
                 </label>
                 <label htmlFor="descripcion">
                     Descripción:
-                    <input id="descripcion" name="descripcion" type="text" placeholder="Descripcion" value={this.state.description} onChange={this.handleChangeDescription} required maxLength='50'/>
+                    <input id="descripcion" name="descripcion" type="text" placeholder="Descripcion" value={this.state.description} onChange={this.handleChangeDescription} required maxLength='100'/>
                 </label>
                 <button id="addPointSubmit" data-testid={"addPointSubmit"} type="submit" className="pointFormSubmit" onClick={this.handleSubmit} disabled={this.state.pointCreating}>
                     {this.state.pointCreating && <ListLoadingItem/>}
