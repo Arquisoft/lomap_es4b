@@ -2,6 +2,11 @@
     height: 12%;
 }
 
+.icono{
+    width: 3em;
+    height: 3em;
+    border-radius: 3em;
+}
 .navBar{
     background-color: #454950;
     height: 100%;
