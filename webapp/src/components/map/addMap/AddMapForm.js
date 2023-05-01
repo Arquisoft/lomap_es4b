@@ -43,7 +43,7 @@ export default class AddMapForm extends Component {
         return (
             <div className="addMapForm">
             <form  onSubmit={this.handleSubmit}>
-                <h2 className="addMapHeader">Agregar Mapa</h2>
+                <h2 className="addMapHeader">Añadir Mapa</h2>
                 <p className="addMapText">Dale un nombre al mapa:</p>
                 <div className="inputAndButton">
                     <input className="addMapName" type="text" placeholder="Nombre del mapa"
