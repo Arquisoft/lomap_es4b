@@ -7,12 +7,21 @@
 
 <p float="left" >
 <img src="https://blog.wildix.com/wp-content/uploads/2020/06/react-logo.jpg" height="100">
-<img src="https://miro.medium.com/max/1200/0*RbmfNyhuBb8G3LWh.png" height="100">
+<img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fes.wikipedia.org%2Fwiki%2FArchivo%3AJavaScript-logo.png&psig=AOvVaw2G2PHW64gwraSV2ZUSpZOK&ust=1683050771916000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCPDx2e3a1P4CFQAAAAAdAAAAABAE" height="100">
 <img src="https://miro.medium.com/max/365/1*Jr3NFSKTfQWRUyjblBSKeg.png" height="100">
 </p>
 
 
-This project is a basic example of website using **React** with **Typescript** and an endpoint using **NodeJS** with **express**.
+This project is a basic example of website using **React** with **Javascript**
+
+## Development team
+Aarón Orozco Fernández: UO281997 ​
+Javier García González: UO276723
+Daniel Suárez de la Roza: UO276467​
+Juan Gómez Tejeda: UO281835
+
+## Web app
+Click here to visit our page: https://lomapes4b.netlify.app/
 
 ## Quick start guide
 <mark>In case you already have node.js and npm, make sure you update them before attempting to build the images</mark>

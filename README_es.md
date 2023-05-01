@@ -10,7 +10,7 @@
 <img src="https://miro.medium.com/max/365/1*Jr3NFSKTfQWRUyjblBSKeg.png" height="100">
 </p>
 
-Este proyecto es un ejemplo básico de un sitio web utilizando **React** con **Typescript** y un endpoint usando **NodeJS** con **express**
+Este proyecto es un ejemplo básico de un sitio web utilizando **React** con **Javascript**
 
 ## Guía de inicio rápido
 
