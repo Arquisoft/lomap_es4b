@@ -28,13 +28,13 @@ export default class AddMapForm extends Component {
     handleSubmit(event) {
         event.preventDefault();
         this.setState({mapCreating: true});
-        addMap(this.state.name, this.state.session, this.state.webId).then((mapId) => {
+        addMap(this.state.name, this.state.session, this.state.webId).then((mapId = "1") => {
             this.setState({mapCreating: false});
-            this.state.setMarcadorAñadirMapaSeleccionado(false);
-            this.state.setCurrentMapId(mapId);
             this.state.uploadNewMap([], this.state.webId, mapId);
+            this.state.setCurrentMapId(mapId);
+            this.state.setMarcadorAñadirMapaSeleccionado(false);
         }).catch(error => {
-            console.log(error);
+            console.log('Error al añadir el mapa: ' + error);
             this.state.setMarcadorAñadirMapaSeleccionado(false);
         })
     }
