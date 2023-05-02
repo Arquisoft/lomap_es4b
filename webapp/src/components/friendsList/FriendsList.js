@@ -7,13 +7,16 @@ export function FriendsList(props) {
 
     const {session,webId, setFriendsLoading} = props;
     const [friends, setFriends] = useState([]);
+    const [friendsLoaded, setFriendsLoaded] = useState(false);
 
     useEffect(() => {
       const fetchFriends = async() => {
-          setFriendsLoading(true);
+          if (!friendsLoaded)
+            setFriendsLoading(true);
           const result = await getAllFriendsFromPod(webId);
           setFriends(result);
           setFriendsLoading(false);
+          setFriendsLoaded(true);
       }
       fetchFriends();
     }, [friends]);
