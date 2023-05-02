@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { LoginButton, LogoutButton, CombinedDataProvider, Image, useSession, Text} from "@inrupt/solid-ui-react";
 import { Button} from "@material-ui/core";
-import logo from '../../images/lomapLogo.png';
+import logo from '../../images/lomapLogo2.png';
 import { VCARD, FOAF } from "@inrupt/lit-generated-vocab-common";
 import pordefecto from '../../images/default-user.jpg';
 import "./NavBar.css"
@@ -44,7 +44,7 @@ export default function Navbar(props){
         <nav className="navBar">
 
             <a href="/home">
-                <img src={logo} alt="Logo de Lomap"/>
+                <img src={logo} className="logoImg" alt="Logo de Lomap"/>
             </a>
 
 

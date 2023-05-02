@@ -13,26 +13,18 @@ const LoadedMapInfo = (props) => {
     const fetchMap = async() => {
       
       setLoadingInfo(true);
-      text = <p>Cargando</p>
       setMapInfo(await getMap(props.mapId, props.webId, session));
       setLoadingInfo(false);
     }
     fetchMap();
   }, [props.mapId, props.webId, session]);
 
-  let text;
-  if(mapInfo === undefined){
-    text = <p>Ningún mapa cargado</p>
-  }else{
-    text = <p>{mapInfo.name + " de " + mapInfo.author}</p>
-  }
-
   return (
     <div className="loadedMapInfo">
       {loadingInfo && <LoadingMapInfo/>}
-      {mapInfo==undefined &&  <p>Cargando</p>}
+      {mapInfo==undefined && !loadingInfo && <p>Ningun mapa cargado</p>}
       {mapInfo!=undefined && !loadingInfo && <p>{mapInfo.name + " de " + mapInfo.author}</p>}
-      {mapInfo!=undefined && loadingInfo && <p>Cargando</p>}
+      {loadingInfo && <p>Cargando</p>}
     </div>
   );
 }
