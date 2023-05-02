@@ -7,6 +7,12 @@
     height: 3em;
     border-radius: 3em;
 }
+
+.lomapImg {
+    height: 7em;
+    width: auto;
+}
+
 .navBar{
     background-color: #454950;
     height: 100%;

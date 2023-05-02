@@ -117,7 +117,7 @@ export async function addMap(name,session,webId){
       await createData(urlContainer, file, session);
       await ownAclPermission(webId,session);
       await friendsAclPermission(webId,session);
-      //return addMap(name,session,webId);
+      return 1;
     }  
 }
 

@@ -52,7 +52,6 @@ export default class AddMapForm extends Component {
                         {this.state.mapCreating && <ListLoadingItem/>}
                         {this.state.mapCreating ? <span>Creando</span> : <span>Agregar Mapa</span>}
                     </button>
-                    {/*<input data-testid="addMapButton" className="addMapButton" type="submit" value="Agregar mapa" />*/}
                 </div>
             </form>
             </div>
