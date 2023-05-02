@@ -40,8 +40,8 @@ title Creación de mapas
 
 Actor Usuario
 Participant LoMap
+Participant Proveedor
 Database Pod as "Pod del usuario" #pink
-Database DataBase as "Proveedor Inrupt" #lightgreen
 
 skinparam responseMessageBelowArrow true
 
@@ -49,15 +49,16 @@ skinparam responseMessageBelowArrow true
 
 Usuario -> LoMap: Inicia sesión con su usuario
 
-LoMap -> DataBase: Solicitar confirmación de cuenta
-LoMap <-- DataBase: Confirma validez de la cuenta
+LoMap -> Proveedor: Solicitar autenticación de la cuenta
+LoMap <-- Proveedor: Confirma autenticación de la cuenta
 
 Usuario <-- LoMap: Muestra la página de inicio
 
 Usuario -> LoMap: Selecciona opción de crear mapa
 
-LoMap -> Pod: Añade un mapa nuevo a su lista de mapas
-LoMap <-- Pod: Confirma la creación del nuevo mapa
+LoMap -> Proveedor: Solicita acceso al pod
+Proveedor -> Pod: Envía la información del nuevo mapa
+LoMap <-- Proveedor: Confirma la creación del nuevo mapa
 
 Usuario <-- LoMap: Mensaje de confirmación
 ----
@@ -72,6 +73,7 @@ title Añadir puntos de interés
 
 Actor Usuario
 Participant LoMap
+Participant Proveedor
 Database Pod as "Pod del usuario" #pink
 
 skinparam responseMessageBelowArrow true
@@ -80,8 +82,9 @@ skinparam responseMessageBelowArrow true
 
 Usuario -> LoMap: Selecciona opción de cargar mapa
 
-LoMap -> Pod: Solicita datos del mapa
-LoMap <-- Pod: Devuelve datos del mapa
+LoMap -> Proveedor: Solicita acceso al pod
+Proveedor -> Pod: Accede a los datos del mapa
+LoMap <-- Proveedor: Devuelve datos del mapa
 
 Usuario <-- LoMap: Muestra estado del mapa seleccionado
 
@@ -90,9 +93,10 @@ Usuario -> LoMap: Selecciona acción de añadir punto de interés
 Usuario <-- LoMap: Formulario con los datos del punto de interés
 
 Usuario -> LoMap: Rellena y confirma los datos
-LoMap -> Pod: Envía información del nuevo punto de interés
+LoMap -> Proveedor: Solicita acceso al pod
+Proveedor -> Pod: Envía información del nuevo punto de interés
 
-LoMap <-- Pod: Confirmación de los datos recibidos
+LoMap <-- Proveedor: Confirmación de los datos recibidos
 Usuario <-- LoMap: Mensaje de confirmación
 
 ----
@@ -107,6 +111,7 @@ title Publicar comentario
 
 Actor Usuario
 Participant LoMap
+Participant Proveedor
 Database Pod as "Pod del usuario" #pink
 Database PodAmigo as "Pod del amigo" #lightblue
 
@@ -114,30 +119,34 @@ skinparam responseMessageBelowArrow true
 
 Usuario -> LoMap: Abre lista de amigos
 
-LoMap -> Pod: Solicita lista de amigos
-LoMap <-- Pod: Devuelve lista de amigos
+LoMap -> Proveedor: Solicita acceso al pod
+Proveedor -> Pod: Accede a la lista de amigos
+LoMap <-- Proveedor: Devuelve lista de amigos
 
 Usuario <-- LoMap: Muestra lista de amigos
 
 
 Usuario -> LoMap: Selecciona mapa de un amigo
 
-LoMap -> PodAmigo: Solicita obtener datos del mapa
-LoMap <-- PodAmigo: Confirma solicitud
+LoMap -> Proveedor: Solicita acceso al pod del amigo
+Proveedor -> PodAmigo: Accede a los datos del mapa
+LoMap <-- Proveedor: Devuelve datos del mapa
 
 Usuario <-- LoMap: Muestra datos del mapa en pantalla
 
 Usuario -> LoMap: Selecciona un punto de interés del mapa
 
-LoMap -> PodAmigo: Solicita información del punto de interés
-LoMap <-- PodAmigo: Confirma solicitud
+LoMap -> Proveedor: Solicita acceso al pod del amigo
+Proveedor -> PodAmigo: Accede a la información del punto de interés
+LoMap <-- Proveedor: Devuelve einformación del punto
 
 Usuario <-- LoMap: Muestra información del punto de interés
 
 Usuario -> LoMap: Publica comentario
 
-LoMap -> PodAmigo: Solicita añadir comentario
-LoMap <-- PodAmigo: Confirma solicitud
+LoMap -> Proveedor: Solicita acceso al pod del amigo
+Proveedor -> PodAmigo: Envía la información del comentario
+LoMap <-- Proveedor: Confirma la creación del comentario
 
 Usuario <-- LoMap: Muestra el comentario en pantalla
 
