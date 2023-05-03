@@ -1,7 +1,7 @@
 [[section-deployment-view]]
 
 
-== Deployment View
+== Vista de Despliegue
 
 [role="arc42help"]
 ****
@@ -34,7 +34,7 @@ when your infrastructure is more complex.
 * When your (hardware) stakeholders prefer other kinds of diagrams rather than the deployment diagram, let them use any kind that is able to show nodes and channels of the infrastructure.
 ****
 
-=== Infrastructure Level 1
+=== Nivel de Infraestructura 1
 
 [role="arc42help"]
 ****
@@ -50,44 +50,14 @@ For multiple environments or alternative deployments please copy that section of
 
 image::07_DeploymentView.png[]
 
-Motivation::
 
-Aqui se podra ver un resumen de como funcionara la aplicacion en tiempo de ejecucion
-
-Quality and/or Performance Features::
-
-
-Mapping of Building Blocks to Infrastructure::
+Mapeo de Elementos de la Infraestructura::
 [options="header"]
 |===
 |Bloque|Descripcion
 | Browser | Mediante este, el usuario utilizara la aplicacion
 | Webapp | La capa que contendra las vistas que se mostraran a los usuarios
-| RestApi | La capa con la logica, a la cual se conectara la aplicacion
 | USER POD | Donde se guardaran los datos personales de los usuarios (un POD por usuario)
-| MongoDB | La base de datos de la aplicacion, con la que interaccionara la restapi
+| Firebase | Donde se guardarán y cargarán las imágenes subidas por los usuarios
 |===
 
-
-=== Infrastructure Level 2
-
-[role="arc42help"]
-****
-Here you can include the internal structure of (some) infrastructure elements from level 1.
-
-Please copy the structure from level 1 for each selected element.
-****
-
-==== _<Infrastructure Element 1>_
-
-_<diagram + explanation>_
-
-==== _<Infrastructure Element 2>_
-
-_<diagram + explanation>_
-
-...
-
-==== _<Infrastructure Element n>_
-
-_<diagram + explanation>_
