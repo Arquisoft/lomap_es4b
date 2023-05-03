@@ -19,7 +19,7 @@
 .sideComponentLocation{
     display: flex;
     flex-direction: column;
-    width: 18em;
+    width: 19em;
     margin-left: 0.5em;
     margin-top: 0.25em;
     margin-bottom: 0.25em;
@@ -82,7 +82,7 @@
     background-color: #4285F4;
     color: white;
     height: 3em;
-    margin-left: 9.5em;
+    margin-left: 10.5em;
     margin-bottom: 0.5em;
 }
   
