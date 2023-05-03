@@ -25,7 +25,7 @@ Potentially more columns in case you need translations.
 
 [options="header"]
 |===
-| Term                          | Definition
+| Término                          | Definición
 | React                         | libreria JavaScript de codigo abierto para diseñar interfaces de usuario
 | Arc42                         | Arc42 es una plantilla para la documentacion arquitectonica.
 | API                           | Application Programming Interface, permite la comunicación entre dos aplicaciones de software a través de un conjunto de reglas
