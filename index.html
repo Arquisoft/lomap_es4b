@@ -442,21 +442,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#section-introduction-and-goals">1. Introduction and Goals</a>
+<li><a href="#section-introduction-and-goals">1. Introducción y objetivos</a>
 <ul class="sectlevel2">
-<li><a href="#_requirements_overview">1.1. Requirements Overview</a></li>
-<li><a href="#_quality_goals">1.2. Quality Goals</a></li>
+<li><a href="#_descripción_de_los_requisitos">1.1. Descripción de los requisitos</a></li>
+<li><a href="#_objetivos_de_calidad">1.2. Objetivos de calidad</a></li>
 <li><a href="#_stakeholders">1.3. Stakeholders</a></li>
 </ul>
 </li>
-<li><a href="#section-architecture-constraints">2. Architecture Constraints</a>
+<li><a href="#section-architecture-constraints">2. Restricciones Arquitectónicas</a>
 <ul class="sectlevel2">
 <li><a href="#_restricciones_técnicas">2.1. Restricciones técnicas</a></li>
 <li><a href="#_restricciones_de_negocio">2.2. Restricciones de negocio</a></li>
-<li><a href="#_conventions">2.3. Conventions</a></li>
+<li><a href="#_convenio">2.3. Convenio</a></li>
 </ul>
 </li>
-<li><a href="#section-system-scope-and-context">3. System Scope and Contextt</a>
+<li><a href="#section-system-scope-and-context">3. Alcance y contexto del sistema</a>
 <ul class="sectlevel2">
 <li><a href="#_contexto_de_negocio">3.1. Contexto de negocio</a></li>
 <li><a href="#_contexto_técnico">3.2. Contexto Técnico</a></li>
@@ -465,48 +465,49 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#section-solution-strategy">4. Solution Strategy</a>
 <ul class="sectlevel2">
 <li><a href="#_decisiones_tecnológicas">4.1. Decisiones tecnológicas</a></li>
-<li><a href="#_objetivos_de_calidad">4.2. Objetivos de calidad</a></li>
+<li><a href="#_objetivos_de_calidad_2">4.2. Objetivos de calidad</a></li>
 <li><a href="#_decisiones_organizativas">4.3. Decisiones organizativas</a></li>
 </ul>
 </li>
-<li><a href="#section-building-block-view">5. Building Block View</a>
+<li><a href="#section-building-block-view">5. Vista del Bloque de Construccion</a>
 <ul class="sectlevel2">
-<li><a href="#_whitebox_overall_system">5.1. Whitebox Overall System</a></li>
-<li><a href="#_level_2">5.2. Level 2</a></li>
-<li><a href="#_level_3">5.3. Level 3</a></li>
+<li><a href="#_caja_blanca_general_del_sistema">5.1. Caja Blanca General del Sistema</a></li>
+<li><a href="#_nivel_2">5.2. Nivel 2</a></li>
+<li><a href="#_nivel_3">5.3. Nivel 3</a></li>
 </ul>
 </li>
-<li><a href="#section-runtime-view">6. Runtime View</a>
+<li><a href="#section-runtime-view">6. Vista en Tiempo de Ejecución</a>
 <ul class="sectlevel2">
 <li><a href="#_usuario_crea_un_mapa_nuevo">6.1. Usuario crea un mapa nuevo</a></li>
 <li><a href="#_usuario_añade_un_restaurante_a_su_mapa">6.2. Usuario añade un restaurante a su mapa</a></li>
 <li><a href="#_usuario_publica_un_comentario">6.3. Usuario publica un comentario</a></li>
 </ul>
 </li>
-<li><a href="#section-deployment-view">7. Deployment View</a>
+<li><a href="#section-deployment-view">7. Vista de Despliegue</a>
 <ul class="sectlevel2">
-<li><a href="#_infrastructure_level_1">7.1. Infrastructure Level 1</a></li>
-<li><a href="#_infrastructure_level_2">7.2. Infrastructure Level 2</a></li>
+<li><a href="#_nivel_de_infraestructura_1">7.1. Nivel de Infraestructura 1</a></li>
 </ul>
 </li>
-<li><a href="#section-concepts">8. Cross-cutting Concepts</a>
+<li><a href="#section-concepts">8. Conceptos transversales</a>
 <ul class="sectlevel2">
-<li><a href="#_domain_model">8.1. Domain model</a></li>
+<li><a href="#_modelo_de_dominio">8.1. Modelo de dominio</a></li>
 </ul>
 </li>
-<li><a href="#section-design-decisions">9. Design Decisions</a>
+<li><a href="#section-design-decisions">9. Descisiones de diseño</a>
 <ul class="sectlevel2">
 <li><a href="#_decisiones_de_diseño">9.1. Decisiones de diseño</a></li>
 </ul>
 </li>
-<li><a href="#section-quality-scenarios">10. Quality Requirements</a>
+<li><a href="#section-quality-scenarios">10. Requisitos de calidad</a>
 <ul class="sectlevel2">
-<li><a href="#_quality_tree">10.1. Quality Tree</a></li>
-<li><a href="#_quality_scenarios">10.2. Quality Scenarios</a></li>
+<li><a href="#_árbol_de_calidad">10.1. Árbol de calidad</a></li>
+<li><a href="#_escenarios_de_calidad">10.2. Escenarios de calidad</a></li>
 </ul>
 </li>
-<li><a href="#section-technical-risks">11. Risks and Technical Debts</a></li>
-<li><a href="#section-glossary">12. Glossary</a></li>
+<li><a href="#section-technical-risks">11. Riesgos y Deuda Técnica</a></li>
+<li><a href="#_desplegado">12. Desplegado</a></li>
+<li><a href="#section-testing">13. Testing</a></li>
+<li><a href="#section-glossary">14. Glossary</a></li>
 </ul>
 </div>
 </div>
@@ -547,7 +548,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-introduction-and-goals">1. Introduction and Goals</h2>
+<h2 id="section-introduction-and-goals">1. Introducción y objetivos</h2>
 <div class="sectionbody">
 <div class="sidebarblock arc42help">
 <div class="content">
@@ -570,7 +571,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </div>
 </div>
 <div class="sect2">
-<h3 id="_requirements_overview">1.1. Requirements Overview</h3>
+<h3 id="_descripción_de_los_requisitos">1.1. Descripción de los requisitos</h3>
 <div class="paragraph">
 <p>En la aplicacion web los usuarios podran añadir lugares de distintas categorias (tiendas, bares, restaurantes, monumentos&#8230;&#8203;). Tambien podran mostrar lugares en un formato tipo mapa, ademas de asociar puntuaciones, comentarios, etc. sobre los mismos.</p>
 </div>
@@ -605,7 +606,7 @@ If requirements documents exist this overview should refer to these documents.</
 </div>
 </div>
 <div class="sect2">
-<h3 id="_quality_goals">1.2. Quality Goals</h3>
+<h3 id="_objetivos_de_calidad">1.2. Objetivos de calidad</h3>
 <div class="sidebarblock arc42help">
 <div class="content">
 <div class="paragraph">
@@ -739,7 +740,7 @@ interés)</em></p></td>
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-architecture-constraints">2. Architecture Constraints</h2>
+<h2 id="section-architecture-constraints">2. Restricciones Arquitectónicas</h2>
 <div class="sectionbody">
 <div class="sidebarblock arc42help">
 <div class="content">
@@ -826,9 +827,9 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 </table>
 </div>
 <div class="sect2">
-<h3 id="_conventions">2.3. Conventions</h3>
+<h3 id="_convenio">2.3. Convenio</h3>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 3. Conventions</caption>
+<caption class="title">Table 3. Convenio</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 66.6667%;">
@@ -859,7 +860,7 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-system-scope-and-context">3. System Scope and Contextt</h2>
+<h2 id="section-system-scope-and-context">3. Alcance y contexto del sistema</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_contexto_de_negocio">3.1. Contexto de negocio</h3>
@@ -1020,7 +1021,7 @@ Refer to details in the following sections.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_objetivos_de_calidad">4.2. Objetivos de calidad</h3>
+<h3 id="_objetivos_de_calidad_2">4.2. Objetivos de calidad</h3>
 <div class="paragraph">
 <p>Algunos objetivos de calidad claves y cómo lograrlos:</p>
 </div>
@@ -1060,7 +1061,7 @@ Refer to details in the following sections.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-building-block-view">5. Building Block View</h2>
+<h2 id="section-building-block-view">5. Vista del Bloque de Construccion</h2>
 <div class="sectionbody">
 <div class="sidebarblock arc42help">
 <div class="content">
@@ -1104,7 +1105,7 @@ Thus it contains the white box description of selected building blocks of level 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_whitebox_overall_system">5.1. Whitebox Overall System</h3>
+<h3 id="_caja_blanca_general_del_sistema">5.1. Caja Blanca General del Sistema</h3>
 <div class="sidebarblock arc42help">
 <div class="content">
 <div class="paragraph">
@@ -1150,14 +1151,14 @@ In the best case you will get away with examples or simple signatures.</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Motivation</dt>
+<dt class="hdlist1">Motivacion</dt>
 <dd>
 <p>En este diagrama podemos observar los principales agentes de la aplicación (los cuales se verán en detalle más adelante).</p>
 </dd>
 </dl>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 4. Contained Building Blocks</caption>
+<caption class="title">Table 4. Bloques de construccion contenidos</caption>
 <colgroup>
 <col style="width: 16.6666%;">
 <col style="width: 83.3334%;">
@@ -1181,7 +1182,7 @@ In the best case you will get away with examples or simple signatures.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_level_2">5.2. Level 2</h3>
+<h3 id="_nivel_2">5.2. Nivel 2</h3>
 <div class="sidebarblock arc42help">
 <div class="content">
 <div class="paragraph">
@@ -1224,7 +1225,7 @@ Leave out normal, simple, boring or standardized parts of your system</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_level_3">5.3. Level 3</h3>
+<h3 id="_nivel_3">5.3. Nivel 3</h3>
 <div class="sidebarblock arc42help">
 <div class="content">
 <div class="paragraph">
@@ -1245,7 +1246,7 @@ part of arc42 for additional levels.</p>
 <dd>
 <p>Estructura detallada del sistema.</p>
 </dd>
-<dt class="hdlist1">Contained Building Blocks</dt>
+<dt class="hdlist1">Bloques de construcción contenidos</dt>
 </dl>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -1255,8 +1256,8 @@ part of arc42 for additional levels.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Nombre</th>
+<th class="tableblock halign-left valign-top">Descripcion</th>
 </tr>
 </thead>
 <tbody>
@@ -1283,7 +1284,7 @@ part of arc42 for additional levels.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-runtime-view">6. Runtime View</h2>
+<h2 id="section-runtime-view">6. Vista en Tiempo de Ejecución</h2>
 <div class="sectionbody">
 <div class="sidebarblock arc42help">
 <div class="content">
@@ -1380,7 +1381,7 @@ You will mainly capture scenarios in your documentation to communicate your arch
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-deployment-view">7. Deployment View</h2>
+<h2 id="section-deployment-view">7. Vista de Despliegue</h2>
 <div class="sectionbody">
 <div class="sidebarblock arc42help">
 <div class="content">
@@ -1433,7 +1434,7 @@ when your infrastructure is more complex.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_infrastructure_level_1">7.1. Infrastructure Level 1</h3>
+<h3 id="_nivel_de_infraestructura_1">7.1. Nivel de Infraestructura 1</h3>
 <div class="sidebarblock arc42help">
 <div class="content">
 <div class="paragraph">
@@ -1467,12 +1468,7 @@ when your infrastructure is more complex.</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1">Motivation</dt>
-<dd>
-<p>Aqui se podra ver un resumen de como funcionara la aplicacion en tiempo de ejecucion</p>
-</dd>
-<dt class="hdlist1">Quality and/or Performance Features</dt>
-<dt class="hdlist1">Mapping of Building Blocks to Infrastructure</dt>
+<dt class="hdlist1">Mapeo de Elementos de la Infraestructura</dt>
 </dl>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -1496,59 +1492,21 @@ when your infrastructure is more complex.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">La capa que contendra las vistas que se mostraran a los usuarios</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">RestApi</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">La capa con la logica, a la cual se conectara la aplicacion</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">USER POD</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Donde se guardaran los datos personales de los usuarios (un POD por usuario)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">La base de datos de la aplicacion, con la que interaccionara la restapi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Firebase</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Donde se guardarán y cargarán las imágenes subidas por los usuarios</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="sect2">
-<h3 id="_infrastructure_level_2">7.2. Infrastructure Level 2</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<p>Here you can include the internal structure of (some) infrastructure elements from level 1.</p>
-</div>
-<div class="paragraph">
-<p>Please copy the structure from level 1 for each selected element.</p>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_infrastructure_element_1">7.2.1. <em>&lt;Infrastructure Element 1&gt;</em></h4>
-<div class="paragraph">
-<p><em>&lt;diagram + explanation&gt;</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_infrastructure_element_2">7.2.2. <em>&lt;Infrastructure Element 2&gt;</em></h4>
-<div class="paragraph">
-<p><em>&lt;diagram + explanation&gt;</em></p>
-</div>
-<div class="paragraph">
-<p>&#8230;&#8203;</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_infrastructure_element_n">7.2.3. <em>&lt;Infrastructure Element n&gt;</em></h4>
-<div class="paragraph">
-<p><em>&lt;diagram + explanation&gt;</em></p>
-</div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
-</div>
 <div class="sect1">
-<h2 id="section-concepts">8. Cross-cutting Concepts</h2>
+<h2 id="section-concepts">8. Conceptos transversales</h2>
 <div class="sectionbody">
 <div class="sidebarblock arc42help">
 <div class="content">
@@ -1647,17 +1605,16 @@ on this list.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_domain_model">8.1. Domain model</h3>
+<h3 id="_modelo_de_dominio">8.1. Modelo de dominio</h3>
 <div class="paragraph">
-<p><span class="image"><img src="./images/domainModelDiagram.jpg" alt="UML Domain Model Diagram"></span>
-This is the domain model of the project.</p>
+<p><span class="image"><img src="./images/domainModelDiagram.jpg" alt="UML Domain Model Diagram"></span></p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-design-decisions">9. Design Decisions</h2>
+<h2 id="section-design-decisions">9. Descisiones de diseño</h2>
 <div class="sectionbody">
 <div class="sidebarblock arc42help">
 <div class="content">
@@ -1740,7 +1697,7 @@ here in this central section or whether you better document it locally
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-quality-scenarios">10. Quality Requirements</h2>
+<h2 id="section-quality-scenarios">10. Requisitos de calidad</h2>
 <div class="sectionbody">
 <div class="sidebarblock arc42help">
 <div class="content">
@@ -1761,7 +1718,7 @@ concrete and measurable.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_quality_tree">10.1. Quality Tree</h3>
+<h3 id="_árbol_de_calidad">10.1. Árbol de calidad</h3>
 <div class="imageblock">
 <div class="content">
 <img src="./images/10_quality_tree.png" alt="10 quality tree">
@@ -1769,7 +1726,7 @@ concrete and measurable.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_quality_scenarios">10.2. Quality Scenarios</h3>
+<h3 id="_escenarios_de_calidad">10.2. Escenarios de calidad</h3>
 <div class="sidebarblock arc42help">
 <div class="content">
 <div class="paragraph">
@@ -1852,7 +1809,7 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-technical-risks">11. Risks and Technical Debts</h2>
+<h2 id="section-technical-risks">11. Riesgos y Deuda Técnica</h2>
 <div class="sectionbody">
 <div class="sidebarblock arc42help">
 <div class="content">
@@ -1886,7 +1843,7 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Trabajar con React</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No hemos trabajo con el framwork y va a ser muy necesario estar informándonos constantemente</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No hemos trabajado con el framework y va a ser muy necesario estar informándonos constantemente</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">JavaScript</p></td>
@@ -1910,7 +1867,132 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 </div>
 </div>
 <div class="sect1">
-<h2 id="section-glossary">12. Glossary</h2>
+<h2 id="_desplegado">12. Desplegado</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>En nuestro caso, optamos por desplegar usando Netlify por las siguientes razones:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Es más fácil de usar que las otras alternativas</p>
+</li>
+<li>
+<p>Es más rápido que las otras alternativas</p>
+</li>
+<li>
+<p>Es completamente gratuito para webs pequeñas, a diferencia de AWS o Azure.</p>
+</li>
+<li>
+<p>Puede vincularse directamente con github, en vez de</p>
+</li>
+</ol>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-testing">13. Testing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Tests e2e</strong></p>
+</div>
+<div class="paragraph">
+<p>4 tests</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Login</p>
+</li>
+<li>
+<p>Login incorrecto</p>
+</li>
+<li>
+<p>Añadir punto</p>
+</li>
+<li>
+<p>Eliminar punto</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Todos los tests han resultado en pruebas exitosas.</p>
+</div>
+<div class="paragraph">
+<p><strong>Tests unitarios</strong></p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha">
+<li>
+<p>En estos tests, buscamos comprobar el correcto funcionamiento de la aplicación.</p>
+</li>
+<li>
+<p>Para ello, hemos ejecutado 38 tests en total, divididos en 20 suites, una por componente de la aplicación.</p>
+</li>
+<li>
+<p>Sin embargo, debido a una serie de errores que causan que los tests se ejecuten y pasen correctamente
+en local, pero a la hora de ser ejecutados en GitHub Actions no funcionen y lancen excepciones, hemos tomado la decisión de excluir ciertos tests,
+los que acceden al Pod y hacen uso de la sesión , para el cálculo del Coverage, decisión respaldada por el profesorado.</p>
+</li>
+<li>
+<p>También hemos de aclarar que algunos de esos tests se encuentran comentados para evitar problemas.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Tests de carga</strong></p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha">
+<li>
+<p>Para estos tests hemos usado la herramienta Gatling y hemos planteado los siguientes casos:</p>
+<div class="literalblock">
+<div class="content">
+<pre>1.Añadir un punto (1000 usuarios por minuto)</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Consiste en realizar las operaciones de adición de un punto 1000 veces por minuto
+RESULTADOS:
+    1. 323 peticiones tardaron menos de 800ms
+    2. 74 peticiones tardaron entre 800 y 1200
+    3. 614 peticiones tardaron más de 1200 ms
+    4. 2680 peticiones fallaron
+Un 79% de las peticiones fallaron justo al iniciar sesión, cosa probablemente atribuible a problemas en los servidores de inrupt</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/13_gatling_one.png" alt="13 gatling one">
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>2.Escenario completo (5000 usuarios en 15 minutos)
+    Consiste en realizar todas las operaciones posibles en la aplicación 5000 veces por minuto
+    RESULTADOS:
+        1. 92 peticiones tardaron menos de 800ms
+        2. Ninguna petición tardó entre 800 y 1200
+        3. 1001 peticiones tardaron más de 1200 ms
+        4. 8050 peticiones fallaron
+    Un 84% de las peticiones fallaron justo al iniciar sesión, cosa probablemente atribuible a problemas en los servidores de inrupt</pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/13_gatling_all.png" alt="13 gatling all">
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-glossary">14. Glossary</h2>
 <div class="sectionbody">
 <div class="sidebarblock arc42help">
 <div class="content">
@@ -1951,8 +2033,8 @@ more precisely down to a level of scenarios that can be discussed and evaluated.
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Term</th>
-<th class="tableblock halign-left valign-top">Definition</th>
+<th class="tableblock halign-left valign-top">Término</th>
+<th class="tableblock halign-left valign-top">Definición</th>
 </tr>
 </thead>
 <tbody>
@@ -2003,7 +2085,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-03-26 17:28:48 +0200
+Last updated 2023-05-03 17:58:33 +0200
 </div>
 </div>
 </body>
