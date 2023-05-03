@@ -1,5 +1,5 @@
 [[section-design-decisions]]
-== Design Decisions
+== Descisiones de diseño
 
 
 [role="arc42help"]

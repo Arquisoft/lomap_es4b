@@ -1,5 +1,5 @@
 [[section-quality-scenarios]]
-== Quality Requirements
+== Requisitos de calidad
 
 
 [role="arc42help"]
@@ -17,11 +17,11 @@ decisions you should know for every stakeholder what is really important to them
 concrete and measurable.
 ****
 
-=== Quality Tree
+=== Árbol de calidad
 
 image::10_quality_tree.png[]
 
-=== Quality Scenarios
+=== Escenarios de calidad
 
 [role="arc42help"]
 ****

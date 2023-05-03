@@ -1,5 +1,5 @@
 [[section-concepts]]
-== Cross-cutting Concepts
+== Conceptos transversales
 
 
 [role="arc42help"]
@@ -50,8 +50,6 @@ image:08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscuttin
 ****
 
 
-=== Domain model
+=== Modelo de dominio
 
 image:domainModelDiagram.jpg["UML Domain Model Diagram"]
-This is the domain model of the project.
-
