@@ -26,4 +26,5 @@ image::03_technical.png[]
 |JavaScript|Lenguaje de programación que utlizaremos durante el desarrollo
 |React|Biblioteca de JavaScript que se utilizará a la hora de crear las interfaces de nuestra aplicación
 |Firebase|Plataforma móvil de Google que hemos utilizado para almacenar las imagénes de los usuarios
+|OpenStreetMap Maps API|Con la API obtendremos las funciones del mapa
 |===
