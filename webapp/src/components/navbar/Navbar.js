@@ -56,7 +56,7 @@ export default function Navbar(props){
                     <div className="navProfile">
                         <CombinedDataProvider datasetUrl={webId} thingUrl={webId} className="image-button" style={{flexDirection: 'row'}}
                         onChange={handleChangeIcon(webId)}>
-                            <img className={"icono"} src={ imagen} alt="Foto de perfil del usuario"/>
+                            <img className="profileImage" src={ imagen} alt="Foto de perfil del usuario"/>
                             <Text className="profileName" property={FOAF.name.iri.value}/>
                         </CombinedDataProvider>
                         <LogoutButton >
