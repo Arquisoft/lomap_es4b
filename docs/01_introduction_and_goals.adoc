@@ -1,5 +1,5 @@
 [[section-introduction-and-goals]]
-== Introduction and Goals
+== Introducción y objetivos
 
 [role="arc42help"]
 ****
@@ -10,7 +10,7 @@ Describes the relevant requirements and the driving forces that software archite
 * relevant stakeholders and their expectations
 ****
 
-=== Requirements Overview
+=== Descripción de los requisitos
 En la aplicacion web los usuarios podran añadir lugares de distintas categorias (tiendas, bares, restaurantes, monumentos...). Tambien podran mostrar lugares en un formato tipo mapa, ademas de asociar puntuaciones, comentarios, etc. sobre los mismos.
 
 Se hara uso de SOLID para almacenar los lugares de los usuarios (cada usuario tendra su propio POD), y estos mismos decidiran quien puede tener acceso a esos datos.
@@ -35,7 +35,7 @@ If requirements documents exist this overview should refer to these documents.
 Keep these excerpts as short as possible. Balance readability of this document with potential redundancy w.r.t to requirements documents.
 ****
 
-=== Quality Goals
+=== Objetivos de calidad
 
 [role="arc42help"]
 ****
