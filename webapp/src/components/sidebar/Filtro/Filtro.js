@@ -11,6 +11,7 @@ export function Filtro(props){
     const {session, webId, mapId} = props;
     let listaFiltro=Category;
     const [loadingFilteredPoints, setLoadingFilteredPoints] = useState(false);
+    const [loadingAllPoints, setLoadingAllPoints] = useState(false);
     const handleSelect = (event) => {
         const value = event.target.value;
         const isChecked = event.target.checked;
@@ -71,17 +72,17 @@ export function Filtro(props){
             </button>
             <button className={"botonFiltroTodo"} data-testid ={"filtrarTodo"}onClick={
                 async ()=>{
-                    setLoadingFilteredPoints(true);
+                    setLoadingAllPoints(true);
                     filterPoints(session,webId,listaFiltro.map(e=>{return e.category}), mapId).then((puntos)=>{
                         console.log(puntos);
                         props.showFilteredPoints(puntos, webId, mapId);
-                        setLoadingFilteredPoints(false);
+                        setLoadingAllPoints(false);
                     });
 
                 }
             }>
-                {loadingFilteredPoints && <ListLoadingItem/>}
-                {loadingFilteredPoints ? <span>Mostrando</span> : <span>Mostrar todos</span>}
+                {loadingAllPoints && <ListLoadingItem/>}
+                {loadingAllPoints ? <span>Cargando</span> : <span>Ver todos</span>}
             </button>
         </div>
     </div>);
