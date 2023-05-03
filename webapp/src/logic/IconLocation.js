@@ -4,7 +4,7 @@ import L from 'leaflet';
 export default function Icon(category){
     const IconLocation = L.icon({
         iconUrl: require('../images/' + category + '.png'),
-        iconRetinaUrl: require('../images/blue-marker.png'),
+        iconRetinaUrl: require('../images/' + category + '.png'),
         iconAnchor:null,
         shadowUrl:null,
         shadowSize:null,
