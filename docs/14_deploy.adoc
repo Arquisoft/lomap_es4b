@@ -1,0 +1,9 @@
+= Desplegado
+
+
+En nuestro caso, optamos por desplegar usando Netlify por las siguientes razones:
+
+    1. Es más fácil de usar que las otras alternativas
+    2. Es más rápido que las otras alternativas
+    3. Es completamente gratuito para webs pequeñas, a diferencia de AWS o Azure.
+    4. Puede vincularse directamente con github, en vez de

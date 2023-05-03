@@ -9,6 +9,8 @@
     3.	Añadir punto
     4.	Eliminar punto
 
+Todos los tests han resultado en pruebas exitosas.
+
 *Tests unitarios*
 
     a. En estos tests, buscamos comprobar el correcto funcionamiento de la aplicación.
@@ -20,5 +22,28 @@ los que acceden al Pod y hacen uso de la sesión , para el cálculo del Coverage
 
 *Tests de carga*
 
+    a. Para estos tests hemos usado la herramienta Gatling y hemos planteado los siguientes casos:
 
-Desplegado con netlify
+        1.Añadir un punto (1000 usuarios por minuto)
+
+            Consiste en realizar las operaciones de adición de un punto 1000 veces por minuto
+            RESULTADOS:
+                1. 323 peticiones tardaron menos de 800ms
+                2. 74 peticiones tardaron entre 800 y 1200
+                3. 614 peticiones tardaron más de 1200 ms
+                4. 2680 peticiones fallaron
+            Un 79% de las peticiones fallaron justo al iniciar sesión, cosa probablemente atribuible a problemas en los servidores de inrupt
+
+image::13_gatling_one.png[]
+        2.Escenario completo (5000 usuarios en 15 minutos)
+            Consiste en realizar todas las operaciones posibles en la aplicación 5000 veces por minuto
+            RESULTADOS:
+                1. 92 peticiones tardaron menos de 800ms
+                2. Ninguna petición tardó entre 800 y 1200
+                3. 1001 peticiones tardaron más de 1200 ms
+                4. 8050 peticiones fallaron
+            Un 84% de las peticiones fallaron justo al iniciar sesión, cosa probablemente atribuible a problemas en los servidores de inrupt
+
+image::13_gatling_all.png[]
+
+
