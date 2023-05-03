@@ -44,7 +44,7 @@ export default function Navbar(props){
     return (
         <nav className="navBar">
 
-            <a href="/home">
+            <a>
                 <img src={logo} className="logoImg" alt="Logo de Lomap"/>
             </a>
 
