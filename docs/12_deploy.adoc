@@ -1,4 +1,4 @@
-= Desplegado
+== Desplegado
 
 
 En nuestro caso, optamos por desplegar usando Netlify por las siguientes razones:
