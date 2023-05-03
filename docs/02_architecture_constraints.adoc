@@ -1,5 +1,5 @@
 [[section-architecture-constraints]]
-== Architecture Constraints
+== Restricciones Arquitectónicas
 
 
 [role="arc42help"]
@@ -41,9 +41,9 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 |Nuevos conceptos| Debemos aprender por nuestra cuenta a utilizar nuevas tecnologías.
 |===
 
-=== Conventions
+=== Convenio
 
-.Conventions
+.Convenio
 [options="header",cols="1,2"]
 |===
 |Restricción|Descripción

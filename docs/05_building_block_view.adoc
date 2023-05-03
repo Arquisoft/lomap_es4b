@@ -1,7 +1,7 @@
 [[section-building-block-view]]
 
 
-== Building Block View
+== Vista del Bloque de Construccion
 
 [role="arc42help"]
 ****
@@ -34,7 +34,7 @@ Thus it contains the white box description of selected building blocks of level 
 *Level 3* zooms into selected building blocks of level 2, and so on.
 ****
 
-=== Whitebox Overall System
+=== Caja Blanca General del Sistema
 
 [role="arc42help"]
 ****
@@ -59,11 +59,11 @@ In the best case you will get away with examples or simple signatures.
 
 image::05_building_block_view_1.png[]
 
-Motivation::
+Motivacion::
 
 En este diagrama podemos observar los principales agentes de la aplicación (los cuales se verán en detalle más adelante).
 
-.Contained Building Blocks
+.Bloques de construccion contenidos
 [options="header", cols="1,5"]
 |===
 |Nombre|Responsabilidad
@@ -72,7 +72,7 @@ En este diagrama podemos observar los principales agentes de la aplicación (los
 |===
 
 
-=== Level 2
+=== Nivel 2
 
 [role="arc42help"]
 ****
@@ -99,7 +99,7 @@ Aqui se mostrarán las dos partes principales que componen la aplicación.
 
 
 
-=== Level 3
+=== Nivel 3
 
 [role="arc42help"]
 ****
@@ -115,10 +115,10 @@ image:05_building_block_view_3.png[nivel3]
 Motivacion::
 Estructura detallada del sistema.
 
-Contained Building Blocks::
+Bloques de construcción contenidos::
 [options="header",cols="1,3"]
 |===
-|Name| Description
+|Nombre| Descripcion
 
 |*Vistas*
 |Parte de la aplicacion con la cual el usuario interacciona directamente.

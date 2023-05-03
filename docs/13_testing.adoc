@@ -1,4 +1,7 @@
-= Testing
+
+[[section-testing]]
+
+== Testing
 
 *Tests e2e*
 

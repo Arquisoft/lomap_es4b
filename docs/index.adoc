@@ -88,8 +88,16 @@ include::10_quality_scenarios.adoc[]
 include::11_technical_risks.adoc[]
 
 <<<<
-// 12. Glossary
-include::12_glossary.adoc[]
+// 12. Testing
+include::12_deploy.adoc[]
+
+<<<<
+// 13. Deploy
+include::13_testing.adoc[]
+
+<<<<
+// 14. Glossary
+include::14_glossary.adoc[]
 
 <<<<
 // About
