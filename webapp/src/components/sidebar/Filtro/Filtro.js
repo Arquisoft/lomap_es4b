@@ -64,6 +64,9 @@ export function Filtro(props){
                         console.log(puntos);
                         props.showFilteredPoints(puntos, webId, mapId);
                         setLoadingFilteredPoints(false);
+                    }).catch(error => {
+                        console.log(error);
+                        setLoadingFilteredPoints(false);
                     });
                 }
             }>
@@ -76,6 +79,9 @@ export function Filtro(props){
                     filterPoints(session,webId,listaFiltro.map(e=>{return e.category}), mapId).then((puntos)=>{
                         console.log(puntos);
                         props.showFilteredPoints(puntos, webId, mapId);
+                        setLoadingAllPoints(false);
+                    }).catch(error => {
+                        console.log(error);
                         setLoadingAllPoints(false);
                     });
 

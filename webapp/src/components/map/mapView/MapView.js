@@ -41,7 +41,7 @@ export default class MapView extends Component{
             this.state.map.target.flyTo(location, this.state.map.target.getZoom());
             for (let i = 0; i < this.state.markers.length; i++){
                 if (this.state.markers[i].options.id == pointId){
-                    addPopup(pointId, this.state.markers[i], this.state.map, this.state.mapId, this.state.currentMapWebId, this.state.session, this.state.isOwner);
+                    addPopup(pointId, this.state.markers[i], this.state.map.target, this.state.mapId, this.state.currentMapWebId, this.state.session, this.state.isOwner);
                 }
             }
         }
